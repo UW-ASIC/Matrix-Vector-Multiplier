@@ -1,6 +1,7 @@
 ## The Trelford
 
 ### Project Structure
+- `build/` - build flow, refer to https://github.com/UW-ASIC/TinyTapeout_Flows
 - `schematics/` - schematics for project
 - `output/` - Digital logic output files
 - `library/` - Shared schematics and symbols
