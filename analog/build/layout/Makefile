@@ -7,9 +7,7 @@ layout:
 	@echo "Opening magic for layout..."
 	@echo "CREATING TOP FILE, THIS IS THE MAIN SUB-DIRECTORY"
 	cp $(PDK_ROOT)/$(PDK)/libs.tech/magic/sky130A.magicrc .
-	cd ../../layout && $(MAGIC) -rcfile ../build/layout/sky130A.magicrc -T sky130A -noconsole \
-		-eval "set TOP_LEVEL_CELL_NAME $(TOP_LAYOUT)" \
-		-source ../build/layout/tinytapeout_template.tcl
+	cd ../../layout && $(MAGIC) -rcfile ../build/layout/sky130A.magicrc -T sky130A
 	@echo "Exporting to parent..."
 	@if [ -n "$(PARENT_OUTPUT_DIR)" ]; then \
 		echo "Copying final layout to parent project..."; \

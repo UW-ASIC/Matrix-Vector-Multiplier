@@ -9,18 +9,14 @@ NGSPICE = ngspice
 setup:
 	@echo "Setting up symbol files..."
 	@echo "Ignore errors below this ================"
-	mv ../../schematics/*.sym ../../symbols/ 2>/dev/null || true; \
+	@mkdir -p ../../schematics/testbenches spice/testbenches || true; \
 	mv ../../schematics/*_tb.sch ../../schematics/testbenches/ 2>/dev/null || true; \
 	mv spice/*_tb.spice spice/testbenches/ 2>/dev/null || true;
 	@echo "Ignore errors above this ================"
 
 schematic: setup
 	@echo "Opening xschem..."
-	@if [ ! -f "../../schematics/$(TOP_SCHEMATIC).sch" ]; then \
-		echo "Creating empty schematic file: $(TOP_SCHEMATIC).sch"; \
-		touch ../../schematics/$(TOP_SCHEMATIC).sch; \
-	fi
-	$(XSCHEM) ../../schematics/$(TOP_SCHEMATIC).sch
+	$(XSCHEM)
 
 spice: setup
 	@echo "Running SPICE simulations..."

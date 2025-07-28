@@ -22,7 +22,7 @@ let
     buildPhase = ''
       make
     '';
-      
+
     installPhase = ''
       make install
     '';
@@ -120,7 +120,7 @@ in pkgs.mkShell {
     python3Packages.pyyaml
 
     # Analog Design
-    xschem ngspice netgen-old klayout magic-vlsi-old
+    xschem ngspice netgen-old klayout magic-vlsi-old vim
     # For Data
     python3Packages.numpy
     python3Packages.matplotlib
@@ -143,25 +143,25 @@ in pkgs.mkShell {
     export PDK_ROOT="$HOME/.volare"
     export PDK="sky130A"
     export KLAYOUT_PATH="$PDK_ROOT/$PDK/libs.tech/klayout"
-    
+
     # XSchem Setup
     export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
     export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${xschem}/share/xschem/xschem_library"
-    
+
     # Setup Python virtual environment
     export VENV_DIR="$PROJECT_ROOT/.venv"
     if [ ! -d "$VENV_DIR" ]; then
         echo "Creating Python virtual environment..."
         python -m venv "$VENV_DIR"
     fi
-    
+
     # Activate virtual environment
     source "$VENV_DIR/bin/activate"
     pip install --upgrade \
         volare==0.20.6 \
         openlane==2.3.10 \
         cace==2.6.0
-    
+
     # Download xschem_sky130 library
     volare enable --pdk sky130 0fe599b2afb6708d281543108caf8310912f54af
 
@@ -174,7 +174,7 @@ set ng_nomodcheck
 set num_threads=4
 EOF
     fi
-    
+
     echo "System tools available:"
     echo "  - xschem: $(xschem --version 2>/dev/null || echo 'custom build')"
     echo "  - yosys: $(yosys -V 2>/dev/null | head -1 || echo 'unknown version')"
