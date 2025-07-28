@@ -1,9 +1,8 @@
 ## The Trelford
 
 ### Project Structure
-- `schematics/ADC.sch` - Analog-to-Digital Converter schematic
-- `schematics/DAC.sch` - Digital-to-Analog Converter schematic
-- `schematics/CurrentSensor.sch` - Current sensing and amplification schematic
+- `build/` - build flow, refer to https://github.com/UW-ASIC/TinyTapeout_Flows
+- `schematics/` - schematics for project
 - `output/` - Digital logic output files
 - `library/` - Shared schematics and symbols
 
