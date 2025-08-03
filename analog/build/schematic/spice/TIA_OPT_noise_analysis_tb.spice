@@ -1,0 +1,31 @@
+** sch_path: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/analog/library/TIAs/TIA_TIA_Optimization/tb/TIA_OPT_noise_analysis_tb.sch
+**.subckt TIA_OPT_noise_analysis_tb
+*  x1 -  TIA  IS MISSING !!!!
+I0 net1 Iin DC 0 AC 1
+V1 net2 GND DC 3.3V
+V2 net3 GND DC 1.65V
+**** begin user architecture code
+
+
+.noise v(vout) I0 dec 100 1 1meg
+.control
+run
+let input_noise_density = sqrt(inoise_spectrum[0])
+let output_noise_density = sqrt(onoise_spectrum[0])
+echo 'INPUT_NOISE_DENSITY:' $&input_noise_density
+echo 'OUTPUT_NOISE_DENSITY:' $&output_noise_density
+.endc
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

@@ -1,0 +1,42 @@
+** sch_path: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/analog/library/TIAs/TIA_LowNoise/tb/TIA_LN_transimpedance_gain_tb.sch
+**.subckt TIA_LN_transimpedance_gain_tb
+*  x1 -  TIA  IS MISSING !!!!
+I0 net1 Iin DC 1u AC 1u
+V1 net2 GND DC 3.3V
+V2 net3 GND DC 1.65V
+**** begin user architecture code
+
+
+.ac dec 100 1 1G
+.control
+run
+let tia_gain_val = vdb(vout)[0]
+let phase_val = vp(vout)[0]
+echo 'TIA_GAIN:' $&tia_gain_val
+echo 'PHASE:' $&phase_val
+let bw_3db = 0
+let i = 0
+let target_gain = tia_gain_val - 3
+while i < length(vdb(vout))
+  if vdb(vout)[i] <= target_gain
+    let bw_3db = frequency[i]
+    break
+  end
+  let i = i + 1
+end
+echo 'BANDWIDTH_3DB:' $&bw_3db
+.endc
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

@@ -1,0 +1,42 @@
+** sch_path: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/analog/library/TIAs/TIA_HighBandwidth/tb/TIA_HB_step_response_tb.sch
+**.subckt TIA_HB_step_response_tb
+*  x1 -  TIA  IS MISSING !!!!
+I0 net1 Iin PULSE(0 10u 1u 10n 10n 5u 10u)
+V1 net2 GND DC 3.3V
+V2 net3 GND DC 1.65V
+**** begin user architecture code
+
+
+.tran 10n 15u
+.control
+run
+let settling_time = 0
+let final_val = v(vout)[length(v(vout))-1]
+let target_val = final_val * 0.99
+let i = 0
+while i < length(v(vout))
+  if v(vout)[i] >= target_val
+    let settling_time = time[i]
+    break
+  end
+  let i = i + 1
+end
+echo 'SETTLING_TIME:' $&settling_time
+echo 'FINAL_OUTPUT:' $&final_val
+let overshoot = maximum(v(vout)) - final_val
+echo 'OVERSHOOT:' $&overshoot
+.endc
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
