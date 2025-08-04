@@ -1,20 +1,54 @@
-#!/usr/bin/env python3
 import os
 import sys
-from pathlib import Path
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from scripts.XSchemInterface import XSchemInterface
+from scripts.XSchemInterface import build_and_simulate_variants
 
-# Define variants
+# OpAmp variant definitions
 VARIANTS = {
-    "HighGain": {"short": "HG", "params": {"M1": {"W": "20", "L": "1"}, "M2": {"W": "20", "L": "1"}, "M3": {"W": "5", "L": "2"}, "M4": {"W": "5", "L": "2"}, "M5": {"W": "40", "L": "0.5"}}},
-    "LowPower": {"short": "LP", "params": {"M1": {"W": "5", "L": "1"}, "M2": {"W": "5", "L": "1"}, "M3": {"W": "2", "L": "1"}, "M4": {"W": "2", "L": "1"}, "M5": {"W": "10", "L": "1"}}},
-    "HighSpeed": {"short": "HS", "params": {"M1": {"W": "50", "L": "0.18"}, "M2": {"W": "50", "L": "0.18"}, "M3": {"W": "20", "L": "0.18"}, "M4": {"W": "20", "L": "0.18"}, "M5": {"W": "100", "L": "0.18"}}},
-    "Balanced": {"short": "BAL", "params": {"M1": {"W": "10", "L": "0.5"}, "M2": {"W": "10", "L": "0.5"}, "M3": {"W": "5", "L": "0.5"}, "M4": {"W": "5", "L": "0.5"}, "M5": {"W": "20", "L": "0.5"}}}
+    "HighGain": {
+        "short": "HG", 
+        "params": {
+            "M1": {"W": "20", "L": "1"}, 
+            "M2": {"W": "20", "L": "1"}, 
+            "M3": {"W": "5", "L": "2"}, 
+            "M4": {"W": "5", "L": "2"}, 
+            "M5": {"W": "40", "L": "0.5"}
+        }
+    },
+    "LowPower": {
+        "short": "LP", 
+        "params": {
+            "M1": {"W": "5", "L": "1"}, 
+            "M2": {"W": "5", "L": "1"}, 
+            "M3": {"W": "2", "L": "1"}, 
+            "M4": {"W": "2", "L": "1"}, 
+            "M5": {"W": "10", "L": "1"}
+        }
+    },
+    "HighSpeed": {
+        "short": "HS", 
+        "params": {
+            "M1": {"W": "50", "L": "0.18"}, 
+            "M2": {"W": "50", "L": "0.18"}, 
+            "M3": {"W": "20", "L": "0.18"}, 
+            "M4": {"W": "20", "L": "0.18"}, 
+            "M5": {"W": "100", "L": "0.18"}
+        }
+    },
+    "Balanced": {
+        "short": "BAL", 
+        "params": {
+            "M1": {"W": "10", "L": "0.5"}, 
+            "M2": {"W": "10", "L": "0.5"}, 
+            "M3": {"W": "5", "L": "0.5"}, 
+            "M4": {"W": "5", "L": "0.5"}, 
+            "M5": {"W": "20", "L": "0.5"}
+        }
+    }
 }
 
-# Define tests
+# Test configurations
 TESTS = {
     "dc_gain": {
         "v1_common_mode": "DC 0.9V",
@@ -73,7 +107,7 @@ echo 'CURRENT:' $&current_val
     }
 }
 
-# Units for documentation
+# Units mapping for documentation
 UNITS_MAP = {
     'DC_GAIN': 'dB',
     'SLEW_RATE_POS': 'V/s', 
@@ -84,10 +118,10 @@ UNITS_MAP = {
 }
 
 if __name__ == "__main__":
-    XSchemInterface.create_and_simulate_variants(
+    build_and_simulate_variants(
         variants=VARIANTS,
         tests=TESTS,
-        component_type="OpAmp",
-        template_base="template",
+        circuit_type="OpAmp",
+        template_dir="template",
         units_map=UNITS_MAP
     )
