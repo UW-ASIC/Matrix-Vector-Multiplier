@@ -120,7 +120,7 @@ in pkgs.mkShell {
     python3Packages.pyyaml
 
     # Analog Design
-    xschem ngspice netgen-old klayout magic-vlsi-old vim
+    xschem ngspice xyce netgen-old klayout magic-vlsi-old vim
     # For Data
     python3Packages.numpy
     python3Packages.matplotlib

@@ -1,0 +1,824 @@
+$date
+	Mon Aug 25 11:10:47 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_tt_if $end
+$var wire 8 ! ar_addr [7:0] $end
+$var wire 1 " ar_valid $end
+$var wire 8 # aw_addr [7:0] $end
+$var wire 1 $ aw_valid $end
+$var wire 1 % b_ready $end
+$var wire 1 & r_ready $end
+$var wire 8 ' w_data [7:0] $end
+$var wire 1 ( w_strb $end
+$var wire 1 ) w_valid $end
+$var wire 8 * uo_out [7:0] $end
+$var wire 8 + uio_out [7:0] $end
+$var wire 8 , uio_oe [7:0] $end
+$var parameter 2 - R_ADDR $end
+$var parameter 2 . R_DATA $end
+$var parameter 2 / R_IDLE $end
+$var parameter 2 0 W_ADDR $end
+$var parameter 2 1 W_DATA $end
+$var parameter 2 2 W_IDLE $end
+$var parameter 2 3 W_RESP $end
+$var reg 1 4 ar_ready $end
+$var reg 1 5 aw_ready $end
+$var reg 2 6 b_resp [1:0] $end
+$var reg 1 7 b_valid $end
+$var reg 1 8 clk $end
+$var reg 1 9 ena $end
+$var reg 8 : r_addr_reg [7:0] $end
+$var reg 8 ; r_data [7:0] $end
+$var reg 2 < r_resp [1:0] $end
+$var reg 2 = r_state [1:0] $end
+$var reg 1 > r_valid $end
+$var reg 1 ? rst_n $end
+$var reg 8 @ ui_in [7:0] $end
+$var reg 8 A uio_in [7:0] $end
+$var reg 8 B w_addr_reg [7:0] $end
+$var reg 1 C w_ready $end
+$var reg 2 D w_state [1:0] $end
+$scope module dut $end
+$var wire 1 8 i_clk $end
+$var wire 1 9 i_ena $end
+$var wire 1 ? i_rst_n $end
+$var wire 8 E ui_in [7:0] $end
+$var wire 8 F uio_in [7:0] $end
+$var wire 1 G w_valid $end
+$var wire 1 H w_strb $end
+$var wire 8 I w_data [7:0] $end
+$var wire 8 J uo_out [7:0] $end
+$var wire 8 K uio_out [7:0] $end
+$var wire 8 L uio_oe [7:0] $end
+$var wire 1 M r_ready $end
+$var wire 1 N b_ready $end
+$var wire 1 O aw_valid $end
+$var wire 8 P aw_addr [7:0] $end
+$var wire 1 Q ar_valid $end
+$var wire 8 R ar_addr [7:0] $end
+$var reg 1 S ar_ready $end
+$var reg 1 T aw_ready $end
+$var reg 2 U b_resp [1:0] $end
+$var reg 1 V b_valid $end
+$var reg 8 W r_data [7:0] $end
+$var reg 2 X r_resp [1:0] $end
+$var reg 1 Y r_valid $end
+$var reg 1 Z w_ready $end
+$scope module tt_to_axi_inst $end
+$var wire 1 [ ar_ready $end
+$var wire 1 \ aw_ready $end
+$var wire 2 ] b_resp [1:0] $end
+$var wire 1 ^ b_valid $end
+$var wire 1 8 i_clk $end
+$var wire 1 9 i_ena $end
+$var wire 1 ? i_rst_n $end
+$var wire 8 _ i_ui_in [7:0] $end
+$var wire 8 ` i_uio_in [7:0] $end
+$var wire 8 a r_data [7:0] $end
+$var wire 2 b r_resp [1:0] $end
+$var wire 1 c r_valid $end
+$var wire 1 d w_ready $end
+$var wire 6 e cmd_addr_6bit [5:0] $end
+$var wire 8 f cmd_addr [7:0] $end
+$var wire 2 g cmd [1:0] $end
+$var parameter 32 h ADDR_WIDTH $end
+$var parameter 32 i DATA_WIDTH $end
+$var reg 8 j addr_reg [7:0] $end
+$var reg 8 k ar_addr [7:0] $end
+$var reg 1 Q ar_valid $end
+$var reg 8 l aw_addr [7:0] $end
+$var reg 1 O aw_valid $end
+$var reg 1 N b_ready $end
+$var reg 3 m next_state [2:0] $end
+$var reg 8 n o_uio_oe [7:0] $end
+$var reg 8 o o_uio_out [7:0] $end
+$var reg 8 p o_uo_out [7:0] $end
+$var reg 1 M r_ready $end
+$var reg 3 q state [2:0] $end
+$var reg 8 r w_data [7:0] $end
+$var reg 1 H w_strb $end
+$var reg 1 G w_valid $end
+$var reg 8 s write_data_reg [7:0] $end
+$var reg 1 t write_strb_reg $end
+$upscope $end
+$upscope $end
+$scope task dump_memory $end
+$var integer 32 u i [31:0] $end
+$upscope $end
+$scope task monitor_state_transitions $end
+$var reg 3 v current_state [2:0] $end
+$var reg 3 w prev_state [2:0] $end
+$var integer 32 x i [31:0] $end
+$upscope $end
+$scope task read_transaction $end
+$var reg 6 y addr [5:0] $end
+$var reg 8 z expected_data [7:0] $end
+$var reg 8 { read_data [7:0] $end
+$upscope $end
+$scope task wait_for_idle $end
+$var reg 3 | current_state [2:0] $end
+$var integer 32 } cycles [31:0] $end
+$var integer 32 ~ timeout_cycles [31:0] $end
+$upscope $end
+$scope task write_transaction $end
+$var reg 6 !" addr [5:0] $end
+$var reg 8 "" data [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 i
+b1000 h
+b11 3
+b0 2
+b10 1
+b1 0
+b0 /
+b10 .
+b1 -
+$end
+#0
+$dumpvars
+bx ""
+bx !"
+bx ~
+bx }
+bx |
+bx {
+bx z
+bx y
+bx x
+bx w
+bx v
+bx u
+0t
+b0 s
+b0 r
+b0 q
+b0 p
+b0 o
+b0 n
+b0 m
+b0 l
+b0 k
+b0 j
+b0 g
+b0 f
+b0 e
+xd
+xc
+bx b
+bx a
+b0 `
+b0 _
+x^
+bx ]
+x\
+x[
+xZ
+xY
+bx X
+bx W
+xV
+bx U
+xT
+xS
+b0 R
+0Q
+b0 P
+0O
+0N
+0M
+b0 L
+b0 K
+b0 J
+b0 I
+0H
+0G
+b0 F
+b0 E
+b0 D
+0C
+b0 B
+b0 A
+b0 @
+0?
+0>
+b0 =
+b0 <
+b0 ;
+b0 :
+19
+18
+07
+b0 6
+05
+04
+b0 ,
+b0 +
+b0 *
+0)
+0(
+b0 '
+0&
+0%
+0$
+b0 #
+0"
+b0 !
+$end
+#5000
+08
+#10000
+18
+#15000
+08
+#20000
+18
+#25000
+08
+#30000
+18
+#35000
+08
+#40000
+15
+14
+1?
+18
+#45000
+08
+#50000
+18
+#55000
+08
+#60000
+b10100101 A
+b10100101 F
+b10100101 `
+b10100101 ""
+b101 !"
+18
+#65000
+08
+#70000
+b1 m
+b1 g
+b101 f
+b101 e
+b10101 @
+b10101 E
+b10101 _
+18
+#75000
+08
+#80000
+b0 g
+b0 f
+b0 e
+b0 @
+b0 E
+b0 _
+b111 ,
+b111 L
+b111 n
+b1 +
+b1 K
+b1 o
+b101 *
+b101 J
+b101 p
+b101 #
+b101 P
+b101 l
+1$
+1O
+1t
+b10100101 s
+b101 j
+b1 q
+b0 }
+b1100100 ~
+18
+#85000
+08
+#90000
+05
+b1 D
+b101 B
+b101 |
+18
+#95000
+08
+#100000
+1C
+b1 }
+18
+#105000
+08
+#110000
+b10 }
+18
+#115000
+08
+#120000
+b11 }
+18
+#125000
+08
+#130000
+b100 }
+18
+#135000
+08
+#140000
+b101 }
+18
+#145000
+08
+#150000
+b110 }
+18
+#155000
+08
+#160000
+b111 }
+18
+#165000
+08
+#170000
+b1000 }
+18
+#175000
+08
+#180000
+b1001 }
+18
+#185000
+08
+#190000
+b1010 }
+18
+#195000
+08
+#200000
+b10 g
+b101 f
+b101 e
+b10110 @
+b10110 E
+b10110 _
+b1011 }
+18
+#205000
+08
+#210000
+b1100 }
+18
+#215000
+08
+#220000
+b1101 }
+18
+#225000
+08
+#230000
+b1110 }
+18
+#235000
+08
+#240000
+b1111 }
+18
+#245000
+08
+#250000
+b10000 }
+18
+#255000
+08
+#260000
+b10001 }
+18
+#265000
+08
+#270000
+b10010 }
+18
+#275000
+08
+#280000
+b10011 }
+18
+#285000
+08
+#290000
+b10100 }
+18
+#295000
+08
+#300000
+b10101 }
+18
+#305000
+08
+#310000
+b10110 }
+18
+#315000
+08
+#320000
+b10111 }
+18
+#325000
+08
+#330000
+b11000 }
+18
+#335000
+08
+#340000
+b11001 }
+18
+#345000
+08
+#350000
+b11010 }
+18
+#355000
+08
+#360000
+b11011 }
+18
+#365000
+08
+#370000
+b11100 }
+18
+#375000
+08
+#380000
+b11101 }
+18
+#385000
+08
+#390000
+b11110 }
+18
+#395000
+08
+#400000
+b11111 }
+18
+#405000
+08
+#410000
+b100000 }
+18
+#415000
+08
+#420000
+b100001 }
+18
+#425000
+08
+#430000
+b100010 }
+18
+#435000
+08
+#440000
+b100011 }
+18
+#445000
+08
+#450000
+b100100 }
+18
+#455000
+08
+#460000
+b100101 }
+18
+#465000
+08
+#470000
+b100110 }
+18
+#475000
+08
+#480000
+b100111 }
+18
+#485000
+08
+#490000
+b101000 }
+18
+#495000
+08
+#500000
+b101001 }
+18
+#505000
+08
+#510000
+b101010 }
+18
+#515000
+08
+#520000
+b101011 }
+18
+#525000
+08
+#530000
+b101100 }
+18
+#535000
+08
+#540000
+b101101 }
+18
+#545000
+08
+#550000
+b101110 }
+18
+#555000
+08
+#560000
+b101111 }
+18
+#565000
+08
+#570000
+b110000 }
+18
+#575000
+08
+#580000
+b110001 }
+18
+#585000
+08
+#590000
+b110010 }
+18
+#595000
+08
+#600000
+b110011 }
+18
+#605000
+08
+#610000
+b110100 }
+18
+#615000
+08
+#620000
+b110101 }
+18
+#625000
+08
+#630000
+b110110 }
+18
+#635000
+08
+#640000
+b110111 }
+18
+#645000
+08
+#650000
+b111000 }
+18
+#655000
+08
+#660000
+b111001 }
+18
+#665000
+08
+#670000
+b111010 }
+18
+#675000
+08
+#680000
+b111011 }
+18
+#685000
+08
+#690000
+b111100 }
+18
+#695000
+08
+#700000
+b111101 }
+18
+#705000
+08
+#710000
+b111110 }
+18
+#715000
+08
+#720000
+b111111 }
+18
+#725000
+08
+#730000
+b1000000 }
+18
+#735000
+08
+#740000
+b1000001 }
+18
+#745000
+08
+#750000
+b1000010 }
+18
+#755000
+08
+#760000
+b1000011 }
+18
+#765000
+08
+#770000
+b1000100 }
+18
+#775000
+08
+#780000
+b1000101 }
+18
+#785000
+08
+#790000
+b1000110 }
+18
+#795000
+08
+#800000
+b1000111 }
+18
+#805000
+08
+#810000
+b1001000 }
+18
+#815000
+08
+#820000
+b1001001 }
+18
+#825000
+08
+#830000
+b1001010 }
+18
+#835000
+08
+#840000
+b1001011 }
+18
+#845000
+08
+#850000
+b1001100 }
+18
+#855000
+08
+#860000
+b1001101 }
+18
+#865000
+08
+#870000
+b1001110 }
+18
+#875000
+08
+#880000
+b1001111 }
+18
+#885000
+08
+#890000
+b1010000 }
+18
+#895000
+08
+#900000
+b1010001 }
+18
+#905000
+08
+#910000
+b1010010 }
+18
+#915000
+08
+#920000
+b1010011 }
+18
+#925000
+08
+#930000
+b1010100 }
+18
+#935000
+08
+#940000
+b1010101 }
+18
+#945000
+08
+#950000
+b1010110 }
+18
+#955000
+08
+#960000
+b1010111 }
+18
+#965000
+08
+#970000
+b1011000 }
+18
+#975000
+08
+#980000
+b1011001 }
+18
+#985000
+08
+#990000
+b1011010 }
+18
+#995000
+08
+#1000000
+b1011011 }
+18
+#1005000
+08
+#1010000
+b1011100 }
+18
+#1015000
+08
+#1020000
+b1011101 }
+18
+#1025000
+08
+#1030000
+b1011110 }
+18
+#1035000
+08
+#1040000
+b1011111 }
+18
+#1045000
+08
+#1050000
+b1100000 }
+18
+#1055000
+08
+#1060000
+b1100001 }
+18
+#1065000
+08
+#1070000
+b1100010 }
+18
+#1075000
+08
+#1080000
+b1100011 }
+18
+#1085000
+08
+#1090000
+b1100100 }
+18

@@ -1,0 +1,26 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1756134647" />
+    <testcase name="test_basic_write_read" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="92" time="0.006467342376708984" sim_time_ns="1090.0" ratio_time="168539.09017179091">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+    <testcase name="test_multiple_addresses" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="124" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+    <testcase name="test_state_monitoring" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="150" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+    <testcase name="test_address_boundary" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="207" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+    <testcase name="test_command_decoding" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="233" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+    <testcase name="test_rapid_transactions" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="279" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+    <testcase name="test_connectivity" classname="test_tt_if" file="/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/test/test_tt_if.py" lineno="306" time="0" sim_time_ns="0" ratio_time="nan">
+      <failure message="Test failed with RANDOM_SEED=1756134647" />
+    </testcase>
+  </testsuite>
+</testsuites>

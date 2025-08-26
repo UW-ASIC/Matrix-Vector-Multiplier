@@ -16,7 +16,7 @@ setup:
 
 schematic: setup
 	@echo "Opening xschem..."
-	$(XSCHEM)
+	@($(XSCHEM); exit) &
 
 spice: setup
 	@echo "Running SPICE simulations..."

@@ -14,7 +14,7 @@ test-rtl:
 	@$(foreach tb,$(TB_FILES), \
 		tb_name=$$(basename $(tb) .v); \
 		printf "$(BLUE)[DIGITAL]$(NC) Running simulation with $(tb)\n"; \
-		$(IVERILOG) -o simulations/$${tb_name}.vvp $(RTL_FILES) $(tb); \
+		$(IVERILOG)  -g2012 -o simulations/$${tb_name}.vvp $(RTL_FILES) $(tb); \
 		if [ $$? -eq 0 ]; then \
 			cd simulations && $(VVP) $${tb_name}.vvp && cd ..; \
 			if [ $$? -eq 0 ]; then \

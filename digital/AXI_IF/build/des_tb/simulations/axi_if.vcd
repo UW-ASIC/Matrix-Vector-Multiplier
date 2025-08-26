@@ -1,0 +1,830 @@
+$date
+	Mon Aug 25 10:47:17 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_axi_if $end
+$var wire 8 ! ar_addr [7:0] $end
+$var wire 1 " ar_valid $end
+$var wire 8 # aw_addr [7:0] $end
+$var wire 1 $ aw_valid $end
+$var wire 1 % b_ready $end
+$var wire 1 & r_ready $end
+$var wire 8 ' w_data [7:0] $end
+$var wire 1 ( w_strb $end
+$var wire 1 ) w_valid $end
+$var wire 8 * uo_out [7:0] $end
+$var wire 8 + uio_out [7:0] $end
+$var wire 8 , uio_oe [7:0] $end
+$var parameter 2 - R_ADDR $end
+$var parameter 2 . R_DATA $end
+$var parameter 2 / R_IDLE $end
+$var parameter 2 0 W_ADDR $end
+$var parameter 2 1 W_DATA $end
+$var parameter 2 2 W_IDLE $end
+$var parameter 2 3 W_RESP $end
+$var reg 1 4 ar_ready $end
+$var reg 1 5 aw_ready $end
+$var reg 2 6 b_resp [1:0] $end
+$var reg 1 7 b_valid $end
+$var reg 1 8 clk $end
+$var reg 1 9 ena $end
+$var reg 8 : r_addr_reg [7:0] $end
+$var reg 8 ; r_data [7:0] $end
+$var reg 2 < r_resp [1:0] $end
+$var reg 2 = r_state [1:0] $end
+$var reg 1 > r_valid $end
+$var reg 1 ? rst_n $end
+$var reg 8 @ ui_in [7:0] $end
+$var reg 8 A uio_in [7:0] $end
+$var reg 8 B w_addr_reg [7:0] $end
+$var reg 1 C w_ready $end
+$var reg 2 D w_state [1:0] $end
+$scope module dut $end
+$var wire 1 8 i_clk $end
+$var wire 1 9 i_ena $end
+$var wire 1 ? i_rst_n $end
+$var wire 8 E ui_in [7:0] $end
+$var wire 8 F uio_in [7:0] $end
+$var wire 1 G w_valid $end
+$var wire 1 H w_strb $end
+$var wire 8 I w_data [7:0] $end
+$var wire 8 J uo_out [7:0] $end
+$var wire 8 K uio_out [7:0] $end
+$var wire 8 L uio_oe [7:0] $end
+$var wire 1 M r_ready $end
+$var wire 1 N b_ready $end
+$var wire 1 O aw_valid $end
+$var wire 8 P aw_addr [7:0] $end
+$var wire 1 Q ar_valid $end
+$var wire 8 R ar_addr [7:0] $end
+$var reg 1 S ar_ready $end
+$var reg 1 T aw_ready $end
+$var reg 2 U b_resp [1:0] $end
+$var reg 1 V b_valid $end
+$var reg 8 W r_data [7:0] $end
+$var reg 2 X r_resp [1:0] $end
+$var reg 1 Y r_valid $end
+$var reg 1 Z w_ready $end
+$scope module tt_to_axi_inst $end
+$var wire 1 [ ar_ready $end
+$var wire 1 \ aw_ready $end
+$var wire 2 ] b_resp [1:0] $end
+$var wire 1 ^ b_valid $end
+$var wire 1 8 i_clk $end
+$var wire 1 9 i_ena $end
+$var wire 1 ? i_rst_n $end
+$var wire 8 _ i_ui_in [7:0] $end
+$var wire 8 ` i_uio_in [7:0] $end
+$var wire 8 a r_data [7:0] $end
+$var wire 2 b r_resp [1:0] $end
+$var wire 1 c r_valid $end
+$var wire 1 d w_ready $end
+$var wire 1 e status_ready $end
+$var wire 8 f cmd_addr [7:0] $end
+$var wire 2 g cmd [1:0] $end
+$var parameter 32 h ADDR_WIDTH $end
+$var parameter 32 i DATA_WIDTH $end
+$var reg 8 j ar_addr [7:0] $end
+$var reg 1 Q ar_valid $end
+$var reg 8 k aw_addr [7:0] $end
+$var reg 1 O aw_valid $end
+$var reg 1 N b_ready $end
+$var reg 3 l next_state [2:0] $end
+$var reg 8 m o_uio_oe [7:0] $end
+$var reg 8 n o_uio_out [7:0] $end
+$var reg 8 o o_uo_out [7:0] $end
+$var reg 1 M r_ready $end
+$var reg 3 p state [2:0] $end
+$var reg 8 q w_data [7:0] $end
+$var reg 1 H w_strb $end
+$var reg 1 G w_valid $end
+$var reg 8 r write_data_reg [7:0] $end
+$var reg 1 s write_strb_reg $end
+$upscope $end
+$upscope $end
+$scope task dump_memory $end
+$var integer 32 t i [31:0] $end
+$upscope $end
+$scope task monitor_state_transitions $end
+$var reg 3 u current_state [2:0] $end
+$var reg 3 v prev_state [2:0] $end
+$var integer 32 w i [31:0] $end
+$upscope $end
+$scope task read_transaction $end
+$var reg 6 x addr [5:0] $end
+$var reg 8 y expected_data [7:0] $end
+$var reg 8 z read_data [7:0] $end
+$upscope $end
+$scope task wait_for_idle $end
+$var reg 3 { current_state [2:0] $end
+$var integer 32 | cycles [31:0] $end
+$var integer 32 } timeout_cycles [31:0] $end
+$upscope $end
+$scope task write_transaction $end
+$var reg 6 ~ addr [5:0] $end
+$var reg 8 !" data [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b1000 i
+b1000 h
+b11 3
+b0 2
+b10 1
+b1 0
+b0 /
+b10 .
+b1 -
+$end
+#0
+$dumpvars
+bx !"
+bx ~
+bx }
+bx |
+bx {
+bx z
+bx y
+bx x
+bx w
+bx v
+bx u
+bx t
+xs
+bx r
+b0 q
+bx p
+b11111111 o
+b0 n
+b0 m
+b0 l
+b0 k
+b0 j
+b0 g
+b0 f
+xe
+xd
+xc
+bx b
+bx a
+b0 `
+b0 _
+x^
+bx ]
+x\
+x[
+xZ
+xY
+bx X
+bx W
+xV
+bx U
+xT
+xS
+b0 R
+0Q
+b0 P
+0O
+0N
+0M
+b0 L
+b0 K
+b11111111 J
+b0 I
+0H
+0G
+b0 F
+b0 E
+bx D
+xC
+bx B
+b0 A
+b0 @
+0?
+x>
+bx =
+bx <
+bx ;
+bx :
+19
+08
+x7
+bx 6
+x5
+x4
+b0 ,
+b0 +
+b11111111 *
+0)
+0(
+b0 '
+0&
+0%
+0$
+b0 #
+0"
+b0 !
+$end
+#5000
+b0 *
+b0 J
+b0 o
+1e
+0s
+b0 r
+b0 p
+b0 B
+b0 6
+07
+0C
+05
+b0 D
+b0 :
+b0 <
+b0 ;
+0>
+04
+b0 =
+18
+#10000
+08
+#15000
+18
+#20000
+08
+#25000
+18
+#30000
+08
+#35000
+18
+#40000
+08
+#45000
+15
+14
+1?
+18
+#50000
+08
+#55000
+18
+#60000
+08
+#65000
+b10100101 A
+b10100101 F
+b10100101 `
+b10100101 !"
+b101 ~
+18
+#70000
+08
+#75000
+b1 l
+b1 g
+b101 f
+b10101 @
+b10101 E
+b10101 _
+18
+#80000
+08
+#85000
+b111 ,
+b111 L
+b111 m
+b1 +
+b1 K
+b1 n
+b101 *
+b101 J
+b101 o
+b101 #
+b101 P
+b101 k
+1$
+1O
+0e
+1s
+b10100101 r
+b1 p
+b0 |
+b1100100 }
+18
+#90000
+08
+#95000
+05
+b1 D
+b101 B
+b101 {
+18
+#100000
+08
+#105000
+1C
+b1 |
+18
+#110000
+08
+#115000
+b10 |
+18
+#120000
+08
+#125000
+b11 |
+18
+#130000
+08
+#135000
+b100 |
+18
+#140000
+08
+#145000
+b101 |
+18
+#150000
+08
+#155000
+b110 |
+18
+#160000
+08
+#165000
+b111 |
+18
+#170000
+08
+#175000
+b1000 |
+18
+#180000
+08
+#185000
+b1001 |
+18
+#190000
+08
+#195000
+b1010 |
+18
+#200000
+08
+#205000
+b1011 |
+18
+#210000
+08
+#215000
+b1100 |
+18
+#220000
+08
+#225000
+b1101 |
+18
+#230000
+08
+#235000
+b1110 |
+18
+#240000
+08
+#245000
+b1111 |
+18
+#250000
+08
+#255000
+b10000 |
+18
+#260000
+08
+#265000
+b10001 |
+18
+#270000
+08
+#275000
+b10010 |
+18
+#280000
+08
+#285000
+b10011 |
+18
+#290000
+08
+#295000
+b10100 |
+18
+#300000
+08
+#305000
+b10101 |
+18
+#310000
+08
+#315000
+b10110 |
+18
+#320000
+08
+#325000
+b10111 |
+18
+#330000
+08
+#335000
+b11000 |
+18
+#340000
+08
+#345000
+b11001 |
+18
+#350000
+08
+#355000
+b11010 |
+18
+#360000
+08
+#365000
+b11011 |
+18
+#370000
+08
+#375000
+b11100 |
+18
+#380000
+08
+#385000
+b11101 |
+18
+#390000
+08
+#395000
+b11110 |
+18
+#400000
+08
+#405000
+b11111 |
+18
+#410000
+08
+#415000
+b100000 |
+18
+#420000
+08
+#425000
+b100001 |
+18
+#430000
+08
+#435000
+b100010 |
+18
+#440000
+08
+#445000
+b100011 |
+18
+#450000
+08
+#455000
+b100100 |
+18
+#460000
+08
+#465000
+b100101 |
+18
+#470000
+08
+#475000
+b100110 |
+18
+#480000
+08
+#485000
+b100111 |
+18
+#490000
+08
+#495000
+b101000 |
+18
+#500000
+08
+#505000
+b101001 |
+18
+#510000
+08
+#515000
+b101010 |
+18
+#520000
+08
+#525000
+b101011 |
+18
+#530000
+08
+#535000
+b101100 |
+18
+#540000
+08
+#545000
+b101101 |
+18
+#550000
+08
+#555000
+b101110 |
+18
+#560000
+08
+#565000
+b101111 |
+18
+#570000
+08
+#575000
+b110000 |
+18
+#580000
+08
+#585000
+b110001 |
+18
+#590000
+08
+#595000
+b110010 |
+18
+#600000
+08
+#605000
+b110011 |
+18
+#610000
+08
+#615000
+b110100 |
+18
+#620000
+08
+#625000
+b110101 |
+18
+#630000
+08
+#635000
+b110110 |
+18
+#640000
+08
+#645000
+b110111 |
+18
+#650000
+08
+#655000
+b111000 |
+18
+#660000
+08
+#665000
+b111001 |
+18
+#670000
+08
+#675000
+b111010 |
+18
+#680000
+08
+#685000
+b111011 |
+18
+#690000
+08
+#695000
+b111100 |
+18
+#700000
+08
+#705000
+b111101 |
+18
+#710000
+08
+#715000
+b111110 |
+18
+#720000
+08
+#725000
+b111111 |
+18
+#730000
+08
+#735000
+b1000000 |
+18
+#740000
+08
+#745000
+b1000001 |
+18
+#750000
+08
+#755000
+b1000010 |
+18
+#760000
+08
+#765000
+b1000011 |
+18
+#770000
+08
+#775000
+b1000100 |
+18
+#780000
+08
+#785000
+b1000101 |
+18
+#790000
+08
+#795000
+b1000110 |
+18
+#800000
+08
+#805000
+b1000111 |
+18
+#810000
+08
+#815000
+b1001000 |
+18
+#820000
+08
+#825000
+b1001001 |
+18
+#830000
+08
+#835000
+b1001010 |
+18
+#840000
+08
+#845000
+b1001011 |
+18
+#850000
+08
+#855000
+b1001100 |
+18
+#860000
+08
+#865000
+b1001101 |
+18
+#870000
+08
+#875000
+b1001110 |
+18
+#880000
+08
+#885000
+b1001111 |
+18
+#890000
+08
+#895000
+b1010000 |
+18
+#900000
+08
+#905000
+b1010001 |
+18
+#910000
+08
+#915000
+b1010010 |
+18
+#920000
+08
+#925000
+b1010011 |
+18
+#930000
+08
+#935000
+b1010100 |
+18
+#940000
+08
+#945000
+b1010101 |
+18
+#950000
+08
+#955000
+b1010110 |
+18
+#960000
+08
+#965000
+b1010111 |
+18
+#970000
+08
+#975000
+b1011000 |
+18
+#980000
+08
+#985000
+b1011001 |
+18
+#990000
+08
+#995000
+b1011010 |
+18
+#1000000
+08
+#1005000
+b1011011 |
+18
+#1010000
+08
+#1015000
+b1011100 |
+18
+#1020000
+08
+#1025000
+b1011101 |
+18
+#1030000
+08
+#1035000
+b1011110 |
+18
+#1040000
+08
+#1045000
+b1011111 |
+18
+#1050000
+08
+#1055000
+b1100000 |
+18
+#1060000
+08
+#1065000
+b1100001 |
+18
+#1070000
+08
+#1075000
+b1100010 |
+18
+#1080000
+08
+#1085000
+b1100011 |
+18
+#1090000
+08
+#1095000
+b1100100 |
+18

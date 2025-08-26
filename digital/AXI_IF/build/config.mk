@@ -1,10 +1,11 @@
 # Digital Project Configuration
-PROJECT = i2c_module
-DESIGN_TOP := i2c_module
-RTL_FILES := $(shell find ../../../ -name "*.v" -o -name "*.sv")
-RTL_FILES_H := $(shell find ../../ -name "*.vh" -o -name "*.svh")
-TB_FILES := $(shell find ../../test -name "*_tb.v" -o -name "tb_*.v")
-COCOTB_TEST_FILES := $(shell find ../../test -name "test_*.py")
-TOPLEVEL_TB_MODULES := tb_i2c_module
-MODULE_TESTS := test_i2c_module
+PROJECT = tt_if
+DESIGN_TOP := tt_if
+CONFIG_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+RTL_FILES := $(shell find $(CONFIG_DIR)../src -name "*.v" -o -name "*.sv" 2>/dev/null)
+RTL_FILES_H := $(shell find $(CONFIG_DIR).. -name "*.vh" -o -name "*.svh")
+TB_FILES := $(shell find $(CONFIG_DIR)../test -name "*_tb.sv" -o -name "tb_*.sv")
+COCOTB_TEST_FILES := $(shell find $(CONFIG_DIR)../test -name "test_*.py")
+TOPLEVEL_TB_MODULES := tb_tt_if
+MODULE_TESTS := test_tt_if
 PROJECT_TYPE = digital
