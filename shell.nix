@@ -1,4 +1,9 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import (fetchTarball {
+    # Pin to NixOS 25.05 stable release
+    url = "https://github.com/nixos/nixpkgs/archive/refs/tags/25.05.tar.gz";
+    sha256 = "sha256:1915r28xc4znrh2vf4rrjnxldw2imysz819gzhk9qlrkqanmfsxd";
+  }) {}
+}:
 let
   xschem = pkgs.stdenv.mkDerivation rec {
     pname = "xschem";
