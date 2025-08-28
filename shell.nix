@@ -119,7 +119,7 @@ in pkgs.mkShell {
     python311Packages.pip # requirements.txt
 
     # OpenRoad + dep
-    openroad ruby stdenv.cc.cc.lib glibc expat zlib
+    openroad ruby stdenv.cc.cc.lib expat zlib
     python311Packages.rich
     python311Packages.click
     python311Packages.tkinter
@@ -146,7 +146,7 @@ in pkgs.mkShell {
     export CC="ccache gcc"
     export CXX="ccache g++"
 
-    export LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.glibc}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib:$LD_LIBRARY_PATH"
+    export NIX_LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib"
     export FONTCONFIG_FILE=${pkgs.fontconfig.out}/etc/fonts/fonts.conf
     export FONTCONFIG_PATH=${pkgs.fontconfig.out}/etc/fonts
 

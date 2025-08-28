@@ -229,26 +229,26 @@ analog/
 
 ##### 1. Schematic Capture
 ```bash
-cd analog/your_project/build/schematic
+cd analog/build/schematic
 make setup        # Organize files
 make schematic    # Open Xschem
 ```
 
 ##### 2. Layout Design
 ```bash
-cd analog/your_project/build/layout
+cd analog/build/layout
 make layout       # Open Magic
 ```
 
 ##### 3. SPICE Simulation
 ```bash
-cd analog/your_project/build/schematic
+cd analog/build/schematic
 make spice        # Run simulations
 ```
 
 ##### 4. Physical Verification
 ```bash
-cd analog/your_project/build/validation
+cd analog/build/validation
 make magic_test          # Magic DRC/LVS
 make klayout_test        # KLayout verification
 make full_verification   # Complete suite
