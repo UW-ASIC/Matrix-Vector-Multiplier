@@ -86,7 +86,7 @@
       url = "http://opencircuitdesign.com/netgen/archive/netgen-${version}.tgz";
       sha256 = "sha256-y2UBf564WefrDbIxSrFbNc1FxQfDdYzRORrJjRdkKrg=";
     };
-    nativeBuildInputs = [pkgs.python311];
+    nativeBuildInputs = [pkgs.python312];
     buildInputs = with pkgs; [
       tcl
       tk
@@ -126,9 +126,9 @@ in
       gtkwave
       gaw
       # Pytest and Cocotb setup
-      python311Packages.pytest
-      python311Packages.cocotb
-      python311Packages.pip # requirements.txt
+      python312Packages.pytest
+      python312Packages.cocotb
+      python312Packages.pip # requirements.txt
 
       # OpenRoad + dep
       openroad
@@ -136,10 +136,10 @@ in
       stdenv.cc.cc.lib
       expat
       zlib
-      python311Packages.rich
-      python311Packages.click
-      python311Packages.tkinter
-      python311Packages.pyyaml
+      python312Packages.rich
+      python312Packages.click
+      python312Packages.tkinter
+      python312Packages.pyyaml
 
       # Analog Design
       xschem
@@ -150,9 +150,9 @@ in
       magic-vlsi-old
       vim
       # For Data (python)
-      python311Packages.numpy
-      python311Packages.matplotlib
-      python311Packages.scipy
+      python312Packages.numpy
+      python312Packages.matplotlib
+      python312Packages.scipy
 
       # Graphics/GUI support
       xorg.libX11
@@ -165,9 +165,6 @@ in
       xorg.fontcursormisc
       dejavu_fonts
       liberation_ttf
-
-      # Kali linux specific
-      libtommath
     ];
 
     shellHook = ''
@@ -179,14 +176,9 @@ in
           export CC="ccache gcc"
           export CXX="ccache g++"
 
-          export NIX_LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib:${pkgs.libtommath}/lib"
+          export NIX_LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib"
           export FONTCONFIG_FILE=${pkgs.fontconfig.out}/etc/fonts/fonts.conf
           export FONTCONFIG_PATH=${pkgs.fontconfig.out}/etc/fonts
-
-
-          # Avoid tommath.h conflicts with Kali's libtommath
-          export CPPFLAGS="-DTCL_NO_TOMMATH_H -I${pkgs.libtommath}/include $CPPFLAGS"
-          export LDFLAGS="-L${pkgs.libtommath}/lib -ltommath $LDFLAGS"
 
           # PDK setup
           export PDK_ROOT="$HOME/.volare"
@@ -239,3 +231,5 @@ in
           echo "  - PDK: $PDK in $PDK_ROOT"
     '';
   }
+
+
