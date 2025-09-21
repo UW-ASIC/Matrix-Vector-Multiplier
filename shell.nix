@@ -115,7 +115,7 @@ in
       # Builds
       gnumake
       git
-      python311
+      python312
       ccache
 
       # Digital design
@@ -187,7 +187,7 @@ in
           export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
           export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${xschem}/share/xschem/xschem_library"
 
-          # Setup Python virtual environment with Python 3.8
+          # Setup Python virtual environment with Python 3.12
           export VENV_DIR="$PROJECT_ROOT/.venv"
           if [ -z "$VIRTUAL_ENV" ] || [ "$VIRTUAL_ENV" != "$VENV_DIR" ]; then
               if [ ! -d "$VENV_DIR" ]; then
@@ -198,11 +198,11 @@ in
           fi
 
           # Install additional Python packages with pinned versions
-          pip install --upgrade pip==21.3.1 setuptools==60.2.0 wheel==0.37.1
+          pip install --upgrade pip==24.2 setuptools==75.1.0 wheel==0.44.0
           pip install --no-build-isolation \
-              volare==0.18.0 \
-              openlane==2.2.5 \
-              cace==2.5.3
+              volare \
+              openlane==2.3.10 \
+              cace
 
           if [ ! -d "$PDK_ROOT/$PDK" ]; then
               echo "Downloading PDK..."
@@ -231,5 +231,3 @@ in
           echo "  - PDK: $PDK in $PDK_ROOT"
     '';
   }
-
-
