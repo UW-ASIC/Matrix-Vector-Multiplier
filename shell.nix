@@ -1,5 +1,9 @@
 {pkgs ? import <nixpkgs> {}}: let
   selfBuiltPackages = {
+    ngspice-shared = pkgs.ngspice.override {
+      withNgshared = true;
+    };
+
     xschem = pkgs.stdenv.mkDerivation rec {
       pname = "xschem";
       version = "3.4.7";
@@ -120,10 +124,20 @@ in
     name = "eda-environment-v1.0";
     buildInputs = with pkgs; [
       # Builds
+      rustup
+      cargo
       gnumake
       git
       python312
       ccache
+      pkg-config
+
+      # C compilation dependencies
+      gcc
+      glibc.dev
+      libffi.dev
+      clang
+      llvmPackages.libclang
 
       # Digital design
       slang
@@ -131,7 +145,11 @@ in
       yosys
       gtkwave
       gaw
+      python312Full
       python312Packages.pip
+      python312Packages.numpy
+      python312Packages.setuptools
+      python312Packages.wheel
 
       # OpenRoad + dep
       selfBuiltPackages.openroad-notest
@@ -142,7 +160,7 @@ in
 
       # Analog Design
       selfBuiltPackages.xschem
-      ngspice
+      selfBuiltPackages.ngspice-shared
       selfBuiltPackages.netgen
       klayout
       selfBuiltPackages.magic-vlsi
@@ -170,7 +188,29 @@ in
       export CC="ccache gcc"
       export CXX="ccache g++"
 
-      export NIX_LD_LIBRARY_PATH="${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib"
+      # Set up Rust nightly
+      export RUSTUP_HOME="$HOME/.rustup"
+      export CARGO_HOME="$HOME/.cargo"
+      export PATH="$CARGO_HOME/bin:$PATH"
+
+      # Environment for bindgen
+      export LIBCLANG_PATH="${pkgs.llvmPackages.libclang.lib}/lib"
+      export BINDGEN_EXTRA_CLANG_ARGS="-I${pkgs.glibc.dev}/include -I${selfBuiltPackages.ngspice-shared}/include"
+      export NIX_ENFORCE_PURITY=0
+      unset NIX_ENFORCE_NO_NATIVE
+
+      # Python and C compilation paths
+      export CPATH="${pkgs.python312Full}/include/python3.11:${selfBuiltPackages.ngspice-shared}/include:$CPATH"
+      export NIX_LD_LIBRARY_PATH="${pkgs.python312Full}/lib:${selfBuiltPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"
+      export PKG_CONFIG_PATH="${selfBuiltPackages.ngspice-shared}/lib/pkgconfig:$PKG_CONFIG_PATH"
+
+      export NIX_LD=$(cat ${pkgs.stdenv.cc}/nix-support/dynamic-linker)
+      export NIX_LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [
+        pkgs.stdenv.cc.cc.lib
+        pkgs.expat
+        pkgs.zlib
+        pkgs.glibc
+      ]}
       export FONTCONFIG_FILE=${pkgs.fontconfig.out}/etc/fonts/fonts.conf
       export FONTCONFIG_PATH=${pkgs.fontconfig.out}/etc/fonts
 
@@ -181,6 +221,13 @@ in
       export KLAYOUT_PATH="$PDK_ROOT/$PDK/libs.tech/klayout"
       export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
       export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${selfBuiltPackages.xschem}/share/xschem/xschem_library"
+
+      # Install Rust nightly if not already installed
+      if ! rustc --version &>/dev/null; then
+        echo "Installing Rust nightly toolchain..."
+        rustup install nightly
+        rustup default nightly
+      fi
 
       # Setup Python virtual environment with Python 3.12
       export VENV_DIR="$PROJECT_ROOT/.venv"
@@ -214,7 +261,7 @@ in
       # Now install packages
       if [ -n "$VIRTUAL_ENV" ]; then
           echo "Installing Python packages from requirements.txt..."
-          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade pip setuptools wheel maturin
           python -m pip install -r "$PROJECT_ROOT/requirements.txt"
       fi
 
@@ -241,7 +288,6 @@ in
       echo "  - Python: $(python --version)"
       echo "  - xschem: $(xschem --version 2>/dev/null || echo 'custom build')"
       echo "  - yosys: $(yosys -V 2>/dev/null | head -1 || echo 'unknown version')"
-      echo "  - ngspice: $(ngspice --version 2>/dev/null | head -1 || echo 'unknown version')"
       echo "  - verilator: $(verilator --version 2>/dev/null | head -1 || echo 'unknown version')"
       echo "  - magic: $(magic --version 2>/dev/null || echo 'custom build ${selfBuiltPackages.magic-vlsi.version}')"
       echo "  - PDK: $PDK in $PDK_ROOT"
