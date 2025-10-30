@@ -11,6 +11,7 @@ from mosplot.lookup_table_generator import TransistorSweep, LookupTableGenerator
 import os
 from enum import Enum
 from pathlib import Path
+import re
 
 # ============================================================================
 # USER CONFIGURATION - EDIT THIS SECTION
@@ -20,85 +21,147 @@ from pathlib import Path
 DEVICE_TO_ANALYZE = "sky130_fd_pr__nfet_01v8"  # Options below
 
 VBS = 0.0  # Body-source voltage
-VDS = 0.6  # Drain-source voltage (use negative for PMOS, e.g., -0.6)
+VDS = 0.9
 VGS_RANGE = (
     0.01,
     1.8,
 )  # Gate-source voltage range (use negative for PMOS, e.g., (-1.8, -0.01))
 LENGTH_FILTER = None  # Specific length in meters (e.g., 0.15e-6) or None for all
 
-# --- Plot Configuration ---
 PLOT_CONFIG = {
-    # Plot 1: X vs Y
-    "plot1": {
+    # ========== gm/ID AS X-AXIS ==========
+    # Current and Power Efficiency
+    "gmid_vs_current_density": {
         "enabled": True,
-        "x_axis": "gmid",  # Options: "gmid", "vgs", "vds", "id", "gm", "gds", "current_density"
-        "y_axis": "current_density",  # Same options as x_axis
-        "y_scale": "log",  # "log" or "linear"
+        "x_axis": "gmid",
+        "y_axis": "current_density",
+        "y_scale": "log",
         "title": "gm/ID vs Current Density",
-        "filename": "plot1.svg",
+        "filename": "gmid_vs_current_density.svg",
     },
-    # Plot 2: Another X vs Y
-    "plot2": {
+    "gmid_vs_id": {
+        "enabled": True,
+        "x_axis": "gmid",
+        "y_axis": "id",
+        "y_scale": "log",
+        "title": "gm/ID vs Drain Current",
+        "filename": "gmid_vs_id.svg",
+    },
+    # Transconductance Metrics
+    "gmid_vs_gm": {
+        "enabled": True,
+        "x_axis": "gmid",
+        "y_axis": "gm",
+        "y_scale": "log",
+        "title": "gm/ID vs Transconductance",
+        "filename": "gmid_vs_gm.svg",
+    },
+    # Output Characteristics
+    "gmid_vs_gds": {
+        "enabled": True,
+        "x_axis": "gmid",
+        "y_axis": "gds",
+        "y_scale": "log",
+        "title": "gm/ID vs Output Conductance",
+        "filename": "gmid_vs_gds.svg",
+    },
+    # Gain Metrics
+    "gmid_vs_av": {
+        "enabled": True,
+        "x_axis": "gmid",
+        "y_axis": "av",
+        "y_scale": "log",
+        "title": "gm/ID vs Intrinsic Gain (gm/gds)",
+        "filename": "gmid_vs_av.svg",
+    },
+    # Frequency Performance
+    "gmid_vs_ft": {
+        "enabled": False,
+        "x_axis": "gmid",
+        "y_axis": "ft",
+        "y_scale": "log",
+        "title": "gm/ID vs Transit Frequency",
+        "filename": "gmid_vs_ft.svg",
+    },
+    # Voltage Characteristics
+    "gmid_vs_vds": {
+        "enabled": False,
+        "x_axis": "gmid",
+        "y_axis": "vds",
+        "y_scale": "linear",
+        "title": "gm/ID vs Drain-Source Voltage",
+        "filename": "gmid_vs_vds.svg",
+    },
+    # ========== VGS AS X-AXIS ==========
+    # Basic Transfer Characteristics
+    "vgs_vs_id": {
+        "enabled": True,
+        "x_axis": "vgs",
+        "y_axis": "id",
+        "y_scale": "log",
+        "title": "VGS vs Drain Current",
+        "filename": "vgs_vs_id.svg",
+    },
+    "vgs_vs_current_density": {
+        "enabled": False,
+        "x_axis": "vgs",
+        "y_axis": "current_density",
+        "y_scale": "log",
+        "title": "VGS vs Current Density",
+        "filename": "vgs_vs_jd.svg",
+    },
+    # Small-Signal Parameters
+    "vgs_vs_gm": {
         "enabled": True,
         "x_axis": "vgs",
         "y_axis": "gm",
         "y_scale": "linear",
         "title": "VGS vs Transconductance",
-        "filename": "plot2.svg",
+        "filename": "vgs_vs_gm.svg",
     },
-    # Plot 3: Custom expression example
-    "plot3": {
-        "enabled": False,
-        "x_axis": "gmid",
-        "y_axis": "ft",  # Transit frequency (gm / (2*pi*Cgg))
+    "vgs_vs_gds": {
+        "enabled": True,
+        "x_axis": "vgs",
+        "y_axis": "gds",
         "y_scale": "log",
-        "title": "gm/ID vs Transit Frequency",
-        "filename": "plot3.svg",
+        "title": "VGS vs Output Conductance",
+        "filename": "vgs_vs_gds.svg",
     },
-}
-
-# --- Lookup Value Configuration ---
-# Extract specific values from the lookup table
-LOOKUP_QUERIES = [
-    {
+    # Efficiency and Gain
+    "vgs_vs_gmid": {
         "enabled": True,
-        "description": "Find ID/W at gm/ID = 10",
-        "x_param": "gmid",
-        "x_value": 10.0,
-        "y_param": "current_density",
-        "length": 0.15e-6,  # Specific length or None
+        "x_axis": "vgs",
+        "y_axis": "gmid",
+        "y_scale": "linear",
+        "title": "VGS vs gm/ID",
+        "filename": "vgs_vs_gmid.svg",
     },
-    {
+    "vgs_vs_av": {
         "enabled": True,
-        "description": "Find gm at VGS = 0.6V",
-        "x_param": "vgs",
-        "x_value": 0.6,
-        "y_param": "gm",
-        "length": 0.5e-6,
+        "x_axis": "vgs",
+        "y_axis": "av",
+        "y_scale": "log",
+        "title": "VGS vs Intrinsic Gain",
+        "filename": "vgs_vs_av.svg",
     },
-    {
+    # Frequency Performance
+    "vgs_vs_ft": {
         "enabled": False,
-        "description": "Find VGS at gm/ID = 15",
-        "x_param": "gmid",
-        "x_value": 15.0,
-        "y_param": "vgs",
-        "length": None,  # Will show all lengths
+        "x_axis": "vgs",
+        "y_axis": "ft",
+        "y_scale": "log",
+        "title": "VGS vs Transit Frequency",
+        "filename": "vgs_vs_ft.svg",
     },
-]
-
-# --- Comparison Plot Configuration ---
-COMPARE_DEVICES = {
-    "enabled": False,
-    "devices": [
-        "sky130_fd_pr__nfet_01v8",
-        "sky130_fd_pr__nfet_01v8_lvt",
-    ],
-    "x_axis": "gmid",
-    "y_axis": "current_density",
-    "length": 0.15e-6,
-    "title": "Device Comparison",
-    "filename": "comparison.svg",
+    # Voltage Relationships
+    "vgs_vs_vds": {
+        "enabled": False,
+        "x_axis": "vgs",
+        "y_axis": "vds",
+        "y_scale": "linear",
+        "title": "VGS vs VDS",
+        "filename": "vgs_vs_vds.svg",
+    },
 }
 
 # --- Generation Settings ---
@@ -117,12 +180,9 @@ class Sky130Device(Enum):
 
     # NMOS devices
     NFET_01V8 = "sky130_fd_pr__nfet_01v8"
-    NFET_01V8_LVT = "sky130_fd_pr__nfet_01v8_lvt"
 
     # PMOS devices
     PFET_01V8 = "sky130_fd_pr__pfet_01v8"
-    PFET_01V8_HVT = "sky130_fd_pr__pfet_01v8_hvt"
-    PFET_01V8_LVT = "sky130_fd_pr__pfet_01v8_lvt"
 
     def is_nmos(self):
         return "nfet" in self.value
@@ -146,49 +206,74 @@ def setup_lookup_generator():
     PDK_ROOT = os.environ.get("PDK_ROOT", os.path.expanduser("~/.volare"))
     PDK = os.environ.get("PDK", "sky130A")
     PDK_PATH = os.path.join(PDK_ROOT, PDK)
-    SKY130_LIB = os.path.join(PDK_PATH, "libs.tech/ngspice/sky130.lib.spice")
+    SKY130_CORNER = os.path.join(PDK_PATH, "libs.tech/ngspice/corners/tt.spice")
+    SKY130_RC = os.path.join(
+        PDK_PATH, "libs.tech/ngspice/r+c/res_typical__cap_typical.spice"
+    )
+    SKY130_RC_LIN = os.path.join(
+        PDK_PATH, "libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice"
+    )
+    SKY130_SPECIALIZED = os.path.join(
+        PDK_PATH, "libs.tech/ngspice/corners/tt/specialized_cells.spice"
+    )
 
-    # Common simulator parameters
-    common_params = {
+    # Common parameters for all devices
+    common_base = {
         "simulator_path": "ngspice",
         "temperature": 27,
         "parameters_to_save": ["id", "vth", "vdsat", "gm", "gds", "gmbs"],
-        "lib_mappings": [(SKY130_LIB, "tt")],
-        "device_parameters": {"w": 1e-6, "l": 0.15e-6, "nf": 1, "mult": 1},
-        "raw_spice": [".option TEMP=27", ".option TNOM=27"],
+        "include_paths": [],  # We'll add includes in raw_spice instead
+        "raw_spice": [
+            ".param mc_mm_switch=0",
+            ".param mc_pr_switch=0",
+            f".include {SKY130_CORNER}",
+            f".include {SKY130_RC}",
+            f".include {SKY130_RC_LIN}",
+            f".include {SKY130_SPECIALIZED}",
+            ".option TEMP=27",
+            ".option TNOM=27",
+        ],
+    }
+
+    # Device-specific parameters - same for all standard devices
+    # These formulas should work for all sky130_fd_pr devices
+    sky130_device_params = {
+        "W": 1,
+        "nf": 1,
+        "ad": "'int((nf+1)/2) * W/nf * 0.29'",
+        "as": "'int((nf+2)/2) * W/nf * 0.29'",
+        "pd": "'2*int((nf+1)/2) * (W/nf + 0.29)'",
+        "ps": "'2*int((nf+2)/2) * (W/nf + 0.29)'",
+        "nrd": "'0.29 / W'",
+        "nrs": "'0.29 / W'",
+        "sa": 0,
+        "sb": 0,
+        "sd": 0,
+        "mult": 1,
+        "m": 1,
     }
 
     # Create simulators for each device
     simulators = {
         "sky130_fd_pr__nfet_01v8": NgspiceSimulator(
-            **common_params,
-            mos_spice_symbols=("x1", "x1.msky130_fd_pr__nfet_01v8"),
-        ),
-        "sky130_fd_pr__nfet_01v8_lvt": NgspiceSimulator(
-            **common_params,
-            mos_spice_symbols=("x1", "x1.msky130_fd_pr__nfet_01v8_lvt"),
+            **common_base,
+            device_parameters=sky130_device_params.copy(),
+            mos_spice_symbols=("XM1", "m.xm1.msky130_fd_pr__nfet_01v8"),
         ),
         "sky130_fd_pr__pfet_01v8": NgspiceSimulator(
-            **common_params,
-            mos_spice_symbols=("x1", "x1.msky130_fd_pr__pfet_01v8"),
-        ),
-        "sky130_fd_pr__pfet_01v8_hvt": NgspiceSimulator(
-            **common_params,
-            mos_spice_symbols=("x1", "x1.msky130_fd_pr__pfet_01v8_hvt"),
-        ),
-        "sky130_fd_pr__pfet_01v8_lvt": NgspiceSimulator(
-            **common_params,
-            mos_spice_symbols=("x1", "x1.msky130_fd_pr__pfet_01v8_lvt"),
+            **common_base,
+            device_parameters=sky130_device_params.copy(),
+            mos_spice_symbols=("XM1", "m.xm1.msky130_fd_pr__pfet_01v8"),
         ),
     }
 
-    # Sweep configurations
+    # Sweep configurations - Use MICRONS not meters!
     nmos_sweep = TransistorSweep(
         mos_type="nmos",
         vgs=(0, 1.8, 0.02),
         vds=(0, 1.8, 0.02),
         vbs=(0, -1.8, -0.2),
-        length=[0.15e-6, 0.5e-6, 1.0e-6, 2.0e-6],
+        length=[0.15, 0.3, 0.5, 1.0],
     )
 
     pmos_sweep = TransistorSweep(
@@ -196,26 +281,15 @@ def setup_lookup_generator():
         vgs=(0, -1.8, -0.02),
         vds=(0, -1.8, -0.02),
         vbs=(0, 1.8, 0.2),
-        length=[0.15e-6, 0.5e-6, 1.0e-6, 2.0e-6],
+        length=[0.15, 0.3, 0.5, 1.0],
     )
 
     model_sweeps = {
         "sky130_fd_pr__nfet_01v8": nmos_sweep,
-        "sky130_fd_pr__nfet_01v8_lvt": nmos_sweep,
         "sky130_fd_pr__pfet_01v8": pmos_sweep,
-        "sky130_fd_pr__pfet_01v8_hvt": pmos_sweep,
-        "sky130_fd_pr__pfet_01v8_lvt": pmos_sweep,
     }
 
-    # Create generator
-    generator = LookupTableGenerator(
-        description="Sky130 PDK - All 1.8V device variants",
-        simulator=simulators,
-        model_sweeps=model_sweeps,
-        n_process=1,
-    )
-
-    return generator
+    return {"simulators": simulators, "model_sweeps": model_sweeps}
 
 
 # ============================================================================
@@ -272,21 +346,40 @@ def generate_lookup_tables(lookup_dir, force=False):
     else:
         print(f"Generating missing lookup tables in {lookup_dir}...")
 
-    generator = setup_lookup_generator()
+    # Get the generator setup
+    generators_data = setup_lookup_generator()
+    simulators = generators_data["simulators"]
+    model_sweeps = generators_data["model_sweeps"]
 
-    try:
-        print("\nRunning OP simulation to verify setup...")
-        generator.op_simulation()
-        print("✓ OP simulation successful!")
+    # Generate table for each device
+    for device_name in all_devices:
+        if not force and (lookup_path / f"{device_name}.npz").exists():
+            print(f"  Skipping {device_name} (already exists)")
+            continue
 
-        print("\nBuilding lookup tables...")
-        print("This may take several minutes...")
-        generator.build(lookup_dir)
-        print(f"\n✓ Lookup tables saved to: {lookup_dir}")
+        print(f"\n  Generating {device_name}...")
 
-    except Exception as e:
-        print(f"✗ Generation failed: {e}")
-        raise
+        generator = LookupTableGenerator(
+            description=f"Sky130 PDK - {device_name}",
+            simulator=simulators[device_name],
+            model_sweeps={device_name: model_sweeps[device_name]},
+            n_process=1,
+        )
+
+        try:
+            print("Running OP simulation...")
+            generator.op_simulation()
+            print("Building lookup table...")
+            generator.build(lookup_dir, device_name)
+            print(f"    ✓ {device_name} complete")
+        except Exception as e:
+            print(f"    ✗ {device_name} failed: {e}")
+            import traceback
+
+            traceback.print_exc()
+            raise
+
+    print(f"\n✓ All lookup tables saved to: {lookup_dir}")
 
 
 def create_mosfet(device_name, vbs, vds, vgs, length, lookup_dir):
@@ -329,12 +422,11 @@ def plot_analysis(mosfet, config, output_dir):
 
     print(f"  Plotting: {config['title']}")
 
+    fil_val = mosfet.length[:] if LENGTH_FILTER is None else np.array([LENGTH_FILTER])
     mosfet.plot_by_expression(
         x_expression=x_expr,
         y_expression=y_expr,
-        filtered_values=(
-            mosfet.length[0:-1:4] if LENGTH_FILTER is None else [LENGTH_FILTER]
-        ),
+        filtered_values=fil_val,
         y_scale=config["y_scale"],
         save_fig=str(output_path),
     )
@@ -342,91 +434,7 @@ def plot_analysis(mosfet, config, output_dir):
     print(f"    Saved: {output_path}")
 
 
-def lookup_value(mosfet, query):
-    """Look up a specific value from the lookup table"""
-    if not query["enabled"]:
-        return
-
-    print(f"\n  {query['description']}")
-
-    # Filter by length if specified
-    data = mosfet.data
-    if query["length"] is not None:
-        length_mask = np.isclose(data["length"], query["length"])
-        data = {k: v[length_mask] for k, v in data.items()}
-        print(f"    Length: {query['length']*1e6:.2f}μm")
-
-    # Get x and y expressions
-    x_expr = get_expression(query["x_param"], mosfet)
-    y_expr = get_expression(query["y_param"], mosfet)
-
-    if x_expr is None or y_expr is None:
-        print(f"    ✗ Invalid parameter names")
-        return
-
-    # Evaluate expressions
-    x_data = x_expr.evaluate(data)
-    y_data = y_expr.evaluate(data)
-
-    # Find closest x value
-    idx = np.argmin(np.abs(x_data - query["x_value"]))
-    actual_x = x_data[idx]
-    result_y = y_data[idx]
-
-    print(f"    At {query['x_param']} = {actual_x:.4g} (requested: {query['x_value']})")
-    print(f"    → {query['y_param']} = {result_y:.4g}")
-
-
-def compare_devices(config, lookup_dir, output_dir):
-    """Compare multiple devices on same plot"""
-    if not config["enabled"]:
-        return
-
-    print(f"\nGenerating comparison plot: {config['title']}")
-
-    fig, ax = plt.subplots(figsize=(10, 6))
-
-    for device_name in config["devices"]:
-        print(f"  Loading {device_name}...")
-
-        mosfet = create_mosfet(
-            device_name,
-            vbs=VBS,
-            vds=VDS,
-            vgs=VGS_RANGE,
-            length=config["length"],
-            lookup_dir=lookup_dir,
-        )
-
-        x_expr = get_expression(config["x_axis"], mosfet)
-        y_expr = get_expression(config["y_axis"], mosfet)
-
-        x_data = x_expr.evaluate(mosfet.data)
-        y_data = y_expr.evaluate(mosfet.data)
-
-        ax.plot(x_data, y_data, label=device_name, linewidth=2)
-
-    ax.set_xlabel(x_expr.label)
-    ax.set_ylabel(y_expr.label)
-    ax.set_title(config["title"])
-    ax.legend()
-    ax.grid(True, alpha=0.3)
-
-    if config.get("y_scale") == "log":
-        ax.set_yscale("log")
-
-    output_path = Path(output_dir) / config["filename"]
-    fig.savefig(str(output_path), bbox_inches="tight")
-    print(f"  Saved: {output_path}")
-    plt.close(fig)
-
-
-# ============================================================================
-# Main Execution
-# ============================================================================
-
-
-def main():
+if __name__ == "__main__":
     print("=" * 70)
     print("Sky130 MOSFET Characterization Tool")
     print("=" * 70)
@@ -440,7 +448,7 @@ def main():
             print(f"Auto-generation disabled. Using tables in {LOOKUP_DIR}")
     except Exception as e:
         print(f"✗ Failed to generate lookup tables: {e}")
-        return
+        exit(1)
 
     # Step 2: Load device and create Mosfet object
     print(f"\n[2] Loading device: {DEVICE_TO_ANALYZE}")
@@ -459,7 +467,7 @@ def main():
             print(f"  Length filter: {LENGTH_FILTER*1e6:.2f}μm")
     except Exception as e:
         print(f"✗ Failed to load device: {e}")
-        return
+        exit(1)
 
     # Step 3: Generate plots
     enabled_plots = [k for k, v in PLOT_CONFIG.items() if v["enabled"]]
@@ -472,30 +480,3 @@ def main():
                 print(f"  ✗ Failed to generate {plot_name}: {e}")
     else:
         print("\n[3] No plots enabled")
-
-    # Step 4: Lookup specific values
-    enabled_queries = [q for q in LOOKUP_QUERIES if q["enabled"]]
-    if enabled_queries:
-        print(f"\n[4] Looking up {len(enabled_queries)} value(s)...")
-        for query in LOOKUP_QUERIES:
-            try:
-                lookup_value(mosfet, query)
-            except Exception as e:
-                print(f"  ✗ Query failed: {e}")
-    else:
-        print("\n[4] No lookup queries enabled")
-
-    # Step 5: Device comparison
-    print("\n[5] Device comparison...")
-    try:
-        compare_devices(COMPARE_DEVICES, LOOKUP_DIR, FIGURE_DIR)
-    except Exception as e:
-        print(f"  ✗ Comparison failed: {e}")
-
-    print("\n" + "=" * 70)
-    print("Analysis complete!")
-    print("=" * 70)
-
-
-if __name__ == "__main__":
-    main()

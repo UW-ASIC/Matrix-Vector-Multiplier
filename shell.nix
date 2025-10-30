@@ -161,6 +161,7 @@ in
       # Analog Design
       selfBuiltPackages.xschem
       selfBuiltPackages.ngspice-shared
+      ngspice
       selfBuiltPackages.netgen
       klayout
       selfBuiltPackages.magic-vlsi
@@ -177,6 +178,7 @@ in
       xorg.fontcursormisc
       dejavu_fonts
       liberation_ttf
+      inkscape
     ];
 
     shellHook = ''
