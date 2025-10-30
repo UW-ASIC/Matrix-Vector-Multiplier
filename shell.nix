@@ -176,6 +176,7 @@ in
 
       # PDK setup
       export PDK_ROOT="$HOME/.volare"
+      export PDK_VERSION="fa87f8f4bbcc7255b6f0c0fb506960f531ae2392"
       export PDK="sky130A"
       export KLAYOUT_PATH="$PDK_ROOT/$PDK/libs.tech/klayout"
       export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
@@ -217,11 +218,22 @@ in
           python -m pip install -r "$PROJECT_ROOT/requirements.txt"
       fi
 
-      # Download PDK if not present
-      if [ ! -d "$PDK_ROOT/$PDK" ]; then
-          echo "Downloading PDK..."
-          volare enable --pdk sky130 fa87f8f4bbcc7255b6f0c0fb506960f531ae2392
+      # Clean up old PDK versions (keep only the current one)
+      if [ -d "$PDK_ROOT/volare/sky130/versions" ]; then
+          echo "Cleaning up old PDK versions (keeping $PDK_VERSION)..."
+          cd "$PDK_ROOT/volare/sky130/versions"
+          for version_dir in */; do
+              version=$(basename "$version_dir")
+              if [ "$version" != "$PDK_VERSION" ]; then
+                  echo "  Removing old version: $version"
+                  rm -rf "$version"
+                  rm -rf ~/.volare
+              fi
+          done
+          cd "$PROJECT_ROOT"
       fi
+
+      volare enable --pdk sky130 "$PDK_VERSION"
 
       echo "=== EDA Environment v1.0 ==="
       echo ""
