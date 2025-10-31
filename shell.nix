@@ -48,12 +48,12 @@
     };
 
     magic-vlsi = pkgs.stdenv.mkDerivation rec {
-      pname = "magic-vlsi";
-      version = "8.3.569";
-      src = pkgs.fetchurl {
-        url = "http://opencircuitdesign.com/magic/archive/magic-${version}.tgz";
-        sha256 = "sha256-Lk9D2G6F98vQ1iXAiVkjr3s+U3Li5P05cUO1388qTN8=";
-      };
+    pname = "magic-vlsi";
+    version = "8.3.466";
+    src = pkgs.fetchurl {
+      url = "http://opencircuitdesign.com/magic/archive/magic-${version}.tgz";
+      sha256 = "sha256-HbkWS2cp1lz2UnAlbYbqYY7/7XrbUuq9axXrs8zt5FY=";
+    };
       nativeBuildInputs = [pkgs.python311];
       buildInputs = with pkgs; [
         cairo
@@ -114,10 +114,10 @@
       };
     };
 
-    openroad-notest = pkgs.openroad.overrideAttrs (oldAttrs: {
-      doCheck = false;
-      doInstallCheck = false;
-    });
+    # openroad-notest = pkgs.openroad.overrideAttrs (oldAttrs: {
+    #   doCheck = false;
+    #   doInstallCheck = false;
+    # });
   };
 in
   pkgs.mkShell {
@@ -152,7 +152,7 @@ in
       python312Packages.wheel
 
       # OpenRoad + dep
-      selfBuiltPackages.openroad-notest
+      # selfBuiltPackages.openroad-notest
       ruby
       stdenv.cc.cc.lib
       expat
