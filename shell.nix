@@ -42,71 +42,73 @@
     };
   };
 
-  magic-vlsi-old = pkgs.stdenv.mkDerivation rec {
-    pname = "magic-vlsi";
-    version = "8.3.466";
-    src = pkgs.fetchurl {
-      url = "http://opencircuitdesign.com/magic/archive/magic-${version}.tgz";
-      sha256 = "sha256-HbkWS2cp1lz2UnAlbYbqYY7/7XrbUuq9axXrs8zt5FY=";
+    magic-vlsi = pkgs.stdenv.mkDerivation rec {
+      pname = "magic-vlsi";
+      version = "8.3.569";
+      src = pkgs.fetchurl {
+        url = "http://opencircuitdesign.com/magic/archive/magic-${version}.tgz";
+        sha256 = "sha256-Lk9D2G6F98vQ1iXAiVkjr3s+U3Li5P05cUO1388qTN8=";
+      };
+      nativeBuildInputs = [pkgs.python311];
+      buildInputs = with pkgs; [
+        cairo
+        xorg.libX11
+        m4
+        mesa_glu
+        ncurses
+        tcl
+        tcsh
+        tk
+        git
+      ];
+      enableParallelBuilding = false;
+      configureFlags = [
+        "--with-tcl=${pkgs.tcl}"
+        "--with-tk=${pkgs.tk}"
+        "--disable-werror"
+      ];
+      postPatch = ''
+        patchShebangs scripts/*
+      '';
+      NIX_CFLAGS_COMPILE = "-Wno-implicit-function-declaration -O2";
+      meta = with pkgs.lib; {
+        description = "VLSI layout tool written in Tcl";
+        homepage = "http://opencircuitdesign.com/magic/";
+        license = licenses.mit;
+        maintainers = with maintainers; [thoughtpolice];
+      };
     };
-    nativeBuildInputs = [pkgs.python311];
-    buildInputs = with pkgs; [
-      cairo
-      xorg.libX11
-      m4
-      mesa_glu
-      ncurses
-      tcl
-      tcsh
-      tk
-      git
-    ];
-    enableParallelBuilding = true;
-    configureFlags = [
-      "--with-tcl=${pkgs.tcl}"
-      "--with-tk=${pkgs.tk}"
-      "--disable-werror"
-    ];
-    postPatch = ''
-      patchShebangs scripts/*
-    '';
-    NIX_CFLAGS_COMPILE = "-Wno-implicit-function-declaration -O2";
-    meta = with pkgs.lib; {
-      description = "VLSI layout tool written in Tcl";
-      homepage = "http://opencircuitdesign.com/magic/";
-      license = licenses.mit;
-      maintainers = with maintainers; [thoughtpolice];
-    };
-  };
 
-  netgen-old = pkgs.stdenv.mkDerivation rec {
-    name = "netgen";
-    version = "1.5.295";
-    src = pkgs.fetchurl {
-      url = "http://opencircuitdesign.com/netgen/archive/netgen-${version}.tgz";
-      sha256 = "sha256-y2UBf564WefrDbIxSrFbNc1FxQfDdYzRORrJjRdkKrg=";
+    netgen = pkgs.stdenv.mkDerivation rec {
+      name = "netgen";
+      version = "1.5.305";
+      src = pkgs.fetchurl {
+        url = "http://opencircuitdesign.com/netgen/archive/netgen-${version}.tgz";
+        sha256 = "sha256-U9m/pIydfRSlsEWhLDDFsC8+C0Fn3DgYQrwVDETn4Zg=";
+      };
+      nativeBuildInputs = [pkgs.python312];
+      buildInputs = with pkgs; [
+        tcl
+        tk
+        xorg.libX11
+      ];
+      enableParallelBuilding = true;
+      configureFlags = [
+        "--with-tcl=${pkgs.tcl}"
+        "--with-tk=${pkgs.tk}"
+      ];
+      NIX_CFLAGS_COMPILE = "-O2";
+      postPatch = ''
+        find . -name "*.sh" -exec patchShebangs {} \; || true
+      '';
+      meta = with pkgs.lib; {
+        description = "LVS netlist comparison tool";
+        homepage = "http://opencircuitdesign.com/netgen/";
+        license = licenses.mit;
+        maintainers = with maintainers; [thoughtpolice];
+      };
     };
-    nativeBuildInputs = [pkgs.python312];
-    buildInputs = with pkgs; [
-      tcl
-      tk
-      xorg.libX11
-    ];
-    enableParallelBuilding = true;
-    configureFlags = [
-      "--with-tcl=${pkgs.tcl}"
-      "--with-tk=${pkgs.tk}"
-    ];
-    NIX_CFLAGS_COMPILE = "-O2";
-    postPatch = ''
-      find . -name "*.sh" -exec patchShebangs {} \; || true
-    '';
-    meta = with pkgs.lib; {
-      description = "LVS netlist comparison tool";
-      homepage = "http://opencircuitdesign.com/netgen/";
-      license = licenses.mit;
-      maintainers = with maintainers; [thoughtpolice];
-    };
+
   };
 in
   pkgs.mkShell {
@@ -131,7 +133,7 @@ in
       python312Packages.pip # requirements.txt
 
       # OpenRoad + dep
-      openroad
+      # openroad 
       ruby
       stdenv.cc.cc.lib
       expat
