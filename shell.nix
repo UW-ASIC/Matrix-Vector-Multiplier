@@ -178,6 +178,9 @@
         export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
         export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
 
+        # Set CFLAGS as environment variable, NOT as configure flag
+        export CFLAGS="-Wno-error=implicit-function-declaration -I/opt/X11/include -I${pkgs.cairo}/include/cairo -O2"
+
         # Cairo needs X11 support on macOS
         export CAIRO_CFLAGS="$(pkg-config --cflags cairo) -I/opt/X11/include"
         export CAIRO_LIBS="$(pkg-config --libs cairo) -L/opt/X11/lib -lX11"
@@ -194,8 +197,6 @@
           "--x-includes=/opt/X11/include"
           "--x-libraries=/opt/X11/lib"
           "--with-x"
-          # Suppress implicit function declaration errors common on macOS
-          "CFLAGS=-Wno-error=implicit-function-declaration -I/opt/X11/include -I${pkgs.cairo}/include/cairo"
         ];
 
       postPatch = ''
