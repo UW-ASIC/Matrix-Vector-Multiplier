@@ -76,9 +76,7 @@
             ls -la /opt/X11/lib/libX11.dylib 2>/dev/null && echo "✓ libX11.dylib found" || echo "✗ libX11.dylib missing"
           else
             echo "✗ /opt/X11 not found - XQuartz not installed or wrong path"
-            echo "Possible XQuartz locations:"
-            find /Applications -name "XQuartz.app" 2>/dev/null || true
-            find /usr -name "Xlib.h" 2>/dev/null | head -5 || true
+            exit 1
           fi
 
           # 2. Test header inclusion separately
@@ -98,29 +96,34 @@
             echo "✗ X11 headers cannot be included"
             echo "Trying verbose:"
             clang -I/opt/X11/include -E /tmp/test_include.c
+            exit 1
           fi
 
-          # 3. Test with explicit include path
-          echo "=== Testing with find ==="
-          X11_PATH=$(find /opt -name "Xlib.h" 2>/dev/null | head -1 | xargs dirname | xargs dirname | xargs dirname || echo "NOT_FOUND")
-          echo "X11 base path found: $X11_PATH"
+          # 3. Test the actual compilation with the CORRECT path
+          echo "=== Testing X11 compilation with /opt/X11 ==="
+          cat > /tmp/test_x11.c << 'EOF'
+        #include <X11/Xlib.h>
+        int main() {
+            Display *d = XOpenDisplay(NULL);
+            if (d) XCloseDisplay(d);
+            return 0;
+        }
+        EOF
 
-          if [ "$X11_PATH" != "NOT_FOUND" ] && [ -d "$X11_PATH" ]; then
-            echo "Testing with path: $X11_PATH"
-            clang -I$X11_PATH/include -L$X11_PATH/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11_found
-            if [ $? -eq 0 ]; then
-              echo "✓ Success with auto-found X11 path"
-            fi
+          if clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11 2>/dev/null; then
+            echo "✓ SUCCESS: X11 test program compiles with /opt/X11"
+            /tmp/test_x11 && echo "✓ SUCCESS: X11 test program runs" || echo "⚠ WARNING: X11 test program compiled but failed to run (normal if no X server)"
+            rm -f /tmp/test_x11.c /tmp/test_x11
+          else
+            echo "✗ FAILED: X11 test program compilation failed with /opt/X11"
+            echo "Trying with verbose output:"
+            clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11
+            rm -f /tmp/test_x11.c /tmp/test_x11
+            exit 1
           fi
 
-          # 4. Last resort: check common alternative locations
-          echo "=== Checking alternative X11 locations ==="
-          for path in "/usr/X11" "/usr/local" "/Applications/Utilities/XQuartz.app/Contents/Resources"; do
-            if [ -f "$path/include/X11/Xlib.h" ]; then
-              echo "Found X11 at: $path"
-              clang -I$path/include -L$path/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11_$path 2>/dev/null && echo "✓ Works with $path"
-            fi
-          done
+          # 4. Remove the problematic find command that detects wrong paths
+          echo "=== Using only /opt/X11 for X11 ==="
       '';
 
       configureScript = "./configure";
