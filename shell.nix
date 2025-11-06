@@ -173,12 +173,10 @@
           exit 1
         fi
 
-        # Set up X11 paths for macOS
+        # Set up X11 paths for macOS as ENVIRONMENT VARIABLES
         export CPPFLAGS="-I/opt/X11/include $CPPFLAGS"
         export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
         export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
-
-        # Set CFLAGS as environment variable, NOT as configure flag
         export CFLAGS="-Wno-error=implicit-function-declaration -I/opt/X11/include -I${pkgs.cairo}/include/cairo -O2"
 
         # Cairo needs X11 support on macOS
@@ -186,6 +184,9 @@
         export CAIRO_LIBS="$(pkg-config --libs cairo) -L/opt/X11/lib -lX11"
       '';
 
+      # Magic's configure options are different from xschem!
+      # It does NOT use --with-x, --x-includes, or --x-libraries (plural)
+      # It auto-detects X11 and only needs --x-libraries if detection fails
       configureFlags =
         [
           "--with-tcl=${pkgs.tcl}/lib"
@@ -193,10 +194,8 @@
           "--disable-werror"
         ]
         ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-          # macOS requires explicit X11 paths
-          "--x-includes=/opt/X11/include"
+          # Only specify X11 library path if auto-detection might fail
           "--x-libraries=/opt/X11/lib"
-          "--with-x"
         ];
 
       postPatch = ''
