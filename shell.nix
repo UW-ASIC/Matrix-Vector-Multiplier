@@ -47,10 +47,20 @@
         fi
       '';
 
+      buildInputs = with pkgs; [
+        tcl
+        tk
+        xorg.libX11
+        xorg.libXpm
+        cairo
+        readline
+        flex
+        bison
+        zlib
+      ];
       configureFlags = [
         "--prefix=${placeholder "out"}"
       ];
-
       enableParallelBuilding = true;
 
       buildPhase = ''
