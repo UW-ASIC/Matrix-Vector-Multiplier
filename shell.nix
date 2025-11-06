@@ -18,41 +18,20 @@
         autoconf
         automake
       ];
-      buildInputs = with pkgs;
-        [
-          tcl
-          tk
-          xorg.libX11
-          xorg.libXpm
-          cairo
-          readline
-          flex
-          bison
-          zlib
-        ]
-        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-          pkgs.darwin.apple_sdk.frameworks.Cocoa
-        ];
-
-      # Set up environment variables for macOS X11 support
-      preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # XQuartz paths on macOS
-        export XQUARTZ_ROOT="/opt/X11"
-        if [ -d "$XQUARTZ_ROOT" ]; then
-          export CPPFLAGS="-I$XQUARTZ_ROOT/include -I${pkgs.xorg.libX11}/include -I${pkgs.xorg.libXpm}/include $CPPFLAGS"
-          export LDFLAGS="-L$XQUARTZ_ROOT/lib -L${pkgs.xorg.libX11}/lib -L${pkgs.xorg.libXpm}/lib $LDFLAGS"
-          export PKG_CONFIG_PATH="$XQUARTZ_ROOT/lib/pkgconfig:${pkgs.xorg.libX11}/lib/pkgconfig:${pkgs.xorg.libXpm}/lib/pkgconfig:$PKG_CONFIG_PATH"
-          export LIBRARY_PATH="$XQUARTZ_ROOT/lib:$LIBRARY_PATH"
-        else
-          echo "WARNING: XQuartz not found at $XQUARTZ_ROOT - xschem may not build correctly"
-          echo "Please install XQuartz: brew install --cask xquartz"
-        fi
-      '';
-
+      buildInputs = with pkgs; [
+        tcl
+        tk
+        xorg.libX11
+        xorg.libXpm
+        cairo
+        readline
+        flex
+        bison
+        zlib
+      ];
       configureFlags = [
         "--prefix=${placeholder "out"}"
       ];
-
       enableParallelBuilding = true;
 
       buildPhase = ''
