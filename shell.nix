@@ -29,18 +29,17 @@
         bison
         zlib
       ];
-      configureFlags =
-        [
-          "--prefix=${placeholder "out"}"
-        ]
-        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-          "--x-includes=${pkgs.xorg.libX11}/include"
-          "--x-libraries=${pkgs.xorg.libX11}/lib"
-        ];
 
+      # Set up environment variables for macOS X11 support
       preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        export DISPLAY=:0
+        export CPPFLAGS="-I${pkgs.xorg.libX11}/include -I${pkgs.xorg.libXpm}/include $CPPFLAGS"
+        export LDFLAGS="-L${pkgs.xorg.libX11}/lib -L${pkgs.xorg.libXpm}/lib $LDFLAGS"
+        export PKG_CONFIG_PATH="${pkgs.xorg.libX11}/lib/pkgconfig:${pkgs.xorg.libXpm}/lib/pkgconfig:$PKG_CONFIG_PATH"
       '';
+
+      configureFlags = [
+        "--prefix=${placeholder "out"}"
+      ];
 
       enableParallelBuilding = true;
 
