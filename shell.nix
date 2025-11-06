@@ -66,52 +66,61 @@
       '';
 
       preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-            # Set ALL possible environment variables that scconfig might check
-            export CFLAGS="-I/opt/X11/include -I${pkgs.tcl}/include -I${pkgs.tk}/include -O2"
-            export CPPFLAGS="-I/opt/X11/include"
-            export LDFLAGS="-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib"
-            export LIBS="-lX11"
+          echo "=== Debugging X11 detection ==="
 
-            # X11-specific variables
-            export X11_CFLAGS="-I/opt/X11/include"
-            export X11_LIBS="-L/opt/X11/lib -lX11"
+          # 1. Check if XQuartz is actually installed
+          echo "Checking XQuartz installation:"
+          if [ -d "/opt/X11" ]; then
+            echo "✓ /opt/X11 exists"
+            ls -la /opt/X11/include/X11/Xlib.h 2>/dev/null && echo "✓ Xlib.h found" || echo "✗ Xlib.h missing"
+            ls -la /opt/X11/lib/libX11.dylib 2>/dev/null && echo "✓ libX11.dylib found" || echo "✗ libX11.dylib missing"
+          else
+            echo "✗ /opt/X11 not found - XQuartz not installed or wrong path"
+            echo "Possible XQuartz locations:"
+            find /Applications -name "XQuartz.app" 2>/dev/null || true
+            find /usr -name "Xlib.h" 2>/dev/null | head -5 || true
+          fi
 
-            # Set library and include paths
-            export LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib"
-            export C_INCLUDE_PATH="/opt/X11/include:${pkgs.tcl}/include:${pkgs.tk}/include"
-            export CPLUS_INCLUDE_PATH="/opt/X11/include:${pkgs.tcl}/include:${pkgs.tk}/include"
-
-            # Make sure the linker can find X11
-            export NIX_LDFLAGS="-L/opt/X11/lib -lX11 $NIX_LDFLAGS"
-            export NIX_CFLAGS_COMPILE="-I/opt/X11/include $NIX_CFLAGS_COMPILE"
-
-            echo "=== Environment for scconfig detection ==="
-            echo "CFLAGS=$CFLAGS"
-            echo "LDFLAGS=$LDFLAGS"
-            echo "LIBS=$LIBS"
-            echo "LIBRARY_PATH=$LIBRARY_PATH"
-            echo "C_INCLUDE_PATH=$C_INCLUDE_PATH"
-            echo "NIX_LDFLAGS=$NIX_LDFLAGS"
-            echo "NIX_CFLAGS_COMPILE=$NIX_CFLAGS_COMPILE"
-
-            # Test if we can compile a simple X11 program
-            echo "=== Testing X11 compilation ==="
-            cat > /tmp/test_x11.c << 'EOFTEST'
+          # 2. Test header inclusion separately
+          echo "=== Testing header inclusion ==="
+          cat > /tmp/test_include.c << 'EOF'
         #include <X11/Xlib.h>
-        int main() {
-            Display *d = XOpenDisplay(NULL);
-            return 0;
-        }
-        EOFTEST
+        #ifdef Success
+        int main() { return 0; }
+        #else
+        #error "X11/Xlib.h not properly included"
+        #endif
+        EOF
 
-            if clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11 2>&1; then
-              echo "SUCCESS: Can compile X11 test program"
-              rm /tmp/test_x11.c /tmp/test_x11
-            else
-              echo "FAILED: Cannot compile X11 test program"
-              echo "Compilation output:"
-              clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11
+          if clang -I/opt/X11/include -E /tmp/test_include.c > /dev/null 2>&1; then
+            echo "✓ X11 headers can be included"
+          else
+            echo "✗ X11 headers cannot be included"
+            echo "Trying verbose:"
+            clang -I/opt/X11/include -E /tmp/test_include.c
+          fi
+
+          # 3. Test with explicit include path
+          echo "=== Testing with find ==="
+          X11_PATH=$(find /opt -name "Xlib.h" 2>/dev/null | head -1 | xargs dirname | xargs dirname | xargs dirname || echo "NOT_FOUND")
+          echo "X11 base path found: $X11_PATH"
+
+          if [ "$X11_PATH" != "NOT_FOUND" ] && [ -d "$X11_PATH" ]; then
+            echo "Testing with path: $X11_PATH"
+            clang -I$X11_PATH/include -L$X11_PATH/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11_found
+            if [ $? -eq 0 ]; then
+              echo "✓ Success with auto-found X11 path"
             fi
+          fi
+
+          # 4. Last resort: check common alternative locations
+          echo "=== Checking alternative X11 locations ==="
+          for path in "/usr/X11" "/usr/local" "/Applications/Utilities/XQuartz.app/Contents/Resources"; do
+            if [ -f "$path/include/X11/Xlib.h" ]; then
+              echo "Found X11 at: $path"
+              clang -I$path/include -L$path/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11_$path 2>/dev/null && echo "✓ Works with $path"
+            fi
+          done
       '';
 
       configureScript = "./configure";
