@@ -29,10 +29,8 @@
           flex
           bison
           zlib
-        ]
-        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-          pkgs.darwin.apple_sdk.frameworks.Cocoa
         ];
+
 
       # Set up environment variables for macOS X11 support
       preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
