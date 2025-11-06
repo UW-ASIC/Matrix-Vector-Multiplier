@@ -19,13 +19,12 @@
         pkg-config
         autoconf
         automake
+        makeWrapper
       ];
 
       buildInputs = with pkgs; [
         tcl
         tk
-        xorg.libX11
-        xorg.libXpm
         cairo
         readline
         flex
@@ -33,97 +32,59 @@
         zlib
       ];
 
-      # Patch scconfig to include X11 paths for macOS
+      # Remove all the complex X11 patching - we'll handle it manually
       postPatch = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # Check if XQuartz is installed
-        if [ ! -d "/opt/X11" ]; then
-          echo "ERROR: XQuartz not found at /opt/X11"
-          echo "Please install XQuartz from https://www.xquartz.org/"
+        echo "=== Using direct XQuartz approach ==="
+
+        # Verify XQuartz is installed
+        if [ ! -f "/opt/X11/include/X11/Xlib.h" ]; then
+          echo "ERROR: XQuartz not found at /opt/X11/include/X11/Xlib.h"
+          echo "Please install XQuartz: brew install --cask xquartz"
+          echo "Then RESTART your terminal"
           exit 1
         fi
 
-        echo "=== Patching scconfig for macOS X11 detection ==="
-
-        # Find and patch the X11 detection in scconfig
-        # scconfig uses hooks.c or a similar file for detection
-        if [ -f "scconfig/hooks.c" ]; then
-          echo "Found scconfig/hooks.c"
-        fi
-
-        # Look for the gui detection files
-        if [ -f "scconfig/src/gui/find_x.c" ]; then
-          echo "Patching scconfig/src/gui/find_x.c for macOS"
-
-          # Add XQuartz paths to the X11 detection
-          sed -i'.bak' 's|/usr/X11R6/include|/opt/X11/include|g' scconfig/src/gui/find_x.c || true
-          sed -i'.bak' 's|/usr/X11R6/lib|/opt/X11/lib|g' scconfig/src/gui/find_x.c || true
-        fi
-
-        # Find any other X11 detection files
-        find scconfig -name "*.c" -type f -exec grep -l "XOpenDisplay\|X11/Xlib" {} \; | while read file; do
-          echo "Found X11 reference in: $file"
-        done
+        echo "✓ XQuartz found at /opt/X11"
       '';
 
       preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-          echo "=== Debugging X11 detection ==="
+            # Set minimal environment - let the build system figure it out
+            export CFLAGS="-I/opt/X11/include $CFLAGS"
+            export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
+            export LIBS="-lX11 -lXpm"
 
-          # 1. Check if XQuartz is actually installed
-          echo "Checking XQuartz installation:"
-          if [ -d "/opt/X11" ]; then
-            echo "✓ /opt/X11 exists"
-            ls -la /opt/X11/include/X11/Xlib.h 2>/dev/null && echo "✓ Xlib.h found" || echo "✗ Xlib.h missing"
-            ls -la /opt/X11/lib/libX11.dylib 2>/dev/null && echo "✓ libX11.dylib found" || echo "✗ libX11.dylib missing"
-          else
-            echo "✗ /opt/X11 not found - XQuartz not installed or wrong path"
-            exit 1
-          fi
-
-          # 2. Test header inclusion separately
-          echo "=== Testing header inclusion ==="
-          cat > /tmp/test_include.c << 'EOF'
+            # Test that we can actually compile with X11
+            echo "=== Final X11 compilation test ==="
+            cat > /tmp/test_x11_final.c << 'EOF'
         #include <X11/Xlib.h>
-        #ifdef Success
-        int main() { return 0; }
-        #else
-        #error "X11/Xlib.h not properly included"
-        #endif
-        EOF
-
-          if clang -I/opt/X11/include -E /tmp/test_include.c > /dev/null 2>&1; then
-            echo "✓ X11 headers can be included"
-          else
-            echo "✗ X11 headers cannot be included"
-            echo "Trying verbose:"
-            clang -I/opt/X11/include -E /tmp/test_include.c
-            exit 1
-          fi
-
-          # 3. Test the actual compilation with the CORRECT path
-          echo "=== Testing X11 compilation with /opt/X11 ==="
-          cat > /tmp/test_x11.c << 'EOF'
-        #include <X11/Xlib.h>
+        #include <stdio.h>
         int main() {
+            printf("Testing X11...\\n");
             Display *d = XOpenDisplay(NULL);
-            if (d) XCloseDisplay(d);
-            return 0;
+            if (d) {
+                printf("X11 SUCCESS: Display opened\\n");
+                XCloseDisplay(d);
+                return 0;
+            } else {
+                printf("X11 WARNING: Cannot open display (normal if no X server running)\\n");
+                return 1;
+            }
         }
         EOF
 
-          if clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11 2>/dev/null; then
-            echo "✓ SUCCESS: X11 test program compiles with /opt/X11"
-            /tmp/test_x11 && echo "✓ SUCCESS: X11 test program runs" || echo "⚠ WARNING: X11 test program compiled but failed to run (normal if no X server)"
-            rm -f /tmp/test_x11.c /tmp/test_x11
-          else
-            echo "✗ FAILED: X11 test program compilation failed with /opt/X11"
-            echo "Trying with verbose output:"
-            clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11
-            rm -f /tmp/test_x11.c /tmp/test_x11
-            exit 1
-          fi
-
-          # 4. Remove the problematic find command that detects wrong paths
-          echo "=== Using only /opt/X11 for X11 ==="
+            # Use the same compiler that the build will use
+            echo "Compiling test with: ${pkgs.stdenv.cc}/bin/cc"
+            if ${pkgs.stdenv.cc}/bin/cc -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11_final.c -o /tmp/test_x11_final; then
+              echo "✓ X11 compilation test PASSED"
+              /tmp/test_x11_final || echo "⚠ X11 test ran but display not available (normal)"
+              rm -f /tmp/test_x11_final.c /tmp/test_x11_final
+            else
+              echo "✗ X11 compilation test FAILED"
+              echo "Debug info:"
+              echo "Xlib.h exists: $(ls -la /opt/X11/include/X11/Xlib.h 2>/dev/null || echo 'NO')"
+              echo "libX11 exists: $(ls -la /opt/X11/lib/libX11* 2>/dev/null | head -1 || echo 'NO')"
+              exit 1
+            fi
       '';
 
       configureScript = "./configure";
@@ -132,33 +93,33 @@
         "--prefix=${placeholder "out"}"
       ];
 
-      # Patch Makefile.conf after configure
+      # Override the Makefile.conf after configure to force X11 paths
       postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-            echo "=== Patching Makefile.conf for macOS ==="
+            echo "=== Ensuring X11 paths in Makefile ==="
 
-            if [ ! -f Makefile.conf ]; then
-              echo "ERROR: Makefile.conf not found!"
-              ls -la
-              exit 1
-            fi
+            if [ -f "Makefile.conf" ]; then
+              echo "Patching Makefile.conf with XQuartz paths"
+              cp Makefile.conf Makefile.conf.orig
 
-            cp Makefile.conf Makefile.conf.orig
+              # Extract non-X11 settings from original
+              grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS" > Makefile.conf.new
 
-            cat > Makefile.conf << 'EOF'
-        # Patched for macOS with XQuartz
-        CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \
-               -I${pkgs.tcl}/include -I${pkgs.tk}/include \
-               -I${pkgs.cairo}/include/cairo -O2
-
-        LDFLAGS=-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib \
-                -lm -lcairo -lX11 -lXrender -lxcb -lxcb-render \
-                -lX11-xcb -lXpm -ltcl8.6 -ltk8.6
+              # Add our X11 paths
+              cat >> Makefile.conf.new << EOF
+        # XQuartz paths for macOS
+        CFLAGS = -I/opt/X11/include -I${pkgs.tcl}/include -I${pkgs.tk}/include -I${pkgs.cairo}/include/cairo -O2
+        LDFLAGS = -L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib -lX11 -lXpm -ltcl8.6 -ltk8.6 -lcairo
         EOF
 
-            # Append non-CFLAGS/LDFLAGS lines from original
-            grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS" >> Makefile.conf
+              mv Makefile.conf.new Makefile.conf
+              echo "✓ Makefile.conf patched"
+            fi
 
-            echo "Patched Makefile.conf created"
+            # Also patch the main Makefile if needed
+            if [ -f "Makefile" ]; then
+              sed -i.bak 's|^\(CFLAGS.*\)|\1 -I/opt/X11/include|' Makefile || true
+              sed -i.bak 's|^\(LDFLAGS.*\)|\1 -L/opt/X11/lib -lX11 -lXpm|' Makefile || true
+            fi
       '';
 
       enableParallelBuilding = true;
@@ -171,37 +132,29 @@
         make install
       '';
 
+      # Fix runtime paths for macOS
       postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+        echo "=== Fixing runtime paths ==="
+
         if [ -f "$out/bin/xschem" ]; then
-          install_name_tool -change \
-            /usr/local/opt/tcl-tk/lib/libtcl8.6.dylib \
-            ${pkgs.tcl}/lib/libtcl8.6.dylib \
-            "$out/bin/xschem" 2>/dev/null || true
-
-          install_name_tool -change \
-            /usr/local/opt/tcl-tk/lib/libtk8.6.dylib \
-            ${pkgs.tk}/lib/libtk8.6.dylib \
-            "$out/bin/xschem" 2>/dev/null || true
-
+          # Add XQuartz to runtime path
           install_name_tool -add_rpath /opt/X11/lib "$out/bin/xschem" 2>/dev/null || true
-          install_name_tool -add_rpath ${pkgs.tcl}/lib "$out/bin/xschem" 2>/dev/null || true
-        fi
-      '';
 
-      shellHook = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        export DYLD_LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib:$DYLD_LIBRARY_PATH"
-        export DISPLAY=":0"
-
-        if ! pgrep -x "Xquartz" > /dev/null; then
-          echo "WARNING: XQuartz is not running. Start it with: open -a XQuartz"
+          echo "✓ xschem binary prepared for XQuartz"
         fi
+
+        # Create a wrapper that sets up X11 environment
+        wrapProgram "$out/bin/xschem" \
+          --set DYLD_LIBRARY_PATH "/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib" \
+          --set DISPLAY ":0"
       '';
 
       meta = with pkgs.lib; {
         description = "Schematic capture and netlisting EDA tool";
         homepage = "https://xschem.sourceforge.io/";
+        license = licenses.gpl3Plus;
+        maintainers = with maintainers; [];
         platforms = platforms.unix;
-        broken = pkgs.stdenv.isDarwin && !builtins.pathExists "/opt/X11";
       };
     };
 
