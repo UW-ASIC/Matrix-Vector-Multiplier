@@ -33,7 +33,7 @@
         zlib
       ];
 
-      # CRITICAL: Set these BEFORE configure runs so it can find X11
+      # CRITICAL: scconfig needs CFLAGS/LDFLAGS in environment during configure
       preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
         # XQuartz must be installed at /opt/X11
         if [ ! -d "/opt/X11" ]; then
@@ -42,60 +42,66 @@
           exit 1
         fi
 
-        # Set compiler and linker flags so configure can find X11
-        export CPPFLAGS="-I/opt/X11/include $CPPFLAGS"
-        export CFLAGS="-I/opt/X11/include $CFLAGS"
-        export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
-        export LIBS="-lX11 $LIBS"
+        # Export flags that scconfig will pick up during its detection
+        # These MUST be set before configure runs
+        export CFLAGS="-I/opt/X11/include -I${pkgs.tcl}/include -I${pkgs.tk}/include"
+        export CPPFLAGS="-I/opt/X11/include"
+        export LDFLAGS="-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib"
+        export LIBS="-lX11"
 
-        # Help pkg-config find X11
-        export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
+        # Also set these for good measure
+        export CC="${pkgs.stdenv.cc}/bin/clang"
 
-        # Some configure scripts check these
-        export X_CFLAGS="-I/opt/X11/include"
-        export X_LIBS="-L/opt/X11/lib -lX11"
-        export X_PRE_LIBS=""
-        export X_EXTRA_LIBS=""
-
-        echo "X11 environment variables set:"
-        echo "  CPPFLAGS=$CPPFLAGS"
-        echo "  LDFLAGS=$LDFLAGS"
-        echo "  X_CFLAGS=$X_CFLAGS"
-        echo "  X_LIBS=$X_LIBS"
+        echo "=== Environment for scconfig ==="
+        echo "CFLAGS=$CFLAGS"
+        echo "LDFLAGS=$LDFLAGS"
+        echo "LIBS=$LIBS"
+        echo "CC=$CC"
+        echo "==============================="
       '';
 
-      # Just run configure with prefix
+      # Run configure - scconfig will use the environment variables above
+      configureScript = "./configure";
+
       configureFlags = [
         "--prefix=${placeholder "out"}"
       ];
 
-      # Manually edit Makefile.conf AFTER configure (as per official instructions)
+      # After configure, patch Makefile.conf as per official instructions
       postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-            echo "Patching Makefile.conf for macOS X11 build..."
+        echo "=== Patching Makefile.conf for macOS ==="
 
-            if [ -f Makefile.conf ]; then
-              # Backup original
-              cp Makefile.conf Makefile.conf.orig
+        if [ ! -f Makefile.conf ]; then
+          echo "ERROR: Makefile.conf not found!"
+          ls -la
+          exit 1
+        fi
 
-              # Create new Makefile.conf with proper flags
-              cat > Makefile.conf.new << EOF
-        CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \\
-               -I${pkgs.tcl}/include -O2
+        # Show what configure generated
+        echo "Original Makefile.conf CFLAGS and LDFLAGS:"
+        grep "^CFLAGS" Makefile.conf || echo "No CFLAGS found"
+        grep "^LDFLAGS" Makefile.conf || echo "No LDFLAGS found"
 
-        LDFLAGS=-L/opt/X11/lib -L${pkgs.tcl}/lib -lm -lcairo \\
-                -lX11 -lXrender -lxcb -lxcb-render -lX11-xcb -lXpm -ltcl8.6 -ltk8.6
-        EOF
+        # Backup original
+        cp Makefile.conf Makefile.conf.orig
 
-              # Append everything else from original (skip CFLAGS/LDFLAGS lines)
-              grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS" >> Makefile.conf.new
-              mv Makefile.conf.new Makefile.conf
+        # Create patched version with proper X11 paths
+        {
+          echo "# Patched for macOS with XQuartz"
+          echo "CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \\"
+          echo "       -I${pkgs.tcl}/include -I${pkgs.tk}/include \\"
+          echo "       -I${pkgs.cairo}/include/cairo -O2"
+          echo ""
+          echo "LDFLAGS=-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib \\"
+          echo "        -lm -lcairo -lX11 -lXrender -lxcb -lxcb-render \\"
+          echo "        -lX11-xcb -lXpm -ltcl8.6 -ltk8.6"
+          echo ""
+          # Append everything else from original except CFLAGS/LDFLAGS
+          grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS"
+        } > Makefile.conf
 
-              echo "Makefile.conf patched:"
-              head -10 Makefile.conf
-            else
-              echo "ERROR: Makefile.conf not found!"
-              exit 1
-            fi
+        echo "Patched Makefile.conf:"
+        head -20 Makefile.conf
       '';
 
       enableParallelBuilding = true;
