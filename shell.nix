@@ -49,20 +49,17 @@
         export CFLAGS="-I/opt/X11/include -I/opt/X11/include/cairo -I${pkgs.tcl}/include -I${pkgs.tk}/include -I${pkgs.cairo}/include/cairo -O2 -DHAS_CAIRO"
       '';
 
-      # xschem's configure script does NOT support --with-x, --x-includes, or --x-libraries
-      # It will auto-detect X11 from the environment variables set above
+      # xschem's configure does NOT support --with-x, --x-includes, or --x-libraries
+      # It auto-detects X11 from environment variables
       configureFlags = [
         "--prefix=${placeholder "out"}"
       ];
 
-      # macOS requires manual Makefile patching because configure doesn't handle it properly
+      # macOS requires manual Makefile patching
       postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-            # Backup original Makefile.conf
-            cp Makefile.conf Makefile.conf.orig
+                cp Makefile.conf Makefile.conf.orig
 
-            # Replace CFLAGS and LDFLAGS with proper X11 paths
-            # The configure script on macOS doesn't properly set these
-            cat > Makefile.conf.new << 'EOF'
+                cat > Makefile.conf.new << 'EOF'
         # Auto-generated macOS configuration with X11 support
         CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \
                -I${pkgs.tcl}/include -I${pkgs.tk}/include \
@@ -74,11 +71,10 @@
                 -lX11-xcb -lXpm -ltcl8.6 -ltk8.6
         EOF
 
-            # Preserve other settings from original Makefile.conf
-            grep -v "^CFLAGS=" Makefile.conf.orig | grep -v "^LDFLAGS=" >> Makefile.conf.new
-            mv Makefile.conf.new Makefile.conf
+                grep -v "^CFLAGS=" Makefile.conf.orig | grep -v "^LDFLAGS=" >> Makefile.conf.new
+                mv Makefile.conf.new Makefile.conf
 
-            echo "Modified Makefile.conf for macOS X11 build"
+                echo "Modified Makefile.conf for macOS X11 build"
       '';
 
       enableParallelBuilding = true;
@@ -91,11 +87,8 @@
         make install
       '';
 
-      # Fix dynamic library paths on macOS
       postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # Use install_name_tool to fix library paths
         if [ -f "$out/bin/xschem" ]; then
-          # Fix Tcl/Tk library references
           install_name_tool -change \
             /usr/local/opt/tcl-tk/lib/libtcl8.6.dylib \
             ${pkgs.tcl}/lib/libtcl8.6.dylib \
@@ -108,12 +101,9 @@
         fi
       '';
 
-      # Set up runtime environment
       shellHook = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # Ensure X11 libraries can be found at runtime
         export DYLD_LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib:$DYLD_LIBRARY_PATH"
 
-        # XQuartz must be running for xschem to work
         if ! pgrep -x "Xquartz" > /dev/null; then
           echo "WARNING: XQuartz is not running. Start it with: open -a XQuartz"
         fi
@@ -123,7 +113,6 @@
         description = "Schematic capture and netlisting EDA tool";
         homepage = "https://xschem.sourceforge.io/";
         platforms = platforms.unix;
-        # Note: On macOS, requires XQuartz to be installed separately
         broken = pkgs.stdenv.isDarwin && !builtins.pathExists "/opt/X11";
       };
     };
@@ -143,7 +132,6 @@
       ];
 
       buildInputs = with pkgs; [
-        # Cairo with X11 support is CRITICAL for macOS
         (
           if stdenv.isDarwin
           then cairo.override {x11Support = true;}
@@ -161,45 +149,34 @@
         git
       ];
 
-      # macOS-specific pre-configuration
       preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # XQuartz must be installed at /opt/X11
         if [ ! -d "/opt/X11" ]; then
           echo "ERROR: XQuartz not found at /opt/X11"
           echo "Please install XQuartz from https://www.xquartz.org/"
           exit 1
         fi
 
-        # Set up X11 paths for macOS as ENVIRONMENT VARIABLES
         export CPPFLAGS="-I/opt/X11/include $CPPFLAGS"
         export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
         export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
         export CFLAGS="-Wno-error=implicit-function-declaration -I/opt/X11/include -I${pkgs.cairo}/include/cairo -O2"
 
-        # Cairo needs X11 support on macOS
         export CAIRO_CFLAGS="$(pkg-config --cflags cairo) -I/opt/X11/include"
         export CAIRO_LIBS="$(pkg-config --libs cairo) -L/opt/X11/lib -lX11"
       '';
 
-      # Magic's configure options are different from xschem!
-      # It does NOT use --with-x, --x-includes, or --x-libraries (plural)
-      # It auto-detects X11 and only needs --x-libraries if detection fails
-      configureFlags =
-        [
-          "--with-tcl=${pkgs.tcl}/lib"
-          "--with-tk=${pkgs.tk}/lib"
-          "--disable-werror"
-        ]
-        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-          # Only specify X11 library path if auto-detection might fail
-          "--x-libraries=/opt/X11/lib"
-        ];
+      # Magic's configure does NOT support --with-x, --x-includes, or --x-libraries
+      # It auto-detects X11 using AC_PATH_X and AC_PATH_XTRA
+      configureFlags = [
+        "--with-tcl=${pkgs.tcl}/lib"
+        "--with-tk=${pkgs.tk}/lib"
+        "--disable-werror"
+      ];
 
       postPatch = ''
         patchShebangs scripts/*
       '';
 
-      # Set compiler flags
       NIX_CFLAGS_COMPILE =
         if pkgs.stdenv.isDarwin
         then "-Wno-implicit-function-declaration -O2 -I/opt/X11/include"
@@ -211,13 +188,10 @@
 
       enableParallelBuilding = true;
 
-      # macOS requires special handling for the tclmagic.dylib
       postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # Fix dynamic library paths on macOS
         if [ -f "$out/lib/magic/tcl/tclmagic.dylib" ]; then
           echo "Fixing library paths for tclmagic.dylib"
 
-          # Fix Tcl/Tk library references
           install_name_tool -change \
             /usr/local/opt2/tcl-tk/lib/libtcl8.6.dylib \
             ${pkgs.tcl}/lib/libtcl8.6.dylib \
@@ -228,16 +202,13 @@
             ${pkgs.tk}/lib/libtk8.6.dylib \
             "$out/lib/magic/tcl/tclmagic.dylib" || true
 
-          # Fix X11 library references to point to XQuartz
           install_name_tool -change \
             libX11.6.dylib \
             /opt/X11/lib/libX11.6.dylib \
             "$out/lib/magic/tcl/tclmagic.dylib" || true
         fi
 
-        # Fix the main executable if it exists
         if [ -f "$out/bin/magic" ]; then
-          # The magic binary is typically a shell script, but check for any binaries
           for binary in "$out/bin"/*; do
             if [ -f "$binary" ] && file "$binary" | grep -q "Mach-O"; then
               install_name_tool -add_rpath /opt/X11/lib "$binary" || true
@@ -248,13 +219,10 @@
         fi
       '';
 
-      # Set up runtime environment
       shellHook = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # Ensure X11 libraries can be found at runtime
         export DYLD_LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib:${pkgs.cairo}/lib:$DYLD_LIBRARY_PATH"
         export DISPLAY=":0"
 
-        # XQuartz must be running for magic to work
         if ! pgrep -x "Xquartz" > /dev/null; then
           echo "WARNING: XQuartz is not running."
           echo "Start it with: open -a XQuartz"
@@ -264,19 +232,10 @@
 
       meta = with pkgs.lib; {
         description = "VLSI layout tool written in Tcl";
-        longDescription = ''
-          Magic is a venerable VLSI layout tool, written in the 1980's at Berkeley by
-          John Ousterhout. Magic is widely cited as being the easiest tool to use for
-          circuit layout, even for people who ultimately rely on commercial tools for
-          their product design flow.
-
-          On macOS: Requires XQuartz to be installed manually from https://www.xquartz.org/
-        '';
         homepage = "http://opencircuitdesign.com/magic/";
         license = licenses.mit;
         maintainers = with maintainers; [thoughtpolice];
         platforms = platforms.unix;
-        # Mark as broken on macOS if XQuartz is not installed
         broken = pkgs.stdenv.isDarwin && !builtins.pathExists "/opt/X11";
       };
     };
