@@ -29,9 +29,19 @@
         bison
         zlib
       ];
-      configureFlags = [
-        "--prefix=${placeholder "out"}"
-      ];
+      configureFlags =
+        [
+          "--prefix=${placeholder "out"}"
+        ]
+        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+          "--x-includes=${pkgs.xorg.libX11}/include"
+          "--x-libraries=${pkgs.xorg.libX11}/lib"
+        ];
+
+      preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+        export DISPLAY=:0
+      '';
+
       enableParallelBuilding = true;
 
       buildPhase = ''
@@ -43,7 +53,7 @@
       meta = {
         description = "Schematic capture and netlisting EDA tool";
         homepage = "https://xschem.sourceforge.io/";
-        platforms = pkgs.lib.platforms.linux;
+        platforms = pkgs.lib.platforms.unix;
       };
     };
 
@@ -128,24 +138,15 @@ in
       cargo
       gnumake
       git
-      python312
       ccache
       pkg-config
-
-      # C compilation dependencies
-      gcc
-      glibc.dev
-      libffi.dev
-      clang
-      llvmPackages.libclang
 
       # Digital design
       slang
       verilator
       yosys
       gtkwave
-      gaw
-      python312Full
+      python312
       python312Packages.pip
       python312Packages.numpy
       python312Packages.setuptools
@@ -195,15 +196,9 @@ in
       export CARGO_HOME="$HOME/.cargo"
       export PATH="$CARGO_HOME/bin:$PATH"
 
-      # Environment for bindgen
-      export LIBCLANG_PATH="${pkgs.llvmPackages.libclang.lib}/lib"
-      export BINDGEN_EXTRA_CLANG_ARGS="-I${pkgs.glibc.dev}/include -I${selfBuiltPackages.ngspice-shared}/include"
-      export NIX_ENFORCE_PURITY=0
-      unset NIX_ENFORCE_NO_NATIVE
-
       # Python and C compilation paths
-      export CPATH="${pkgs.python312Full}/include/python3.11:${selfBuiltPackages.ngspice-shared}/include:$CPATH"
-      export NIX_LD_LIBRARY_PATH="${pkgs.python312Full}/lib:${selfBuiltPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"
+      export CPATH="${pkgs.python312}/include/python3.12:${selfBuiltPackages.ngspice-shared}/include:$CPATH"
+      export NIX_LD_LIBRARY_PATH="${pkgs.python312}/lib:${selfBuiltPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"
       export PKG_CONFIG_PATH="${selfBuiltPackages.ngspice-shared}/lib/pkgconfig:$PKG_CONFIG_PATH"
 
       export NIX_LD=$(cat ${pkgs.stdenv.cc}/nix-support/dynamic-linker)
@@ -211,7 +206,6 @@ in
         pkgs.stdenv.cc.cc.lib
         pkgs.expat
         pkgs.zlib
-        pkgs.glibc
       ]}
       export FONTCONFIG_FILE=${pkgs.fontconfig.out}/etc/fonts/fonts.conf
       export FONTCONFIG_PATH=${pkgs.fontconfig.out}/etc/fonts
