@@ -33,75 +33,120 @@
         zlib
       ];
 
-      # CRITICAL: scconfig needs CFLAGS/LDFLAGS in environment during configure
-      preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        # XQuartz must be installed at /opt/X11
+      # Patch scconfig to include X11 paths for macOS
+      postPatch = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+        # Check if XQuartz is installed
         if [ ! -d "/opt/X11" ]; then
           echo "ERROR: XQuartz not found at /opt/X11"
           echo "Please install XQuartz from https://www.xquartz.org/"
           exit 1
         fi
 
-        # Export flags that scconfig will pick up during its detection
-        # These MUST be set before configure runs
-        export CFLAGS="-I/opt/X11/include -I${pkgs.tcl}/include -I${pkgs.tk}/include"
-        export CPPFLAGS="-I/opt/X11/include"
-        export LDFLAGS="-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib"
-        export LIBS="-lX11"
+        echo "=== Patching scconfig for macOS X11 detection ==="
 
-        # Also set these for good measure
-        export CC="${pkgs.stdenv.cc}/bin/clang"
+        # Find and patch the X11 detection in scconfig
+        # scconfig uses hooks.c or a similar file for detection
+        if [ -f "scconfig/hooks.c" ]; then
+          echo "Found scconfig/hooks.c"
+        fi
 
-        echo "=== Environment for scconfig ==="
-        echo "CFLAGS=$CFLAGS"
-        echo "LDFLAGS=$LDFLAGS"
-        echo "LIBS=$LIBS"
-        echo "CC=$CC"
-        echo "==============================="
+        # Look for the gui detection files
+        if [ -f "scconfig/src/gui/find_x.c" ]; then
+          echo "Patching scconfig/src/gui/find_x.c for macOS"
+
+          # Add XQuartz paths to the X11 detection
+          sed -i'.bak' 's|/usr/X11R6/include|/opt/X11/include|g' scconfig/src/gui/find_x.c || true
+          sed -i'.bak' 's|/usr/X11R6/lib|/opt/X11/lib|g' scconfig/src/gui/find_x.c || true
+        fi
+
+        # Find any other X11 detection files
+        find scconfig -name "*.c" -type f -exec grep -l "XOpenDisplay\|X11/Xlib" {} \; | while read file; do
+          echo "Found X11 reference in: $file"
+        done
       '';
 
-      # Run configure - scconfig will use the environment variables above
+      preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+            # Set ALL possible environment variables that scconfig might check
+            export CFLAGS="-I/opt/X11/include -I${pkgs.tcl}/include -I${pkgs.tk}/include -O2"
+            export CPPFLAGS="-I/opt/X11/include"
+            export LDFLAGS="-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib"
+            export LIBS="-lX11"
+
+            # X11-specific variables
+            export X11_CFLAGS="-I/opt/X11/include"
+            export X11_LIBS="-L/opt/X11/lib -lX11"
+
+            # Set library and include paths
+            export LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib"
+            export C_INCLUDE_PATH="/opt/X11/include:${pkgs.tcl}/include:${pkgs.tk}/include"
+            export CPLUS_INCLUDE_PATH="/opt/X11/include:${pkgs.tcl}/include:${pkgs.tk}/include"
+
+            # Make sure the linker can find X11
+            export NIX_LDFLAGS="-L/opt/X11/lib -lX11 $NIX_LDFLAGS"
+            export NIX_CFLAGS_COMPILE="-I/opt/X11/include $NIX_CFLAGS_COMPILE"
+
+            echo "=== Environment for scconfig detection ==="
+            echo "CFLAGS=$CFLAGS"
+            echo "LDFLAGS=$LDFLAGS"
+            echo "LIBS=$LIBS"
+            echo "LIBRARY_PATH=$LIBRARY_PATH"
+            echo "C_INCLUDE_PATH=$C_INCLUDE_PATH"
+            echo "NIX_LDFLAGS=$NIX_LDFLAGS"
+            echo "NIX_CFLAGS_COMPILE=$NIX_CFLAGS_COMPILE"
+
+            # Test if we can compile a simple X11 program
+            echo "=== Testing X11 compilation ==="
+            cat > /tmp/test_x11.c << 'EOFTEST'
+        #include <X11/Xlib.h>
+        int main() {
+            Display *d = XOpenDisplay(NULL);
+            return 0;
+        }
+        EOFTEST
+
+            if clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11 2>&1; then
+              echo "SUCCESS: Can compile X11 test program"
+              rm /tmp/test_x11.c /tmp/test_x11
+            else
+              echo "FAILED: Cannot compile X11 test program"
+              echo "Compilation output:"
+              clang -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11.c -o /tmp/test_x11
+            fi
+      '';
+
       configureScript = "./configure";
 
       configureFlags = [
         "--prefix=${placeholder "out"}"
       ];
 
-      # After configure, patch Makefile.conf as per official instructions
+      # Patch Makefile.conf after configure
       postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        echo "=== Patching Makefile.conf for macOS ==="
+            echo "=== Patching Makefile.conf for macOS ==="
 
-        if [ ! -f Makefile.conf ]; then
-          echo "ERROR: Makefile.conf not found!"
-          ls -la
-          exit 1
-        fi
+            if [ ! -f Makefile.conf ]; then
+              echo "ERROR: Makefile.conf not found!"
+              ls -la
+              exit 1
+            fi
 
-        # Show what configure generated
-        echo "Original Makefile.conf CFLAGS and LDFLAGS:"
-        grep "^CFLAGS" Makefile.conf || echo "No CFLAGS found"
-        grep "^LDFLAGS" Makefile.conf || echo "No LDFLAGS found"
+            cp Makefile.conf Makefile.conf.orig
 
-        # Backup original
-        cp Makefile.conf Makefile.conf.orig
+            cat > Makefile.conf << 'EOF'
+        # Patched for macOS with XQuartz
+        CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \
+               -I${pkgs.tcl}/include -I${pkgs.tk}/include \
+               -I${pkgs.cairo}/include/cairo -O2
 
-        # Create patched version with proper X11 paths
-        {
-          echo "# Patched for macOS with XQuartz"
-          echo "CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \\"
-          echo "       -I${pkgs.tcl}/include -I${pkgs.tk}/include \\"
-          echo "       -I${pkgs.cairo}/include/cairo -O2"
-          echo ""
-          echo "LDFLAGS=-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib \\"
-          echo "        -lm -lcairo -lX11 -lXrender -lxcb -lxcb-render \\"
-          echo "        -lX11-xcb -lXpm -ltcl8.6 -ltk8.6"
-          echo ""
-          # Append everything else from original except CFLAGS/LDFLAGS
-          grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS"
-        } > Makefile.conf
+        LDFLAGS=-L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib \
+                -lm -lcairo -lX11 -lXrender -lxcb -lxcb-render \
+                -lX11-xcb -lXpm -ltcl8.6 -ltk8.6
+        EOF
 
-        echo "Patched Makefile.conf:"
-        head -20 Makefile.conf
+            # Append non-CFLAGS/LDFLAGS lines from original
+            grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS" >> Makefile.conf
+
+            echo "Patched Makefile.conf created"
       '';
 
       enableParallelBuilding = true;
@@ -116,8 +161,6 @@
 
       postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
         if [ -f "$out/bin/xschem" ]; then
-          echo "Fixing dynamic library paths..."
-
           install_name_tool -change \
             /usr/local/opt/tcl-tk/lib/libtcl8.6.dylib \
             ${pkgs.tcl}/lib/libtcl8.6.dylib \
@@ -130,7 +173,6 @@
 
           install_name_tool -add_rpath /opt/X11/lib "$out/bin/xschem" 2>/dev/null || true
           install_name_tool -add_rpath ${pkgs.tcl}/lib "$out/bin/xschem" 2>/dev/null || true
-          install_name_tool -add_rpath ${pkgs.tk}/lib "$out/bin/xschem" 2>/dev/null || true
         fi
       '';
 
