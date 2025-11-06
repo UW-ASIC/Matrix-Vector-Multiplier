@@ -198,13 +198,6 @@
           "CFLAGS=-Wno-error=implicit-function-declaration -I/opt/X11/include -I${pkgs.cairo}/include/cairo"
         ];
 
-      # Standard Linux configuration
-      configureFlags = pkgs.lib.optionals (!pkgs.stdenv.isDarwin) [
-        "--with-tcl=${pkgs.tcl}"
-        "--with-tk=${pkgs.tk}"
-        "--disable-werror"
-      ];
-
       postPatch = ''
         patchShebangs scripts/*
       '';
