@@ -42,24 +42,30 @@
           exit 1
         fi
 
-        # Set up X11 paths for macOS as ENVIRONMENT VARIABLES
+        # Set up X11 paths for macOS
         export CPPFLAGS="-I/opt/X11/include -I/opt/X11/include/cairo $CPPFLAGS"
         export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
         export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
-        export CFLAGS="-I/opt/X11/include -I/opt/X11/include/cairo -I${pkgs.tcl}/include -I${pkgs.tk}/include -I${pkgs.cairo}/include/cairo -O2 -DHAS_CAIRO"
       '';
 
-      # xschem's configure does NOT support --with-x, --x-includes, or --x-libraries
-      # It auto-detects X11 from environment variables
-      configureFlags = [
-        "--prefix=${placeholder "out"}"
-      ];
+      configureFlags =
+        [
+          "--prefix=${placeholder "out"}"
+        ]
+        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+          "--with-x"
+          "--x-includes=/opt/X11/include"
+          "--x-libraries=/opt/X11/lib"
+        ];
 
-      # macOS requires manual Makefile patching
+      # macOS requires manual Makefile patching because configure doesn't handle it properly
       postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-                cp Makefile.conf Makefile.conf.orig
+            # Backup original Makefile.conf
+            cp Makefile.conf Makefile.conf.orig
 
-                cat > Makefile.conf.new << 'EOF'
+            # Replace CFLAGS and LDFLAGS with proper X11 paths
+            # The configure script on macOS doesn't properly set these
+            cat > Makefile.conf.new << 'EOF'
         # Auto-generated macOS configuration with X11 support
         CFLAGS=-I/opt/X11/include -I/opt/X11/include/cairo \
                -I${pkgs.tcl}/include -I${pkgs.tk}/include \
@@ -71,10 +77,11 @@
                 -lX11-xcb -lXpm -ltcl8.6 -ltk8.6
         EOF
 
-                grep -v "^CFLAGS=" Makefile.conf.orig | grep -v "^LDFLAGS=" >> Makefile.conf.new
-                mv Makefile.conf.new Makefile.conf
+            # Preserve other settings from original Makefile.conf
+            grep -v "^CFLAGS=" Makefile.conf.orig | grep -v "^LDFLAGS=" >> Makefile.conf.new
+            mv Makefile.conf.new Makefile.conf
 
-                echo "Modified Makefile.conf for macOS X11 build"
+            echo "Modified Makefile.conf for macOS X11 build"
       '';
 
       enableParallelBuilding = true;
@@ -87,8 +94,11 @@
         make install
       '';
 
+      # Fix dynamic library paths on macOS
       postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+        # Use install_name_tool to fix library paths
         if [ -f "$out/bin/xschem" ]; then
+          # Fix Tcl/Tk library references
           install_name_tool -change \
             /usr/local/opt/tcl-tk/lib/libtcl8.6.dylib \
             ${pkgs.tcl}/lib/libtcl8.6.dylib \
@@ -101,9 +111,12 @@
         fi
       '';
 
+      # Set up runtime environment
       shellHook = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
+        # Ensure X11 libraries can be found at runtime
         export DYLD_LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib:$DYLD_LIBRARY_PATH"
 
+        # XQuartz must be running for xschem to work
         if ! pgrep -x "Xquartz" > /dev/null; then
           echo "WARNING: XQuartz is not running. Start it with: open -a XQuartz"
         fi
@@ -113,6 +126,7 @@
         description = "Schematic capture and netlisting EDA tool";
         homepage = "https://xschem.sourceforge.io/";
         platforms = platforms.unix;
+        # Note: On macOS, requires XQuartz to be installed separately
         broken = pkgs.stdenv.isDarwin && !builtins.pathExists "/opt/X11";
       };
     };
