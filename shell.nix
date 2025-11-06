@@ -42,21 +42,18 @@
           exit 1
         fi
 
-        # Set up X11 paths for macOS
+        # Set up X11 paths for macOS as ENVIRONMENT VARIABLES
         export CPPFLAGS="-I/opt/X11/include -I/opt/X11/include/cairo $CPPFLAGS"
         export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
         export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
+        export CFLAGS="-I/opt/X11/include -I/opt/X11/include/cairo -I${pkgs.tcl}/include -I${pkgs.tk}/include -I${pkgs.cairo}/include/cairo -O2 -DHAS_CAIRO"
       '';
 
-      configureFlags =
-        [
-          "--prefix=${placeholder "out"}"
-        ]
-        ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-          "--with-x"
-          "--x-includes=/opt/X11/include"
-          "--x-libraries=/opt/X11/lib"
-        ];
+      # xschem's configure script does NOT support --with-x, --x-includes, or --x-libraries
+      # It will auto-detect X11 from the environment variables set above
+      configureFlags = [
+        "--prefix=${placeholder "out"}"
+      ];
 
       # macOS requires manual Makefile patching because configure doesn't handle it properly
       postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
