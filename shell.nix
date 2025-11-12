@@ -7,180 +7,57 @@
     xschem = pkgs.stdenv.mkDerivation rec {
       pname = "xschem";
       version = "3.4.7";
-
       src = pkgs.fetchFromGitHub {
         owner = "StefanSchippers";
         repo = "xschem";
         rev = "3.4.7";
         sha256 = "sha256-1jP1SJeq23XNkOQgcl2X+rBrlka4a04irmfhoKRM1j4=";
       };
-
       nativeBuildInputs = with pkgs; [
         pkg-config
         autoconf
         automake
-        makeWrapper
       ];
-
       buildInputs = with pkgs; [
         tcl
         tk
+        xorg.libX11
+        xorg.libXpm
         cairo
         readline
         flex
         bison
         zlib
       ];
-
-      # Remove all the complex X11 patching - we'll handle it manually
-      postPatch = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        echo "=== Using direct XQuartz approach ==="
-
-        # Verify XQuartz is installed
-        if [ ! -f "/opt/X11/include/X11/Xlib.h" ]; then
-          echo "ERROR: XQuartz not found at /opt/X11/include/X11/Xlib.h"
-          echo "Please install XQuartz: brew install --cask xquartz"
-          echo "Then RESTART your terminal"
-          exit 1
-        fi
-
-        echo "✓ XQuartz found at /opt/X11"
-      '';
-
-      preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-            # Set minimal environment - let the build system figure it out
-            export CFLAGS="-I/opt/X11/include $CFLAGS"
-            export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
-            export LIBS="-lX11 -lXpm"
-
-            # Test that we can actually compile with X11
-            echo "=== Final X11 compilation test ==="
-            cat > /tmp/test_x11_final.c << 'EOF'
-        #include <X11/Xlib.h>
-        #include <stdio.h>
-        int main() {
-            printf("Testing X11...\\n");
-            Display *d = XOpenDisplay(NULL);
-            if (d) {
-                printf("X11 SUCCESS: Display opened\\n");
-                XCloseDisplay(d);
-                return 0;
-            } else {
-                printf("X11 WARNING: Cannot open display (normal if no X server running)\\n");
-                return 1;
-            }
-        }
-        EOF
-
-            # Use the same compiler that the build will use
-            echo "Compiling test with: ${pkgs.stdenv.cc}/bin/cc"
-            if ${pkgs.stdenv.cc}/bin/cc -I/opt/X11/include -L/opt/X11/lib -lX11 /tmp/test_x11_final.c -o /tmp/test_x11_final; then
-              echo "✓ X11 compilation test PASSED"
-              /tmp/test_x11_final || echo "⚠ X11 test ran but display not available (normal)"
-              rm -f /tmp/test_x11_final.c /tmp/test_x11_final
-            else
-              echo "✗ X11 compilation test FAILED"
-              echo "Debug info:"
-              echo "Xlib.h exists: $(ls -la /opt/X11/include/X11/Xlib.h 2>/dev/null || echo 'NO')"
-              echo "libX11 exists: $(ls -la /opt/X11/lib/libX11* 2>/dev/null | head -1 || echo 'NO')"
-              exit 1
-            fi
-      '';
-
-      configureScript = "./configure";
-
       configureFlags = [
         "--prefix=${placeholder "out"}"
       ];
-
-      # Override the Makefile.conf after configure to force X11 paths
-      postConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-            echo "=== Ensuring X11 paths in Makefile ==="
-
-            if [ -f "Makefile.conf" ]; then
-              echo "Patching Makefile.conf with XQuartz paths"
-              cp Makefile.conf Makefile.conf.orig
-
-              # Extract non-X11 settings from original
-              grep -v "^CFLAGS" Makefile.conf.orig | grep -v "^LDFLAGS" > Makefile.conf.new
-
-              # Add our X11 paths
-              cat >> Makefile.conf.new << EOF
-        # XQuartz paths for macOS
-        CFLAGS = -I/opt/X11/include -I${pkgs.tcl}/include -I${pkgs.tk}/include -I${pkgs.cairo}/include/cairo -O2
-        LDFLAGS = -L/opt/X11/lib -L${pkgs.tcl}/lib -L${pkgs.tk}/lib -lX11 -lXpm -ltcl8.6 -ltk8.6 -lcairo
-        EOF
-
-              mv Makefile.conf.new Makefile.conf
-              echo "✓ Makefile.conf patched"
-            fi
-
-            # Also patch the main Makefile if needed
-            if [ -f "Makefile" ]; then
-              sed -i.bak 's|^\(CFLAGS.*\)|\1 -I/opt/X11/include|' Makefile || true
-              sed -i.bak 's|^\(LDFLAGS.*\)|\1 -L/opt/X11/lib -lX11 -lXpm|' Makefile || true
-            fi
-      '';
-
       enableParallelBuilding = true;
 
       buildPhase = ''
         make
       '';
-
       installPhase = ''
         make install
       '';
-
-      # Fix runtime paths for macOS
-      postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        echo "=== Fixing runtime paths ==="
-
-        if [ -f "$out/bin/xschem" ]; then
-          # Add XQuartz to runtime path
-          install_name_tool -add_rpath /opt/X11/lib "$out/bin/xschem" 2>/dev/null || true
-
-          echo "✓ xschem binary prepared for XQuartz"
-        fi
-
-        # Create a wrapper that sets up X11 environment
-        wrapProgram "$out/bin/xschem" \
-          --set DYLD_LIBRARY_PATH "/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib" \
-          --set DISPLAY ":0"
-      '';
-
-      meta = with pkgs.lib; {
+      meta = {
         description = "Schematic capture and netlisting EDA tool";
         homepage = "https://xschem.sourceforge.io/";
-        license = licenses.gpl3Plus;
-        maintainers = with maintainers; [];
-        platforms = platforms.unix;
+        platforms = pkgs.lib.platforms.linux;
       };
     };
 
     magic-vlsi = pkgs.stdenv.mkDerivation rec {
       pname = "magic-vlsi";
       version = "8.3.569";
-
       src = pkgs.fetchurl {
         url = "http://opencircuitdesign.com/magic/archive/magic-${version}.tgz";
         sha256 = "sha256-Lk9D2G6F98vQ1iXAiVkjr3s+U3Li5P05cUO1388qTN8=";
       };
-
-      nativeBuildInputs = with pkgs; [
-        python311
-        pkg-config
-      ];
-
+      nativeBuildInputs = [pkgs.python311];
       buildInputs = with pkgs; [
-        (
-          if stdenv.isDarwin
-          then cairo.override {x11Support = true;}
-          else cairo
-        )
+        cairo
         xorg.libX11
-        xorg.libXext
-        xorg.libXi
         m4
         mesa_glu
         ncurses
@@ -189,95 +66,21 @@
         tk
         git
       ];
-
-      preConfigure = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        if [ ! -d "/opt/X11" ]; then
-          echo "ERROR: XQuartz not found at /opt/X11"
-          echo "Please install XQuartz from https://www.xquartz.org/"
-          exit 1
-        fi
-
-        export CPPFLAGS="-I/opt/X11/include $CPPFLAGS"
-        export LDFLAGS="-L/opt/X11/lib $LDFLAGS"
-        export PKG_CONFIG_PATH="/opt/X11/lib/pkgconfig:$PKG_CONFIG_PATH"
-        export CFLAGS="-Wno-error=implicit-function-declaration -I/opt/X11/include -I${pkgs.cairo}/include/cairo -O2"
-
-        export CAIRO_CFLAGS="$(pkg-config --cflags cairo) -I/opt/X11/include"
-        export CAIRO_LIBS="$(pkg-config --libs cairo) -L/opt/X11/lib -lX11"
-      '';
-
-      # Magic's configure does NOT support --with-x, --x-includes, or --x-libraries
-      # It auto-detects X11 using AC_PATH_X and AC_PATH_XTRA
+      enableParallelBuilding = true;
       configureFlags = [
-        "--with-tcl=${pkgs.tcl}/lib"
-        "--with-tk=${pkgs.tk}/lib"
+        "--with-tcl=${pkgs.tcl}"
+        "--with-tk=${pkgs.tk}"
         "--disable-werror"
       ];
-
       postPatch = ''
         patchShebangs scripts/*
       '';
-
-      NIX_CFLAGS_COMPILE =
-        if pkgs.stdenv.isDarwin
-        then "-Wno-implicit-function-declaration -O2 -I/opt/X11/include"
-        else "-Wno-implicit-function-declaration -O2";
-
-      NIX_LDFLAGS =
-        pkgs.lib.optionalString pkgs.stdenv.isDarwin
-        "-L/opt/X11/lib -lX11 -lXext";
-
-      enableParallelBuilding = true;
-
-      postInstall = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        if [ -f "$out/lib/magic/tcl/tclmagic.dylib" ]; then
-          echo "Fixing library paths for tclmagic.dylib"
-
-          install_name_tool -change \
-            /usr/local/opt2/tcl-tk/lib/libtcl8.6.dylib \
-            ${pkgs.tcl}/lib/libtcl8.6.dylib \
-            "$out/lib/magic/tcl/tclmagic.dylib" || true
-
-          install_name_tool -change \
-            /usr/local/opt2/tcl-tk/lib/libtk8.6.dylib \
-            ${pkgs.tk}/lib/libtk8.6.dylib \
-            "$out/lib/magic/tcl/tclmagic.dylib" || true
-
-          install_name_tool -change \
-            libX11.6.dylib \
-            /opt/X11/lib/libX11.6.dylib \
-            "$out/lib/magic/tcl/tclmagic.dylib" || true
-        fi
-
-        if [ -f "$out/bin/magic" ]; then
-          for binary in "$out/bin"/*; do
-            if [ -f "$binary" ] && file "$binary" | grep -q "Mach-O"; then
-              install_name_tool -add_rpath /opt/X11/lib "$binary" || true
-              install_name_tool -add_rpath ${pkgs.tcl}/lib "$binary" || true
-              install_name_tool -add_rpath ${pkgs.tk}/lib "$binary" || true
-            fi
-          done
-        fi
-      '';
-
-      shellHook = pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
-        export DYLD_LIBRARY_PATH="/opt/X11/lib:${pkgs.tcl}/lib:${pkgs.tk}/lib:${pkgs.cairo}/lib:$DYLD_LIBRARY_PATH"
-        export DISPLAY=":0"
-
-        if ! pgrep -x "Xquartz" > /dev/null; then
-          echo "WARNING: XQuartz is not running."
-          echo "Start it with: open -a XQuartz"
-          echo "Then run: export DISPLAY=:0"
-        fi
-      '';
-
+      NIX_CFLAGS_COMPILE = "-Wno-implicit-function-declaration -O2";
       meta = with pkgs.lib; {
         description = "VLSI layout tool written in Tcl";
         homepage = "http://opencircuitdesign.com/magic/";
         license = licenses.mit;
         maintainers = with maintainers; [thoughtpolice];
-        platforms = platforms.unix;
-        broken = pkgs.stdenv.isDarwin && !builtins.pathExists "/opt/X11";
       };
     };
 
@@ -328,6 +131,13 @@ in
       ccache
       pkg-config
 
+      # C compilation dependencies
+      gcc
+      glibc.dev
+      libffi.dev
+      clang
+      llvmPackages.libclang
+
       # Digital design
       slang
       verilator
@@ -340,7 +150,7 @@ in
       python312Packages.wheel
 
       # OpenRoad + dep
-      # selfBuiltPackages.openroad-notest
+      selfBuiltPackages.openroad-notest
       ruby
       stdenv.cc.cc.lib
       expat
@@ -383,6 +193,12 @@ in
       export CARGO_HOME="$HOME/.cargo"
       export PATH="$CARGO_HOME/bin:$PATH"
 
+      # Environment for bindgen
+      export LIBCLANG_PATH="${pkgs.llvmPackages.libclang.lib}/lib"
+      export BINDGEN_EXTRA_CLANG_ARGS="-I${pkgs.glibc.dev}/include -I${selfBuiltPackages.ngspice-shared}/include"
+      export NIX_ENFORCE_PURITY=0
+      unset NIX_ENFORCE_NO_NATIVE
+
       # Python and C compilation paths
       export CPATH="${pkgs.python312}/include/python3.12:${selfBuiltPackages.ngspice-shared}/include:$CPATH"
       export NIX_LD_LIBRARY_PATH="${pkgs.python312}/lib:${selfBuiltPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"
@@ -393,6 +209,7 @@ in
         pkgs.stdenv.cc.cc.lib
         pkgs.expat
         pkgs.zlib
+        pkgs.glibc
       ]}
       export FONTCONFIG_FILE=${pkgs.fontconfig.out}/etc/fonts/fonts.conf
       export FONTCONFIG_PATH=${pkgs.fontconfig.out}/etc/fonts
@@ -447,6 +264,13 @@ in
           python -m pip install --upgrade pip setuptools wheel maturin
           python -m pip install -r "$PROJECT_ROOT/requirements.txt"
       fi
+
+      for pkg in analog/library/dep_library/gmid analog/library/dep_library/UWASIC-ALG; do
+          if [ -d "$PROJECT_ROOT/$pkg" ]; then
+              echo "Installing editable package: $pkg"
+              python -m pip install -e "$PROJECT_ROOT/$pkg"
+          fi
+      done
 
       # Clean up old PDK versions (keep only the current one)
       if [ -d "$PDK_ROOT/volare/sky130/versions" ]; then

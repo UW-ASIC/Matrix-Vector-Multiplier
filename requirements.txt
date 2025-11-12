@@ -14,6 +14,3 @@ pyyaml==6.0.3
 # Testing
 pytest==8.4.2
 cocotb==2.0.0
-
-./analog/library/dep_library/gmid/
-./analog/library/dep_library/UWASIC-ALG/
