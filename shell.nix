@@ -127,6 +127,7 @@ in
       stdenv.cc.cc.lib
       expat
       zlib
+      selfBuiltPackages.zimpl_fixed
 
       # Analog Design
       selfBuiltPackages.xschem_with_mac_support
