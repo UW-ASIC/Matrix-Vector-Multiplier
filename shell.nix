@@ -9,6 +9,10 @@
     },
 }: let
   selfBuiltPackages = {
+    zimpl_fixed = pkgs.zimpl.overrideAttrs (oldAttrs: {
+      doCheck = !pkgs.stdenv.hostPlatform.isDarwin;
+    });
+
     ngspice-shared = pkgs.ngspice.override {
       withNgshared = true;
     };
@@ -186,7 +190,7 @@ in
       # === EDA Tools Configuration ===
       export KLAYOUT_PATH="$PDK_ROOT/$PDK/libs.tech/klayout"
       export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
-      export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${pkgs.xschem}/share/xschem/xschem_library"
+      export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${selfBuiltPackages.xschem_with_mac_support}/share/xschem/xschem_library"
 
       # === Rust Toolchain Setup ===
       if ! rustc --version &>/dev/null; then
