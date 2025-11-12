@@ -9,9 +9,9 @@
     },
 }: let
   selfBuiltPackages = {
-    zimpl_fixed = pkgs.zimpl.overrideAttrs (oldAttrs: {
-      doCheck = !pkgs.stdenv.hostPlatform.isDarwin;
-    });
+    # zimpl_fixed = pkgs.zimpl.overrideAttrs (oldAttrs: {
+    #   doCheck = !pkgs.stdenv.hostPlatform.isDarwin;
+    # });
 
     ngspice-shared = pkgs.ngspice.override {
       withNgshared = true;
@@ -122,12 +122,11 @@ in
       python312Packages.wheel
 
       # OpenRoad + dep
-      openroad
+      # openroad
       ruby
       stdenv.cc.cc.lib
       expat
       zlib
-      selfBuiltPackages.zimpl_fixed
 
       # Analog Design
       selfBuiltPackages.xschem_with_mac_support
