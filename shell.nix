@@ -2,7 +2,7 @@
   pkgs ?
     import (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "sha256:04h7cq8rp8815xb4zglkah4w6p2r5lqp7xanv89yxzbmnv29np2a";
+      sha256 = "sha256:0z423v1f4pyllhqz68jichams2vrgnmply12lzkvj6k4hijkvnaa";
     }) {
       overlays = [
       ];
