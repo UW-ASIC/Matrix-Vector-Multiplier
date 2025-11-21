@@ -48,4 +48,4 @@ docker run -it --rm \
     -v "$HOME/.cache/nix:/root/.cache/nix" \
     -v "$HOME/.volare:/root/.volare" \
     --name $CONTAINER_NAME \
-    $IMAGE_NAME
+    $IMAGE_NAME nix-shell
