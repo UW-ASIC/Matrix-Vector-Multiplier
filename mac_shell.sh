@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-# --- Configuration ---
 IMAGE_NAME="eda-env"
 CONTAINER_NAME="eda-shell"
 
@@ -29,10 +28,25 @@ fi
 if [ "$SETUP_COMPLETE" = false ]; then
     echo "🔧 Running first-time setup..."
 
-    # 1. Ensure Homebrew Exists
+    # 1. Install Homebrew if Missing
     if ! command -v brew >/dev/null 2>&1; then
-        echo "❌ Homebrew not found. Please install Homebrew first: https://brew.sh/"
-        exit 1
+        echo "🍺 Homebrew not found. Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+        # Add Homebrew to PATH for Apple Silicon Macs
+        if [[ $(uname -m) == 'arm64' ]]; then
+            echo "🔹 Configuring Homebrew for Apple Silicon..."
+            echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        else
+            # Intel Macs
+            echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
+
+        echo "✅ Homebrew installed successfully!"
+    else
+        echo "✅ Homebrew already installed."
     fi
 
     # 2. Install XQuartz if Missing
