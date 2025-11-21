@@ -1,25 +1,57 @@
 #!/usr/bin/env bash
 set -e
 
-# Check if XQuartz is installed
-if ! command -v xquartz >/dev/null 2>&1 && ! [ -d "/Applications/Utilities/XQuartz.app" ]; then
-    echo "🔹 XQuartz not found. Installing via Homebrew..."
-    if ! command -v brew >/dev/null 2>&1; then
-        echo "❌ Homebrew not found. Please install Homebrew first: https://brew.sh/"
-        exit 1
+# --- Helper Function ---
+install_with_brew() {
+    local pkg="$1"
+    if ! brew list --cask "$pkg" >/dev/null 2>&1 && ! brew list "$pkg" >/dev/null 2>&1; then
+        echo "🔹 Installing $pkg via Homebrew..."
+        brew install --cask "$pkg" || brew install "$pkg"
+    else
+        echo "✅ $pkg already installed."
     fi
-    brew install --cask xquartz
-    echo "✅ XQuartz installed. Please log out and log back in or run 'open -a XQuartz' to start it."
+}
+
+# --- 1. Ensure Homebrew Exists ---
+if ! command -v brew >/dev/null 2>&1; then
+    echo "❌ Homebrew not found. Please install Homebrew first: https://brew.sh/"
+    exit 1
+fi
+
+# --- 2. Install XQuartz if Missing ---
+if ! command -v xquartz >/dev/null 2>&1 && ! [ -d "/Applications/Utilities/XQuartz.app" ]; then
+    install_with_brew "xquartz"
+    echo "⚠️ Please log out and log back in or run 'open -a XQuartz' to initialize XQuartz."
 else
     echo "✅ XQuartz already installed."
 fi
 
-# Start XQuartz if not running
+# --- 3. Start XQuartz if Not Running ---
 if ! pgrep -x XQuartz >/dev/null; then
     echo "🔹 Starting XQuartz..."
     open -a XQuartz
     sleep 2
 fi
+
+# --- 4. Ensure Docker is Installed ---
+if ! command -v docker >/dev/null 2>&1; then
+    install_with_brew "docker"
+    echo "⚠️ Docker installed. You may need to start Docker Desktop manually the first time."
+else
+    echo "✅ Docker is installed."
+fi
+
+# --- 5. Ensure Docker Daemon is Running ---
+if ! docker info >/dev/null 2>&1; then
+    echo "🔹 Docker is not running. Attempting to start Docker..."
+    open -a Docker
+    echo "⏳ Waiting for Docker to start..."
+    while ! docker info >/dev/null 2>&1; do
+        sleep 2
+    done
+fi
+
+echo "🚀 Docker daemon is running."
 
 # Get local IP for DISPLAY
 IP=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
