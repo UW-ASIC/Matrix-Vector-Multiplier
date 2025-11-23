@@ -1,7 +1,6 @@
 # EDA Tools
 volare==0.20.6
 openlane==2.3.10
-gdsfactory[full]>=8.0.0
 
 # Utilities
 rich==13.9.4
