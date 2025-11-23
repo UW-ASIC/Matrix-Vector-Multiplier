@@ -26,10 +26,6 @@ append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../schematics
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../symbols
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../library
 
-# Need to be explicit paths for macOS
-append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
-append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library/devices
-
 # Add back the essential PDK paths
 append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
 append XSCHEM_LIBRARY_PATH :$env(HOME)/.volare/volare/sky130/versions/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130A/libs.tech/xschem

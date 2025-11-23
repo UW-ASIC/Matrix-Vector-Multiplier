@@ -8,8 +8,7 @@ if {[info exists TOP_LEVEL_CELL_NAME]} {
 } else {
     set TOP_LEVEL_CELL tt_um_top_module
 }
-
-set TEMPLATE_FILE      ./def/analog/tt_analog_1x2.def
+set TEMPLATE_FILE ../build/layout/def/analog/tt_analog_1x2.def
 set POWER_STRIPE_WIDTH 2um                 ;# The minimum width is 1.2um
 
 # Power stripes: NET name, x position. You can add additional power stripes for each net, as needed.
@@ -19,6 +18,14 @@ set POWER_STRIPES {
 }
 # If you use the 3v3 template, uncomment the line below:
 #lappend POWER_STRIPES VAPWR 7um
+
+# Check if DEF file exists
+if {![file exists $TEMPLATE_FILE]} {
+    puts "Error: DEF template file not found at: $TEMPLATE_FILE"
+    puts "Current directory: [pwd]"
+    puts "Please ensure the def/ directory is in analog/build/layout/"
+    quit -noprompt
+}
 
 # Read in the pin positions
 # -------------------------

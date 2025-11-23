@@ -39,7 +39,7 @@ help:
 
 # Internal target to create analog structure
 _create_analog_structure:
-	@mkdir -p $(ANALOG_DIR) $(CARAVEL_DIR)
+	@mkdir -p $(ANALOG_DIR)
 	@cd $(ANALOG_DIR) && if [ ! -d "library" ]; then \
 		mkdir -p library output && \
 		git clone $(ANALOG_LIB_REPO) library/; \
@@ -58,7 +58,7 @@ _create_analog_structure:
 
 # Internal target to create digital structure
 _create_digital_structure:
-	@mkdir -p $(DIGITAL_DIR) $(CARAVEL_DIR)
+	@mkdir -p $(DIGITAL_DIR)
 	@cd $(DIGITAL_DIR) && mkdir -p $(MODULE_NAME)/{build,src,test}
 	@cd $(DIGITAL_DIR)/$(MODULE_NAME)/build && \
 		echo "# Digital Project Configuration" > config.mk && \
