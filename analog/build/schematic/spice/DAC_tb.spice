@@ -14,6 +14,359 @@ R3 I_main GND 1k m=1
 .include /home/david/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
 .include /home/david/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
 
+module dac_test_stimulus #(
+    parameter WIDTH = 10,
+    parameter TESTS_ENABLED = 8'b11111111  // Enable/disable individual tests
+) (
+    input wire clk,
+    input wire rst,
+    input wire start,           // Start test sequence
+    output reg [WIDTH-1:0] dac_code,
+    output reg valid,
+    output reg [3:0] current_test,  // Which test is running
+    output reg test_done,       // All tests complete
+    output reg [7:0] test_progress  // Progress within current test (0-255)
+);
+
+    localparam MAX_CODE = (1 << WIDTH) - 1;
+    localparam MID_CODE = (1 << (WIDTH-1));
+    
+    // Test state machine
+    typedef enum logic [2:0] {
+        IDLE,
+        TEST_ZEROS,
+        TEST_ONES, 
+        TEST_MIDSCALE,
+        TEST_RAMP_UP,
+        TEST_RAMP_DOWN,
+        TEST_ALTERNATING,
+        TEST_MAJOR_TRANSITIONS,
+        TEST_TRIANGLE,
+        DONE
+    } test_state_t;
+    
+    test_state_t state, next_state;
+    
+    // Test counters
+    reg [WIDTH-1:0] counter;
+    reg [7:0] hold_count;
+    reg [7:0] cycles_per_code;
+    reg direction;  // For triangle wave
+    
+    // State transition
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            state <= IDLE;
+            counter <= 0;
+            hold_count <= 0;
+            direction <= 1;
+            current_test <= 0;
+            test_done <= 0;
+            valid <= 0;
+            dac_code <= 0;
+            test_progress <= 0;
+            cycles_per_code <= 10;  // Default settling time
+        end else begin
+            case (state)
+                IDLE: begin
+                    test_done <= 0;
+                    valid <= 0;
+                    if (start) begin
+                        state <= TEST_ZEROS;
+                        current_test <= 0;
+                        counter <= 0;
+                        hold_count <= 0;
+                    end
+                end
+                
+                TEST_ZEROS: begin
+                    if (TESTS_ENABLED[0]) begin
+                        run_zeros_test();
+                        if (is_test_complete(100))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_ONES: begin
+                    if (TESTS_ENABLED[1]) begin
+                        run_ones_test();
+                        if (is_test_complete(100))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_MIDSCALE: begin
+                    if (TESTS_ENABLED[2]) begin
+                        run_midscale_test();
+                        if (is_test_complete(100))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_RAMP_UP: begin
+                    if (TESTS_ENABLED[3]) begin
+                        run_ramp_up_test();
+                        if (is_test_complete(MAX_CODE + 1))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_RAMP_DOWN: begin
+                    if (TESTS_ENABLED[4]) begin
+                        run_ramp_down_test();
+                        if (is_test_complete(MAX_CODE + 1))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_ALTERNATING: begin
+                    if (TESTS_ENABLED[5]) begin
+                        run_alternating_test();
+                        if (is_test_complete(200))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_MAJOR_TRANSITIONS: begin
+                    if (TESTS_ENABLED[6]) begin
+                        run_major_transitions_test();
+                        if (is_test_complete(50))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                TEST_TRIANGLE: begin
+                    if (TESTS_ENABLED[7]) begin
+                        run_triangle_test();
+                        if (is_test_complete((MAX_CODE + 1) * 2))
+                            advance_to_next_test();
+                    end else begin
+                        advance_to_next_test();
+                    end
+                end
+                
+                DONE: begin
+                    valid <= 0;
+                    test_done <= 1;
+                    if (!start)
+                        state <= IDLE;
+                end
+            endcase
+        end
+    end
+    
+    // ========================================================================
+    // Test Functions
+    // ========================================================================
+    
+    // Test 0: All Zeros
+    task run_zeros_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= 0;
+                valid <= 1;
+                hold_count <= cycles_per_code;
+                counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 1: All Ones (Full Scale)
+    task run_ones_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= MAX_CODE;
+                valid <= 1;
+                hold_count <= cycles_per_code;
+                counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 2: Mid-Scale
+    task run_midscale_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= MID_CODE;
+                valid <= 1;
+                hold_count <= cycles_per_code;
+                counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 3: Ramp Up (0 to Full Scale)
+    task run_ramp_up_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= counter[WIDTH-1:0];
+                valid <= 1;
+                hold_count <= cycles_per_code;
+                if (counter < MAX_CODE)
+                    counter <= counter + 1;
+                else
+                    counter <= counter + 1;  // Increment to trigger completion
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 4: Ramp Down (Full Scale to 0)
+    task run_ramp_down_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= MAX_CODE - counter[WIDTH-1:0];
+                valid <= 1;
+                hold_count <= cycles_per_code;
+                if (counter < MAX_CODE)
+                    counter <= counter + 1;
+                else
+                    counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 5: Alternating 0 and Full Scale
+    task run_alternating_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= counter[0] ? MAX_CODE : 0;
+                valid <= 1;
+                hold_count <= cycles_per_code;
+                counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 6: Major Code Transitions (for DNL/INL testing)
+    task run_major_transitions_test();
+        begin
+            if (hold_count == 0) begin
+                valid <= 1;
+                case (counter[4:0])
+                    5'd0:  dac_code <= 0;
+                    5'd1:  dac_code <= 1;
+                    5'd2:  dac_code <= 2;
+                    5'd3:  dac_code <= (MAX_CODE >> 3) - 1;  // 1/8 - 1
+                    5'd4:  dac_code <= (MAX_CODE >> 3);      // 1/8
+                    5'd5:  dac_code <= (MAX_CODE >> 3) + 1;  // 1/8 + 1
+                    5'd6:  dac_code <= (MAX_CODE >> 2) - 1;  // 1/4 - 1
+                    5'd7:  dac_code <= (MAX_CODE >> 2);      // 1/4
+                    5'd8:  dac_code <= (MAX_CODE >> 2) + 1;  // 1/4 + 1
+                    5'd9:  dac_code <= (MAX_CODE >> 1) - 1;  // 1/2 - 1
+                    5'd10: dac_code <= (MAX_CODE >> 1);      // 1/2
+                    5'd11: dac_code <= (MAX_CODE >> 1) + 1;  // 1/2 + 1
+                    5'd12: dac_code <= ((MAX_CODE * 3) >> 2) - 1;  // 3/4 - 1
+                    5'd13: dac_code <= ((MAX_CODE * 3) >> 2);      // 3/4
+                    5'd14: dac_code <= ((MAX_CODE * 3) >> 2) + 1;  // 3/4 + 1
+                    5'd15: dac_code <= MAX_CODE - 2;
+                    5'd16: dac_code <= MAX_CODE - 1;
+                    5'd17: dac_code <= MAX_CODE;
+                    default: dac_code <= counter[WIDTH-1:0];
+                endcase
+                hold_count <= cycles_per_code * 2;  // Hold longer for settling
+                counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // Test 7: Triangle Wave
+    task run_triangle_test();
+        begin
+            if (hold_count == 0) begin
+                dac_code <= dac_code;  // Will be updated below
+                valid <= 1;
+                hold_count <= cycles_per_code >> 1;  // Faster for triangle
+                
+                if (direction) begin
+                    // Ramp up
+                    if (dac_code < MAX_CODE) begin
+                        dac_code <= dac_code + 1;
+                    end else begin
+                        direction <= 0;
+                        dac_code <= dac_code - 1;
+                    end
+                end else begin
+                    // Ramp down
+                    if (dac_code > 0) begin
+                        dac_code <= dac_code - 1;
+                    end else begin
+                        direction <= 1;
+                        dac_code <= dac_code + 1;
+                    end
+                end
+                counter <= counter + 1;
+            end else begin
+                hold_count <= hold_count - 1;
+            end
+        end
+    endtask
+    
+    // ========================================================================
+    // Helper Functions
+    // ========================================================================
+    
+    function automatic logic is_test_complete(input integer max_count);
+        begin
+            test_progress <= (counter * 255) / max_count;
+            is_test_complete = (counter >= max_count);
+        end
+    endfunction
+    
+    task advance_to_next_test();
+        begin
+            counter <= 0;
+            hold_count <= 0;
+            test_progress <= 0;
+            current_test <= current_test + 1;
+            
+            case (state)
+                TEST_ZEROS:             state <= TEST_ONES;
+                TEST_ONES:              state <= TEST_MIDSCALE;
+                TEST_MIDSCALE:          state <= TEST_RAMP_UP;
+                TEST_RAMP_UP:           state <= TEST_RAMP_DOWN;
+                TEST_RAMP_DOWN:         state <= TEST_ALTERNATING;
+                TEST_ALTERNATING:       state <= TEST_MAJOR_TRANSITIONS;
+                TEST_MAJOR_TRANSITIONS: state <= TEST_TRIANGLE;
+                TEST_TRIANGLE:          state <= DONE;
+                default:                state <= DONE;
+            endcase
+            
+            // Print test completion
+            $display("[DAC_STIM] Test %0d complete at time %0t", 
+                     current_test, $time);
+        end
+    endtask
+
+endmodule
+
 **** end user architecture code
 **.ends
 
@@ -41,74 +394,74 @@ R3 I_main GND 1k m=1
 *.opin I_main
 *.opin I_out_p
 *.opin I_out_n
-XM1 net2 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM2 net6 I_main net2 net2 sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM3 net1 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM4 I_main I_main net1 net1 sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM5 net3 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM6 net7 I_main net3 net3 sky130_fd_pr__pfet_01v8 L=0.15 W=42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM7 net4 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=21 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM8 net8 I_main net4 net4 sky130_fd_pr__pfet_01v8 L=0.15 W=21 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM9 net5 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=10.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM10 net9 I_main net5 net5 sky130_fd_pr__pfet_01v8 L=0.15 W=10.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM12 I_out_p B0 net6 net6 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM13 I_out_n B0_bar net6 net6 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM14 I_out_p B1 net7 net7 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM15 I_out_n B1_bar net7 net7 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM16 I_out_p B2 net8 net8 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM17 I_out_n B2_bar net8 net8 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM18 I_out_p B3 net9 net9 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM19 I_out_n B3_bar net9 net9 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM11 net10 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=5.25 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM20 net14 I_main net10 net10 sky130_fd_pr__pfet_01v8 L=0.15 W=5.25 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM21 net11 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=2.625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM22 net15 I_main net11 net11 sky130_fd_pr__pfet_01v8 L=0.15 W=2.625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM23 net12 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=1.3125 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM24 net16 I_main net12 net12 sky130_fd_pr__pfet_01v8 L=0.15 W=1.3125 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM25 net13 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=0.65625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM26 net17 I_main net13 net13 sky130_fd_pr__pfet_01v8 L=0.15 W=0.65625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM27 I_out_p B4 net14 net14 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM28 I_out_n B4_bar net14 net14 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM29 I_out_p B5 net15 net15 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM30 I_out_n B5_bar net15 net15 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM31 I_out_p B6 net16 net16 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM32 I_out_n B6_bar net16 net16 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM33 I_out_p B7 net17 net17 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
-XM34 I_out_n B7_bar net17 net17 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
-+ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM1 net2 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net6 I_main net2 net2 sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM4 I_main I_main net1 net1 sky130_fd_pr__pfet_01v8 L=0.15 W=84 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM5 net3 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM6 net7 I_main net3 net3 sky130_fd_pr__pfet_01v8 L=0.15 W=42 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net4 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=21 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM8 net8 I_main net4 net4 sky130_fd_pr__pfet_01v8 L=0.15 W=21 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM9 net5 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=10.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM10 net9 I_main net5 net5 sky130_fd_pr__pfet_01v8 L=0.15 W=10.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM12 I_out_p B0 net6 net6 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM13 I_out_n B0_bar net6 net6 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM14 I_out_p B1 net7 net7 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM15 I_out_n B1_bar net7 net7 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM16 I_out_p B2 net8 net8 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM17 I_out_n B2_bar net8 net8 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM18 I_out_p B3 net9 net9 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM19 I_out_n B3_bar net9 net9 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM11 net10 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=5.25 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM20 net14 I_main net10 net10 sky130_fd_pr__pfet_01v8 L=0.15 W=5.25 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf
++ * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM21 net11 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=2.625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM22 net15 I_main net11 net11 sky130_fd_pr__pfet_01v8 L=0.15 W=2.625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf
++ * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM23 net12 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=1.3125 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf *
++ 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM24 net16 I_main net12 net12 sky130_fd_pr__pfet_01v8 L=0.15 W=1.3125 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf
++ * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM25 net13 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=0.15 W=0.65625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf *
++ 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM26 net17 I_main net13 net13 sky130_fd_pr__pfet_01v8 L=0.15 W=0.65625 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf
++ * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM27 I_out_p B4 net14 net14 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM28 I_out_n B4_bar net14 net14 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf *
++ 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM29 I_out_p B5 net15 net15 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM30 I_out_n B5_bar net15 net15 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf *
++ 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM31 I_out_p B6 net16 net16 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM32 I_out_n B6_bar net16 net16 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf *
++ 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM33 I_out_p B7 net17 net17 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2)
++ * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM34 I_out_n B7_bar net17 net17 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf *
++ 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
 .ends
 
 .GLOBAL GND
