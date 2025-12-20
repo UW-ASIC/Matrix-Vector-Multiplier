@@ -1,0 +1,192 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= nom_ss_100C_1v60 Corner ===================================
+
+Warning: corner.tcl line 77, unknown field nets.
+Startpoint: i_rst_n (input port clocked by i_clk)
+Endpoint: _16_ (recovery check against rising-edge clock i_clk)
+Path Group: asynchronous
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                      0.150000    0.000000    0.000000   clock i_clk (rise edge)
+                                  0.000000    0.000000   clock network delay (ideal)
+                                  0.020000    0.020000 ^ input external delay
+     4    0.013052    0.104432    0.067471    0.087471 ^ i_rst_n (in)
+                      0.104432    0.000000    0.087471 ^ _16_/RESET_B (sky130_fd_sc_hd__dfrtp_2)
+                                              0.087471   data arrival time
+
+                      0.150000   10.000000   10.000000   clock i_clk (rise edge)
+                                  0.000000   10.000000   clock network delay (ideal)
+                                 -0.250000    9.750000   clock uncertainty
+                                  0.000000    9.750000   clock reconvergence pessimism
+                                              9.750000 ^ _16_/CLK (sky130_fd_sc_hd__dfrtp_2)
+                                  0.456649   10.206649   library recovery time
+                                             10.206649   data required time
+---------------------------------------------------------------------------------------------
+                                             10.206649   data required time
+                                             -0.087471   data arrival time
+---------------------------------------------------------------------------------------------
+                                             10.119178   slack (MET)
+
+
+Startpoint: _19_ (rising edge-triggered flip-flop clocked by i_clk)
+Endpoint: _19_ (rising edge-triggered flip-flop clocked by i_clk)
+Path Group: i_clk
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                      0.150000    0.000000    0.000000   clock i_clk (rise edge)
+                                  0.000000    0.000000   clock network delay (ideal)
+                      0.150000    0.000000    0.000000 ^ _19_/CLK (sky130_fd_sc_hd__dfrtp_2)
+     5    0.042907    0.245360    1.030683    1.030683 v _19_/Q (sky130_fd_sc_hd__dfrtp_2)
+                      0.245360    0.000000    1.030683 v _14_/A (sky130_fd_sc_hd__or2_2)
+     1    0.001353    0.101448    0.707432    1.738115 v _14_/X (sky130_fd_sc_hd__or2_2)
+                      0.101448    0.000000    1.738115 v _15_/B (sky130_fd_sc_hd__and2_2)
+     1    0.001838    0.066180    0.397378    2.135493 v _15_/X (sky130_fd_sc_hd__and2_2)
+                      0.066180    0.000000    2.135493 v _19_/D (sky130_fd_sc_hd__dfrtp_2)
+                                              2.135493   data arrival time
+
+                      0.150000   10.000000   10.000000   clock i_clk (rise edge)
+                                  0.000000   10.000000   clock network delay (ideal)
+                                 -0.250000    9.750000   clock uncertainty
+                                  0.000000    9.750000   clock reconvergence pessimism
+                                              9.750000 ^ _19_/CLK (sky130_fd_sc_hd__dfrtp_2)
+                                 -0.253695    9.496305   library setup time
+                                              9.496305   data required time
+---------------------------------------------------------------------------------------------
+                                              9.496305   data required time
+                                             -2.135493   data arrival time
+---------------------------------------------------------------------------------------------
+                                              7.360813   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= nom_ss_100C_1v60 Corner ===================================
+
+Warning: corner.tcl line 85, unknown field nets.
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= nom_ss_100C_1v60 Corner ===================================
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 71 unannotated drivers.
+ i_clk
+ i_ena
+ i_rst_n
+ ui_in[0]
+ ui_in[1]
+ ui_in[2]
+ ui_in[3]
+ ui_in[4]
+ ui_in[5]
+ ui_in[6]
+ ui_in[7]
+ uio_in[0]
+ uio_in[1]
+ uio_in[2]
+ uio_in[3]
+ uio_in[4]
+ uio_in[5]
+ uio_in[6]
+ uio_in[7]
+ _08_/Y
+ _09_/Y
+ _10_/X
+ _11_/X
+ _12_/X
+ _13_/X
+ _14_/X
+ _15_/X
+ _16_/Q
+ _17_/Q
+ _18_/Q
+ _19_/Q
+ _20_/HI
+ _20_/LO
+ _21_/HI
+ _21_/LO
+ _22_/HI
+ _22_/LO
+ _23_/HI
+ _23_/LO
+ _24_/HI
+ _24_/LO
+ _25_/HI
+ _25_/LO
+ _26_/HI
+ _26_/LO
+ _27_/HI
+ _27_/LO
+ _28_/HI
+ _28_/LO
+ _29_/HI
+ _29_/LO
+ _30_/HI
+ _30_/LO
+ _31_/HI
+ _31_/LO
+ _32_/HI
+ _32_/LO
+ _33_/HI
+ _33_/LO
+ _34_/HI
+ _34_/LO
+ _35_/HI
+ _35_/LO
+ _36_/HI
+ _36_/LO
+ _37_/HI
+ _37_/LO
+ _38_/HI
+ _38_/LO
+ _39_/HI
+ _39_/LO
+Found 0 partially unannotated drivers.
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 0
+max cap violation count 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+Warning: There are 20 unconstrained endpoints.
+  uio_oe[0]
+  uio_oe[1]
+  uio_oe[2]
+  uio_oe[3]
+  uio_oe[4]
+  uio_oe[5]
+  uio_oe[6]
+  uio_oe[7]
+  uio_out[0]
+  uio_out[1]
+  uio_out[2]
+  uio_out[3]
+  uio_out[4]
+  uio_out[5]
+  uio_out[6]
+  uio_out[7]
+  uo_out[4]
+  uo_out[5]
+  uo_out[6]
+  uo_out[7]

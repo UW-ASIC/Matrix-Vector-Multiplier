@@ -1,0 +1,14 @@
+set circuit1 [readnet spice /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/66-magic-spiceextraction/tt_if.spice]
+set circuit2 [readnet verilog /dev/null]
+puts "Reading SPICE netlist file '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice'..."
+readnet spice /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__decap_12.spice $circuit2
+puts "Reading SPICE netlist file '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice'..."
+readnet spice /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_12.spice $circuit2
+puts "Reading SPICE netlist file '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice'..."
+readnet spice /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_4.spice $circuit2
+puts "Reading SPICE netlist file '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice'..."
+readnet spice /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_ef_sc_hd__fill_8.spice $circuit2
+puts "Reading SPICE netlist file '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice'..."
+readnet spice /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice $circuit2
+readnet verilog /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/51-openroad-fillinsertion/tt_if.pnl.v $circuit2
+lvs "$circuit1 tt_if" "$circuit2 tt_if" /home/omare/Documents/UWASIC/Matrix-Vector-Analog/.venv/lib/python3.12/site-packages/openlane/scripts/netgen/setup.tcl /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/68-netgen-lvs/reports/lvs.netgen.rpt -blackbox -json

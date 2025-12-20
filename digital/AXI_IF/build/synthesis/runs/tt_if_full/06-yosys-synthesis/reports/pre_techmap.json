@@ -1,0 +1,47 @@
+{
+   "creator": "Yosys 0.55 (git sha1 60f126cd00c94892782470192d6c9f7abebe7c05, g++ 14.3.0 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b0a8f1c847a6415c8a5f7d72cef4d500.lib ",
+   "modules": {
+      "\\tt_if": {
+         "num_wires":         12,
+         "num_wire_bits":     53,
+         "num_pub_wires":     8,
+         "num_pub_wire_bits": 43,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         10,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 1,
+            "$_DFFE_PN0P_": 4,
+            "$_NAND_": 1,
+            "$_NOT_": 1,
+            "$_XNOR_": 1,
+            "$_XOR_": 2
+         }
+      }
+   },
+      "design": {
+         "num_wires":         12,
+         "num_wire_bits":     53,
+         "num_pub_wires":     8,
+         "num_pub_wire_bits": 43,
+         "num_ports":         8,
+         "num_port_bits":     43,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         10,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 1,
+            "$_DFFE_PN0P_": 4,
+            "$_NAND_": 1,
+            "$_NOT_": 1,
+            "$_XNOR_": 1,
+            "$_XOR_": 2
+         }
+      }
+}
+

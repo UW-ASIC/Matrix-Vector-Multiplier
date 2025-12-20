@@ -1,0 +1,12 @@
+
+===========================================================================
+Violator List
+============================================================================
+Warning: corner.tcl line 263, find_timing_paths -group_count is deprecated. Use -group_path_count instead.
+[hold in-reg] i_rst_n -> _16_/RESET_B : -0.854629
+[hold in-reg] i_rst_n -> _17_/RESET_B : -0.854629
+[hold in-reg] i_rst_n -> _18_/RESET_B : -0.854629
+[hold in-reg] i_rst_n -> _19_/RESET_B : -0.854629
+Warning: corner.tcl line 282, find_timing_paths -group_count is deprecated. Use -group_path_count instead.
+Warning: corner.tcl line 298, find_timing_paths -group_count is deprecated. Use -group_path_count instead.
+Warning: corner.tcl line 317, find_timing_paths -group_count is deprecated. Use -group_path_count instead.

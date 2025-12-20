@@ -1,0 +1,5 @@
+`verilator_config
+lint_off -rule DECLFILENAME
+lint_off -rule EOFNEWLINE
+lint_off -rule UNDRIVEN -file "/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/84da93007b6b494da6970b0d8c058712.bb.v"
+lint_off -rule UNUSEDSIGNAL -file "/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/84da93007b6b494da6970b0d8c058712.bb.v"

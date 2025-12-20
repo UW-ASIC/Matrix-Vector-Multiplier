@@ -1,0 +1,213 @@
+VERSION 5.8 ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+DESIGN tt_if ;
+UNITS DISTANCE MICRONS 1000 ;
+DIEAREA ( 0 0 ) ( 36545 47265 ) ;
+ROW ROW_0 unithd 5520 10880 N DO 55 BY 1 STEP 460 0 ;
+ROW ROW_1 unithd 5520 13600 FS DO 55 BY 1 STEP 460 0 ;
+ROW ROW_2 unithd 5520 16320 N DO 55 BY 1 STEP 460 0 ;
+ROW ROW_3 unithd 5520 19040 FS DO 55 BY 1 STEP 460 0 ;
+ROW ROW_4 unithd 5520 21760 N DO 55 BY 1 STEP 460 0 ;
+ROW ROW_5 unithd 5520 24480 FS DO 55 BY 1 STEP 460 0 ;
+ROW ROW_6 unithd 5520 27200 N DO 55 BY 1 STEP 460 0 ;
+ROW ROW_7 unithd 5520 29920 FS DO 55 BY 1 STEP 460 0 ;
+ROW ROW_8 unithd 5520 32640 N DO 55 BY 1 STEP 460 0 ;
+TRACKS X 230 DO 79 STEP 460 LAYER li1 ;
+TRACKS Y 170 DO 139 STEP 340 LAYER li1 ;
+TRACKS X 170 DO 107 STEP 340 LAYER met1 ;
+TRACKS Y 170 DO 139 STEP 340 LAYER met1 ;
+TRACKS X 230 DO 79 STEP 460 LAYER met2 ;
+TRACKS Y 230 DO 103 STEP 460 LAYER met2 ;
+TRACKS X 340 DO 54 STEP 680 LAYER met3 ;
+TRACKS Y 340 DO 69 STEP 680 LAYER met3 ;
+TRACKS X 460 DO 40 STEP 920 LAYER met4 ;
+TRACKS Y 460 DO 51 STEP 920 LAYER met4 ;
+TRACKS X 1700 DO 11 STEP 3400 LAYER met5 ;
+TRACKS Y 1700 DO 14 STEP 3400 LAYER met5 ;
+COMPONENTS 55 ;
+    - PHY_EDGE_ROW_0_Left_9 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 10880 ) N ;
+    - PHY_EDGE_ROW_0_Right_0 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 10880 ) FN ;
+    - PHY_EDGE_ROW_1_Left_10 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 13600 ) FS ;
+    - PHY_EDGE_ROW_1_Right_1 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 13600 ) S ;
+    - PHY_EDGE_ROW_2_Left_11 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 16320 ) N ;
+    - PHY_EDGE_ROW_2_Right_2 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 16320 ) FN ;
+    - PHY_EDGE_ROW_3_Left_12 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 19040 ) FS ;
+    - PHY_EDGE_ROW_3_Right_3 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 19040 ) S ;
+    - PHY_EDGE_ROW_4_Left_13 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 21760 ) N ;
+    - PHY_EDGE_ROW_4_Right_4 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 21760 ) FN ;
+    - PHY_EDGE_ROW_5_Left_14 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 24480 ) FS ;
+    - PHY_EDGE_ROW_5_Right_5 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 24480 ) S ;
+    - PHY_EDGE_ROW_6_Left_15 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 27200 ) N ;
+    - PHY_EDGE_ROW_6_Right_6 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 27200 ) FN ;
+    - PHY_EDGE_ROW_7_Left_16 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 29920 ) FS ;
+    - PHY_EDGE_ROW_7_Right_7 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 29920 ) S ;
+    - PHY_EDGE_ROW_8_Left_17 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 5520 32640 ) N ;
+    - PHY_EDGE_ROW_8_Right_8 sky130_fd_sc_hd__decap_3 + SOURCE DIST + FIXED ( 29440 32640 ) FN ;
+    - TAP_TAPCELL_ROW_0_18 sky130_fd_sc_hd__tapvpwrvgnd_1 + SOURCE DIST + FIXED ( 18400 10880 ) N ;
+    - TAP_TAPCELL_ROW_2_19 sky130_fd_sc_hd__tapvpwrvgnd_1 + SOURCE DIST + FIXED ( 18400 16320 ) N ;
+    - TAP_TAPCELL_ROW_4_20 sky130_fd_sc_hd__tapvpwrvgnd_1 + SOURCE DIST + FIXED ( 18400 21760 ) N ;
+    - TAP_TAPCELL_ROW_6_21 sky130_fd_sc_hd__tapvpwrvgnd_1 + SOURCE DIST + FIXED ( 18400 27200 ) N ;
+    - TAP_TAPCELL_ROW_8_22 sky130_fd_sc_hd__tapvpwrvgnd_1 + SOURCE DIST + FIXED ( 18400 32640 ) N ;
+    - _08_ sky130_fd_sc_hd__nand2_2 ;
+    - _09_ sky130_fd_sc_hd__xnor2_2 ;
+    - _10_ sky130_fd_sc_hd__and4_2 ;
+    - _11_ sky130_fd_sc_hd__a31o_2 ;
+    - _12_ sky130_fd_sc_hd__and2b_2 ;
+    - _13_ sky130_fd_sc_hd__xor2_2 ;
+    - _14_ sky130_fd_sc_hd__or2_2 ;
+    - _15_ sky130_fd_sc_hd__and2_2 ;
+    - _16_ sky130_fd_sc_hd__dfrtp_2 ;
+    - _17_ sky130_fd_sc_hd__dfrtp_2 ;
+    - _18_ sky130_fd_sc_hd__dfrtp_2 ;
+    - _19_ sky130_fd_sc_hd__dfrtp_2 ;
+    - _20_ sky130_fd_sc_hd__conb_1 ;
+    - _21_ sky130_fd_sc_hd__conb_1 ;
+    - _22_ sky130_fd_sc_hd__conb_1 ;
+    - _23_ sky130_fd_sc_hd__conb_1 ;
+    - _24_ sky130_fd_sc_hd__conb_1 ;
+    - _25_ sky130_fd_sc_hd__conb_1 ;
+    - _26_ sky130_fd_sc_hd__conb_1 ;
+    - _27_ sky130_fd_sc_hd__conb_1 ;
+    - _28_ sky130_fd_sc_hd__conb_1 ;
+    - _29_ sky130_fd_sc_hd__conb_1 ;
+    - _30_ sky130_fd_sc_hd__conb_1 ;
+    - _31_ sky130_fd_sc_hd__conb_1 ;
+    - _32_ sky130_fd_sc_hd__conb_1 ;
+    - _33_ sky130_fd_sc_hd__conb_1 ;
+    - _34_ sky130_fd_sc_hd__conb_1 ;
+    - _35_ sky130_fd_sc_hd__conb_1 ;
+    - _36_ sky130_fd_sc_hd__conb_1 ;
+    - _37_ sky130_fd_sc_hd__conb_1 ;
+    - _38_ sky130_fd_sc_hd__conb_1 ;
+    - _39_ sky130_fd_sc_hd__conb_1 ;
+END COMPONENTS
+PINS 43 ;
+    - i_clk + NET i_clk + DIRECTION INPUT + USE SIGNAL ;
+    - i_ena + NET i_ena + DIRECTION INPUT + USE SIGNAL ;
+    - i_rst_n + NET i_rst_n + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[0] + NET ui_in[0] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[1] + NET ui_in[1] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[2] + NET ui_in[2] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[3] + NET ui_in[3] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[4] + NET ui_in[4] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[5] + NET ui_in[5] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[6] + NET ui_in[6] + DIRECTION INPUT + USE SIGNAL ;
+    - ui_in[7] + NET ui_in[7] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[0] + NET uio_in[0] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[1] + NET uio_in[1] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[2] + NET uio_in[2] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[3] + NET uio_in[3] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[4] + NET uio_in[4] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[5] + NET uio_in[5] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[6] + NET uio_in[6] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_in[7] + NET uio_in[7] + DIRECTION INPUT + USE SIGNAL ;
+    - uio_oe[0] + NET uio_oe[0] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[1] + NET uio_oe[1] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[2] + NET uio_oe[2] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[3] + NET uio_oe[3] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[4] + NET uio_oe[4] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[5] + NET uio_oe[5] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[6] + NET uio_oe[6] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_oe[7] + NET uio_oe[7] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[0] + NET uio_out[0] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[1] + NET uio_out[1] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[2] + NET uio_out[2] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[3] + NET uio_out[3] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[4] + NET uio_out[4] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[5] + NET uio_out[5] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[6] + NET uio_out[6] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uio_out[7] + NET uio_out[7] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[0] + NET uo_out[0] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[1] + NET uo_out[1] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[2] + NET uo_out[2] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[3] + NET uo_out[3] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[4] + NET uo_out[4] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[5] + NET uo_out[5] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[6] + NET uo_out[6] + DIRECTION OUTPUT + USE SIGNAL ;
+    - uo_out[7] + NET uo_out[7] + DIRECTION OUTPUT + USE SIGNAL ;
+END PINS
+SPECIALNETS 2 ;
+    - VDD ( PHY_EDGE_ROW_8_Left_17 VPB ) ( PHY_EDGE_ROW_7_Left_16 VPB ) ( PHY_EDGE_ROW_6_Left_15 VPB ) ( PHY_EDGE_ROW_5_Left_14 VPB ) ( PHY_EDGE_ROW_4_Left_13 VPB ) ( PHY_EDGE_ROW_3_Left_12 VPB ) ( PHY_EDGE_ROW_2_Left_11 VPB )
+      ( PHY_EDGE_ROW_1_Left_10 VPB ) ( PHY_EDGE_ROW_0_Left_9 VPB ) ( PHY_EDGE_ROW_8_Right_8 VPB ) ( PHY_EDGE_ROW_7_Right_7 VPB ) ( PHY_EDGE_ROW_6_Right_6 VPB ) ( PHY_EDGE_ROW_5_Right_5 VPB ) ( PHY_EDGE_ROW_4_Right_4 VPB ) ( PHY_EDGE_ROW_3_Right_3 VPB )
+      ( PHY_EDGE_ROW_2_Right_2 VPB ) ( PHY_EDGE_ROW_1_Right_1 VPB ) ( PHY_EDGE_ROW_0_Right_0 VPB ) ( TAP_TAPCELL_ROW_8_22 VPWR ) ( TAP_TAPCELL_ROW_6_21 VPWR ) ( TAP_TAPCELL_ROW_4_20 VPWR ) ( TAP_TAPCELL_ROW_2_19 VPWR ) ( TAP_TAPCELL_ROW_0_18 VPWR )
+      ( PHY_EDGE_ROW_8_Left_17 VPWR ) ( PHY_EDGE_ROW_7_Left_16 VPWR ) ( PHY_EDGE_ROW_6_Left_15 VPWR ) ( PHY_EDGE_ROW_5_Left_14 VPWR ) ( PHY_EDGE_ROW_4_Left_13 VPWR ) ( PHY_EDGE_ROW_3_Left_12 VPWR ) ( PHY_EDGE_ROW_2_Left_11 VPWR ) ( PHY_EDGE_ROW_1_Left_10 VPWR )
+      ( PHY_EDGE_ROW_0_Left_9 VPWR ) ( PHY_EDGE_ROW_8_Right_8 VPWR ) ( PHY_EDGE_ROW_7_Right_7 VPWR ) ( PHY_EDGE_ROW_6_Right_6 VPWR ) ( PHY_EDGE_ROW_5_Right_5 VPWR ) ( PHY_EDGE_ROW_4_Right_4 VPWR ) ( PHY_EDGE_ROW_3_Right_3 VPWR ) ( PHY_EDGE_ROW_2_Right_2 VPWR )
+      ( PHY_EDGE_ROW_1_Right_1 VPWR ) ( PHY_EDGE_ROW_0_Right_0 VPWR ) ( _39_ VPB ) ( _38_ VPB ) ( _37_ VPB ) ( _36_ VPB ) ( _35_ VPB ) ( _34_ VPB )
+      ( _33_ VPB ) ( _32_ VPB ) ( _31_ VPB ) ( _30_ VPB ) ( _29_ VPB ) ( _28_ VPB ) ( _27_ VPB ) ( _26_ VPB )
+      ( _25_ VPB ) ( _24_ VPB ) ( _23_ VPB ) ( _22_ VPB ) ( _21_ VPB ) ( _20_ VPB ) ( _19_ VPB ) ( _18_ VPB )
+      ( _17_ VPB ) ( _16_ VPB ) ( _15_ VPB ) ( _14_ VPB ) ( _13_ VPB ) ( _12_ VPB ) ( _11_ VPB ) ( _10_ VPB )
+      ( _09_ VPB ) ( _08_ VPB ) ( _39_ VPWR ) ( _38_ VPWR ) ( _37_ VPWR ) ( _36_ VPWR ) ( _35_ VPWR ) ( _34_ VPWR )
+      ( _33_ VPWR ) ( _32_ VPWR ) ( _31_ VPWR ) ( _30_ VPWR ) ( _29_ VPWR ) ( _28_ VPWR ) ( _27_ VPWR ) ( _26_ VPWR )
+      ( _25_ VPWR ) ( _24_ VPWR ) ( _23_ VPWR ) ( _22_ VPWR ) ( _21_ VPWR ) ( _20_ VPWR ) ( _19_ VPWR ) ( _18_ VPWR )
+      ( _17_ VPWR ) ( _16_ VPWR ) ( _15_ VPWR ) ( _14_ VPWR ) ( _13_ VPWR ) ( _12_ VPWR ) ( _11_ VPWR ) ( _10_ VPWR )
+      ( _09_ VPWR ) ( _08_ VPWR ) + USE POWER ;
+    - VSS ( PHY_EDGE_ROW_8_Left_17 VNB ) ( PHY_EDGE_ROW_7_Left_16 VNB ) ( PHY_EDGE_ROW_6_Left_15 VNB ) ( PHY_EDGE_ROW_5_Left_14 VNB ) ( PHY_EDGE_ROW_4_Left_13 VNB ) ( PHY_EDGE_ROW_3_Left_12 VNB ) ( PHY_EDGE_ROW_2_Left_11 VNB )
+      ( PHY_EDGE_ROW_1_Left_10 VNB ) ( PHY_EDGE_ROW_0_Left_9 VNB ) ( PHY_EDGE_ROW_8_Right_8 VNB ) ( PHY_EDGE_ROW_7_Right_7 VNB ) ( PHY_EDGE_ROW_6_Right_6 VNB ) ( PHY_EDGE_ROW_5_Right_5 VNB ) ( PHY_EDGE_ROW_4_Right_4 VNB ) ( PHY_EDGE_ROW_3_Right_3 VNB )
+      ( PHY_EDGE_ROW_2_Right_2 VNB ) ( PHY_EDGE_ROW_1_Right_1 VNB ) ( PHY_EDGE_ROW_0_Right_0 VNB ) ( TAP_TAPCELL_ROW_8_22 VGND ) ( TAP_TAPCELL_ROW_6_21 VGND ) ( TAP_TAPCELL_ROW_4_20 VGND ) ( TAP_TAPCELL_ROW_2_19 VGND ) ( TAP_TAPCELL_ROW_0_18 VGND )
+      ( PHY_EDGE_ROW_8_Left_17 VGND ) ( PHY_EDGE_ROW_7_Left_16 VGND ) ( PHY_EDGE_ROW_6_Left_15 VGND ) ( PHY_EDGE_ROW_5_Left_14 VGND ) ( PHY_EDGE_ROW_4_Left_13 VGND ) ( PHY_EDGE_ROW_3_Left_12 VGND ) ( PHY_EDGE_ROW_2_Left_11 VGND ) ( PHY_EDGE_ROW_1_Left_10 VGND )
+      ( PHY_EDGE_ROW_0_Left_9 VGND ) ( PHY_EDGE_ROW_8_Right_8 VGND ) ( PHY_EDGE_ROW_7_Right_7 VGND ) ( PHY_EDGE_ROW_6_Right_6 VGND ) ( PHY_EDGE_ROW_5_Right_5 VGND ) ( PHY_EDGE_ROW_4_Right_4 VGND ) ( PHY_EDGE_ROW_3_Right_3 VGND ) ( PHY_EDGE_ROW_2_Right_2 VGND )
+      ( PHY_EDGE_ROW_1_Right_1 VGND ) ( PHY_EDGE_ROW_0_Right_0 VGND ) ( _39_ VNB ) ( _38_ VNB ) ( _37_ VNB ) ( _36_ VNB ) ( _35_ VNB ) ( _34_ VNB )
+      ( _33_ VNB ) ( _32_ VNB ) ( _31_ VNB ) ( _30_ VNB ) ( _29_ VNB ) ( _28_ VNB ) ( _27_ VNB ) ( _26_ VNB )
+      ( _25_ VNB ) ( _24_ VNB ) ( _23_ VNB ) ( _22_ VNB ) ( _21_ VNB ) ( _20_ VNB ) ( _19_ VNB ) ( _18_ VNB )
+      ( _17_ VNB ) ( _16_ VNB ) ( _15_ VNB ) ( _14_ VNB ) ( _13_ VNB ) ( _12_ VNB ) ( _11_ VNB ) ( _10_ VNB )
+      ( _09_ VNB ) ( _08_ VNB ) ( _39_ VGND ) ( _38_ VGND ) ( _37_ VGND ) ( _36_ VGND ) ( _35_ VGND ) ( _34_ VGND )
+      ( _33_ VGND ) ( _32_ VGND ) ( _31_ VGND ) ( _30_ VGND ) ( _29_ VGND ) ( _28_ VGND ) ( _27_ VGND ) ( _26_ VGND )
+      ( _25_ VGND ) ( _24_ VGND ) ( _23_ VGND ) ( _22_ VGND ) ( _21_ VGND ) ( _20_ VGND ) ( _19_ VGND ) ( _18_ VGND )
+      ( _17_ VGND ) ( _16_ VGND ) ( _15_ VGND ) ( _14_ VGND ) ( _13_ VGND ) ( _12_ VGND ) ( _11_ VGND ) ( _10_ VGND )
+      ( _09_ VGND ) ( _08_ VGND ) + USE GROUND ;
+END SPECIALNETS
+NETS 51 ;
+    - _00_ ( _16_ D ) ( _09_ Y ) + USE SIGNAL ;
+    - _01_ ( _17_ D ) ( _12_ X ) + USE SIGNAL ;
+    - _02_ ( _18_ D ) ( _13_ X ) + USE SIGNAL ;
+    - _03_ ( _19_ D ) ( _15_ X ) + USE SIGNAL ;
+    - _04_ ( _15_ A ) ( _09_ B ) ( _08_ Y ) + USE SIGNAL ;
+    - _05_ ( _13_ B ) ( _12_ A_N ) ( _10_ X ) + USE SIGNAL ;
+    - _06_ ( _12_ B ) ( _11_ X ) + USE SIGNAL ;
+    - _07_ ( _15_ B ) ( _14_ X ) + USE SIGNAL ;
+    - i_clk ( PIN i_clk ) ( _19_ CLK ) ( _18_ CLK ) ( _17_ CLK ) ( _16_ CLK ) + USE SIGNAL ;
+    - i_ena ( PIN i_ena ) ( _14_ B ) ( _11_ A3 ) ( _10_ D ) ( _08_ B ) + USE SIGNAL ;
+    - i_rst_n ( PIN i_rst_n ) ( _19_ RESET_B ) ( _18_ RESET_B ) ( _17_ RESET_B ) ( _16_ RESET_B ) + USE SIGNAL ;
+    - ui_in[0] ( PIN ui_in[0] ) + USE SIGNAL ;
+    - ui_in[1] ( PIN ui_in[1] ) + USE SIGNAL ;
+    - ui_in[2] ( PIN ui_in[2] ) + USE SIGNAL ;
+    - ui_in[3] ( PIN ui_in[3] ) + USE SIGNAL ;
+    - ui_in[4] ( PIN ui_in[4] ) + USE SIGNAL ;
+    - ui_in[5] ( PIN ui_in[5] ) + USE SIGNAL ;
+    - ui_in[6] ( PIN ui_in[6] ) + USE SIGNAL ;
+    - ui_in[7] ( PIN ui_in[7] ) + USE SIGNAL ;
+    - uio_in[0] ( PIN uio_in[0] ) + USE SIGNAL ;
+    - uio_in[1] ( PIN uio_in[1] ) + USE SIGNAL ;
+    - uio_in[2] ( PIN uio_in[2] ) + USE SIGNAL ;
+    - uio_in[3] ( PIN uio_in[3] ) + USE SIGNAL ;
+    - uio_in[4] ( PIN uio_in[4] ) + USE SIGNAL ;
+    - uio_in[5] ( PIN uio_in[5] ) + USE SIGNAL ;
+    - uio_in[6] ( PIN uio_in[6] ) + USE SIGNAL ;
+    - uio_in[7] ( PIN uio_in[7] ) + USE SIGNAL ;
+    - uio_oe[0] ( PIN uio_oe[0] ) ( _20_ LO ) + USE SIGNAL ;
+    - uio_oe[1] ( PIN uio_oe[1] ) ( _21_ LO ) + USE SIGNAL ;
+    - uio_oe[2] ( PIN uio_oe[2] ) ( _22_ LO ) + USE SIGNAL ;
+    - uio_oe[3] ( PIN uio_oe[3] ) ( _23_ LO ) + USE SIGNAL ;
+    - uio_oe[4] ( PIN uio_oe[4] ) ( _24_ LO ) + USE SIGNAL ;
+    - uio_oe[5] ( PIN uio_oe[5] ) ( _25_ LO ) + USE SIGNAL ;
+    - uio_oe[6] ( PIN uio_oe[6] ) ( _26_ LO ) + USE SIGNAL ;
+    - uio_oe[7] ( PIN uio_oe[7] ) ( _27_ LO ) + USE SIGNAL ;
+    - uio_out[0] ( PIN uio_out[0] ) ( _28_ LO ) + USE SIGNAL ;
+    - uio_out[1] ( PIN uio_out[1] ) ( _29_ LO ) + USE SIGNAL ;
+    - uio_out[2] ( PIN uio_out[2] ) ( _30_ LO ) + USE SIGNAL ;
+    - uio_out[3] ( PIN uio_out[3] ) ( _31_ LO ) + USE SIGNAL ;
+    - uio_out[4] ( PIN uio_out[4] ) ( _32_ LO ) + USE SIGNAL ;
+    - uio_out[5] ( PIN uio_out[5] ) ( _33_ LO ) + USE SIGNAL ;
+    - uio_out[6] ( PIN uio_out[6] ) ( _34_ LO ) + USE SIGNAL ;
+    - uio_out[7] ( PIN uio_out[7] ) ( _35_ LO ) + USE SIGNAL ;
+    - uo_out[0] ( PIN uo_out[0] ) ( _19_ Q ) ( _14_ A ) ( _11_ A1 ) ( _10_ A ) ( _08_ A ) + USE SIGNAL ;
+    - uo_out[1] ( PIN uo_out[1] ) ( _16_ Q ) ( _11_ A2 ) ( _10_ B ) ( _09_ A ) + USE SIGNAL ;
+    - uo_out[2] ( PIN uo_out[2] ) ( _17_ Q ) ( _11_ B1 ) ( _10_ C ) + USE SIGNAL ;
+    - uo_out[3] ( PIN uo_out[3] ) ( _18_ Q ) ( _13_ A ) + USE SIGNAL ;
+    - uo_out[4] ( PIN uo_out[4] ) ( _36_ LO ) + USE SIGNAL ;
+    - uo_out[5] ( PIN uo_out[5] ) ( _37_ LO ) + USE SIGNAL ;
+    - uo_out[6] ( PIN uo_out[6] ) ( _38_ LO ) + USE SIGNAL ;
+    - uo_out[7] ( PIN uo_out[7] ) ( _39_ LO ) + USE SIGNAL ;
+END NETS
+END DESIGN

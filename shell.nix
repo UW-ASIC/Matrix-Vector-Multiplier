@@ -79,14 +79,6 @@
       hardeningDisable = ["format"];
       meta = with pkgs.lib; {
         description = "Schematic capture and netlisting EDA tool";
-        longDescription = ''
-          Xschem is a schematic capture program, it allows creation of
-          hierarchical representation of circuits with a top down approach.
-          By focusing on interfaces, hierarchy and instance properties a
-          complex system can be described in terms of simpler building
-          blocks. A VHDL or Verilog or Spice netlist can be generated from
-          the drawn schematic, allowing the simulation of the circuit.
-        '';
         homepage = "https://xschem.sourceforge.io/stefan/";
         license = licenses.gpl2Plus;
         maintainers = with maintainers; [fbeffa];
@@ -108,98 +100,141 @@
       '';
     };
   };
+  pythonRequirements = ''
+    volare==0.20.6
+    openlane==2.3.10
+    maturin
+  '';
+  pythonDepsInstaller = pkgs.writeShellScriptBin "install-python-deps" ''
+        VENV_DIR="''${PROJECT_ROOT:-.}/.venv"
+        MARKER="$VENV_DIR/.deps_installed"
+        REQUIREMENTS=$(cat <<EOF
+    ${pythonRequirements}
+    EOF
+    )
+        if [ ! -f "$MARKER" ] || [ -n "$(find "$MARKER" -mtime +1 2>/dev/null)" ]; then
+          {
+            pip install --upgrade pip setuptools wheel
+            echo "$REQUIREMENTS" | pip install -r /dev/stdin
+
+            # Install editable packages if they exist
+            for pkg in analog/library/dep_library/{gmid,UWASIC-ALG}; do
+              [ -d "$PROJECT_ROOT/$pkg" ] && pip install -e "$PROJECT_ROOT/$pkg"
+            done
+
+            touch "$MARKER"
+          } >/dev/null 2>&1 || echo "ERROR: Python install failed" >&2
+        fi
+  '';
 in
   pkgs.mkShell {
-    name = "eda-environment-v1.0";
+    name = "eda-environment";
     buildInputs = with pkgs; [
-      # Builds
-      #rustup
-      #cargo
+      # Build Tools
       (rust-bin.nightly.latest.default.override {
         extensions = ["rust-src" "rust-analyzer"];
       })
       gnumake
       git
-      python312
       ccache
 
-      # C compilation dependencies
+      # C/C++ Toolchain
       gcc
       clang
       llvmPackages.libclang
+
+      # C Libraries
       libffi.dev
       fftw
+      expat
+      swig
+      zlib
+      stdenv.cc.cc.lib
 
-      # Digital design
+      # Python Environment
+      python312
+      python312Packages.pip
+      python312Packages.numpy
+      python312Packages.setuptools
+      python312Packages.wheel
+      python312Packages.cocotb
+      python312Packages.tkinter
+      python312Packages.pyyaml
+      python312Packages.rich
+      python312Packages.click
+      python312Packages.pytest
+
+      # Digital Design Tools
       iverilog
       slang
       verilator
       yosys
       gtkwave
-      python312Packages.pip
-      python312Packages.numpy
-      python312Packages.setuptools
-      python312Packages.wheel
 
-      # Openlane Dependencies
-      ruby
-      stdenv.cc.cc.lib
-      expat
-      swig
-      zlib
-
-      # Analog Design
+      # Analog Design Tools
       selfBuiltPackages.xschem
       selfBuiltPackages.ngspice-shared
       selfBuiltPackages.netgen
       selfBuiltPackages.klayout-with-python
       ngspice
       magic-vlsi
-      vim
 
-      # Graphics/GUI support
+      # OpenLane Dependencies
+      tcl
+      tk
+      tclPackages.tcllib
+      ruby
+      openroad
+
+      # Graphics & GUI Support
       xorg.libX11
       xorg.libXpm
       xorg.libXt
-      cairo
-      xterm
       xorg.fontutil
       xorg.fontmiscmisc
       xorg.fontcursormisc
+      cairo
+      xterm
       dejavu_fonts
       liberation_ttf
-      inkscape
+
+      # Custom installer script
+      pythonDepsInstaller
     ];
 
     env = {
       NIX_ENFORCE_PURITY = "0";
+
+      # C/C++ Compilation
+      CC = "ccache gcc";
+      CXX = "ccache g++";
+
+      # Library paths
+      LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.gcc.cc.lib}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib";
+      NIX_LD_LIBRARY_PATH = "${pkgs.python312}/lib:${selfBuiltPackages.ngspice-shared}/lib:${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.expat}/lib:${pkgs.zlib}/lib";
+
+      # Rust-Python Build Configuration
+      LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+      BINDGEN_EXTRA_CLANG_ARGS = "-I${pkgs.glibc.dev}/include -I${selfBuiltPackages.ngspice-shared}/include";
+      CPATH = "${pkgs.python312}/include/python3.12:${selfBuiltPackages.ngspice-shared}/include";
+      PKG_CONFIG_PATH = "${selfBuiltPackages.ngspice-shared}/lib/pkgconfig";
+
+      # PDK Configuration
+      PDK = "sky130A";
+      PDK_VERSION = "6d4d11780c40b20ee63cc98e645307a9bf2b2ab8";
     };
 
     shellHook = ''
+      # === IMPORTANT EXPORTS ===
       export PROJECT_ROOT="$(pwd)"
-
-      # === Environment Variables Setup ===
-      export CC="ccache gcc"
-      export CXX="ccache g++"
+      # Dynamic paths that depend on PROJECT_ROOT
       export CCACHE_DIR="$PROJECT_ROOT/.tools/ccache"
-
-      # === Rust-Python Build Configuration ===
-      export LIBCLANG_PATH="${pkgs.llvmPackages.libclang.lib}/lib"
-      export BINDGEN_EXTRA_CLANG_ARGS="-I${pkgs.glibc.dev}/include -I${selfBuiltPackages.ngspice-shared}/include"
-      export CPATH="${pkgs.python312}/include/python3.12:${selfBuiltPackages.ngspice-shared}/include:$CPATH"
-      export NIX_LD_LIBRARY_PATH="${pkgs.python312}/lib:${selfBuiltPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"
-      export PKG_CONFIG_PATH="${selfBuiltPackages.ngspice-shared}/lib/pkgconfig:$PKG_CONFIG_PATH"
-
-      # === PDK Configuration ===
-      export PDK="sky130A"
-      export PDK_VERSION="fa87f8f4bbcc7255b6f0c0fb506960f531ae2392"
       export PDK_ROOT="$HOME/.volare"
-
-      # === EDA Tools Configuration ===
+      # EDA Tools Configuration
       export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
       export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${selfBuiltPackages.xschem}/share/xschem/xschem_library"
 
-      # === Python Dependencies Installation ===
+      # === Python Virtual Environment Setup ===
       export VENV_DIR="$PROJECT_ROOT/.venv"
       if [ -z "$VIRTUAL_ENV" ] || [ "$VIRTUAL_ENV" != "$VENV_DIR" ]; then
           if [ ! -d "$VENV_DIR" ]; then
@@ -208,31 +243,13 @@ in
           fi
           source "$VENV_DIR/bin/activate"
       fi
-      pip install --upgrade pip==24.2 setuptools==75.1.0 wheel==0.44.0
-      pip install --no-build-isolation -r "$PROJECT_ROOT/requirements.txt"
-      pip install maturin pytest
-      for pkg in analog/library/dep_library/gmid analog/library/dep_library/UWASIC-ALG; do
-          if [ -d "$PROJECT_ROOT/$pkg" ]; then
-              echo "Installing editable package: $pkg"
-              python -m pip install -e "$PROJECT_ROOT/$pkg"
-          fi
-      done
+      install-python-deps
 
       # === PDK SETUP WITH VOLARE ===
-      if [ -d "$PDK_ROOT/volare/sky130/versions" ]; then
-          echo "Cleaning up old PDK versions (keeping $PDK_VERSION)..."
-          cd "$PDK_ROOT/volare/sky130/versions"
-          find . -maxdepth 1 -mindepth 1 -type d ! -name "$PDK_VERSION" -exec echo "  Removing old version: {}" \; -exec rm -rf {} \;
-          if [ ! -d "$PDK_ROOT/$PDK" ]; then
-             echo "  Removing potentially invalid cache link: ~/.volare"
-             rm -rf "$HOME/.volare"
-          fi
-          cd "$PROJECT_ROOT"
-      fi
-      # Enable the PDK with volare
-      volare enable --pdk sky130 "$PDK_VERSION"
+      volare enable --pdk sky130 "$PDK_VERSION" >/dev/null 2>&1 || true
+      volare prune -y >/dev/null 2>&1 || true
 
-      echo "=== EDA Environment v1.0 ==="
+      echo "=== EDA Environment Entered ==="
       echo ""
       echo "System tools available:"
       echo "  - Python: $(python --version)"

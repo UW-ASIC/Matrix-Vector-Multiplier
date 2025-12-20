@@ -1,0 +1,40 @@
+Reading technology LEF file at '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef'…
+[INFO ODB-0227] LEF file: /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/techlef/sky130_fd_sc_hd__nom.tlef, created 14 layers, 25 vias
+Reading cell LEF file at '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef'…
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef at line 2.
+
+[INFO ODB-0227] LEF file: /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_ef_sc_hd.lef, created 4 library cells
+Reading cell LEF file at '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef'…
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef at line 2.
+
+[INFO ODB-0227] LEF file: /home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lef/sky130_fd_sc_hd.lef, created 437 library cells
+[INFO ODB-0127] Reading DEF file: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/52-odb-cellfrequencytables/tt_if.def
+[INFO ODB-0128] Design: tt_if
+[INFO ODB-0130]     Created 45 pins.
+[INFO ODB-0131]     Created 97 components and 490 component-terminals.
+[INFO ODB-0132]     Created 2 special nets and 378 connections.
+[INFO ODB-0133]     Created 65 nets and 92 connections.
+[INFO ODB-0134] Finished DEF file: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/52-odb-cellfrequencytables/tt_if.def
+Using RCX ruleset '/home/omare/.volare/sky130A/libs.tech/openlane/rules.openrcx.sky130A.nom.calibre'…
+[INFO RCX-0431] Defined process_corner CURRENT_CORNER with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner CURRENT_CORNER
+[INFO RCX-0435] Reading extraction model file /home/omare/.volare/sky130A/libs.tech/openlane/rules.openrcx.sky130A.nom.calibre ...
+[INFO RCX-0436] RC segment generation tt_if (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 90 rc segments
+[INFO RCX-0439] Coupling Cap extraction tt_if ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0442] 61% of 212 wires extracted
+[INFO RCX-0442] 100% of 212 wires extracted
+[INFO RCX-0045] Extract 65 nets, 139 rsegs, 139 caps, 105 ccs
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                                46     217.71
+  Tap cell                                  5       6.26
+  Standard cell                            46     395.38
+  Total                                    97     619.34
+Writing extracted parasitics to '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/53-openroad-rcx/nom/tt_if.nom.spef'…
+[INFO RCX-0443] 65 nets finished

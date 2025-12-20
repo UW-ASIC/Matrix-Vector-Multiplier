@@ -1,0 +1,143 @@
+Reading OpenROAD database at '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/24-openroad-ioplacement/tt_if.odb'…
+Reading library file at '/home/omare/.volare/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib'…
+Reading design constraints file at '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/.venv/lib/python3.12/site-packages/openlane/scripts/base.sdc'…
+[INFO] Using clock i_clk…
+[INFO] Setting output delay to: 0.02
+[INFO] Setting input delay to: 0.02
+[INFO] Setting load to: 0.033442
+[INFO] Setting clock uncertainty to: 0.25
+[INFO] Setting clock transition to: 0.1499999999999999944488848768742172978818416595458984375
+[INFO] Setting timing derate to: 5%
+[INFO] Setting RC values…
+[INFO] Setting signal min routing layer to: met1 and clock min routing layer to met1. 
+[INFO] Setting signal max routing layer to: met4 and clock max routing layer to met4. 
++ global_placement -density 0.530303 -timing_driven -routability_driven -pad_right 0 -pad_left 0 -init_wirelength_coef 0.25
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: (  0.460  2.720 ) um
+[INFO GPL-0004] CoreBBox: (  5.520 10.880 ) ( 30.820 35.360 ) um
+[INFO GPL-0006] NumInstances:                55
+[INFO GPL-0007] NumPlaceInstances:           32
+[INFO GPL-0008] NumFixedInstances:           23
+[INFO GPL-0009] NumDummyInstances:            0
+[INFO GPL-0010] NumNets:                     51
+[INFO GPL-0011] NumPins:                    107
+[INFO GPL-0012] DieBBox:  (  0.000  0.000 ) ( 36.545 47.265 ) um
+[INFO GPL-0013] CoreBBox: (  5.520 10.880 ) ( 30.820 35.360 ) um
+[INFO GPL-0016] CoreArea:               619.344 um^2
+[INFO GPL-0017] NonPlaceInstsArea:       73.821 um^2
+[INFO GPL-0018] PlaceInstsArea:         260.250 um^2
+[INFO GPL-0019] Util:                    47.706 %
+[INFO GPL-0020] StdInstsArea:           260.250 um^2
+[INFO GPL-0021] MacroInstsArea:           0.000 um^2
+[InitialPlace]  Iter: 1 CG residual: 0.00000010 HPWL: 836260
+[InitialPlace]  Iter: 2 CG residual: 0.00000002 HPWL: 491237
+[InitialPlace]  Iter: 3 CG residual: 0.00000003 HPWL: 488687
+[InitialPlace]  Iter: 4 CG residual: 0.00000005 HPWL: 488501
+[InitialPlace]  Iter: 5 CG residual: 0.00000012 HPWL: 489206
+[INFO GPL-0031] FillerInit:NumGCells:        36
+[INFO GPL-0032] FillerInit:NumGNets:         51
+[INFO GPL-0033] FillerInit:NumGPins:        107
+[INFO GPL-0023] TargetDensity:            0.530
+[INFO GPL-0024] AvrgPlaceInstArea:        8.133 um^2
+[INFO GPL-0025] IdealBinArea:            15.336 um^2
+[INFO GPL-0026] IdealBinCnt:                 40
+[INFO GPL-0027] TotalBinArea:           619.344 um^2
+[INFO GPL-0028] BinCnt:         4      4
+[INFO GPL-0029] BinSize: (  6.325  6.120 )
+[INFO GPL-0030] NumBins: 16
+[NesterovSolve] Iter:    1 overflow: 0.441 HPWL: 422593
+[INFO GPL-0088] Routability snapshot saved at iter = 0
+[NesterovSolve] Iter:   10 overflow: 0.423 HPWL: 423630
+[NesterovSolve] Iter:   20 overflow: 0.424 HPWL: 423584
+[NesterovSolve] Iter:   30 overflow: 0.424 HPWL: 423583
+[NesterovSolve] Iter:   40 overflow: 0.424 HPWL: 423563
+[NesterovSolve] Iter:   50 overflow: 0.424 HPWL: 423551
+[NesterovSolve] Iter:   60 overflow: 0.424 HPWL: 423516
+[NesterovSolve] Iter:   70 overflow: 0.424 HPWL: 423456
+[NesterovSolve] Iter:   80 overflow: 0.424 HPWL: 423359
+[NesterovSolve] Iter:   90 overflow: 0.423 HPWL: 423293
+[NesterovSolve] Iter:  100 overflow: 0.423 HPWL: 423454
+[NesterovSolve] Iter:  110 overflow: 0.422 HPWL: 423722
+[NesterovSolve] Iter:  120 overflow: 0.421 HPWL: 423836
+[NesterovSolve] Iter:  130 overflow: 0.419 HPWL: 424260
+[NesterovSolve] Iter:  140 overflow: 0.416 HPWL: 425582
+[NesterovSolve] Iter:  150 overflow: 0.410 HPWL: 428321
+[NesterovSolve] Iter:  160 overflow: 0.403 HPWL: 432813
+[NesterovSolve] Iter:  170 overflow: 0.392 HPWL: 440073
+[NesterovSolve] Iter:  180 overflow: 0.356 HPWL: 447836
+[NesterovSolve] Iter:  190 overflow: 0.314 HPWL: 452730
+[INFO GPL-0075] Routability iteration: 1
+[INFO GPL-0036] TileBBox: (    0    0 ) ( 6900 6900 ) DBU
+[INFO GPL-0038] TileCnt:       5    6
+[INFO GPL-0040] NumTiles: 30
+[INFO GPL-0081] TotalRouteOverflow: 0.0000
+[INFO GPL-0082] OverflowTileCnt: 0
+[INFO GPL-0083] 0.5%RC: 0.8426
+[INFO GPL-0084] 1.0%RC: 0.8426
+[INFO GPL-0085] 2.0%RC: 0.8426
+[INFO GPL-0086] 5.0%RC: 0.7640
+[INFO GPL-0087] FinalRC: 0.8426165
+[INFO GPL-0077] FinalRC lower than targetRC(1.0100), routability not needed.
+[INFO GPL-0100] Timing-driven iteration 1/5, virtual: false.
+[INFO GPL-0101]    Iter: 197, overflow: 0.282, keep rsz at: 0.3, HPWL: 454956
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |        71
+    final |     -4.3% |      12 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO RSZ-0039] Resized 12 instances.
+[INFO GPL-0106] Timing-driven: worst slack 8.72e-09
+[INFO GPL-0103] Timing-driven: weighted 2 nets.
+[INFO GPL-0107] Timing-driven: repair_design delta area: -11.261 um^2 (-4.33%)
+[INFO GPL-0108] Timing-driven: repair_design, gpl cells created: 0 (+0.00%)
+[INFO GPL-0109] Timing-driven: inserted buffers as reported by repair_design: 0
+[INFO GPL-0110] Timing-driven: new target density: 0.5096608
+[NesterovSolve] Iter:  200 overflow: 0.336 HPWL: 85776
+[NesterovSolve] Iter:  210 overflow: 0.372 HPWL: 68757
+[NesterovSolve] Iter:  220 overflow: 0.295 HPWL: 87665
+[NesterovSolve] Iter:  230 overflow: 0.268 HPWL: 94846
+[NesterovSolve] Iter:  240 overflow: 0.222 HPWL: 98624
+[INFO GPL-0100] Timing-driven iteration 2/5, virtual: false.
+[INFO GPL-0101]    Iter: 245, overflow: 0.205, keep rsz at: 0.3, HPWL: 102196
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |        71
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO GPL-0106] Timing-driven: worst slack 8.72e-09
+[INFO GPL-0103] Timing-driven: weighted 2 nets.
+[INFO GPL-0107] Timing-driven: repair_design delta area: 0.000 um^2 (+0.00%)
+[INFO GPL-0108] Timing-driven: repair_design, gpl cells created: 0 (+0.00%)
+[INFO GPL-0109] Timing-driven: inserted buffers as reported by repair_design: 0
+[INFO GPL-0110] Timing-driven: new target density: 0.5096608
+[NesterovSolve] Iter:  250 overflow: 0.191 HPWL: 103086
+[NesterovSolve] Iter:  260 overflow: 0.150 HPWL: 110280
+[INFO GPL-0100] Timing-driven iteration 3/5, virtual: false.
+[INFO GPL-0101]    Iter: 261, overflow: 0.143, keep rsz at: 0.3, HPWL: 110876
+Iteration |   Area    | Resized | Buffers | Nets repaired | Remaining
+---------------------------------------------------------------------
+        0 |     +0.0% |       0 |       0 |             0 |        71
+    final |     +0.0% |       0 |       0 |             0 |         0
+---------------------------------------------------------------------
+[INFO GPL-0106] Timing-driven: worst slack 8.72e-09
+[INFO GPL-0103] Timing-driven: weighted 0 nets.
+[INFO GPL-0107] Timing-driven: repair_design delta area: 0.000 um^2 (+0.00%)
+[INFO GPL-0108] Timing-driven: repair_design, gpl cells created: 0 (+0.00%)
+[INFO GPL-0109] Timing-driven: inserted buffers as reported by repair_design: 0
+[INFO GPL-0110] Timing-driven: new target density: 0.5096608
+[NesterovSolve] Finished with Overflow: 0.099870
+[INFO] Setting RC values…
+Setting global connections for newly added cells…
+[INFO] Setting global connections...
+Updating metrics…
+Cell type report:                       Count       Area
+  Fill cell                                18      67.56
+  Tap cell                                  5       6.26
+  Sequential cell                           4     115.11
+  Multi-Input combinational cell           28     133.88
+  Total                                    55     322.81
+Writing OpenROAD database to '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/27-openroad-globalplacement/tt_if.odb'…
+Writing netlist to '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/27-openroad-globalplacement/tt_if.nl.v'…
+Writing powered netlist to '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/27-openroad-globalplacement/tt_if.pnl.v'…
+Writing layout to '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/27-openroad-globalplacement/tt_if.def'…
+Writing timing constraints to '/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/27-openroad-globalplacement/tt_if.sdc'…

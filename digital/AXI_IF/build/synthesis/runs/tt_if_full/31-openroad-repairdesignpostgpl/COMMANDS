@@ -1,0 +1,1 @@
+openroad -exit -no_splash -metrics /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/31-openroad-repairdesignpostgpl/or_metrics_out.json /home/omare/Documents/UWASIC/Matrix-Vector-Analog/.venv/lib/python3.12/site-packages/openlane/scripts/openroad/repair_design.tcl

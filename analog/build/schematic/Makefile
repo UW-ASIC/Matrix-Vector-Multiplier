@@ -28,8 +28,7 @@ define update_pdk_version
 	echo "📦 Found PDK version: $$SELECTED_VERSION"; \
 	if [ -f "$(XSCHEMRC_FILE)" ]; then \
 		cp "$(XSCHEMRC_FILE)" "$(XSCHEMRC_FILE).backup" 2>/dev/null || true; \
-		NEW_SOURCE_LINE="source \$$env(HOME)/.volare/volare/sky130/versions/$$SELECTED_VERSION/sky130A/libs.tech/xschem/xschemrc"; \
-		sed -i "s|^source \$env(HOME)/\.volare/volare/sky130/versions/[^/]*/|source \$env(HOME)/.volare/volare/sky130/versions/$$SELECTED_VERSION/|g" "$(XSCHEMRC_FILE)"; \
+		sed -i 's|sky130/versions/[^/]*/|sky130/versions/'"$$SELECTED_VERSION"'/|g' "$(XSCHEMRC_FILE)"; \
 		echo "✓ Updated xschemrc with version: $$SELECTED_VERSION"; \
 		echo "$$SELECTED_VERSION" > .current_pdk_version; \
 	else \

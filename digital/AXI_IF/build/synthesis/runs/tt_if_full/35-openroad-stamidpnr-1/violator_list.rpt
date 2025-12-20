@@ -1,0 +1,18 @@
+
+===========================================================================
+Violator List
+============================================================================
+[hold in-reg] i_rst_n -> _18_/RESET_B : -0.665517
+[hold in-reg] i_rst_n -> _17_/RESET_B : -0.665503
+[hold in-reg] i_rst_n -> _16_/RESET_B : -0.664932
+[hold in-reg] i_rst_n -> _19_/RESET_B : -0.664915
+[hold in-reg] i_ena -> _16_/D : -0.197664
+[hold in-reg] i_ena -> _19_/D : -0.144736
+[hold in-reg] i_ena -> _17_/D : -0.067225
+[hold in-reg] i_ena -> _18_/D : -0.018719
+Writing metric timing__hold_vio__count__corner:nom_tt_025C_1v80: 8
+Writing metric timing__hold_r2r__ws__corner:nom_tt_025C_1v80: 1e30
+Writing metric timing__hold_r2r_vio__count__corner:nom_tt_025C_1v80: 0
+Writing metric timing__setup_vio__count__corner:nom_tt_025C_1v80: 0
+Writing metric timing__setup_r2r__ws__corner:nom_tt_025C_1v80: 8.862146
+Writing metric timing__setup_r2r_vio__count__corner:nom_tt_025C_1v80: 0

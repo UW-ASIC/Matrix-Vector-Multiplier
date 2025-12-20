@@ -1,0 +1,30 @@
+digraph "tt_if" {
+label="tt_if";
+rankdir="LR";
+remincross=true;
+n1 [ shape=diamond, label="count", color="black", fontcolor="black"];
+n2 [ shape=octagon, label="uio_oe", color="black", fontcolor="black"];
+n3 [ shape=octagon, label="uio_out", color="black", fontcolor="black"];
+n4 [ shape=octagon, label="uio_in", color="black", fontcolor="black"];
+n5 [ shape=octagon, label="uo_out", color="black", fontcolor="black"];
+n6 [ shape=octagon, label="ui_in", color="black", fontcolor="black"];
+n7 [ shape=octagon, label="i_ena", color="black", fontcolor="black"];
+n8 [ shape=octagon, label="i_rst_n", color="black", fontcolor="black"];
+n9 [ shape=octagon, label="i_clk", color="black", fontcolor="black"];
+c13 [ shape=record, label="{{<p10> clk|<p11> enable|<p12> rst_n}|counter_inst\ncounter_4bit|{<p1> count}}",  ];
+x0 [ shape=record, style=rounded, label="0 -&gt; 7:4 |<s0> 3:0 - 3:0 ", color="black", fontcolor="black" ];
+v1 [ label="8'00000000" ];
+x2 [shape=point, ];
+v3 [ label="8'00000000" ];
+x4 [shape=point, ];
+c13:p1:e -> n1:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+n1:e -> x0:s0:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+x4:e -> n2:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+x2:e -> n3:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+x0:e -> n5:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+n7:e -> c13:p11:w [color="black", fontcolor="black", label=""];
+n8:e -> c13:p12:w [color="black", fontcolor="black", label=""];
+n9:e -> c13:p10:w [color="black", fontcolor="black", label=""];
+v1:e -> x2:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+v3:e -> x4:w [color="black", fontcolor="black", style="setlinewidth(3)", label=""];
+}

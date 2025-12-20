@@ -1,0 +1,33 @@
+{
+    "PDK": "sky130A",
+    "PDK_ROOT": "/home/omare/.volare",
+    "DESIGN_NAME": "tt_if",
+    "VERILOG_FILES": [
+        "/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/../src/tt_if.sv",
+        "/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/../src/counter_4bit.sv"
+    ],
+    "CLOCK_PORT": "i_clk",
+    "CLOCK_PERIOD": 10.0,
+    "CLOCK_NET": "i_clk",
+    "FP_SIZING": "relative",
+    "FP_CORE_UTIL": 40,
+    "FP_ASPECT_RATIO": 1,
+    "ERROR_ON_PDN_VIOLATIONS": true,
+    "FP_PDN_ENABLE_RAILS": true,
+    "MAX_FANOUT_CONSTRAINT": 16,
+    "MAX_TRANSITION_CONSTRAINT": 1.0,
+    "IO_DELAY_CONSTRAINT": 0.2,
+    "DRT_THREADS": 4,
+    "RT_MAX_LAYER": "met4",
+    "ERROR_ON_MAGIC_DRC": true,
+    "ERROR_ON_LVS_ERROR": true,
+    "ERROR_ON_PDN_VIOLATIONS": false,
+    "pdk::sky130A": {
+        "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+        "MAX_FANOUT_CONSTRAINT": 6,
+        "SYNTH_STRATEGY": "AREA 0",
+        "FP_CORE_UTIL": 40,
+        "VDD_NETS": "VDD",
+        "GND_NETS": "VSS"
+    }
+}
