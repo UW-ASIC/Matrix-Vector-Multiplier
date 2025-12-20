@@ -7,13 +7,13 @@
     },
     "peak_resources": {
         "cpu_percent": 29.8,
-        "memory_rss": "1MiB",
+        "memory_rss": "3MiB",
         "memory_vms": "7MiB",
         "threads": 1
     },
     "avg_resources": {
         "cpu_percent": 9.933333333333334,
-        "memory_rss": "438KiB",
+        "memory_rss": "1MiB",
         "memory_vms": "2MiB",
         "threads": 0.6666666666666666
     }

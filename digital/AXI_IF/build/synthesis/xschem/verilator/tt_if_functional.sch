@@ -13,7 +13,7 @@ C {devices/ipin.sym} 0 200 0 0 {name=puio_in lab=uio_in}
 C {devices/opin.sym} 0 240 0 0 {name=puio_out lab=uio_out}
 C {devices/opin.sym} 0 280 0 0 {name=puio_oe lab=uio_oe}
 
-C {verilator/tt_if_functional_inner.sym} 300 100 0 0 {name=ADUT model=tt_if
+C {verilator/tt_if_functional_inner.sym} 300 100 0 0 {name=tt_if model=tt_if
 device_model=".model tt_if d_cosim simulation=\"./tt_if.so\""
 tclcommand="edit_file [abs_sym_path ../../rtl/tt_if.v]"}
 C {devices/lab_pin.sym} 150 66 0 0 {name=li_clk lab=i_clk}

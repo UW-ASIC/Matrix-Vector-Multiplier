@@ -1,16 +1,14 @@
 v {xschem version=3.4.5 file_version=1.2}
 G {}
-K {type=primitive}
+K {type=primitive
+format="@name @pinlist @symname"
+template="name=X1"
+}
 V {}
 S {}
 E {}
 T {@symname} -50 -30 0 0 0.2 0.2 {}
 T {@name} -50 -10 0 0 0.2 0.2 {}
-[
-type=primitive
-format="@name @pinlist @symname"
-template="name=X1"
-]
 L 4 -130 -50 -130 50 {}
 L 4 -130 50 70 50 {}
 L 4 70 50 70 -50 {}

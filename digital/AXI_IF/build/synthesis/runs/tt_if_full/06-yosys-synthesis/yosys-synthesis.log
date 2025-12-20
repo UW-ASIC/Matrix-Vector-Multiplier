@@ -546,7 +546,7 @@ Removed 1 unused cells and 5 unused wires.
 <suppressed ~6 debug messages>
 {
    "creator": "Yosys 0.55 (git sha1 60f126cd00c94892782470192d6c9f7abebe7c05, g++ 14.3.0 -fPIC -O3)",
-   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b0a8f1c847a6415c8a5f7d72cef4d500.lib ",
+   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b688c3ca83964baab3134aabcb5c41a1.lib ",
    "modules": {
       "\\tt_if": {
          "num_wires":         12,
@@ -683,7 +683,7 @@ Mapping DFF cells in module `\tt_if':
   mapped 4 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
 {
    "creator": "Yosys 0.55 (git sha1 60f126cd00c94892782470192d6c9f7abebe7c05, g++ 14.3.0 -fPIC -O3)",
-   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b0a8f1c847a6415c8a5f7d72cef4d500.lib ",
+   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b688c3ca83964baab3134aabcb5c41a1.lib ",
    "modules": {
       "\\tt_if": {
          "num_wires":         16,
@@ -768,15 +768,15 @@ Mapping DFF cells in module `\tt_if':
 
 102. Executing ABC pass (technology mapping using ABC).
 
-102.1. Extracting gate netlist of module `\tt_if' to `/tmp/nix-shell-171333-0/yosys-abc-EL2w6k/input.blif'..
+102.1. Extracting gate netlist of module `\tt_if' to `/tmp/nix-shell-208655-0/yosys-abc-Z93kqj/input.blif'..
 Extracted 10 gates and 15 wires to a netlist network with 5 inputs and 4 outputs.
 
 102.1.1. Executing ABC.
-Running ABC command: "/nix/store/r5vafnbc740mh08611zdcnfzf96f5an1-yosys-0.55/bin/yosys-abc" -s -f /tmp/nix-shell-171333-0/yosys-abc-EL2w6k/abc.script 2>&1
-ABC: ABC command line: "source /tmp/nix-shell-171333-0/yosys-abc-EL2w6k/abc.script".
+Running ABC command: "/nix/store/r5vafnbc740mh08611zdcnfzf96f5an1-yosys-0.55/bin/yosys-abc" -s -f /tmp/nix-shell-208655-0/yosys-abc-Z93kqj/abc.script 2>&1
+ABC: ABC command line: "source /tmp/nix-shell-208655-0/yosys-abc-Z93kqj/abc.script".
 ABC: 
-ABC: + read_blif /tmp/nix-shell-171333-0/yosys-abc-EL2w6k/input.blif 
-ABC: + read_lib -w /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b0a8f1c847a6415c8a5f7d72cef4d500.lib 
+ABC: + read_blif /tmp/nix-shell-208655-0/yosys-abc-Z93kqj/input.blif 
+ABC: + read_lib -w /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b688c3ca83964baab3134aabcb5c41a1.lib 
 ABC: Parsing finished successfully.  Parsing time =     0.03 sec
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
@@ -795,7 +795,7 @@ ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
-ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b0a8f1c847a6415c8a5f7d72cef4d500.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use).  Time =     0.05 sec
+ABC: Library "sky130_fd_sc_hd__tt_025C_1v80" from "/home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b688c3ca83964baab3134aabcb5c41a1.lib" has 175 cells (17 skipped: 14 seq; 3 tri-state; 0 no func; 0 dont_use).  Time =     0.05 sec
 ABC: Memory =    9.54 MB. Time =     0.05 sec
 ABC: Warning: Detected 2 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
 ABC: + read_constr -v /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/06-yosys-synthesis/synthesis.abc.sdc 
@@ -810,7 +810,7 @@ ABC: Path  1 --      12 : 4    2 sky130_fd_sc_hd__and4_2 A =  10.01  Df = 236.7 
 ABC: Path  2 --      15 : 2    1 sky130_fd_sc_hd__xor2_2 A =  16.27  Df = 609.0 -168.3 ps  S = 428.6 ps  Cin =  8.6 ff  Cout =  33.4 ff  Cmax = 130.0 ff  G =  390  
 ABC: Start-point = pi4 (\i_ena).  End-point = po2 ($auto$rtlil.cc:3203:MuxGate$165).
 ABC: netlist                       : i/o =    5/    4  lat =    0  nd =     8  edge =     20  area =80.10  delay = 2.00  lev = 2
-ABC: + write_blif /tmp/nix-shell-171333-0/yosys-abc-EL2w6k/output.blif 
+ABC: + write_blif /tmp/nix-shell-208655-0/yosys-abc-Z93kqj/output.blif 
 
 102.1.2. Re-integrating ABC results.
 ABC RESULTS:   sky130_fd_sc_hd__a31o_2 cells:        1
@@ -844,7 +844,7 @@ Checking module tt_if...
 Found and reported 0 problems.
 {
    "creator": "Yosys 0.55 (git sha1 60f126cd00c94892782470192d6c9f7abebe7c05, g++ 14.3.0 -fPIC -O3)",
-   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b0a8f1c847a6415c8a5f7d72cef4d500.lib ",
+   "invocation": "stat -json -liberty /home/omare/Documents/UWASIC/Matrix-Vector-Analog/digital/AXI_IF/build/synthesis/runs/tt_if_full/tmp/b688c3ca83964baab3134aabcb5c41a1.lib ",
    "modules": {
       "\\tt_if": {
          "num_wires":         16,
