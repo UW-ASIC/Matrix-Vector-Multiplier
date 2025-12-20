@@ -2,9 +2,10 @@
   pkgs ?
     import (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "sha256:0z423v1f4pyllhqz68jichams2vrgnmply12lzkvj6k4hijkvnaa";
+      sha256 = "sha256:1dvhyaddi7d4fkj63hns1xrdqcmyyq24y89k0cdwxs8s3619bx8v";
     }) {
       overlays = [
+        (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
       ];
     },
 }: let
@@ -112,8 +113,11 @@ in
     name = "eda-environment-v1.0";
     buildInputs = with pkgs; [
       # Builds
-      rustup
-      cargo
+      #rustup
+      #cargo
+      (rust-bin.nightly.latest.default.override {
+        extensions = ["rust-src" "rust-analyzer"];
+      })
       gnumake
       git
       python312
@@ -194,16 +198,6 @@ in
       # === EDA Tools Configuration ===
       export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
       export XSCHEM_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem:${selfBuiltPackages.xschem}/share/xschem/xschem_library"
-
-      # === Rust Toolchain Setup ===
-      export RUSTUP_HOME="$HOME/.rustup"
-      export CARGO_HOME="$HOME/.cargo"
-      export PATH="$CARGO_HOME/bin:$PATH"
-      if ! rustc --version &>/dev/null; then
-        echo "Installing Rust nightly toolchain..."
-        rustup install nightly
-        rustup default nightly
-      fi
 
       # === Python Dependencies Installation ===
       export VENV_DIR="$PROJECT_ROOT/.venv"
