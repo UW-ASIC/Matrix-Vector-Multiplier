@@ -1,11 +1,15 @@
-// Digital input for DAC testbench
-module DAC_stim #(parameter WIDTH = 8)(
-    input logic clk,
-    input logic rst_n,
-    output logic [WIDTH-1:0] dac_out
-);
+module DAC_stim();
+    // Parameters
+    parameter DAC_WIDTH  = 8;
+    parameter CLK_PERIOD = 10;
 
-// Simple counter to generate digital values for DAC
+    // Signals
+    logic clk;
+    logic rst_n;
+    logic [DAC_WIDTH-1:0] dac_data;
+    logic dac_out;
 
-
+    initial begin
+        forever #(CLK_PERIOD/2) clk = ~clk;
+    end
 endmodule
