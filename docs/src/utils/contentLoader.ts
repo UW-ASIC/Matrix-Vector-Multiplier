@@ -1,4 +1,3 @@
-
 export interface PageMetadata {
   title: string
   order: number

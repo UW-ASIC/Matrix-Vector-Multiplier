@@ -1,111 +1,138 @@
+import React from 'react'
+
 interface MarkdownRendererProps {
   content: string
 }
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
-  const renderLine = (line: string, index: number) => {
-    const trimmed = line.trim()
-
-    // Headers
-    if (trimmed.startsWith('# ')) {
-      return <h1 key={index}>{trimmed.slice(2)}</h1>
-    }
-    if (trimmed.startsWith('## ')) {
-      return <h2 key={index}>{trimmed.slice(3)}</h2>
-    }
-    if (trimmed.startsWith('### ')) {
-      return <h3 key={index}>{trimmed.slice(4)}</h3>
-    }
-
-    // Code blocks
-    if (trimmed.startsWith('```')) {
-      return null // Handle in paragraph processing
-    }
-
-    // Lists
-    if (trimmed.startsWith('- ')) {
-      return <li key={index}>{processInlineMarkdown(trimmed.slice(2))}</li>
-    }
-    if (trimmed.match(/^\d+\.\s/)) {
-      return <li key={index}>{processInlineMarkdown(trimmed.replace(/^\d+\.\s/, ''))}</li>
-    }
-
-    // Bold
-    if (trimmed.startsWith('**') || trimmed.includes('**')) {
-      return <p key={index}>{processInlineMarkdown(trimmed)}</p>
-    }
-
-    // Regular paragraph
-    if (trimmed) {
-      return <p key={index}>{processInlineMarkdown(trimmed)}</p>
-    }
-
-    return <br key={index} />
-  }
+  const lines = content.trim().split('\n')
+  const elements: React.ReactNode[] = []
+  let inCodeBlock = false
+  let codeLines: string[] = []
 
   const processInlineMarkdown = (text: string): React.ReactNode => {
     const parts: React.ReactNode[] = []
-    let currentIndex = 0
+    let remaining = text
+    let key = 0
 
-    // Process inline code `code`
-    const codeRegex = /`([^`]+)`/g
-    let match
+    // Process bold and inline code
+    const regex = /(`[^`]+`|\*\*[^*]+\*\*)/g
+    const matches = remaining.match(regex)
 
-    while ((match = codeRegex.exec(text)) !== null) {
-      // Add text before code
-      if (match.index > currentIndex) {
-        const beforeText = text.slice(currentIndex, match.index)
-        parts.push(processBold(beforeText))
+    if (!matches) return text
+
+    let lastIndex = 0
+    matches.forEach((match) => {
+      const matchIndex = remaining.indexOf(match, lastIndex)
+
+      // Add text before match
+      if (matchIndex > lastIndex) {
+        parts.push(remaining.slice(lastIndex, matchIndex))
       }
 
-      // Add code
-      parts.push(<code key={match.index}>{match[1]}</code>)
-      currentIndex = match.index + match[0].length
-    }
+      // Add the match
+      if (match.startsWith('`')) {
+        parts.push(<code key={key++}>{match.slice(1, -1)}</code>)
+      } else if (match.startsWith('**')) {
+        parts.push(<strong key={key++}>{match.slice(2, -2)}</strong>)
+      }
+
+      lastIndex = matchIndex + match.length
+    })
 
     // Add remaining text
-    if (currentIndex < text.length) {
-      parts.push(processBold(text.slice(currentIndex)))
+    if (lastIndex < remaining.length) {
+      parts.push(remaining.slice(lastIndex))
     }
 
     return parts.length > 0 ? parts : text
   }
 
-  const processBold = (text: string): React.ReactNode => {
-    const parts = text.split('**')
-    return parts.map((part, i) =>
-      i % 2 === 0 ? part : <strong key={i}>{part}</strong>
-    )
-  }
-
-  const lines = content.trim().split('\n')
-  const elements: React.ReactNode[] = []
-  let inCodeBlock = false
-  let codeLines: string[] = []
-  let codeLang = ''
-
   lines.forEach((line, index) => {
-    if (line.trim().startsWith('```')) {
+    const trimmed = line.trim()
+
+    // Code blocks
+    if (trimmed.startsWith('```')) {
       if (!inCodeBlock) {
         inCodeBlock = true
-        codeLang = line.trim().slice(3)
         codeLines = []
       } else {
         inCodeBlock = false
         elements.push(
           <pre key={`code-${index}`}>
-            <code className={codeLang ? `language-${codeLang}` : ''}>
-              {codeLines.join('\n')}
-            </code>
+            <code>{codeLines.join('\n')}</code>
           </pre>
         )
       }
-    } else if (inCodeBlock) {
-      codeLines.push(line)
-    } else {
-      elements.push(renderLine(line, index))
+      return
     }
+
+    if (inCodeBlock) {
+      codeLines.push(line)
+      return
+    }
+
+    // Headers
+    if (trimmed.startsWith('### ')) {
+      elements.push(
+        <h3 key={index}>
+          {trimmed.slice(4)}
+        </h3>
+      )
+      return
+    }
+    if (trimmed.startsWith('## ')) {
+      elements.push(
+        <h2 key={index}>
+          {trimmed.slice(3)}
+        </h2>
+      )
+      return
+    }
+    if (trimmed.startsWith('# ')) {
+      elements.push(
+        <h1 key={index}>
+          {trimmed.slice(2)}
+        </h1>
+      )
+      return
+    }
+
+    // Lists
+    if (trimmed.startsWith('- ')) {
+      elements.push(
+        <li key={index}>
+          {processInlineMarkdown(trimmed.slice(2))}
+        </li>
+      )
+      return
+    }
+    if (trimmed.match(/^\d+\.\s/)) {
+      elements.push(
+        <li key={index}>
+          {processInlineMarkdown(trimmed.replace(/^\d+\.\s/, ''))}
+        </li>
+      )
+      return
+    }
+
+    // Regular paragraph
+    if (trimmed) {
+      elements.push(
+        <p key={index}>
+          {processInlineMarkdown(trimmed)}
+        </p>
+      )
+      return
+    }
+
+    // Empty line
+    elements.push(<br key={index} />)
   })
 
-  return <div className="markdown-content">{elements}</div>
+  return (
+    <div className="markdown-content">
+      {elements}
+    </div>
+  )
 }

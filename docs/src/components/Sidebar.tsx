@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Section, Page } from '../utils/contentLoader'
+import { Section } from '../utils/contentLoader'
 
 interface SidebarProps {
   sections: Section[]
@@ -9,7 +9,7 @@ interface SidebarProps {
 
 export function Sidebar({ sections, currentPath, onNavigate }: SidebarProps) {
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
-    new Set(sections.map(s => s.id))
+    new Set()  // Start with all sections collapsed
   )
 
   const toggleSection = (sectionId: string) => {
@@ -27,7 +27,10 @@ export function Sidebar({ sections, currentPath, onNavigate }: SidebarProps) {
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h1 className="logo">📚 Documentation</h1>
+        <h1 className="logo">
+          <img src="/logo.png" alt="UWASIC Logo" />
+          <span className="logo-text">UWASIC Docs</span>
+        </h1>
       </div>
 
       <nav className="sidebar-nav">
