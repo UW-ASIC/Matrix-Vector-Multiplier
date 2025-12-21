@@ -26,13 +26,15 @@ append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../schematics
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../symbols
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../library
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../../digital/AXI_IF/build/synthesis/xschem
-
-# Need to be explicit paths for macOS
 append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
 append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library/devices
+append XSCHEM_LIBRARY_PATH :$env(HOME)/.volare/volare/sky130/versions/6d4d11780c40b20ee63cc98e645307a9bf2b2ab8/sky130A/libs.tech/xschem
+
 
 ## Directory colors
 array unset dircolor
 set dircolor(schematics$) green
 set dircolor(symbols$) blue
 set dircolor(library$) red
+set dircolor(xschem$) purple
+set dircolor(xschem_library$) brown
