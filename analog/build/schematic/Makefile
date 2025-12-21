@@ -53,7 +53,7 @@ schematic: setup
 		echo "Creating empty schematic file: $(TOP_SCHEMATIC).sch"; \
 		touch ../../schematics/$(TOP_SCHEMATIC).sch; \
 	fi
-	$(XSCHEM) ../../schematics/$(TOP_SCHEMATIC).sch
+	$(XSCHEM) ../../schematics/$(TOP_SCHEMATIC).sch &
 
 spice: setup
 	@echo "Running SPICE simulations..."
