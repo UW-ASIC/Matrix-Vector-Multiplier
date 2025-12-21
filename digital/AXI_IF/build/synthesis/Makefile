@@ -122,6 +122,7 @@ xschem-yosys: harden
 		printf "$(RED)[ERROR]$(NC) Netlist not found. Run 'make harden' or 'make synthesis' first.\n"; \
 		exit 1; \
 	fi; \
+	cp ../../../../tools/verilog_to_xschem.py ./; \
 	printf "$(BLUE)[XSCHEM]$(NC) Using netlist: $$SYNTH_NETLIST\n"; \
 	python3 verilog_to_xschem.py \
 		--netlist $$SYNTH_NETLIST \
@@ -129,7 +130,8 @@ xschem-yosys: harden
 		--pdk-root $(PDK_ROOT) \
 		--pdk $(PDK) \
 		--method yosys \
-		--project-name $(DESIGN_TOP)
+		--project-name $(DESIGN_TOP); \
+	rm -f verilog_to_xschem.py
 	@printf "$(GREEN)[SUCCESS]$(NC) Xschem files generated in $(XSCHEM_DIR)/\n"
 
 # Xschem generation using Verilator for behavioral simulation
@@ -141,12 +143,14 @@ xschem-verilator: verilator_generate
 		exit 1; \
 	fi; \
 	MAIN_RTL=$$(echo $(RTL_FILES) | awk '{print $$1}'); \
+	cp ../../../../tools/verilog_to_xschem.py ./; \
 	printf "$(BLUE)[XSCHEM]$(NC) Using RTL: $$MAIN_RTL\n"; \
 	python3 verilog_to_xschem.py \
 		--rtl $$MAIN_RTL \
 		--output $(XSCHEM_DIR) \
 		--method verilator \
-		--project-name $(DESIGN_TOP)
+		--project-name $(DESIGN_TOP); \
+	rm -f verilog_to_xschem.py
 	@printf "$(GREEN)[SUCCESS]$(NC) Xschem files generated in $(XSCHEM_DIR)/\n"
 
 clean:

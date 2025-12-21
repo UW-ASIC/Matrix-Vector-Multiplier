@@ -4,6 +4,8 @@ Verilog to Xschem converter
 
 Yosys: Creates single symbol with spice_sym_def pointing to SPICE netlist
 Verilator: Creates inner primitive symbol + wrapper schematic + outer symbol
+
+
 """
 
 import argparse
@@ -28,12 +30,17 @@ def parse_verilog_ports(verilog_file):
     for line in content.split("\n"):
         line = line.strip()
         if line.startswith(("input", "output", "inout")):
-            match = re.match(r"(input|output|inout)\s+(?:\[.*?\])?\s*(\w+)", line)
+            match = re.match(
+                r"(input|output|inout)\s+"
+                r"(?:wire|reg|logic)?\s*"
+                r"(?:\[[^\]]+\])?\s*"
+                r"(\w+)",
+                line,
+            )
             if match:
                 ports.append(
                     {"name": match.group(2).rstrip(",;"), "dir": match.group(1)}
                 )
-
     return module_name, ports
 
 

@@ -1,7 +1,5 @@
 `timescale 1ns/1ns
 module DAC_stim(
-    input logic clk,
-    input logic rst_n,
     output logic [7:0] dac_out
 );
     // Parameters

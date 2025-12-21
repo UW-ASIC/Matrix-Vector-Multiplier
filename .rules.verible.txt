@@ -1,0 +1,8 @@
+# .rules.verible.txt
+
+-explicit-parameter-storage-type
+-explicit-begin
+-parameter-name-style=localparam_style:ALL_CAPS,parameter_style:ALL_CAPS
+-port-name-suffix
+-signal-name-style
+-struct-union-name-style
