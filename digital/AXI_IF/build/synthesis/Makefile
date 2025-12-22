@@ -81,34 +81,45 @@ harden: create_config
 		--run-tag $(DESIGN_TOP)_full \
 		config.json
 
-verilator_generate:
-	@printf "$(BLUE)[VERILATOR]$(NC) Generating shared library for $(DESIGN_TOP)...\n"
-	@if [ -z "$(RTL_FILES)" ]; then \
-		printf "$(RED)[ERROR]$(NC) No RTL files specified in RTL_FILES variable.\n"; \
+# Generic verilator generation function
+# Usage: $(call verilator_generate,TOP_MODULE,FILES,OUTPUT_NAME)
+define verilator_generate
+	@printf "$(BLUE)[VERILATOR]$(NC) Generating shared library for $(1)...\n"
+	@if [ -z "$(2)" ]; then \
+		printf "$(RED)[ERROR]$(NC) No files specified for compilation.\n"; \
 		exit 1; \
 	fi; \
-	printf "$(BLUE)[VERILATOR]$(NC) Using RTL files: $(RTL_FILES)\n"; \
+	printf "$(BLUE)[VERILATOR]$(NC) Using files: $(2)\n"; \
 	verilator --cc --build \
-		--prefix "V$(DESIGN_TOP)" \
+		--prefix "V$(1)" \
 		-CFLAGS "-fPIC" \
-		--top-module $(DESIGN_TOP) \
-		$(RTL_FILES); \
+		--top-module $(1) \
+		$(2); \
 	if [ $$? -ne 0 ]; then \
 		printf "$(RED)[ERROR]$(NC) Verilator generation failed.\n"; \
 		exit 1; \
 	fi; \
 	cd obj_dir && \
 	g++ -shared -fPIC \
-		V$(DESIGN_TOP)__ALL.a \
-		-o $(DESIGN_TOP).so; \
+		V$(1)__ALL.a \
+		-o $(3).so; \
 	if [ $$? -ne 0 ]; then \
 		printf "$(RED)[ERROR]$(NC) Shared library compilation failed.\n"; \
 		exit 1; \
 	fi; \
 	cd ..; \
 	mkdir -p $(XSCHEM_DIR)/verilator; \
-	mv obj_dir/$(DESIGN_TOP).so $(XSCHEM_DIR)/verilator/; \
-	printf "$(GREEN)[SUCCESS]$(NC) Generated $(DESIGN_TOP).so in $(XSCHEM_DIR)/verilator/\n"
+	mv obj_dir/$(3).so $(XSCHEM_DIR)/verilator/; \
+	printf "$(GREEN)[SUCCESS]$(NC) Generated $(3).so in $(XSCHEM_DIR)/verilator/\n"
+endef
+
+# Verilator generation for main design
+verilator_generate:
+	$(call verilator_generate,$(DESIGN_TOP),$(RTL_FILES),$(DESIGN_TOP))
+
+# Verilator generation for testbench
+verilator_generate_tb:
+	$(call verilator_generate,$(TB_TOP_MODULE),$(TB_TOP) $(RTL_FILES),$(TB_TOP_MODULE))
 
 # Xschem generation from OpenLane outputs
 xschem-yosys: harden
@@ -153,7 +164,26 @@ xschem-verilator: verilator_generate
 	rm -f verilog_to_xschem.py
 	@printf "$(GREEN)[SUCCESS]$(NC) Xschem files generated in $(XSCHEM_DIR)/\n"
 
+# Takes the TB_TOP_FILE defined in the config.mk and turns it to the xschem equivalent
+xschem-verilator-tb: verilator_generate_tb
+	@printf "$(BLUE)[XSCHEM]$(NC) Generating xschem symbol with Verilator for testbench...\n"
+	@mkdir -p $(XSCHEM_DIR)
+	@if [ -z "$(TB_TOP)" ]; then \
+		printf "$(RED)[ERROR]$(NC) No testbench files found in TB_TOP variable.\n"; \
+		exit 1; \
+	fi; \
+	cp ../../../../tools/verilog_to_xschem.py ./; \
+	printf "$(BLUE)[XSCHEM]$(NC) Using Testbench: $(TB_TOP)\n"; \
+	python3 verilog_to_xschem.py \
+		--rtl $(TB_TOP) \
+		--output $(XSCHEM_DIR) \
+		--method verilator \
+		--project-name $(TB_TOP_MODULE); \
+	rm -f verilog_to_xschem.py
+	@printf "$(GREEN)[SUCCESS]$(NC) Xschem testbench files generated in $(XSCHEM_DIR)/\n"
+
+
 clean:
 	@printf "$(BLUE)[DIGITAL]$(NC) Cleaning synthesis files...\n"
-	@rm -rf config.json runs $(XSCHEM_DIR) *.log
+	@rm -rf config.json runs $(XSCHEM_DIR) *.log obj_dir
 	@printf "$(GREEN)[SUCCESS]$(NC) Clean completed\n"
