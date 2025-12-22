@@ -43,4 +43,4 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
-*obj_dir/*
+*obj_dir/

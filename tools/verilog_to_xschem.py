@@ -218,8 +218,23 @@ E {{}}
     proj_name = project_name if project_name else base_name
     rtl_path = f"../../rtl/{proj_name}.v"
 
+    # Prefer a path to the inner symbol relative to the top-level analog/schematics directory
+    resolved_output = Path(output_dir).resolve()
+    inner_sym_file = resolved_output / f"{module_name}_inner.sym"
+    schematics_root = None
+    for p in resolved_output.parents:
+        if p.name == "schematics":
+            schematics_root = p
+            break
+
+    if schematics_root:
+        inner_sym_ref = os.path.relpath(inner_sym_file, start=schematics_root).replace(os.path.sep, "/")
+    else:
+        # Fallback to the previous behavior
+        inner_sym_ref = f"verilator/{module_name}_inner.sym"
+
     content += f"""
-C {{verilator/{module_name}_inner.sym}} {inst_x} {inst_y} 0 0 {{name={base_name} model={base_name}
+C {{{inner_sym_ref}}} {inst_x} {inst_y} 0 0 {{name={base_name} model={base_name}
 device_model=".model {base_name} d_cosim simulation=\\"./{base_name}.so\\""
 tclcommand="edit_file [abs_sym_path {rtl_path}]"}}
 """
