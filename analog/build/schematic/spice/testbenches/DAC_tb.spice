@@ -1,12 +1,12 @@
 ** sch_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/testbenches/DAC_tb.sch
 **.subckt DAC_tb
-x1 V_in I_main I_out_n I_out_p DAC_out[3] DAC_out[0] DAC_out[7] DAC_out[4] DAC_out[1] DAC_out[2] DAC_out[5] DAC_out[6] B5_bar
-+ B1_bar B4_bar B7_bar B6_bar B3_bar B2_bar B0_bar DAC
+x1 V_in I_main I_out_n I_out_p DAC_out[3] DAC_out[0] DAC_out[7] DAC_out[4] DAC_out[1] DAC_out[2] DAC_out[5] DAC_out[6]
++ DAC_out_n[5] DAC_out_n[1] DAC_out_n[4] DAC_out_n[7] DAC_out_n[6] DAC_out_n[3] DAC_out_n[2] DAC_out_n[0] DAC
 V1 V_in GND 1.8
 R1 I_out_p GND 1k m=1
 R2 I_out_n GND 1k m=1
 R3 I_main GND 1k m=1
-x2 net1 DAC_stim_functional
+x2 net2 net3 DAC_stim_functional
 **** begin user architecture code
 .lib /home/david/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 **** end user architecture code
@@ -107,12 +107,13 @@ XM34 I_out_n B7_bar net17 net17 sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int(
 .ends
 
 
-* expanding   symbol:  testbenches/digital_stim/verilator/DAC_stim_functional.sym # of pins=1
+* expanding   symbol:  testbenches/digital_stim/verilator/DAC_stim_functional.sym # of pins=2
 ** sym_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/testbenches/digital_stim/verilator/DAC_stim_functional.sym
 ** sch_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/testbenches/digital_stim/verilator/DAC_stim_functional.sch
-.subckt DAC_stim_functional dac_out
+.subckt DAC_stim_functional dac_out dac_out_n
 *.opin dac_out
-DAC_stim dac_out DAC_stim_functional_inner
+*.opin dac_out_n
+DAC_stim dac_out dac_out_n DAC_stim_functional_inner
 .ends
 
 .GLOBAL GND

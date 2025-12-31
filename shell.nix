@@ -2,7 +2,7 @@
   pkgs ?
     import (builtins.fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "sha256:1dvhyaddi7d4fkj63hns1xrdqcmyyq24y89k0cdwxs8s3619bx8v";
+      sha256 = "sha256:0hqb404lk3c7sqcvgjd5dzf2632ikhv9lwshq5q3j5vdwg86x03j";
     }) {
       overlays = [
         (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
@@ -221,7 +221,7 @@ in
 
       # PDK Configuration
       PDK = "sky130A";
-      PDK_VERSION = "6d4d11780c40b20ee63cc98e645307a9bf2b2ab8";
+      PDK_VERSION = "fa87f8f4bbcc7255b6f0c0fb506960f531ae2392";
     };
 
     shellHook = ''

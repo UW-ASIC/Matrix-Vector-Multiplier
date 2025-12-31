@@ -25,6 +25,7 @@ unitx=1
 logx=0
 logy=0
 }
+N -340 110 -320 110 {lab=#net1}
 C {DAC.sym} 10 0 0 0 {name=x1}
 C {devices/vsource.sym} -400 -120 0 0 {name=V1 value=1.8 savecurrent=false}
 C {devices/lab_pin.sym} -140 -160 0 0 {name=p1 lab=V_in}
@@ -32,14 +33,6 @@ C {devices/lab_pin.sym} 160 -160 0 1 {name=p2 lab=I_main}
 C {devices/lab_pin.sym} 160 -140 0 1 {name=p3 lab=I_out_n}
 C {devices/lab_pin.sym} 160 -120 0 1 {name=p4 lab=I_out_p}
 C {devices/lab_pin.sym} -140 -140 0 0 {name=p6 lab=DAC_out[0]}
-C {devices/lab_pin.sym} -140 120 0 0 {name=p13 lab=B5_bar}
-C {devices/lab_pin.sym} -140 40 0 0 {name=p14 lab=B1_bar}
-C {devices/lab_pin.sym} -140 100 0 0 {name=p15 lab=B4_bar}
-C {devices/lab_pin.sym} -140 160 0 0 {name=p16 lab=B7_bar}
-C {devices/lab_pin.sym} -140 140 0 0 {name=p17 lab=B6_bar}
-C {devices/lab_pin.sym} -140 80 0 0 {name=p18 lab=B3_bar}
-C {devices/lab_pin.sym} -140 60 0 0 {name=p19 lab=B2_bar}
-C {devices/lab_pin.sym} -140 20 0 0 {name=p20 lab=B0_bar}
 C {devices/lab_pin.sym} -400 -150 2 0 {name=p21 lab=V_in}
 C {devices/gnd.sym} -400 -90 0 0 {name=l1 lab=GND}
 C {sky130_fd_pr/corner.sym} 270 20 0 0 {name=CORNER only_toplevel=false corner=tt}
@@ -69,7 +62,7 @@ descr="load waves"
 tclcommand="xschem raw_read $netlist_dir/DAC_tb.raw tran"
 }
 C {testbenches/digital_stim/verilator/DAC_stim_functional.sym} -490 90 0 0 {name=x2}
-C {devices/bus_connect.sym} -340 90 0 0 {name=l5 lab=DAC_out[7:0]}
+C {devices/bus_connect.sym} -340 70 0 0 {name=l5 lab=DAC_out[7:0]}
 C {devices/lab_pin.sym} -140 -120 0 0 {name=p5 lab=DAC_out[1]}
 C {devices/lab_pin.sym} -140 -100 0 0 {name=p7 lab=DAC_out[2]}
 C {devices/lab_pin.sym} -140 -80 0 0 {name=p8 lab=DAC_out[3]}
@@ -77,3 +70,12 @@ C {devices/lab_pin.sym} -140 -60 0 0 {name=p9 lab=DAC_out[4]}
 C {devices/lab_pin.sym} -140 -40 0 0 {name=p10 lab=DAC_out[5]}
 C {devices/lab_pin.sym} -140 -20 0 0 {name=p11 lab=DAC_out[6]}
 C {devices/lab_pin.sym} -140 0 0 0 {name=p12 lab=DAC_out[7]}
+C {devices/bus_connect.sym} -320 110 0 0 {name=l6 lab=DAC_out_n[7:0]}
+C {devices/lab_pin.sym} -140 20 0 0 {name=p13 lab=DAC_out_n[0]}
+C {devices/lab_pin.sym} -140 40 0 0 {name=p14 lab=DAC_out_n[1]}
+C {devices/lab_pin.sym} -140 60 0 0 {name=p15 lab=DAC_out_n[2]}
+C {devices/lab_pin.sym} -140 80 0 0 {name=p16 lab=DAC_out_n[3]}
+C {devices/lab_pin.sym} -140 100 0 0 {name=p17 lab=DAC_out_n[4]}
+C {devices/lab_pin.sym} -140 120 0 0 {name=p18 lab=DAC_out_n[5]}
+C {devices/lab_pin.sym} -140 140 0 0 {name=p19 lab=DAC_out_n[6]}
+C {devices/lab_pin.sym} -140 160 0 0 {name=p20 lab=DAC_out_n[7]}
