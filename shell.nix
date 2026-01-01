@@ -1,8 +1,8 @@
 {
   pkgs ?
     import (builtins.fetchTarball {
-      url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
-      sha256 = "sha256:0hqb404lk3c7sqcvgjd5dzf2632ikhv9lwshq5q3j5vdwg86x03j";
+      # New GCC14 merge has temporarily broken some nixpkgs, so this is a specific commit before that
+      url = "https://github.com/NixOS/nixpkgs/archive/c4cfc9ced33f81099f419fa59893df11dc3f9de9.tar.gz";
     }) {
       overlays = [
         (import (builtins.fetchTarball "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"))
@@ -100,6 +100,8 @@
       '';
     };
   };
+
+  # Custom Python script to install required Python packages
   pythonRequirements = ''
     volare==0.20.6
     openlane==2.3.10
@@ -200,6 +202,9 @@ in
 
       # Custom installer script
       pythonDepsInstaller
+
+      # Documentation
+      bun
     ];
 
     env = {
