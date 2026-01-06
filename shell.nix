@@ -180,6 +180,7 @@ in
       selfBuiltPackages.klayout-with-python
       ngspice
       magic-vlsi
+      gaw
 
       # OpenLane Dependencies
       tcl
