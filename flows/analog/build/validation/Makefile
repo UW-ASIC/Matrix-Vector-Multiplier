@@ -1,5 +1,10 @@
 include ../config.mk
 
+# Enforce Nix Shell
+ifndef IN_NIX_SHELL
+  $(error This Makefile must be run inside the nix-shell environment. Run ./env.sh first to enter the nix-shell)
+endif
+
 KLAYOUT = klayout
 MAGIC = magic
 NETGEN = netgen
