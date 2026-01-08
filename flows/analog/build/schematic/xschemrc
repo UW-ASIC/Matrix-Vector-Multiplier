@@ -1,4 +1,4 @@
-source $env(HOME)/.volare/volare/sky130/versions/6d4d11780c40b20ee63cc98e645307a9bf2b2ab8/sky130A/libs.tech/xschem/xschemrc
+source $env(HOME)/.volare/volare/sky130/versions/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130A/libs.tech/xschem/xschemrc
 
 set SKYWATER_MODELS "$env(HOME)/.volare/sky130A/libs.tech/ngspice"
 set SKYWATER_STDCELLS "$env(HOME)/.volare/sky130A/libs.ref/sky130_fd_sc_hd/spice"
@@ -15,7 +15,7 @@ set gaw_viewer "gaw"
 set editor "vim"
 
 #### NETLIST CONFIGURATION
-set netlist_dir [file normalize "[file dirname [info script]]/spice"]
+set netlist_dir [file normalize "[file dirname [info script]]/../../spice"]
 file mkdir $netlist_dir
 set XSCHEM_NETLIST_DIR $netlist_dir
 set netlist_type spice
@@ -25,8 +25,10 @@ set XSCHEM_LIBRARY_PATH {}
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../schematics
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../symbols
 append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../library
+append XSCHEM_LIBRARY_PATH :[file dirname [info script]]/../../../digital/AXI_IF/build/synthesis/xschem
 append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
-append XSCHEM_LIBRARY_PATH :$env(HOME)/.volare/volare/sky130/versions/6d4d11780c40b20ee63cc98e645307a9bf2b2ab8/sky130A/libs.tech/xschem
+append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library/devices
+append XSCHEM_LIBRARY_PATH :$env(HOME)/.volare/volare/sky130/versions/fa87f8f4bbcc7255b6f0c0fb506960f531ae2392/sky130A/libs.tech/xschem
 
 
 ## Directory colors
