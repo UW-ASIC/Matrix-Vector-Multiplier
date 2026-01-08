@@ -2,8 +2,5 @@
     path = analog/library
     url = https://github.com/UW-ASIC/AnalogLibrary.git
 [submodule "UWASIC-ALG"]
-    path = analog/library/dep_library/UWASIC-ALG
+    path = analog/library/tools/dep_library/UWASIC-ALG
     url = https://github.com/UW-ASIC/UWASIC-ALG.git
-[submodule "analog/library"]
-	path = analog/library
-	url = https://github.com/UW-ASIC/AnalogLibrary
