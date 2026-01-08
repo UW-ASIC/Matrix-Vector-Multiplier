@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 -810 -660 0 -250 {flags=graph
-y1=-0.032563584
-y2=0.44664336
+y1=-0.18026222
+y2=0.84066498
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-6.761643e-07
-x2=4.6545033e-06
+x1=-2.5221235e-07
+x2=4.3843204e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -25,25 +25,20 @@ logy=0
 rawfile=$netlist_dir/DAC_tb.raw
 color="4 5"
 node="i_main
-v_dac_out"}
-N 900 -10 900 30 {lab=GND}
-N 900 -10 940 -10 {lab=GND}
-N 1070 30 1070 50 {lab=GND}
-N 1210 -60 1270 -60 {lab=v_dac_out}
-N 1070 -220 1070 -150 {lab=#net1}
-N 1070 -220 1200 -220 {lab=#net1}
-N 940 -280 940 -110 {lab=I_out_p}
-N 1260 -280 1260 -60 {lab=v_dac_out}
-N 940 -280 1070 -280 {lab=I_out_p}
-N 1130 -280 1260 -280 {lab=v_dac_out}
+i_out_p"}
+N 900 -10 900 30 {lab=#net1}
+N 900 -10 940 -10 {lab=#net1}
+N 1070 30 1070 50 {lab=#net2}
+N 1210 -60 1270 -60 {lab=#net3}
+N 1070 -220 1070 -150 {lab=#net4}
+N 1070 -220 1200 -220 {lab=#net4}
+N 940 -280 940 -110 {lab=#net5}
+N 1260 -280 1260 -60 {lab=#net3}
+N 940 -280 1070 -280 {lab=#net5}
+N 1130 -280 1260 -280 {lab=#net3}
 C {DAC.sym} 10 0 0 0 {name=x1}
-C {devices/lab_pin.sym} 160 -160 0 1 {name=p2 lab=I_main}
 C {devices/lab_pin.sym} 160 -120 0 1 {name=p4 lab=I_out_p}
 C {sky130_fd_pr/corner.sym} 360 190 0 0 {name=CORNER only_toplevel=false corner=tt}
-C {devices/lab_pin.sym} 280 -160 0 1 {name=p22 lab=I_out_p}
-C {devices/gnd.sym} 280 -40 0 0 {name=l2 lab=GND}
-C {devices/gnd.sym} 480 -40 0 0 {name=l4 lab=GND}
-C {devices/lab_pin.sym} 480 -160 0 1 {name=p24 lab=I_main}
 C {devices/launcher.sym} 490 -570 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/DAC_tb.raw tran"
@@ -151,48 +146,61 @@ spice_ignore=false}
 C {devices/gnd.sym} 570 -100 0 0 {name=l3 lab=GND
 spice_ignore=false}
 C {devices/lab_pin.sym} 160 -140 0 1 {name=p34 lab=I_out_n}
-C {devices/vsource.sym} 280 -130 0 0 {name=V20 value=0 savecurrent=false}
-C {devices/vsource.sym} 480 -130 0 0 {name=V21 value=0 savecurrent=false}
 C {devices/vsource.sym} 660 -130 0 0 {name=V22 value=0 savecurrent=false}
 C {devices/lab_pin.sym} 660 -160 0 1 {name=p43 lab=I_out_n}
-C {devices/res.sym} 480 -70 0 0 {name=R2
-value=500
-footprint=1206
-device=resistor
-m=1}
-C {devices/res.sym} 280 -70 0 0 {name=R1
-value=500
-footprint=1206
-device=resistor
-m=1}
 C {devices/gnd.sym} 660 -40 0 0 {name=l6 lab=GND}
 C {devices/res.sym} 660 -70 0 0 {name=R3
-value=500
+value=1k
 footprint=1206
 device=resistor
 m=1}
-C {devices/capa.sym} 760 -130 0 0 {name=C2
-m=1
-value=200f
-footprint=1206
-device="ceramic capacitor"
-spice_ignore=false}
-C {devices/lab_pin.sym} 760 -160 0 1 {name=p32 lab=I_main
-spice_ignore=false}
-C {devices/gnd.sym} 760 -100 0 0 {name=l23 lab=GND
-spice_ignore=false}
-C {OpAmps/template/OpAmp.sym} 1090 -60 0 0 {name=x2}
-C {devices/lab_pin.sym} 940 -110 2 1 {name=p44 lab=I_out_p}
-C {devices/gnd.sym} 900 30 0 0 {name=l24 lab=GND}
-C {devices/gnd.sym} 1070 50 0 0 {name=l25 lab=GND}
-C {devices/vsource.sym} 1010 100 0 0 {name=V2 value=0.9 savecurrent=false}
-C {devices/gnd.sym} 1010 130 0 0 {name=l26 lab=GND}
-C {devices/vsource.sym} 1200 -190 0 0 {name=V3 value=1.8 savecurrent=false}
-C {devices/gnd.sym} 1110 -160 0 0 {name=l27 lab=GND}
+C {OpAmps/template/OpAmp.sym} 1090 -60 0 0 {name=x2
+spice_ignore=true}
+C {devices/lab_pin.sym} 940 -110 2 1 {name=p44 lab=I_out_p
+spice_ignore=true}
+C {devices/gnd.sym} 900 30 0 0 {name=l24 lab=GND
+spice_ignore=true}
+C {devices/gnd.sym} 1070 50 0 0 {name=l25 lab=GND
+spice_ignore=true}
+C {devices/vsource.sym} 1010 100 0 0 {name=V2 value=0.9 savecurrent=false
+spice_ignore=true}
+C {devices/gnd.sym} 1010 130 0 0 {name=l26 lab=GND
+spice_ignore=true}
+C {devices/vsource.sym} 1200 -190 0 0 {name=V3 value=1.8 savecurrent=false
+spice_ignore=true}
+C {devices/gnd.sym} 1110 -160 0 0 {name=l27 lab=GND
+spice_ignore=true}
 C {devices/res.sym} 1100 -280 1 0 {name=R4
-value=500
+value=1k
+footprint=1206
+device=resistor
+m=1
+spice_ignore=true}
+C {devices/gnd.sym} 1200 -160 0 0 {name=l28 lab=GND
+spice_ignore=true}
+C {devices/lab_pin.sym} 1270 -60 0 1 {name=p45 lab=v_dac_out
+spice_ignore=true}
+C {devices/res.sym} 1260 -30 2 0 {name=R1
+value=1k
+footprint=1206
+device=resistor
+m=1
+spice_ignore=true}
+C {devices/vsource.sym} 440 20 0 0 {name=V21 value=0 savecurrent=false}
+C {devices/lab_pin.sym} 440 -10 0 1 {name=p2 lab=I_out_p}
+C {devices/gnd.sym} 440 110 0 0 {name=l2 lab=GND}
+C {devices/res.sym} 440 80 0 0 {name=R2
+value=1k
 footprint=1206
 device=resistor
 m=1}
-C {devices/gnd.sym} 1200 -160 0 0 {name=l28 lab=GND}
-C {devices/lab_pin.sym} 1270 -60 0 1 {name=p45 lab=v_dac_out}
+C {devices/lab_pin.sym} 440 -10 0 1 {name=p22 lab=I_out_p}
+C {devices/lab_pin.sym} 160 -160 0 1 {name=p24 lab=I_main}
+C {devices/lab_pin.sym} 260 -20 0 1 {name=p32 lab=I_main}
+C {devices/vsource.sym} 260 10 0 0 {name=V20 value=0 savecurrent=false}
+C {devices/gnd.sym} 260 100 0 0 {name=l4 lab=GND}
+C {devices/res.sym} 260 70 0 0 {name=R5
+value=1k
+footprint=1206
+device=resistor
+m=1}
