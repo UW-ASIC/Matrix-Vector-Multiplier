@@ -14,6 +14,14 @@ install_with_brew() {
         echo "✅ $pkg already installed."
     fi
 }
+# Force amd64 container on macOS (Apple Silicon)
+DOCKER_PLATFORM=""
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    DOCKER_PLATFORM="--platform=linux/amd64"
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    docker build $DOCKER_PLATFORM -t $IMAGE_NAME "$SCRIPT_DIR"
+    echo "🍎 macOS detected — using linux/amd64 container"
+fi
 
 # --- Fast Path: Check if Already Set Up ---
 SETUP_COMPLETE=false
@@ -104,7 +112,7 @@ xhost +$IP >/dev/null 2>&1 || true
 
 # Enter container
 echo "🚀 Entering EDA environment..."
-docker run -it --rm \
+docker run $DOCKER_PLATFORM -it --rm \
     -e DISPLAY=$IP:0 \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "$(pwd):/workspace" \
