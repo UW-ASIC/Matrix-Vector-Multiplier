@@ -14,7 +14,7 @@ RUN nix-env -iA nixpkgs.bash nixpkgs.cachix
 RUN cachix use uwasic-eda
 
 WORKDIR /workspace
-COPY shell.nix /workspace/
+COPY shell.nix Analog.nix Digital.nix /workspace/
 
 ENV QT_X11_NO_MITSHM=1
 
