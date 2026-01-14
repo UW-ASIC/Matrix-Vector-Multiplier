@@ -1,0 +1,12 @@
+a8 %vd([B0 0 B1 0 B2 0 B3 0 B4 0 T0 0 T1 0 T2 0 T3 0 T4 0 T5 0 T6 0 
++       B0_n 0 B1_n 0 B2_n 0 B3_n 0 B4_n 0 
++       T0_n 0 T1_n 0 T2_n 0 T3_n 0 T4_n 0 T5_n 0 T6_n 0]) dac_src
+
+* Define the model referencing your generated file
+.model dac_src filesource (file="dac_data.txt" 
++                          timerelative=false 
++                          amplstep=true 
++                          timescale=1 
++                          timeoffset=0
++                          amploffset=[0 0]
++                          amplscale=[1 1])
