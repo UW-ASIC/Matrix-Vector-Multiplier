@@ -2,33 +2,45 @@
 **.subckt seg_dac_tb
 x1 V_in I_main I_out_n I_out_p T1 T3 T4 B3 T2 T0 B4 T5 B2 B0 T6 B1 T1_n T0_n B2_n T5_n T4_n T3_n B1_n B4_n T2_n B3_n T6_n B0_n
 + segmented_dac
-R5 net3 GND 1k m=1
-V3 net1 GND 1.8
-R1 GND v_dac_out_p 1k m=1
+V4 B0 GND PULSE(0 1.8 0 50p 50p 15.15n 30.3n)
+V5 B1 GND PULSE(0 1.8 0 50p 50p 30.3n 60.6n)
+V6 B2 GND PULSE(0 1.8 0 50p 50p 60.6n 121.2n)
+V7 B3 GND PULSE(0 1.8 0 50p 50p 121.2n 242.4n)
+V8 B4 GND PULSE(0 1.8 0 50p 50p 242.4n 484.8n)
+V9 T0 GND PULSE(0 1.8 0 50p 50p 484.8n 7756.8n)
+V10 T1 GND PULSE(0 1.8 0 50p 50p 969.6n 7756.8n)
+V11 T2 GND PULSE(0 1.8 0 50p 50p 1454.4n 7756.8n)
+V17 T3 GND PULSE(0 1.8 0 50p 50p 1939.2n 7756.8n)
+V18 T4 GND PULSE(0 1.8 0 50p 50p 2424n 7756.8n)
+V19 T5 GND PULSE(0 1.8 0 50p 50p 2908.8n 7756.8n)
+V20 T6 GND PULSE(0 1.8 0 50p 50p 3393.6n 7756.8n)
+V12 B0_n GND PULSE(1.8 0 0 50p 50p 15.15n 30.3n)
+V13 B1_n GND PULSE(1.8 0 0 50p 50p 30.3n 60.6n)
+V14 B2_n GND PULSE(1.8 0 0 50p 50p 60.6n 121.2n)
+V15 B3_n GND PULSE(1.8 0 0 50p 50p 121.2n 242.4n)
+V16 B4_n GND PULSE(1.8 0 0 50p 50p 242.4n 484.8n)
+V21 T0_n GND PULSE(1.8 0 0 50p 50p 484.8n 7756.8n)
+V22 T1_n GND PULSE(1.8 0 0 50p 50p 969.6n 7756.8n)
+V23 T2_n GND PULSE(1.8 0 0 50p 50p 1454.4n 7756.8n)
+V24 T3_n GND PULSE(1.8 0 0 50p 50p 1939.2n 7756.8n)
+V25 T4_n GND PULSE(1.8 0 0 50p 50p 2424n 7756.8n)
+V26 T5_n GND PULSE(1.8 0 0 50p 50p 2908.8n 7756.8n)
+V27 T6_n GND PULSE(1.8 0 0 50p 50p 3393.6n 7756.8n)
+R5 net4 GND 1k m=1
+V3 net2 GND 1.8
+R1 GND net1 1k m=1
 V1 V_in GND 1.8
-V28 I_main net3 0
-V31 I_out_p net2 0
+V28 I_main net4 0
+V31 I_out_p net3 0
 R2 GND I_out_n 1k m=1
-x2 net1 v_dac_out_p net2 GND net4 GND OpAmp
-R3 net2 v_dac_out_p 1k m=1
-V2 net4 GND 0.9
-* Define the 24 output nodes
-* Order: B0..B4, T0..T6, B0n..B4n, T0n..T6n
-a8 %vd([B0 0 B1 0 B2 0 B3 0 B4 0 T0 0 T1 0 T2 0 T3 0 T4 0 T5 0 T6 0 
-+       B0_n 0 B1_n 0 B2_n 0 B3_n 0 B4_n 0 
-+       T0_n 0 T1_n 0 T2_n 0 T3_n 0 T4_n 0 T5_n 0 T6_n 0]) dac_src
-
-* Define the model referencing your generated file
-.model dac_src filesource (file="dac_data.txt" 
-+                          timerelative=false 
-+                          amplstep=true 
-+                          timescale=1 
-+                          timeoffset=0
-+                          amploffset=[0 0]
-+                          amplscale=[1 1])
+x2 net2 net1 net3 GND net5 GND OpAmp
+R3 net3 net1 1k m=1
+V2 net5 GND 0.9
+R4 net1 v_dac_out_p 500 m=1
+C1 GND v_dac_out_p 500f m=1
 **** begin user architecture code
 
-.param mc_mm_switch=0
+.param mc_mm_switch=1
 .param mc_pr_switch=0
 .include /home/david/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
 .include /home/david/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
@@ -37,18 +49,17 @@ a8 %vd([B0 0 B1 0 B2 0 B3 0 B4 0 T0 0 T1 0 T2 0 T3 0 T4 0 T5 0 T6 0
 
 
 .control
-* Longer simulation with slower switching
-tran 50p 3878.4n
-* Plot differential output
-let diff_out = v_dac_out_p - v_dac_out_n
-plot diff_out
-
-* Also plot individual outputs to see if one is noisier
-plot v_dac_out_p v_dac_out_n
-
-write seg_dac_tb.raw
+let run=0
+dowhile run <= 100
+  save all
+  tran 100p 4u
+  remzerovec
+  write seg_dac_tb.raw
+  set appendwrite
+  reset
+  let run=run+=1
+end
 .endc
-
 .end
 
 **** end user architecture code
