@@ -1,6 +1,6 @@
 { pkgs, uwasic-eda }:
 let
-  edaPackages = uwasic-eda.packages.${pkgs.system};
+  edaPackages = uwasic-eda.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   packages = with pkgs; [
