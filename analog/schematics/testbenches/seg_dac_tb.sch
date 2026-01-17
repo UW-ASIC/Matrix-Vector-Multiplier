@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 -850 -690 -50 -290 {flags=graph
-y1=0.000721907
-y2=0.054116112
+y1=-8.2e-05
+y2=0.075
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=2.4925426e-07
-x2=2.1956087e-06
+x1=1.7598902e-06
+x2=3.1476313e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -21,7 +21,7 @@ ylabmag=1.0
 node="v_dac_out_p
 i(v31)"
 color="4 12"
-dataset=-1
+dataset=5
 unitx=1
 logx=0
 logy=0
@@ -243,7 +243,7 @@ C {devices/code_shown.sym} -20 460 0 0 {name=s1 only_toplevel=false value=".cont
 let run=0
 dowhile run <= 100
   save all
-  tran 100p 4u
+  tran 1n 4u
   remzerovec
   write seg_dac_tb.raw
   set appendwrite

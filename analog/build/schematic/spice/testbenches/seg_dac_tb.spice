@@ -26,25 +26,26 @@ V24 T3_n GND PULSE(1.8 0 0 100p 100p 1939.2n 7756.8n)
 V25 T4_n GND PULSE(1.8 0 0 100p 100p 2424n 7756.8n)
 V26 T5_n GND PULSE(1.8 0 0 100p 100p 2908.8n 7756.8n)
 V27 T6_n GND PULSE(1.8 0 0 100p 100p 3393.6n 7756.8n)
-R5 net3 GND 1k m=1
-x2 net1 v_dac_out_p I_out_p GND net4 GND OpAmp
-V2 net4 GND 0.9
+R5 net4 GND 1k m=1
+x2 net1 v_dac_out_p net2 GND net5 GND OpAmp
+V2 net5 GND 0.9
 V3 net1 GND 1.8
-R4 v_dac_out_p I_out_p 1k m=1
+R4 v_dac_out_p net2 1k m=1
 R1 GND v_dac_out_p 1k m=1
-x3 net2 v_dac_out_n I_out_n GND net5 GND OpAmp
+x3 net3 v_dac_out_n I_out_n GND net6 GND OpAmp
 R6 v_dac_out_n I_out_n 1k m=1
 R3 GND v_dac_out_n 1k m=1
 V1 V_in GND 1.8
-V28 I_main net3 0
-V29 net5 GND 0.9
-V30 net2 GND 1.8
+V28 I_main net4 0
+V29 net6 GND 0.9
+V30 net3 GND 1.8
+V31 I_out_p net2 0
 **** begin user architecture code
 .lib /home/david/.volare/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 
 .control
 * Longer simulation with slower switching
-tran 25p 3878.4n
+tran 50p 3878.4n
 * Plot differential output
 let diff_out = v_dac_out_p - v_dac_out_n
 plot diff_out

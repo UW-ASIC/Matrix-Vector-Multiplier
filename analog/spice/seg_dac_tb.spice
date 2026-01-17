@@ -52,7 +52,7 @@ C1 GND v_dac_out_p 500f m=1
 let run=0
 dowhile run <= 100
   save all
-  tran 100p 4u
+  tran 1n 4u
   remzerovec
   write seg_dac_tb.raw
   set appendwrite

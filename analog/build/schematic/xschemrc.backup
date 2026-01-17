@@ -15,7 +15,7 @@ set gaw_viewer "gaw"
 set editor "vim"
 
 #### NETLIST CONFIGURATION
-set netlist_dir [file normalize "[file dirname [info script]]/spice"]
+set netlist_dir [file normalize "[file dirname [info script]]/../../spice"]
 file mkdir $netlist_dir
 set XSCHEM_NETLIST_DIR $netlist_dir
 set netlist_type spice
