@@ -17,7 +17,7 @@ lab=GND}
 N -420 -90 -420 -50 {
 lab=#net2}
 N -1110 -180 -1110 -150 {
-lab=xxx}
+lab=I_ref}
 N -280 -90 -280 -50 {
 lab=#net3}
 N -480 -80 -320 -80 {
@@ -283,9 +283,9 @@ N 550 40 550 70 {lab=#net17}
 N -1130 -20 -1110 -20 {lab=#net1}
 N -1130 -50 -1130 -20 {lab=#net1}
 N -1130 -50 -1110 -50 {lab=#net1}
-N -1130 -120 -1110 -120 {lab=xxx}
-N -1130 -150 -1130 -120 {lab=xxx}
-N -1130 -150 -1110 -150 {lab=xxx}
+N -1130 -120 -1110 -120 {lab=I_ref}
+N -1130 -150 -1130 -120 {lab=I_ref}
+N -1130 -150 -1110 -150 {lab=I_ref}
 N -30 70 -0 70 {lab=#net9}
 N 660 120 730 120 {lab=I_out_n}
 N -460 -60 -320 -60 {lab=GND}
@@ -449,7 +449,7 @@ C {sky130_fd_pr/pfet_01v8.sym} -1090 -120 0 1 {name=M3
 W=min_width
 L=length
 nf=1
-mult=128
+mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -463,7 +463,7 @@ C {sky130_fd_pr/pfet_01v8.sym} -1090 -20 0 1 {name=M4
 W=min_width
 L=length
 nf=1
-mult=128
+mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
