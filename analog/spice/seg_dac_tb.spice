@@ -1,6 +1,6 @@
 ** sch_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/testbenches/seg_dac_tb.sch
 **.subckt seg_dac_tb
-x1 V_in I_ref I_out_n I_out_p T1 T4 T5 B3 T6 T2 B4 T0 B2 T3 B0 B1 T1_n T0_n B2_n T6_n T5_n T4_n B1_n T3_n B4_n T2_n B3_n B0_n
+x1 V_in I_ref net4 I_out_p T1 T4 T5 B3 T6 T2 B4 T0 B2 T3 B0 B1 T1_n T0_n B2_n T6_n T5_n T4_n B1_n T3_n B4_n T2_n B3_n B0_n
 + segmented_dac
 V4 B0 GND PULSE(0 1.8 0 50p 50p 15.15n 30.3n)
 V5 B1 GND PULSE(0 1.8 0 50p 50p 30.3n 60.6n)
@@ -28,23 +28,16 @@ V26 T5_n GND PULSE(1.8 0 0 50p 50p 2908.8n 7756.8n)
 V27 T6_n GND PULSE(1.8 0 0 50p 50p 3393.6n 7756.8n)
 V3 net2 GND 1.8
 R1 GND net1 1k m=1
-V1 V_in net7 1.8
+V1 V_in net5 1.8
 V31 I_out_p net3 0
-x2 net2 net1 net3 GND net8 GND OpAmp
+x2 net2 net1 net3 GND net6 GND OpAmp
 R3 net3 net1 1k m=1
-V2 net8 GND 0.9
-R4 net1 v_dac_out_p 1k m=1
-C1 GND v_dac_out_p 1p m=1
+V2 net6 GND 0.9
+R4 net1 v_dac_out 200 m=1
+C1 GND v_dac_out 2p m=1
 I0 V_in I_ref 0.26u
-V28 net5 GND 1.8
-R2 GND net4 1k m=1
-V29 I_out_n net6 0
-x3 net5 net4 net6 GND net9 GND OpAmp
-R5 net6 net4 1k m=1
-V30 net9 GND 0.9
-R6 net4 v_dac_out_n 1k m=1
-C2 GND v_dac_out_n 1p m=1
-V32 net7 GND 0
+V32 net5 GND 0
+V33 net4 GND 0
 **** begin user architecture code
 
 .param mc_mm_switch=0
@@ -58,8 +51,7 @@ V32 net7 GND 0
 .control
   options savecurrents
   tran 100p 3876n
-  let diff_out=v_dac_out_p-v_dac_out_n
-  let power=integ(abs(v_in*v32#branch))
+  let power=(abs(v_in*v32#branch))
   write seg_dac_tb.raw
 .endc
 .end

@@ -5,24 +5,22 @@ V {}
 S {}
 E {}
 B 2 -770 -720 30 -320 {flags=graph
-y1=-0.0051
-y2=0.011
+y1=-6.5e-05
+y2=0.069
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-4.1947808e-08
-x2=1.3804108e-07
+x1=0
+x2=3.876e-06
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
 node="v_dac_out_p
-diff_out
-v_dac_out_n
 i(v31)"
-color="4 12 10 8"
+color="4 12"
 dataset=-1
 unitx=1
 logx=0
@@ -37,15 +35,7 @@ N 660 -410 660 -240 {lab=#net3}
 N 660 -410 820 -410 {lab=#net3}
 N 600 -140 600 -90 {lab=GND}
 N 600 -140 660 -140 {lab=GND}
-N 930 310 990 310 {lab=#net4}
-N 790 160 790 220 {lab=#net5}
-N 790 160 940 160 {lab=#net5}
-N 980 90 980 310 {lab=#net4}
-N 880 90 980 90 {lab=#net4}
-N 660 90 660 260 {lab=#net6}
-N 660 90 820 90 {lab=#net6}
-N 600 360 600 410 {lab=GND}
-N 600 360 660 360 {lab=GND}
+N 170 -250 290 -250 {lab=#net4}
 C {segmented_dac.sym} 20 0 0 0 {name=x1}
 C {devices/vsource.sym} -800 -190 0 0 {name=V4 value="PULSE(0 1.8 0 50p 50p 15.15n 30.3n)" savecurrent=false
 spice_ignore=false}
@@ -198,7 +188,7 @@ C {devices/vsource.sym} 940 -310 0 0 {name=V3 value=1.8 savecurrent=false
 spice_ignore=false}
 C {devices/gnd.sym} 940 -280 0 0 {name=l28 lab=GND
 spice_ignore=false}
-C {devices/lab_pin.sym} 1050 -190 0 1 {name=p45 lab=v_dac_out_p
+C {devices/lab_pin.sym} 1050 -190 0 1 {name=p45 lab=v_dac_out
 spice_ignore=false}
 C {devices/res.sym} 980 -160 2 0 {name=R1
 value=1k
@@ -214,8 +204,7 @@ C {devices/gnd.sym} -70 420 0 0 {name=l1 lab=GND}
 C {devices/code_shown.sym} 0 460 0 0 {name=s1 only_toplevel=false value=".control
   options savecurrents
   tran 100p 3876n
-  let diff_out=v_dac_out_p-v_dac_out_n
-  let power=integ(abs(v_in*v32#branch))
+  let power=(abs(v_in*v32#branch))
   write seg_dac_tb.raw
 .endc
 .end"}
@@ -232,14 +221,14 @@ C {devices/vsource.sym} 730 -30 0 0 {name=V2 value=0.9 savecurrent=false}
 C {devices/gnd.sym} 730 0 0 0 {name=l4 lab=GND}
 C {devices/gnd.sym} 790 -100 0 0 {name=l6 lab=GND}
 C {devices/res.sym} 1020 -190 3 0 {name=R4
-value=1k
+value=200
 footprint=1206
 device=resistor
 m=1
 spice_ignore=false}
 C {devices/capa.sym} 1050 -160 2 0 {name=C1
 m=1
-value=1p
+value=2p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/gnd.sym} 1050 -130 0 0 {name=l31 lab=GND
@@ -278,47 +267,6 @@ C {devices/lab_pin.sym} -130 250 0 0 {name=p28 lab=B0_n}
 C {devices/lab_pin.sym} 330 -20 0 0 {name=p3 lab=I_ref}
 C {devices/isource.sym} 330 -50 0 0 {name=I0 value=0.26u}
 C {devices/lab_pin.sym} 330 -80 0 0 {name=p54 lab=V_in}
-C {devices/lab_pin.sym} 600 260 2 1 {name=p55 lab=I_out_n
-spice_ignore=false}
-C {devices/vsource.sym} 940 190 0 0 {name=V28 value=1.8 savecurrent=false
-spice_ignore=false}
-C {devices/gnd.sym} 940 220 0 0 {name=l5 lab=GND
-spice_ignore=false}
-C {devices/lab_pin.sym} 1050 310 0 1 {name=p56 lab=v_dac_out_n
-spice_ignore=false}
-C {devices/res.sym} 980 340 2 0 {name=R2
-value=1k
-footprint=1206
-device=resistor
-m=1
-spice_ignore=false}
-C {devices/gnd.sym} 980 370 0 0 {name=l32 lab=GND
-spice_ignore=false}
-C {devices/vsource.sym} 630 260 3 0 {name=V29 value=0 savecurrent=false}
-C {OpAmp/Two-Stage_Miller/OpAmp.sym} 810 310 0 0 {name=x3}
-C {devices/res.sym} 850 90 3 0 {name=R5
-value=1k
-footprint=1206
-device=resistor
-m=1
-spice_ignore=false}
-C {devices/gnd.sym} 600 410 0 0 {name=l33 lab=GND}
-C {devices/vsource.sym} 730 470 0 0 {name=V30 value=0.9 savecurrent=false}
-C {devices/gnd.sym} 730 500 0 0 {name=l34 lab=GND}
-C {devices/gnd.sym} 790 400 0 0 {name=l35 lab=GND}
-C {devices/res.sym} 1020 310 3 0 {name=R6
-value=1k
-footprint=1206
-device=resistor
-m=1
-spice_ignore=false}
-C {devices/capa.sym} 1050 340 2 0 {name=C2
-m=1
-value=1p
-footprint=1206
-device="ceramic capacitor"}
-C {devices/gnd.sym} 1050 370 0 0 {name=l36 lab=GND
-spice_ignore=false}
-C {devices/lab_pin.sym} 170 -250 0 1 {name=p57 lab=I_out_n
-}
 C {devices/vsource.sym} -70 390 0 0 {name=V32 value=0 savecurrent=false}
+C {devices/gnd.sym} 290 -190 0 0 {name=l2 lab=GND}
+C {devices/vsource.sym} 290 -220 0 0 {name=V33 value=0 savecurrent=false}
