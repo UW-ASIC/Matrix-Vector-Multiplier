@@ -18,34 +18,34 @@ T {I_out_n} 125 -254 0 1 0.2 0.2 {}
 B 5 147.5 -232.5 152.5 -227.5 {name=I_out_p dir=out L=length}
 L 4 130 -230 150 -230 {}
 T {I_out_p} 125 -234 0 1 0.2 0.2 {}
-B 5 -152.5 -212.5 -147.5 -207.5 {name=T1 dir=in W=min_width L=length mult=32}
+B 5 -152.5 -212.5 -147.5 -207.5 {name=T1 dir=in W=min_width L=switch_length mult=32}
 L 4 -150 -210 -130 -210 {}
 T {T1} -125 -214 0 0 0.2 0.2 {}
-B 5 -152.5 -192.5 -147.5 -187.5 {name=T4 dir=in W=min_width L=length mult=32}
+B 5 -152.5 -192.5 -147.5 -187.5 {name=T4 dir=in W=min_width L=switch_length mult=32}
 L 4 -150 -190 -130 -190 {}
 T {T4} -125 -194 0 0 0.2 0.2 {}
-B 5 -152.5 -172.5 -147.5 -167.5 {name=T5 dir=in W=min_width L=length mult=32}
+B 5 -152.5 -172.5 -147.5 -167.5 {name=T5 dir=in W=min_width L=switch_length mult=32}
 L 4 -150 -170 -130 -170 {}
 T {T5} -125 -174 0 0 0.2 0.2 {}
-B 5 -152.5 -152.5 -147.5 -147.5 {name=B3 dir=in W=min_width L=length}
+B 5 -152.5 -152.5 -147.5 -147.5 {name=B3 dir=in W=min_width L=switch_length}
 L 4 -150 -150 -130 -150 {}
 T {B3} -125 -154 0 0 0.2 0.2 {}
-B 5 -152.5 -132.5 -147.5 -127.5 {name=T6 dir=in W=min_width L=length mult=32}
+B 5 -152.5 -132.5 -147.5 -127.5 {name=T6 dir=in W=min_width L=switch_length mult=32}
 L 4 -150 -130 -130 -130 {}
 T {T6} -125 -134 0 0 0.2 0.2 {}
-B 5 -152.5 -112.5 -147.5 -107.5 {name=T2 dir=in W=min_width L=length mult=32}
+B 5 -152.5 -112.5 -147.5 -107.5 {name=T2 dir=in W=min_width L=switch_length mult=32}
 L 4 -150 -110 -130 -110 {}
 T {T2} -125 -114 0 0 0.2 0.2 {}
-B 5 -152.5 -92.5 -147.5 -87.5 {name=B4 dir=in W=min_width L=length}
+B 5 -152.5 -92.5 -147.5 -87.5 {name=B4 dir=in W=min_width L=switch_length}
 L 4 -150 -90 -130 -90 {}
 T {B4} -125 -94 0 0 0.2 0.2 {}
-B 5 -152.5 -72.5 -147.5 -67.5 {name=T0 dir=in W=min_width L=length}
+B 5 -152.5 -72.5 -147.5 -67.5 {name=T0 dir=in W=min_width L=switch_length}
 L 4 -150 -70 -130 -70 {}
 T {T0} -125 -74 0 0 0.2 0.2 {}
 B 5 -152.5 -52.5 -147.5 -47.5 {name=B2 dir=in W=min_width L=length}
 L 4 -150 -50 -130 -50 {}
 T {B2} -125 -54 0 0 0.2 0.2 {}
-B 5 -152.5 -32.5 -147.5 -27.5 {name=T3 dir=in W=min_width L=length mult=32}
+B 5 -152.5 -32.5 -147.5 -27.5 {name=T3 dir=in W=min_width L=switch_length mult=32}
 L 4 -150 -30 -130 -30 {}
 T {T3} -125 -34 0 0 0.2 0.2 {}
 B 5 -152.5 -12.5 -147.5 -7.5 {name=B0 dir=in L=length}
@@ -54,7 +54,7 @@ T {B0} -125 -14 0 0 0.2 0.2 {}
 B 5 -152.5 7.5 -147.5 12.5 {name=B1 dir=in W=50 L=length}
 L 4 -150 10 -130 10 {}
 T {B1} -125 6 0 0 0.2 0.2 {}
-B 5 -152.5 27.5 -147.5 32.5 {name=T1_n dir=in W=min_width L=length mult=32}
+B 5 -152.5 27.5 -147.5 32.5 {name=T1_n dir=in W=min_width L=switch_length mult=32}
 L 4 -150 30 -130 30 {}
 T {T1_n} -125 26 0 0 0.2 0.2 {}
 B 5 -152.5 47.5 -147.5 52.5 {name=T0_n dir=in W=min_width L=length}
@@ -63,25 +63,25 @@ T {T0_n} -125 46 0 0 0.2 0.2 {}
 B 5 -152.5 67.5 -147.5 72.5 {name=B2_n dir=in W=min_width L=length}
 L 4 -150 70 -130 70 {}
 T {B2_n} -125 66 0 0 0.2 0.2 {}
-B 5 -152.5 87.5 -147.5 92.5 {name=T6_n dir=in W=min_width L=length mult=32}
+B 5 -152.5 87.5 -147.5 92.5 {name=T6_n dir=in W=min_width L=switch_length mult=32}
 L 4 -150 90 -130 90 {}
 T {T6_n} -125 86 0 0 0.2 0.2 {}
-B 5 -152.5 107.5 -147.5 112.5 {name=T5_n dir=in W=min_width L=length mult=32}
+B 5 -152.5 107.5 -147.5 112.5 {name=T5_n dir=in W=min_width L=switch_length mult=32}
 L 4 -150 110 -130 110 {}
 T {T5_n} -125 106 0 0 0.2 0.2 {}
-B 5 -152.5 127.5 -147.5 132.5 {name=T4_n dir=in W=min_width L=length mult=32}
+B 5 -152.5 127.5 -147.5 132.5 {name=T4_n dir=in W=min_width L=switch_length mult=32}
 L 4 -150 130 -130 130 {}
 T {T4_n} -125 126 0 0 0.2 0.2 {}
 B 5 -152.5 147.5 -147.5 152.5 {name=B1_n dir=in L=length}
 L 4 -150 150 -130 150 {}
 T {B1_n} -125 146 0 0 0.2 0.2 {}
-B 5 -152.5 167.5 -147.5 172.5 {name=T3_n dir=in W=min_width L=length mult=32}
+B 5 -152.5 167.5 -147.5 172.5 {name=T3_n dir=in W=min_width L=switch_length mult=32}
 L 4 -150 170 -130 170 {}
 T {T3_n} -125 166 0 0 0.2 0.2 {}
 B 5 -152.5 187.5 -147.5 192.5 {name=B4_n dir=in W=min_width L=length}
 L 4 -150 190 -130 190 {}
 T {B4_n} -125 186 0 0 0.2 0.2 {}
-B 5 -152.5 207.5 -147.5 212.5 {name=T2_n dir=in W=min_width L=length mult=32}
+B 5 -152.5 207.5 -147.5 212.5 {name=T2_n dir=in W=min_width L=switch_length mult=32}
 L 4 -150 210 -130 210 {}
 T {T2_n} -125 206 0 0 0.2 0.2 {}
 B 5 -152.5 227.5 -147.5 232.5 {name=B3_n dir=in W=min_width L=length}

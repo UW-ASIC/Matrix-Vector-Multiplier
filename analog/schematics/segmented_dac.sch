@@ -449,7 +449,7 @@ C {sky130_fd_pr/pfet_01v8.sym} -1090 -120 0 1 {name=M3
 W=min_width
 L=length
 nf=1
-mult=1
+mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -463,7 +463,7 @@ C {sky130_fd_pr/pfet_01v8.sym} -1090 -20 0 1 {name=M4
 W=min_width
 L=length
 nf=1
-mult=1
+mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
 as="'int((nf+2)/2) * W/nf * 0.29'" 
@@ -559,7 +559,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -470 70 0 0 {name=M12
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -573,7 +573,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -400 70 0 1 {name=M13
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -587,7 +587,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -330 70 0 0 {name=M14
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -601,7 +601,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -260 70 0 1 {name=M15
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -615,7 +615,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -190 70 0 0 {name=M16
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -629,7 +629,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -120 70 0 1 {name=M17
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -643,7 +643,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -50 70 0 0 {name=M18
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=16
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -657,7 +657,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 20 70 0 1 {name=M19
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=16
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -681,7 +681,7 @@ W=min_width
 L=length}
 C {ipin.sym} 70 160 2 0 {name=p8 lab=B3
 W=min_width
-L=length}
+L=switch_length}
 C {ipin.sym} 460 180 0 0 {name=p9 lab=B1_n
 L=length}
 C {ipin.sym} 320 180 0 0 {name=p10 lab=B2_n
@@ -804,7 +804,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 90 70 0 0 {name=M27
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=8
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -818,7 +818,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 160 70 0 1 {name=M28
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=8
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -832,7 +832,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 230 70 0 0 {name=M29
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=4
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -846,7 +846,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 300 70 0 1 {name=M30
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=4
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -860,7 +860,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 370 70 0 0 {name=M31
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=2
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -874,7 +874,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 440 70 0 1 {name=M32
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=2
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -888,7 +888,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 510 70 0 0 {name=M33
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -902,7 +902,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 580 70 0 1 {name=M34
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -916,31 +916,31 @@ spiceprefix=X
 }
 C {ipin.sym} -70 160 2 0 {name=p12 lab=B4
 W=min_width
-L=length}
+L=switch_length}
 C {ipin.sym} 40 180 0 0 {name=p13 lab=B4_n
 W=min_width
 L=length}
 C {ipin.sym} -210 160 2 0 {name=p14 lab=T0
 W=min_width
-L=length}
+L=switch_length}
 C {ipin.sym} -350 160 2 0 {name=p15 lab=T1
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -490 160 2 0 {name=p16 lab=T2
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -100 180 0 0 {name=p17 lab=T0_n
 W=min_width
 L=length}
 C {ipin.sym} -240 180 0 0 {name=p18 lab=T1_n
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -380 180 0 0 {name=p19 lab=T2_n
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {devices/opin.sym} 630 140 0 0 {name=p2 lab=I_out_p
 L=length}
@@ -951,7 +951,8 @@ L=length}
 C {devices/lab_pin.sym} -180 -260 0 0 {name=p23 sig_type=std_logic lab=V_in}
 C {devices/code_shown.sym} 180 -240 0 0 {name=s1 only_toplevel=false value=".param min_width=0.42
 .param switch_multiplier=1
-.param length=0.425"
+.param length=0.425
+.param switch_length=0.15"
 W=min_width
 L=length}
 C {devices/opin.sym} 730 120 0 0 {name=p1 lab=I_out_n
@@ -1042,7 +1043,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -890 70 0 0 {name=M41
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1056,7 +1057,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -820 70 0 1 {name=M42
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1070,7 +1071,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -750 70 0 0 {name=M43
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1084,7 +1085,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -680 70 0 1 {name=M44
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1098,7 +1099,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -610 70 0 0 {name=M45
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1112,7 +1113,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -540 70 0 1 {name=M46
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1126,27 +1127,27 @@ spiceprefix=X
 }
 C {ipin.sym} -630 160 2 0 {name=p24 lab=T3
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -770 160 2 0 {name=p25 lab=T4
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -910 160 2 0 {name=p26 lab=T5
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -520 180 0 0 {name=p27 lab=T3_n
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -660 180 0 0 {name=p28 lab=T4_n
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -800 180 0 0 {name=p29 lab=T5_n
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {sky130_fd_pr/pfet_01v8.sym} -1000 -120 0 0 {name=M47
 W=min_width
@@ -1178,7 +1179,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -1030 70 0 0 {name=M49
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1192,7 +1193,7 @@ spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -960 70 0 1 {name=M50
 W=min_width*switch_multiplier
-L=length
+L=switch_length
 nf=1
 mult=32
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -1206,11 +1207,11 @@ spiceprefix=X
 }
 C {ipin.sym} -1050 160 2 0 {name=p30 lab=T6
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {ipin.sym} -940 180 0 0 {name=p31 lab=T6_n
 W=min_width
-L=length
+L=switch_length
 mult=32}
 C {devices/gnd.sym} -1110 50 0 0 {name=l1 lab=GND}
 C {devices/ipin.sym} -1110 -180 0 0 {name=p4 lab=I_ref}

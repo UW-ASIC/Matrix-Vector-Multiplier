@@ -5,15 +5,15 @@ V {}
 S {}
 E {}
 B 2 570 -190 1370 210 {flags=graph
-y1=-3.0236519e-08
-y2=6.3522126e-09
+y1=-2.9217616e-06
+y2=1.2923871e-05
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-2.2248169e-07
-x2=1.4428076e-06
+x1=-8.8041241e-07
+x2=5.0866194e-06
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -438,3 +438,5 @@ L=length}
 C {devices/lab_pin.sym} -270 -200 2 0 {name=p14 sig_type=std_logic lab=V_bias}
 C {devices/gnd.sym} -270 -140 0 0 {name=l2 lab=GND}
 C {devices/vsource.sym} -270 -170 0 0 {name=V1 value=1.8 savecurrent=false}
+C {devices/gnd.sym} -70 420 0 0 {name=l4 lab=GND}
+C {devices/vsource.sym} -70 390 0 0 {name=V32 value=0 savecurrent=false}
