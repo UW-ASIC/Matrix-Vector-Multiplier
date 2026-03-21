@@ -5,22 +5,21 @@ V {}
 S {}
 E {}
 B 2 570 -190 1370 210 {flags=graph
-y1=-2.9217616e-06
-y2=1.2923871e-05
+y1=-4.4366792e-08
+y2=3.5368813e-08
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-8.8041241e-07
-x2=5.0866194e-06
+x1=0
+x2=4e-06
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="i_main
-i_out_p"
-color="8 18"
+node=i(v12)
+color=8
 dataset=-1
 unitx=1
 logx=0
@@ -80,7 +79,7 @@ N 60 160 60 210 {lab=#net7}
 N 40 240 70 240 {
 lab=#net7}
 N 40 300 40 340 {
-lab=I_out_n}
+lab=#net8}
 N 40 240 70 240 {
 lab=#net7}
 N 0 270 0 360 {
@@ -88,53 +87,63 @@ lab=B2_bar}
 N 40 270 70 270 {lab=#net7}
 N 60 240 60 270 {lab=#net7}
 N 60 210 60 240 {lab=#net7}
-N 70 300 70 340 {lab=I_out_p}
+N 70 300 70 340 {lab=#net9}
 N 110 270 110 360 {lab=B2}
 N 270 230 300 230 {
-lab=#net8}
+lab=#net10}
 N 270 230 300 230 {
-lab=#net8}
+lab=#net10}
 N 230 260 230 350 {
 lab=B1_bar}
-N 270 260 300 260 {lab=#net8}
-N 290 230 290 260 {lab=#net8}
-N 290 200 290 230 {lab=#net8}
-N 300 290 300 330 {lab=I_out_p}
+N 270 260 300 260 {lab=#net10}
+N 290 230 290 260 {lab=#net10}
+N 290 200 290 230 {lab=#net10}
+N 300 290 300 330 {lab=#net9}
 N 340 260 340 350 {lab=B1}
-N 170 200 290 200 {lab=#net8}
-N 170 160 170 200 {lab=#net8}
-N 40 320 270 320 {lab=I_out_n}
-N 70 330 300 330 {lab=I_out_p}
-N 270 290 270 320 {lab=I_out_n}
+N 170 200 290 200 {lab=#net10}
+N 170 160 170 200 {lab=#net10}
+N 40 320 270 320 {lab=#net8}
+N 70 330 300 330 {lab=#net9}
+N 270 290 270 320 {lab=#net8}
 N 290 -30 290 10 {
-lab=#net9}
-N 290 40 310 40 {lab=#net9}
-N 310 10 310 40 {lab=#net9}
-N 290 10 310 10 {lab=#net9}
+lab=#net11}
+N 290 40 310 40 {lab=#net11}
+N 310 10 310 40 {lab=#net11}
+N 290 10 310 10 {lab=#net11}
 N 290 -60 310 -60 {lab=V_in}
 N 310 -90 310 -60 {lab=V_in}
 N 290 -90 310 -90 {lab=V_in}
 N 290 -120 290 -90 {lab=V_in}
 N 250 -60 250 -20 {lab=#net1}
 N 250 0 250 40 {lab=GND}
-N 290 70 290 100 {lab=#net10}
 N 140 -0 250 -0 {lab=GND}
 N 140 -20 250 -20 {lab=#net1}
 N 480 230 510 230 {
-lab=#net11}
+lab=#net12}
 N 480 230 510 230 {
-lab=#net11}
+lab=#net12}
 N 440 260 440 350 {
 lab=B0_bar}
-N 480 260 510 260 {lab=#net11}
-N 500 230 500 260 {lab=#net11}
-N 510 290 510 330 {lab=I_out_p}
+N 480 260 510 260 {lab=#net12}
+N 500 230 500 260 {lab=#net12}
+N 510 290 510 330 {lab=#net9}
 N 550 260 550 350 {lab=B0}
-N 480 290 480 320 {lab=I_out_n}
-N 270 320 480 320 {lab=I_out_n}
-N 300 330 510 330 {lab=I_out_p}
-N 500 160 500 230 {lab=#net11}
-N 290 160 500 160 {lab=#net11}
+N 480 290 480 320 {lab=#net8}
+N 270 320 480 320 {lab=#net8}
+N 300 330 510 330 {lab=#net9}
+N 500 160 500 230 {lab=#net12}
+N 290 160 500 160 {lab=#net12}
+N 40 400 40 460 {lab=GND}
+N 1080 610 1140 610 {lab=#net13}
+N 940 460 940 520 {lab=#net14}
+N 940 460 1090 460 {lab=#net14}
+N 1130 390 1130 610 {lab=#net13}
+N 1030 390 1130 390 {lab=#net13}
+N 810 390 810 560 {lab=#net15}
+N 810 390 970 390 {lab=#net15}
+N 750 660 750 710 {lab=GND}
+N 750 660 810 660 {lab=GND}
+N 290 70 290 100 {lab=#net16}
 C {sky130_fd_pr/pfet_01v8.sym} 40 -60 0 0 {name=M1
 W=min_width
 L=length
@@ -227,9 +236,9 @@ L=length}
 C {devices/code_shown.sym} -107.5 627.5 0 0 {name=s1 only_toplevel=false value=".param min_width=0.42
 .param switch_multiplier=1
 .param length=0.425
-.param i_bias=10u
+.param i_bias=8u
 .control
-tran 20p 4u
+tran 50p 4u
 write current_mirror_switch_test.raw
 .endc
 .end"}
@@ -263,7 +272,7 @@ C {devices/vsource.sym} -310 -30 0 0 {name=V7 value=1.8 savecurrent=false}
 C {devices/vsource.sym} 170 130 0 0 {name=V8 value=0 savecurrent=false
 L=length}
 C {sky130_fd_pr/pfet_01v8.sym} 20 270 0 0 {name=M12
-W=min_width*switch_multiplier
+W=min_width
 L=length
 nf=1
 mult=4
@@ -277,7 +286,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 90 270 0 1 {name=M13
-W=min_width*switch_multiplier
+W=min_width
 L=length
 nf=1
 mult=4
@@ -290,14 +299,6 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {devices/res.sym} 70 430 0 0 {name=R4
-value=1k
-footprint=1206
-device=resistor
-m=1
-L=length}
-C {devices/gnd.sym} 70 460 0 0 {name=l3 lab=GND
-L=length}
 C {devices/vsource.sym} 60 130 0 0 {name=V10 value=0 savecurrent=false
 L=length}
 C {devices/vsource.sym} 40 370 0 0 {name=V11 value=0 savecurrent=false
@@ -305,7 +306,7 @@ L=length}
 C {devices/vsource.sym} 70 370 0 0 {name=V12 value=0 savecurrent=false
 L=length}
 C {sky130_fd_pr/pfet_01v8.sym} 250 260 0 0 {name=M7
-W=min_width*switch_multiplier
+W=min_width
 L=length
 nf=1
 mult=2
@@ -319,7 +320,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 320 260 0 1 {name=M8
-W=min_width*switch_multiplier
+W=min_width
 L=length
 nf=1
 mult=2
@@ -336,9 +337,7 @@ C {devices/lab_pin.sym} 230 350 0 0 {name=p4 sig_type=std_logic lab=B1_bar
 L=length}
 C {devices/lab_pin.sym} 340 350 2 0 {name=p8 sig_type=std_logic lab=B1
 L=length}
-C {devices/lab_pin.sym} 300 310 0 1 {name=p22 lab=I_out_p
-L=length}
-C {devices/lab_pin.sym} 260 320 1 1 {name=p9 lab=I_out_n
+C {devices/lab_pin.sym} 70 400 0 1 {name=p22 lab=I_out_p
 L=length}
 C {devices/vsource.sym} -530 390 0 0 {name=V6 value="PULSE(0 1.8 0 100p 100p 2u 4u)" savecurrent=false
 }
@@ -389,7 +388,7 @@ L=length}
 C {devices/lab_pin.sym} 440 350 0 0 {name=p20 sig_type=std_logic lab=B0_bar
 L=length}
 C {sky130_fd_pr/pfet_01v8.sym} 460 260 0 0 {name=M11
-W=min_width*switch_multiplier
+W=min_width
 L=length
 nf=1
 mult=1
@@ -403,7 +402,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 530 260 0 1 {name=M14
-W=min_width*switch_multiplier
+W=min_width
 L=length
 nf=1
 mult=1
@@ -420,23 +419,53 @@ C {devices/lab_pin.sym} 110 360 2 0 {name=p6 sig_type=std_logic lab=B2
 L=length}
 C {devices/lab_pin.sym} 0 360 0 0 {name=p7 sig_type=std_logic lab=B2_bar
 L=length}
-C {devices/res.sym} 40 430 0 0 {name=R2
-value=1k
-footprint=1206
-device=resistor
-m=1
-L=length}
 C {devices/launcher.sym} 690 247.5 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/current_mirror_switch_test.raw tran"}
 C {devices/gnd.sym} -70 110 0 0 {name=l13 lab=GND
 L=length}
 C {devices/isource.sym} -70 -150 0 0 {name=I0 value=i_bias}
-C {devices/lab_pin.sym} -70 -180 2 0 {name=p5 sig_type=std_logic lab=V_bias}
 C {devices/gnd.sym} 40 460 0 0 {name=l1 lab=GND
 L=length}
-C {devices/lab_pin.sym} -270 -200 2 0 {name=p14 sig_type=std_logic lab=V_bias}
-C {devices/gnd.sym} -270 -140 0 0 {name=l2 lab=GND}
-C {devices/vsource.sym} -270 -170 0 0 {name=V1 value=1.8 savecurrent=false}
-C {devices/gnd.sym} -70 420 0 0 {name=l4 lab=GND}
-C {devices/vsource.sym} -70 390 0 0 {name=V32 value=0 savecurrent=false}
+C {devices/lab_pin.sym} 750 560 2 1 {name=p44 lab=I_out_p
+spice_ignore=false}
+C {devices/vsource.sym} 1090 490 0 0 {name=V14 value=1.8 savecurrent=false
+spice_ignore=false}
+C {devices/gnd.sym} 1090 520 0 0 {name=l28 lab=GND
+spice_ignore=false}
+C {devices/lab_pin.sym} 1200 610 0 1 {name=p45 lab=v_dac_out
+spice_ignore=false}
+C {devices/res.sym} 1130 640 2 0 {name=R1
+value=1k
+footprint=1206
+device=resistor
+m=1
+spice_ignore=false}
+C {devices/gnd.sym} 1130 670 0 0 {name=l4 lab=GND
+spice_ignore=false}
+C {devices/vsource.sym} 780 560 3 0 {name=V31 value=0 savecurrent=false}
+C {OpAmp/Two-Stage_Miller/OpAmp.sym} 960 610 0 0 {name=x2}
+C {devices/res.sym} 1000 390 3 0 {name=R3
+value=1k
+footprint=1206
+device=resistor
+m=1
+spice_ignore=false}
+C {devices/gnd.sym} 750 710 0 0 {name=l10 lab=GND}
+C {devices/vsource.sym} 880 770 0 0 {name=V15 value=0.9 savecurrent=false}
+C {devices/gnd.sym} 880 800 0 0 {name=l14 lab=GND}
+C {devices/gnd.sym} 940 700 0 0 {name=l15 lab=GND}
+C {devices/res.sym} 1170 610 3 0 {name=R4
+value=200
+footprint=1206
+device=resistor
+m=1
+spice_ignore=false}
+C {devices/capa.sym} 1200 640 2 0 {name=C1
+m=1
+value=1p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/gnd.sym} 1200 670 0 0 {name=l31 lab=GND
+spice_ignore=false}
+C {devices/lab_pin.sym} -70 -180 2 0 {name=p5 sig_type=std_logic lab=V_in}

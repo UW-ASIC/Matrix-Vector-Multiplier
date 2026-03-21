@@ -16,7 +16,7 @@ N -1070 -20 -1070 10 {
 lab=GND}
 N -420 -90 -420 -50 {
 lab=#net2}
-N -1110 -180 -1110 -150 {
+N -1110 -230 -1110 -150 {
 lab=I_ref}
 N -280 -90 -280 -50 {
 lab=#net3}
@@ -418,7 +418,7 @@ N -1020 -60 -880 -60 {lab=GND}
 N -1070 -120 -1020 -120 {lab=#net1}
 N -1070 -20 -1020 -20 {lab=GND}
 C {sky130_fd_pr/pfet_01v8.sym} -440 -120 0 0 {name=M1
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -432,7 +432,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -440 -20 0 0 {name=M2
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -446,7 +446,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -1090 -120 0 1 {name=M3
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -460,7 +460,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -1090 -20 0 1 {name=M4
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -474,7 +474,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -300 -120 0 0 {name=M5
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -488,7 +488,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -300 -20 0 0 {name=M6
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -502,7 +502,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -160 -120 0 0 {name=M7
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -516,7 +516,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -160 -20 0 0 {name=M8
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -530,7 +530,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -20 -120 0 0 {name=M9
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=16
@@ -544,7 +544,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -20 -20 0 0 {name=M10
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=16
@@ -558,7 +558,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -470 70 0 0 {name=M12
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -572,7 +572,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -400 70 0 1 {name=M13
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -586,7 +586,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -330 70 0 0 {name=M14
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -600,7 +600,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -260 70 0 1 {name=M15
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -614,7 +614,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -190 70 0 0 {name=M16
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -628,7 +628,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -120 70 0 1 {name=M17
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -642,7 +642,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -50 70 0 0 {name=M18
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=16
@@ -656,7 +656,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 20 70 0 1 {name=M19
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=16
@@ -675,13 +675,13 @@ C {ipin.sym} 600 180 0 0 {name=p5 lab=B0_n
 L=length}
 C {ipin.sym} 350 160 2 0 {name=p6 lab=B1
 W=50
-L=length}
+L=switch_length*size_multiplier}
 C {ipin.sym} 210 160 2 0 {name=p7 lab=B2
 W=min_width
-L=length}
+L=switch_length*size_multiplier}
 C {ipin.sym} 70 160 2 0 {name=p8 lab=B3
 W=min_width
-L=switch_length}
+L=switch_length*size_multiplier}
 C {ipin.sym} 460 180 0 0 {name=p9 lab=B1_n
 L=length}
 C {ipin.sym} 320 180 0 0 {name=p10 lab=B2_n
@@ -691,7 +691,7 @@ C {ipin.sym} 180 180 0 0 {name=p11 lab=B3_n
 W=min_width
 L=length}
 C {sky130_fd_pr/pfet_01v8.sym} 120 -120 0 0 {name=M11
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=8
@@ -705,7 +705,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 120 -20 0 0 {name=M20
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=8
@@ -719,7 +719,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 260 -120 0 0 {name=M21
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=4
@@ -733,7 +733,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 260 -20 0 0 {name=M22
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=4
@@ -747,7 +747,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 400 -120 0 0 {name=M23
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=2
@@ -761,7 +761,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 400 -20 0 0 {name=M24
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=2
@@ -775,7 +775,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 540 -120 0 0 {name=M25
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=1
@@ -789,7 +789,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 540 -20 0 0 {name=M26
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=1
@@ -803,7 +803,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 90 70 0 0 {name=M27
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=8
@@ -817,7 +817,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 160 70 0 1 {name=M28
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=8
@@ -831,7 +831,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 230 70 0 0 {name=M29
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=4
@@ -845,7 +845,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 300 70 0 1 {name=M30
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=4
@@ -859,7 +859,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 370 70 0 0 {name=M31
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=2
@@ -873,7 +873,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 440 70 0 1 {name=M32
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=2
@@ -887,7 +887,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 510 70 0 0 {name=M33
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=1
@@ -901,7 +901,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} 580 70 0 1 {name=M34
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=1
@@ -916,20 +916,20 @@ spiceprefix=X
 }
 C {ipin.sym} -70 160 2 0 {name=p12 lab=B4
 W=min_width
-L=switch_length}
+L=switch_length*size_multiplier}
 C {ipin.sym} 40 180 0 0 {name=p13 lab=B4_n
 W=min_width
 L=length}
 C {ipin.sym} -210 160 2 0 {name=p14 lab=T0
 W=min_width
-L=switch_length}
+L=switch_length*size_multiplier}
 C {ipin.sym} -350 160 2 0 {name=p15 lab=T1
 W=min_width
-L=switch_length
+L=switch_length*size_multiplier
 mult=32}
 C {ipin.sym} -490 160 2 0 {name=p16 lab=T2
 W=min_width
-L=switch_length
+L=switch_length*size_multiplier
 mult=32}
 C {ipin.sym} -100 180 0 0 {name=p17 lab=T0_n
 W=min_width
@@ -946,19 +946,19 @@ C {devices/opin.sym} 630 140 0 0 {name=p2 lab=I_out_p
 L=length}
 C {ipin.sym} -180 -260 2 0 {name=p21 lab=V_in}
 C {devices/lab_pin.sym} -210 -150 1 0 {name=p22 sig_type=std_logic lab=V_in
-W=min_width
 L=length}
 C {devices/lab_pin.sym} -180 -260 0 0 {name=p23 sig_type=std_logic lab=V_in}
-C {devices/code_shown.sym} 180 -240 0 0 {name=s1 only_toplevel=false value=".param min_width=0.42
+C {devices/code_shown.sym} 190 -290 0 0 {name=s1 only_toplevel=false value=".param min_width=0.42
 .param switch_multiplier=1
 .param length=0.425
-.param switch_length=0.15"
+.param switch_length=0.15
+.param size_multiplier=1"
 W=min_width
 L=length}
 C {devices/opin.sym} 730 120 0 0 {name=p1 lab=I_out_n
-L=length}
+L=switch_length}
 C {sky130_fd_pr/pfet_01v8.sym} -860 -120 0 0 {name=M35
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -972,7 +972,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -860 -20 0 0 {name=M36
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -986,7 +986,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -720 -120 0 0 {name=M37
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -1000,7 +1000,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -720 -20 0 0 {name=M38
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -1014,7 +1014,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -580 -120 0 0 {name=M39
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -1028,7 +1028,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -580 -20 0 0 {name=M40
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -1042,7 +1042,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -890 70 0 0 {name=M41
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1056,7 +1056,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -820 70 0 1 {name=M42
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1070,7 +1070,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -750 70 0 0 {name=M43
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1084,7 +1084,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -680 70 0 1 {name=M44
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1098,7 +1098,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -610 70 0 0 {name=M45
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1112,7 +1112,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -540 70 0 1 {name=M46
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1127,15 +1127,15 @@ spiceprefix=X
 }
 C {ipin.sym} -630 160 2 0 {name=p24 lab=T3
 W=min_width
-L=switch_length
+L=switch_length*size_multiplier
 mult=32}
 C {ipin.sym} -770 160 2 0 {name=p25 lab=T4
 W=min_width
-L=switch_length
+L=switch_length*size_multiplier
 mult=32}
 C {ipin.sym} -910 160 2 0 {name=p26 lab=T5
 W=min_width
-L=switch_length
+L=switch_length*size_multiplier
 mult=32}
 C {ipin.sym} -520 180 0 0 {name=p27 lab=T3_n
 W=min_width
@@ -1150,7 +1150,7 @@ W=min_width
 L=switch_length
 mult=32}
 C {sky130_fd_pr/pfet_01v8.sym} -1000 -120 0 0 {name=M47
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -1164,7 +1164,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -1000 -20 0 0 {name=M48
-W=min_width
+W=min_width*size_multiplier
 L=length
 nf=1
 mult=32
@@ -1178,7 +1178,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -1030 70 0 0 {name=M49
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1192,7 +1192,7 @@ model=pfet_01v8
 spiceprefix=X
 }
 C {sky130_fd_pr/pfet_01v8.sym} -960 70 0 1 {name=M50
-W=min_width*switch_multiplier
+W=min_width*size_multiplier
 L=switch_length
 nf=1
 mult=32
@@ -1207,11 +1207,11 @@ spiceprefix=X
 }
 C {ipin.sym} -1050 160 2 0 {name=p30 lab=T6
 W=min_width
-L=switch_length
+L=switch_length*size_multiplier
 mult=32}
 C {ipin.sym} -940 180 0 0 {name=p31 lab=T6_n
 W=min_width
 L=switch_length
 mult=32}
 C {devices/gnd.sym} -1110 50 0 0 {name=l1 lab=GND}
-C {devices/ipin.sym} -1110 -180 0 0 {name=p4 lab=I_ref}
+C {devices/ipin.sym} -1110 -230 0 0 {name=p4 lab=I_ref}

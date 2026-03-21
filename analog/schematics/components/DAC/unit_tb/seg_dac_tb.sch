@@ -5,22 +5,22 @@ V {}
 S {}
 E {}
 B 2 -230 -190 570 210 {flags=graph
-y1=-6.6644294e-08
-y2=3.7026302e-07
+y1=-3.3e-05
+y2=0.072
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-1.786407e-08
-x2=3.7994981e-08
+x1=0
+x2=3.876e-06
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="v_dac_out
-i(v31)"
-color="4 12"
+node="i(v31)
+v_dac_out"
+color="4 10"
 dataset=-1
 unitx=1
 logx=0
@@ -203,7 +203,7 @@ C {devices/vsource.sym} 140 730 0 0 {name=V1 value=1.8 savecurrent=false}
 C {devices/gnd.sym} 140 820 0 0 {name=l1 lab=GND}
 C {devices/code_shown.sym} 460 260 0 0 {name=s1 only_toplevel=false value=".control
   options savecurrents
-  tran 50p 3876n
+  tran 1n 3876n
   let power=(abs(v_in*v32#branch))
   write seg_dac_tb.raw
 .endc
@@ -228,12 +228,12 @@ m=1
 spice_ignore=false}
 C {devices/capa.sym} 880 680 2 0 {name=C1
 m=1
-value=2p
+value=1p
 footprint=1206
 device="ceramic capacitor"}
 C {devices/gnd.sym} 880 710 0 0 {name=l31 lab=GND
 spice_ignore=false}
-C {devices/launcher.sym} -150 260 0 0 {name=h5
+C {devices/launcher.sym} -160 260 0 0 {name=h5
 descr="load waves" 
 tclcommand="xschem raw_read $netlist_dir/seg_dac_tb.raw tran"
 }
