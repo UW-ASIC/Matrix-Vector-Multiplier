@@ -11,13 +11,11 @@ lab=#net1}
 N -1070 -120 -1070 -90 {
 lab=#net1}
 N -1110 10 -1070 10 {
-lab=GND}
+lab=I_ref}
 N -1070 -20 -1070 10 {
-lab=GND}
+lab=I_ref}
 N -420 -90 -420 -50 {
 lab=#net2}
-N -1110 -230 -1110 -150 {
-lab=I_ref}
 N -280 -90 -280 -50 {
 lab=#net3}
 N -480 -80 -320 -80 {
@@ -25,27 +23,27 @@ lab=#net1}
 N -320 -120 -320 -80 {
 lab=#net1}
 N -320 -60 -320 -20 {
-lab=GND}
+lab=I_ref}
 N -140 -90 -140 -50 {
 lab=#net4}
 N -180 -120 -180 -80 {
 lab=#net1}
 N -180 -60 -180 -20 {
-lab=GND}
+lab=I_ref}
 N 0 -90 0 -50 {
 lab=#net5}
 N -40 -120 -40 -80 {
 lab=#net1}
 N -40 -60 -40 -20 {
-lab=GND}
+lab=I_ref}
 N -320 -80 -180 -80 {
 lab=#net1}
 N -180 -80 -40 -80 {
 lab=#net1}
 N -180 -60 -40 -60 {
-lab=GND}
+lab=I_ref}
 N -320 -60 -180 -60 {
-lab=GND}
+lab=I_ref}
 N -420 -150 -280 -150 {
 lab=V_in}
 N -280 -150 -140 -150 {
@@ -53,7 +51,7 @@ lab=V_in}
 N -140 -150 0 -150 {
 lab=V_in}
 N -1110 10 -1110 50 {
-lab=GND}
+lab=I_ref}
 N -420 10 -420 40 {
 lab=#net6}
 N -450 40 -420 40 {
@@ -121,29 +119,29 @@ lab=#net1}
 N 240 -120 240 -80 {
 lab=#net1}
 N 100 -60 100 -20 {
-lab=GND}
+lab=I_ref}
 N 240 -60 240 -20 {
-lab=GND}
+lab=I_ref}
 N 420 -90 420 -50 {
 lab=#net12}
 N 380 -120 380 -80 {
 lab=#net1}
 N 380 -60 380 -20 {
-lab=GND}
+lab=I_ref}
 N 560 -90 560 -50 {
 lab=#net13}
 N 520 -120 520 -80 {
 lab=#net1}
 N 520 -60 520 -20 {
-lab=GND}
+lab=I_ref}
 N 240 -80 380 -80 {
 lab=#net1}
 N 380 -80 520 -80 {
 lab=#net1}
 N 380 -60 520 -60 {
-lab=GND}
+lab=I_ref}
 N 240 -60 380 -60 {
-lab=GND}
+lab=I_ref}
 N 140 -150 280 -150 {
 lab=V_in}
 N 280 -150 420 -150 {
@@ -217,11 +215,11 @@ lab=I_out_n}
 N -40 -80 100 -80 {
 lab=#net1}
 N -40 -60 100 -60 {
-lab=GND}
+lab=I_ref}
 N 100 -80 240 -80 {
 lab=#net1}
 N 100 -60 240 -60 {
-lab=GND}
+lab=I_ref}
 N 0 -150 140 -150 {
 lab=V_in}
 N 390 70 420 70 {lab=#net16}
@@ -283,13 +281,13 @@ N 550 40 550 70 {lab=#net17}
 N -1130 -20 -1110 -20 {lab=#net1}
 N -1130 -50 -1130 -20 {lab=#net1}
 N -1130 -50 -1110 -50 {lab=#net1}
-N -1130 -120 -1110 -120 {lab=I_ref}
-N -1130 -150 -1130 -120 {lab=I_ref}
-N -1130 -150 -1110 -150 {lab=I_ref}
+N -1130 -120 -1110 -120 {lab=V_in}
+N -1130 -150 -1130 -120 {lab=V_in}
+N -1130 -150 -1110 -150 {lab=V_in}
 N -30 70 -0 70 {lab=#net9}
 N 660 120 730 120 {lab=I_out_n}
-N -460 -60 -320 -60 {lab=GND}
-N -460 -60 -460 -20 {lab=GND}
+N -460 -60 -320 -60 {lab=I_ref}
+N -460 -60 -460 -20 {lab=I_ref}
 N -460 -120 -460 -80 {lab=#net1}
 N -840 -90 -840 -50 {
 lab=#net18}
@@ -298,17 +296,17 @@ lab=#net19}
 N -740 -120 -740 -80 {
 lab=#net1}
 N -740 -60 -740 -20 {
-lab=GND}
+lab=I_ref}
 N -560 -90 -560 -50 {
 lab=#net20}
 N -600 -120 -600 -80 {
 lab=#net1}
 N -600 -60 -600 -20 {
-lab=GND}
+lab=I_ref}
 N -740 -80 -600 -80 {
 lab=#net1}
 N -740 -60 -600 -60 {
-lab=GND}
+lab=I_ref}
 N -840 -150 -700 -150 {
 lab=V_in}
 N -700 -150 -560 -150 {
@@ -374,8 +372,8 @@ N -820 -150 -820 -120 {lab=V_in}
 N -850 40 -850 70 {lab=#net21}
 N -710 40 -710 70 {lab=#net22}
 N -570 40 -570 70 {lab=#net23}
-N -880 -60 -740 -60 {lab=GND}
-N -880 -60 -880 -20 {lab=GND}
+N -880 -60 -740 -60 {lab=I_ref}
+N -880 -60 -880 -20 {lab=I_ref}
 N -880 -120 -880 -80 {lab=#net1}
 N -560 -150 -420 -150 {lab=V_in}
 N -840 120 -420 120 {lab=I_out_n}
@@ -405,18 +403,19 @@ N -980 -50 -960 -50 {lab=#net24}
 N -980 -120 -960 -120 {lab=V_in}
 N -960 -150 -960 -120 {lab=V_in}
 N -990 40 -990 70 {lab=#net25}
-N -1020 -60 -1020 -20 {lab=GND}
+N -1020 -60 -1020 -20 {lab=I_ref}
 N -1020 -120 -1020 -80 {lab=#net1}
 N -980 -150 -840 -150 {lab=V_in}
 N -980 120 -840 120 {lab=I_out_n}
 N -1010 140 -870 140 {lab=I_out_p}
 N -600 -80 -480 -80 {lab=#net1}
-N -600 -60 -460 -60 {lab=GND}
+N -600 -60 -460 -60 {lab=I_ref}
 N -880 -80 -740 -80 {lab=#net1}
 N -1020 -80 -880 -80 {lab=#net1}
-N -1020 -60 -880 -60 {lab=GND}
+N -1020 -60 -880 -60 {lab=I_ref}
 N -1070 -120 -1020 -120 {lab=#net1}
-N -1070 -20 -1020 -20 {lab=GND}
+N -1070 -20 -1020 -20 {lab=I_ref}
+N -1110 -150 -980 -150 {lab=V_in}
 C {sky130_fd_pr/pfet_01v8.sym} -440 -120 0 0 {name=M1
 W=min_width*size_multiplier
 L=length
@@ -948,13 +947,6 @@ C {ipin.sym} -180 -260 2 0 {name=p21 lab=V_in}
 C {devices/lab_pin.sym} -210 -150 1 0 {name=p22 sig_type=std_logic lab=V_in
 L=length}
 C {devices/lab_pin.sym} -180 -260 0 0 {name=p23 sig_type=std_logic lab=V_in}
-C {devices/code_shown.sym} 190 -290 0 0 {name=s1 only_toplevel=false value=".param min_width=0.42
-.param switch_multiplier=1
-.param length=0.425
-.param switch_length=0.15
-.param size_multiplier=1"
-W=min_width
-L=length}
 C {devices/opin.sym} 730 120 0 0 {name=p1 lab=I_out_n
 L=switch_length}
 C {sky130_fd_pr/pfet_01v8.sym} -860 -120 0 0 {name=M35
@@ -1213,5 +1205,4 @@ C {ipin.sym} -940 180 0 0 {name=p31 lab=T6_n
 W=min_width
 L=switch_length
 mult=32}
-C {devices/gnd.sym} -1110 50 0 0 {name=l1 lab=GND}
-C {devices/ipin.sym} -1110 -230 0 0 {name=p4 lab=I_ref}
+C {devices/ipin.sym} -1110 50 0 0 {name=p4 lab=I_ref}

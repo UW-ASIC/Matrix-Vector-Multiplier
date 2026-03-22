@@ -5,8 +5,8 @@ V {}
 S {}
 E {}
 B 2 -230 -190 570 210 {flags=graph
-y1=-3.3e-05
-y2=0.072
+y1=-2.0365802e-05
+y2=0.00021517581
 ypos1=0
 ypos2=2
 divy=5
@@ -36,7 +36,6 @@ N 490 430 650 430 {lab=#net3}
 N 430 700 430 750 {lab=GND}
 N 430 700 490 700 {lab=GND}
 N 90 340 210 340 {lab=#net4}
-C {segmented_dac.sym} -60 590 0 0 {name=x1}
 C {devices/vsource.sym} -800 -190 0 0 {name=V4 value="PULSE(0 1.8 0 50p 50p 15.15n 30.3n)" savecurrent=false
 spice_ignore=false}
 C {devices/lab_pin.sym} -800 -220 2 0 {name=p30 lab=B0
@@ -264,9 +263,17 @@ C {devices/lab_pin.sym} -210 780 0 0 {name=p25 lab=B4_n}
 C {devices/lab_pin.sym} -210 800 0 0 {name=p26 lab=T2_n}
 C {devices/lab_pin.sym} -210 820 0 0 {name=p27 lab=B3_n}
 C {devices/lab_pin.sym} -210 840 0 0 {name=p28 lab=B0_n}
-C {devices/lab_pin.sym} 250 570 0 0 {name=p3 lab=I_ref}
+C {devices/lab_pin.sym} 250 510 0 0 {name=p3 lab=I_ref}
 C {devices/isource.sym} 250 540 0 0 {name=I0 value=8u}
-C {devices/lab_pin.sym} 250 510 0 0 {name=p54 lab=V_in}
 C {devices/vsource.sym} 140 790 0 0 {name=V32 value=0 savecurrent=false}
 C {devices/gnd.sym} 210 400 0 0 {name=l2 lab=GND}
 C {devices/vsource.sym} 210 370 0 0 {name=V33 value=0 savecurrent=false}
+C {components/DAC/segmented_dac.sym} -60 590 0 0 {name=x1}
+C {devices/code_shown.sym} 830 280 0 0 {name=s2 only_toplevel=false value=".param min_width=0.42
+.param switch_multiplier=1
+.param length=0.425
+.param switch_length=0.15
+.param size_multiplier=1"
+W=min_width
+L=length}
+C {devices/gnd.sym} 250 570 0 0 {name=l5 lab=GND}
