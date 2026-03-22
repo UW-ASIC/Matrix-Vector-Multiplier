@@ -5,22 +5,21 @@ V {}
 S {}
 E {}
 B 2 -230 -190 570 210 {flags=graph
-y1=-2.0365802e-05
-y2=0.00021517581
+y1=-4.2035202e-08
+y2=1.0659453e-06
 ypos1=0
 ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=0
-x2=3.876e-06
+x1=-6.9771377e-08
+x2=2.6317451e-07
 divx=5
 subdivx=1
 xlabmag=1.0
 ylabmag=1.0
-node="i(v31)
-v_dac_out"
-color="4 10"
+node=i(v31)
+color=4
 dataset=-1
 unitx=1
 logx=0
@@ -273,7 +272,7 @@ C {devices/code_shown.sym} 830 280 0 0 {name=s2 only_toplevel=false value=".para
 .param switch_multiplier=1
 .param length=0.425
 .param switch_length=0.15
-.param size_multiplier=1"
+.param size_multiplier=10"
 W=min_width
 L=length}
 C {devices/gnd.sym} 250 570 0 0 {name=l5 lab=GND}
