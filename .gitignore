@@ -20,10 +20,9 @@ digital/AXI_IF/build/synthesis/obj_dir/*
 
 # Dependencies
 node_modules/
-bun.lockb
 
-# Build outputs (we commit the built files in docs/)
-# But ignore dev artifacts
+# Build outputs (CI builds fresh)
+docs/dist/
 .vite/
 
 # Logs
