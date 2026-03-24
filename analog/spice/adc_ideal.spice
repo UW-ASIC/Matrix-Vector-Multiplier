@@ -1,0 +1,42 @@
+
+.subckt ADC v_in v_ref vdd vss clk start D0 D1 D2 D3 D4 D5 D6 D7 EOC
+
+* Ideal 8-bit ADC Model (Combinatorial Flash Behavior)
+* For DC Sweep Compatibility (even if called SAR)
+* Output D0-D7 is binary code of (v_in / v_ref) * 256
+* EOC goes high immediately (or tied high)
+
+* Note: This model is purely combinatorial. It ignores CLK/START.
+* This allows StaticTest (DC Sweep) to work.
+
+* Helper function for quantization
+* V(node) = (v(v_in) > threshold) ? v(vdd) : v(vss)
+* Actually, creating 8 comparators is tedious in SPICE.
+* A B-source can output the integer code? No, digital pins need individual voltages.
+
+* B-source logic for each bit:
+* MSB (D7): if v_in > 0.5*v_ref, then 1. Residue = v_in - 0.5*v_ref*D7
+* D6: if Residue > 0.25*v_ref ...
+
+* Let's implement normalized input x = v(v_in)/v(v_ref) * 256
+* D7 = floor(x / 128) % 2
+* D6 = floor(x / 64) % 2
+* ...
+* Since floor/modulo might be hard in standard SPICE, we use a different trick or specific ngspice functions.
+* Ngspice supports 'floor'.
+
+B_D7 D7 0 V = (floor((v(v_in)/v(v_ref))*256 / 128) - 2*floor((v(v_in)/v(v_ref))*256 / 256)) > 0.5 ? v(vdd) : v(vss)
+B_D6 D6 0 V = (floor((v(v_in)/v(v_ref))*256 / 64) - 2*floor((v(v_in)/v(v_ref))*256 / 128)) > 0.5 ? v(vdd) : v(vss)
+B_D5 D5 0 V = (floor((v(v_in)/v(v_ref))*256 / 32) - 2*floor((v(v_in)/v(v_ref))*256 / 64)) > 0.5 ? v(vdd) : v(vss)
+B_D4 D4 0 V = (floor((v(v_in)/v(v_ref))*256 / 16) - 2*floor((v(v_in)/v(v_ref))*256 / 32)) > 0.5 ? v(vdd) : v(vss)
+B_D3 D3 0 V = (floor((v(v_in)/v(v_ref))*256 / 8) - 2*floor((v(v_in)/v(v_ref))*256 / 16)) > 0.5 ? v(vdd) : v(vss)
+B_D2 D2 0 V = (floor((v(v_in)/v(v_ref))*256 / 4) - 2*floor((v(v_in)/v(v_ref))*256 / 8)) > 0.5 ? v(vdd) : v(vss)
+B_D1 D1 0 V = (floor((v(v_in)/v(v_ref))*256 / 2) - 2*floor((v(v_in)/v(v_ref))*256 / 4)) > 0.5 ? v(vdd) : v(vss)
+B_D0 D0 0 V = (floor((v(v_in)/v(v_ref))*256 / 1) - 2*floor((v(v_in)/v(v_ref))*256 / 2)) > 0.5 ? v(vdd) : v(vss)
+
+* Dummy connections for unused inputs
+R_dummy_clk clk 0 1G
+R_dummy_start start 0 1G
+R_dummy_eoc EOC 0 1G
+
+.ends

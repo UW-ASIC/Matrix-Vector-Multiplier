@@ -1,0 +1,70 @@
+** sch_path: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/analog/schematics/test_bitcell.sch
+**.subckt test_bitcell
+x1 net4 net1 net3 net2 BitCell_2T1C
+V1 net1 GND PWL(0n 0 10n 0 10.1n 1.8 110n 1.8 110.1n 0 200n 0)
+V3 net3 GND PWL(0n 0 10n 0 10.1n 1.8 30n 1.8 30.1n 0 200n 0)
+C1 net4 GND 50f m=1
+V2 net2 GND PWL(0n 0 40n 0 40.1n 1.8 60n 1.8 60.1n 0 80n 0 80.1n 1.8 100n 1.8 100.1n 0 200n 0)
+V4 net5 GND PWL(0n 0 35n 0 35.1n 1.8 39n 1.8 39.1n 0 75n 0 75.1n 1.8 79n 1.8 79.1n 0 200n 0)
+XM1 net4 net5 GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+**** begin user architecture code
+
+
+.param V_WWL=1.8
+.param V_RWL=1.8
+.param V_WBL=1.8
+.param V_LSB='1.8/4'
+
+.save v(net4) v(net1) v(net2) v(net3) v(x1.net1) v(pre)
+
+.tran 0.01n 200n
+
+** Write: target = 90% of actual peak (~1.0V), so 0.9
+.meas tran t_write1 TRIG V(net1) VAL=0.9 RISE=1 TARG V(x1.net1) VAL=0.9 RISE=1
+
+** Read: target = 50% of actual RBL swing (~0.43V), so 0.2
+.meas tran t_read1 TRIG V(net2) VAL=0.9 RISE=1 TARG V(net4) VAL=0.2 RISE=1
+
+** Retention: check when storage drops from peak by V_LSB/2
+** Peak is ~1.05V now, so target = 1.05 - 0.056 = 0.994
+.meas tran t_retain TRIG AT=31n TARG V(x1.net1) VAL=0.994 FALL=1
+
+** Also add a measurement to capture the actual peak
+.meas tran V_store_peak MAX V(x1.net1) FROM=25n TO=35n
+
+.control
+save all
+run
+write test_bitcell.raw
+.endc
+
+
+
+.param mc_mm_switch=0
+.param mc_pr_switch=0
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/omare/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  Core/BitCell_2T1C.sym # of pins=4
+** sym_path: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/analog/schematics/Core/BitCell_2T1C.sym
+** sch_path: /home/omare/Documents/UWASIC/Matrix-Vector-Analog/analog/schematics/Core/BitCell_2T1C.sch
+.subckt BitCell_2T1C RBL WWL WBL RWL
+*.ipin WBL
+*.ipin RWL
+*.ipin WWL
+*.opin RBL
+XM1 net1 WWL WBL GND sky130_fd_pr__nfet_01v8 L=0.5 W=0.36 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XM2 RBL net1 RWL GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)'
++ ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W' sa=0 sb=0 sd=0 mult=1 m=1
+XC1 net1 GND sky130_fd_pr__cap_mim_m3_1 W=10 L=10 MF=1 m=1
+.ends
+
+.GLOBAL GND
+.end
