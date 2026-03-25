@@ -9,8 +9,10 @@ in
     edaPackages.netgen
     edaPackages.klayout
     edaPackages.ngspice-shared
+
     # Standard packages from nixpkgs
     pkgs.ngspice
+    pkgs.xyce
     pkgs.magic-vlsi
 
     # Rust toolchain from nixpkgs
@@ -24,7 +26,8 @@ in
     # === Analog Tools Configuration ===
     export BINDGEN_EXTRA_CLANG_ARGS="-I${edaPackages.ngspice-shared}/include $BINDGEN_EXTRA_CLANG_ARGS"
     export CPATH="${edaPackages.ngspice-shared}/include:$CPATH"
-    export NIX_LD_LIBRARY_PATH="${edaPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"
+    export NIX_LD_LIBRARY_PATH="${edaPackages.ngspice-shared}/lib:$NIX_LD_LIBRARY_PATH"\
+    export LD_LIBRARY_PATH="${edaPackages.ngspice-shared}/lib:$LD_LIBRARY_PATH"
     export PKG_CONFIG_PATH="${edaPackages.ngspice-shared}/lib/pkgconfig:$PKG_CONFIG_PATH"
     export KLAYOUT_PATH="$PDK_ROOT/$PDK/libs.tech/klayout"
     export XSCHEM_USER_LIBRARY_PATH="$PDK_ROOT/$PDK/libs.tech/xschem"
@@ -37,7 +40,7 @@ in
     export NIX_LD_LIBRARY_PATH="${pkgs.python312}/lib:$NIX_LD_LIBRARY_PATH"
 
     # === Analog Python Libraries ===
-    pip install maturin pytest
+    pip install maturin pytest PySpice
     for pkg in analog/library/dep_library/gmid analog/library/dep_library/UWASIC-ALG; do
         if [ -d "$PROJECT_ROOT/$pkg" ]; then
             echo "Installing editable package: $pkg"

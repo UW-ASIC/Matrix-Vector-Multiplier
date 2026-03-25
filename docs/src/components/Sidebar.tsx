@@ -28,7 +28,7 @@ export function Sidebar({ sections, currentPath, onNavigate }: SidebarProps) {
     <aside className="sidebar">
       <div className="sidebar-header">
         <h1 className="logo">
-          <img src="/logo.png" alt="UWASIC Logo" />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="UWASIC Logo" />
           <span className="logo-text">UWASIC Docs</span>
         </h1>
       </div>
