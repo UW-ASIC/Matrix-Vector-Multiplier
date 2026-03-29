@@ -1206,3 +1206,10 @@ W=min_width
 L=switch_length
 mult=32}
 C {devices/ipin.sym} -1110 50 0 0 {name=p4 lab=I_ref}
+C {devices/code_shown.sym} -270 -420 0 0 {name=s2 only_toplevel=false value=".param min_width=0.42
+.param switch_multiplier=1
+.param length=0.425
+.param switch_length=0.15
+.param size_multiplier=10"
+W=min_width
+L=length}

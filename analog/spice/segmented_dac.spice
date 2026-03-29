@@ -1,193 +1,285 @@
-** sch_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/segmented_dac.sch
-**.subckt segmented_dac V_in I_ref I_out_n I_out_p T1 T4 T5 B3 T6 T2 B4 T0 B2 T3 B0 B1 T1_n T0_n B2_n T6_n T5_n T4_n B1_n T3_n
-*+ B4_n T2_n B3_n B0_n
-*.ipin B0
-*.ipin B0_n
-*.ipin B1
-*.ipin B2
-*.ipin B3
-*.ipin B1_n
-*.ipin B2_n
-*.ipin B3_n
-*.ipin B4
-*.ipin B4_n
-*.ipin T0
-*.ipin T1
-*.ipin T2
-*.ipin T0_n
-*.ipin T1_n
-*.ipin T2_n
-*.opin I_out_p
-*.ipin V_in
-*.opin I_out_n
-*.ipin T3
-*.ipin T4
-*.ipin T5
-*.ipin T3_n
-*.ipin T4_n
-*.ipin T5_n
-*.ipin T6
-*.ipin T6_n
-*.ipin I_ref
-XM1 net2 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM2 net6 GND net2 net2 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM3 net1 net1 I_ref I_ref sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM4 GND GND net1 net1 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM5 net3 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM6 net7 GND net3 net3 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM7 net4 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM8 net8 GND net4 net4 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM9 net5 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=16 m=16
-XM10 net9 GND net5 net5 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=16 m=16
-XM12 I_out_p T2 net6 net6 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM13 I_out_n T2_n net6 net6 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM14 I_out_p T1 net7 net7 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM15 I_out_n T1_n net7 net7 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM16 I_out_p T0 net8 net8 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM17 I_out_n T0_n net8 net8 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM18 I_out_p B4 net9 net9 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=16 m=16
-XM19 I_out_n B4_n net9 net9 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=16 m=16
-XM11 net10 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=8 m=8
-XM20 net14 GND net10 net10 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=8 m=8
-XM21 net11 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=4 m=4
-XM22 net15 GND net11 net11 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=4 m=4
-XM23 net12 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=2 m=2
-XM24 net16 GND net12 net12 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=2 m=2
-XM25 net13 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM26 net17 GND net13 net13 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM27 I_out_p B3 net14 net14 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=8 m=8
-XM28 I_out_n B3_n net14 net14 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=8 m=8
-XM29 I_out_p B2 net15 net15 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=4 m=4
-XM30 I_out_n B2_n net15 net15 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=4 m=4
-XM31 I_out_p B1 net16 net16 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=2 m=2
-XM32 I_out_n B1_n net16 net16 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=2 m=2
-XM33 I_out_p B0 net17 net17 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM34 I_out_n B0_n net17 net17 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=1 m=1
-XM35 net18 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM36 net21 GND net18 net18 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM37 net19 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM38 net22 GND net19 net19 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM39 net20 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM40 net23 GND net20 net20 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM41 I_out_p T5 net21 net21 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM42 I_out_n T5_n net21 net21 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM43 I_out_p T4 net22 net22 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM44 I_out_n T4_n net22 net22 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM45 I_out_p T3 net23 net23 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM46 I_out_n T3_n net23 net23 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM47 net24 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM48 net25 GND net24 net24 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM49 I_out_p T6 net25 net25 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-XM50 I_out_n T6_n net25 net25 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
-+ as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
-+ sa=0 sb=0 sd=0 mult=32 m=32
-**** begin user architecture code
+** SEGMENTED_DAC flat netlist
+*.IPIN B0
+*.IPIN B0_N
+*.IPIN B1
+*.IPIN B2
+*.IPIN B3
+*.IPIN B1_N
+*.IPIN B2_N
+*.IPIN B3_N
+*.IPIN B4
+*.IPIN B4_N
+*.IPIN T0
+*.IPIN T1
+*.IPIN T2
+*.IPIN T0_N
+*.IPIN T1_N
+*.IPIN T2_N
+*.OPIN I_OUT_P
+*.IPIN V_IN
+*.OPIN I_OUT_N
+*.IPIN T3
+*.IPIN T4
+*.IPIN T5
+*.IPIN T3_N
+*.IPIN T4_N
+*.IPIN T5_N
+*.IPIN T6
+*.IPIN T6_N
+*.IPIN I_REF
+*--------BEGIN_XM1->SKY130_FD_PR__PFET_01V8
+XM1 NET2 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM1->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM2->SKY130_FD_PR__PFET_01V8
+XM2 NET6 I_REF NET2 NET2  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM2->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM3->SKY130_FD_PR__PFET_01V8
+XM3 NET1 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM3->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM4->SKY130_FD_PR__PFET_01V8
+XM4 I_REF I_REF NET1 NET1  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM4->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM5->SKY130_FD_PR__PFET_01V8
+XM5 NET3 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM5->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM6->SKY130_FD_PR__PFET_01V8
+XM6 NET7 I_REF NET3 NET3  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM6->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM7->SKY130_FD_PR__PFET_01V8
+XM7 NET4 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM7->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM8->SKY130_FD_PR__PFET_01V8
+XM8 NET8 I_REF NET4 NET4  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM8->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM9->SKY130_FD_PR__PFET_01V8
+XM9 NET5 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=16 M=16
+*--------END___XM9->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM10->SKY130_FD_PR__PFET_01V8
+XM10 NET9 I_REF NET5 NET5  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=16 M=16
+*--------END___XM10->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM12->SKY130_FD_PR__PFET_01V8
+XM12 I_OUT_P T2 NET6 NET6  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29' AS='INT((NF+2)/2)*W/NF*0.29'
++ PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0 SD=0 MULT=32 M=32
+*--------END___XM12->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM13->SKY130_FD_PR__PFET_01V8
+XM13 I_OUT_N T2_N NET6 NET6  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM13->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM14->SKY130_FD_PR__PFET_01V8
+XM14 I_OUT_P T1 NET7 NET7  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29' AS='INT((NF+2)/2)*W/NF*0.29'
++ PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0 SD=0 MULT=32 M=32
+*--------END___XM14->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM15->SKY130_FD_PR__PFET_01V8
+XM15 I_OUT_N T1_N NET7 NET7  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM15->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM16->SKY130_FD_PR__PFET_01V8
+XM16 I_OUT_P T0 NET8 NET8  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29' AS='INT((NF+2)/2)*W/NF*0.29'
++ PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0 SD=0 MULT=32 M=32
+*--------END___XM16->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM17->SKY130_FD_PR__PFET_01V8
+XM17 I_OUT_N T0_N NET8 NET8  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM17->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM18->SKY130_FD_PR__PFET_01V8
+XM18 I_OUT_P B4 NET9 NET9  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29' AS='INT((NF+2)/2)*W/NF*0.29'
++ PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0 SD=0 MULT=16 M=16
+*--------END___XM18->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM19->SKY130_FD_PR__PFET_01V8
+XM19 I_OUT_N B4_N NET9 NET9  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=16 M=16
+*--------END___XM19->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM11->SKY130_FD_PR__PFET_01V8
+XM11 NET10 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=8 M=8
+*--------END___XM11->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM20->SKY130_FD_PR__PFET_01V8
+XM20 NET14 I_REF NET10 NET10  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=8 M=8
+*--------END___XM20->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM21->SKY130_FD_PR__PFET_01V8
+XM21 NET11 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=4 M=4
+*--------END___XM21->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM22->SKY130_FD_PR__PFET_01V8
+XM22 NET15 I_REF NET11 NET11  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=4 M=4
+*--------END___XM22->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM23->SKY130_FD_PR__PFET_01V8
+XM23 NET12 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=2 M=2
+*--------END___XM23->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM24->SKY130_FD_PR__PFET_01V8
+XM24 NET16 I_REF NET12 NET12  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=2 M=2
+*--------END___XM24->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM25->SKY130_FD_PR__PFET_01V8
+XM25 NET13 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=1 M=1
+*--------END___XM25->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM26->SKY130_FD_PR__PFET_01V8
+XM26 NET17 I_REF NET13 NET13  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=1 M=1
+*--------END___XM26->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM27->SKY130_FD_PR__PFET_01V8
+XM27 I_OUT_P B3 NET14 NET14  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=8 M=8
+*--------END___XM27->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM28->SKY130_FD_PR__PFET_01V8
+XM28 I_OUT_N B3_N NET14 NET14  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=8 M=8
+*--------END___XM28->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM29->SKY130_FD_PR__PFET_01V8
+XM29 I_OUT_P B2 NET15 NET15  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=4 M=4
+*--------END___XM29->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM30->SKY130_FD_PR__PFET_01V8
+XM30 I_OUT_N B2_N NET15 NET15  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=4 M=4
+*--------END___XM30->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM31->SKY130_FD_PR__PFET_01V8
+XM31 I_OUT_P B1 NET16 NET16  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=2 M=2
+*--------END___XM31->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM32->SKY130_FD_PR__PFET_01V8
+XM32 I_OUT_N B1_N NET16 NET16  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=2 M=2
+*--------END___XM32->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM33->SKY130_FD_PR__PFET_01V8
+XM33 I_OUT_P B0 NET17 NET17  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=1 M=1
+*--------END___XM33->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM34->SKY130_FD_PR__PFET_01V8
+XM34 I_OUT_N B0_N NET17 NET17  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=1 M=1
+*--------END___XM34->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM35->SKY130_FD_PR__PFET_01V8
+XM35 NET18 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM35->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM36->SKY130_FD_PR__PFET_01V8
+XM36 NET21 I_REF NET18 NET18  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM36->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM37->SKY130_FD_PR__PFET_01V8
+XM37 NET19 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM37->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM38->SKY130_FD_PR__PFET_01V8
+XM38 NET22 I_REF NET19 NET19  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM38->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM39->SKY130_FD_PR__PFET_01V8
+XM39 NET20 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM39->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM40->SKY130_FD_PR__PFET_01V8
+XM40 NET23 I_REF NET20 NET20  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM40->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM41->SKY130_FD_PR__PFET_01V8
+XM41 I_OUT_P T5 NET21 NET21  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM41->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM42->SKY130_FD_PR__PFET_01V8
+XM42 I_OUT_N T5_N NET21 NET21  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM42->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM43->SKY130_FD_PR__PFET_01V8
+XM43 I_OUT_P T4 NET22 NET22  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM43->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM44->SKY130_FD_PR__PFET_01V8
+XM44 I_OUT_N T4_N NET22 NET22  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM44->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM45->SKY130_FD_PR__PFET_01V8
+XM45 I_OUT_P T3 NET23 NET23  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM45->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM46->SKY130_FD_PR__PFET_01V8
+XM46 I_OUT_N T3_N NET23 NET23  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM46->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM47->SKY130_FD_PR__PFET_01V8
+XM47 NET24 NET1 V_IN V_IN  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM47->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM48->SKY130_FD_PR__PFET_01V8
+XM48 NET25 I_REF NET24 NET24  SKY130_FD_PR__PFET_01V8 L=LENGTH*SIZE_MULTIPLIER W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM48->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM49->SKY130_FD_PR__PFET_01V8
+XM49 I_OUT_P T6 NET25 NET25  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM49->SKY130_FD_PR__PFET_01V8
+*--------BEGIN_XM50->SKY130_FD_PR__PFET_01V8
+XM50 I_OUT_N T6_N NET25 NET25  SKY130_FD_PR__PFET_01V8 L=SWITCH_LENGTH W=MIN_WIDTH*SIZE_MULTIPLIER NF=1 AD='INT((NF+1)/2)*W/NF*0.29'
++ AS='INT((NF+2)/2)*W/NF*0.29' PD='2*INT((NF+1)/2)*(W/NF+0.29)' PS='2*INT((NF+2)/2)*(W/NF+0.29)' NRD='0.29/W' NRS='0.29/W' SA=0 SB=0
++ SD=0 MULT=32 M=32
+*--------END___XM50->SKY130_FD_PR__PFET_01V8
+**** BEGIN USER ARCHITECTURE CODE
 
-.param min_width=0.42
-.param switch_multiplier=1
-.param length=0.425
-.param switch_length=0.15
-.param size_multiplier=1
+.PARAM MIN_WIDTH=0.42
+.PARAM SWITCH_MULTIPLIER=1
+.PARAM LENGTH=0.425
+.PARAM SWITCH_LENGTH=0.15
+.PARAM SIZE_MULTIPLIER=10
 
-**** end user architecture code
-**.ends
-.GLOBAL GND
+**** END USER ARCHITECTURE CODE
 .end

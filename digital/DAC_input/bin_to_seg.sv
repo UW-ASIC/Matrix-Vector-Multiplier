@@ -19,7 +19,7 @@ module bin_to_seg #(
         end
     endgenerate
 
-    logic [THERM_BITS-1:0] therm_part;
+    logic [OUTPUT_BITS-BIN_BITS-1:0] therm_part;
 
     // Convert upper bits to thermometer code
     always_comb begin
