@@ -34,7 +34,7 @@ N 490 430 490 600 {lab=#net3}
 N 490 430 650 430 {lab=#net3}
 N 430 700 430 750 {lab=GND}
 N 430 700 490 700 {lab=GND}
-N 90 340 210 340 {lab=#net4}
+N 90 340 180 340 {lab=#net4}
 N -940 -210 -940 150 {lab=B_n[4:0]
 bus=true}
 N -930 -220 -850 -220 {lab=B_n[0]}
@@ -223,8 +223,8 @@ C {devices/lab_pin.sym} 90 360 0 1 {name=p4 lab=I_out_p}
 C {devices/lab_pin.sym} 250 510 0 0 {name=p3 lab=I_ref}
 C {devices/isource.sym} 250 540 0 0 {name=I0 value=8u}
 C {devices/vsource.sym} 140 790 0 0 {name=V32 value=0 savecurrent=false}
-C {devices/gnd.sym} 210 400 0 0 {name=l2 lab=GND}
-C {devices/vsource.sym} 210 370 0 0 {name=V33 value=0 savecurrent=false}
+C {devices/gnd.sym} 180 400 0 0 {name=l2 lab=GND}
+C {devices/vsource.sym} 180 370 0 0 {name=V33 value=0 savecurrent=false}
 C {components/DAC/segmented_dac.sym} -60 390 0 0 {name=x1}
 C {devices/code_shown.sym} 830 280 0 0 {name=s2 only_toplevel=false value=".param min_width=0.42
 .param switch_multiplier=1
@@ -235,7 +235,6 @@ W=min_width
 L=length}
 C {devices/gnd.sym} 250 570 0 0 {name=l5 lab=GND}
 C {devices/lab_pin.sym} -210 380 0 0 {name=p5 lab=B[4:0]}
-C {devices/bus_tap.sym} 590 190 0 0 {name=l32 lab=[0]}
 C {devices/bus_tap.sym} -940 150 0 0 {name=l33 lab=[4]}
 C {devices/bus_tap.sym} -940 -210 0 0 {name=l35 lab=[0]}
 C {devices/bus_tap.sym} -940 60 0 0 {name=l36 lab=[3]}
