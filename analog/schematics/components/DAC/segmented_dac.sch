@@ -95,21 +95,21 @@ lab=#net6}
 N 0 120 100 120 {
 lab=I_out_n}
 N -490 70 -490 160 {
-lab=T2}
+lab=T_n[2]}
 N -350 70 -350 160 {
-lab=T1}
+lab=T_n[1]}
 N -210 70 -210 160 {
-lab=T0}
+lab=T_n[0]}
 N -70 70 -70 160 {
-lab=B4}
+lab=B_n[4]}
 N -380 70 -380 180 {
-lab=T2_n}
+lab=T[2]}
 N -240 70 -240 180 {
-lab=T1_n}
+lab=T[1]}
 N -100 70 -100 180 {
-lab=T0_n}
+lab=T[0]}
 N 40 70 40 180 {
-lab=B4_n}
+lab=B[4]}
 N 140 -90 140 -50 {
 lab=#net10}
 N 280 -90 280 -50 {
@@ -193,21 +193,21 @@ lab=I_out_n}
 N 530 140 630 140 {
 lab=I_out_p}
 N 70 70 70 160 {
-lab=B3}
+lab=B_n[3]}
 N 210 70 210 160 {
-lab=B2}
+lab=B_n[2]}
 N 350 70 350 160 {
-lab=B1}
+lab=B_n[1]}
 N 490 70 490 160 {
-lab=B0}
+lab=B_n[0]}
 N 180 70 180 180 {
-lab=B3_n}
+lab=B[3]}
 N 320 70 320 180 {
-lab=B2_n}
+lab=B[2]}
 N 460 70 460 180 {
-lab=B1_n}
+lab=B[1]}
 N 600 70 600 180 {
-lab=B0_n}
+lab=B[0]}
 N -30 140 110 140 {
 lab=I_out_p}
 N 100 120 140 120 {
@@ -340,17 +340,17 @@ lab=#net21}
 N -870 40 -840 40 {
 lab=#net21}
 N -910 70 -910 160 {
-lab=T5}
+lab=T_n[5]}
 N -770 70 -770 160 {
-lab=T4}
+lab=T_n[4]}
 N -630 70 -630 160 {
-lab=T3}
+lab=T_n[3]}
 N -800 70 -800 180 {
-lab=T5_n}
+lab=T[5]}
 N -660 70 -660 180 {
-lab=T4_n}
+lab=T[4]}
 N -520 70 -520 180 {
-lab=T3_n}
+lab=T[3]}
 N -590 70 -560 70 {lab=#net23}
 N -730 70 -700 70 {lab=#net22}
 N -870 70 -840 70 {lab=#net21}
@@ -393,9 +393,9 @@ lab=#net25}
 N -1010 40 -980 40 {
 lab=#net25}
 N -1050 70 -1050 160 {
-lab=T6}
+lab=T_n[6]}
 N -940 70 -940 180 {
-lab=T6_n}
+lab=T[6]}
 N -1010 70 -980 70 {lab=#net25}
 N -980 -20 -960 -20 {lab=#net24}
 N -960 -50 -960 -20 {lab=#net24}
@@ -416,6 +416,24 @@ N -1020 -60 -880 -60 {lab=I_ref}
 N -1070 -120 -1020 -120 {lab=#net1}
 N -1070 -20 -1020 -20 {lab=I_ref}
 N -1110 -150 -980 -150 {lab=V_in}
+N 30 190 730 190 {lab=B[4:0] bus=true}
+N 490 160 490 230 {lab=B_n[0]}
+N 350 160 350 230 {lab=B_n[1]}
+N 210 160 210 230 {lab=B_n[2]}
+N 70 160 70 230 {lab=B_n[3]}
+N -70 160 -70 230 {lab=B_n[4]}
+N -80 240 730 240 {lab=B_n[4:0] bus=true}
+N -1100 190 -110 190 {lab=T[6:0]
+bus=true}
+N -1100 240 -220 240 {lab=T_n[4:0]
+bus=true}
+N -1050 160 -1050 230 {lab=T_n[6]}
+N -910 160 -910 230 {lab=T_n[5]}
+N -770 160 -770 230 {lab=T_n[4]}
+N -630 160 -630 230 {lab=T_n[3]}
+N -490 160 -490 230 {lab=T_n[2]}
+N -350 160 -350 230 {lab=T_n[1]}
+N -210 160 -210 230 {lab=T_n[0]}
 C {sky130_fd_pr/pfet_01v8.sym} -440 -120 0 0 {name=M1
 W=min_width*size_multiplier
 L=length*size_multiplier
@@ -668,27 +686,6 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {ipin.sym} 490 160 2 0 {name=p3 lab=B0
-L=length}
-C {ipin.sym} 600 180 0 0 {name=p5 lab=B0_n
-L=length}
-C {ipin.sym} 350 160 2 0 {name=p6 lab=B1
-W=50
-L=switch_length*size_multiplier}
-C {ipin.sym} 210 160 2 0 {name=p7 lab=B2
-W=min_width
-L=switch_length*size_multiplier}
-C {ipin.sym} 70 160 2 0 {name=p8 lab=B3
-W=min_width
-L=switch_length*size_multiplier}
-C {ipin.sym} 460 180 0 0 {name=p9 lab=B1_n
-L=length}
-C {ipin.sym} 320 180 0 0 {name=p10 lab=B2_n
-W=min_width
-L=length}
-C {ipin.sym} 180 180 0 0 {name=p11 lab=B3_n
-W=min_width
-L=length}
 C {sky130_fd_pr/pfet_01v8.sym} 120 -120 0 0 {name=M11
 W=min_width*size_multiplier
 L=length*size_multiplier
@@ -913,42 +910,13 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {ipin.sym} -70 160 2 0 {name=p12 lab=B4
-W=min_width
-L=switch_length*size_multiplier}
-C {ipin.sym} 40 180 0 0 {name=p13 lab=B4_n
-W=min_width
-L=length}
-C {ipin.sym} -210 160 2 0 {name=p14 lab=T0
-W=min_width
-L=switch_length*size_multiplier}
-C {ipin.sym} -350 160 2 0 {name=p15 lab=T1
-W=min_width
-L=switch_length*size_multiplier
-mult=32}
-C {ipin.sym} -490 160 2 0 {name=p16 lab=T2
-W=min_width
-L=switch_length*size_multiplier
-mult=32}
-C {ipin.sym} -100 180 0 0 {name=p17 lab=T0_n
-W=min_width
-L=length}
-C {ipin.sym} -240 180 0 0 {name=p18 lab=T1_n
-W=min_width
-L=switch_length
-mult=32}
-C {ipin.sym} -380 180 0 0 {name=p19 lab=T2_n
-W=min_width
-L=switch_length
-mult=32}
 C {devices/opin.sym} 630 140 0 0 {name=p2 lab=I_out_p
-L=length}
+}
 C {ipin.sym} -180 -260 2 0 {name=p21 lab=V_in}
 C {devices/lab_pin.sym} -210 -150 1 0 {name=p22 sig_type=std_logic lab=V_in
 L=length*size_multiplier}
 C {devices/lab_pin.sym} -180 -260 0 0 {name=p23 sig_type=std_logic lab=V_in}
-C {devices/opin.sym} 730 120 0 0 {name=p1 lab=I_out_n
-L=switch_length}
+C {devices/opin.sym} 730 120 0 0 {name=p1 lab=I_out_n}
 C {sky130_fd_pr/pfet_01v8.sym} -860 -120 0 0 {name=M35
 W=min_width*size_multiplier
 L=length*size_multiplier
@@ -1117,30 +1085,6 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {ipin.sym} -630 160 2 0 {name=p24 lab=T3
-W=min_width
-L=switch_length*size_multiplier
-mult=32}
-C {ipin.sym} -770 160 2 0 {name=p25 lab=T4
-W=min_width
-L=switch_length*size_multiplier
-mult=32}
-C {ipin.sym} -910 160 2 0 {name=p26 lab=T5
-W=min_width
-L=switch_length*size_multiplier
-mult=32}
-C {ipin.sym} -520 180 0 0 {name=p27 lab=T3_n
-W=min_width
-L=switch_length
-mult=32}
-C {ipin.sym} -660 180 0 0 {name=p28 lab=T4_n
-W=min_width
-L=switch_length
-mult=32}
-C {ipin.sym} -800 180 0 0 {name=p29 lab=T5_n
-W=min_width
-L=switch_length
-mult=32}
 C {sky130_fd_pr/pfet_01v8.sym} -1000 -120 0 0 {name=M47
 W=min_width*size_multiplier
 L=length*size_multiplier
@@ -1197,19 +1141,32 @@ sa=0 sb=0 sd=0
 model=pfet_01v8
 spiceprefix=X
 }
-C {ipin.sym} -1050 160 2 0 {name=p30 lab=T6
-W=min_width
-L=switch_length*size_multiplier
-mult=32}
-C {ipin.sym} -940 180 0 0 {name=p31 lab=T6_n
-W=min_width
-L=switch_length
-mult=32}
 C {devices/ipin.sym} -1110 50 0 0 {name=p4 lab=I_ref}
-C {devices/code_shown.sym} -270 -420 0 0 {name=s2 only_toplevel=false value=".param min_width=0.42
-.param switch_multiplier=1
-.param length=0.425
-.param switch_length=0.15
-.param size_multiplier=10"
-W=min_width
-L=length}
+C {devices/bus_tap.sym} 590 190 0 0 {name=l1 lab=[0]}
+C {devices/bus_tap.sym} 450 190 0 0 {name=l2 lab=[1]}
+C {devices/bus_tap.sym} 310 190 0 0 {name=l3 lab=[2]}
+C {devices/bus_tap.sym} 170 190 0 0 {name=l4 lab=[3]}
+C {devices/bus_tap.sym} 30 190 0 0 {name=l5 lab=[4]}
+C {ipin.sym} 730 190 2 0 {name=p3 lab=B[4:0]}
+C {devices/bus_tap.sym} 480 240 0 0 {name=l21 lab=[0]}
+C {devices/bus_tap.sym} 340 240 0 0 {name=l22 lab=[1]}
+C {devices/bus_tap.sym} 200 240 0 0 {name=l23 lab=[2]}
+C {devices/bus_tap.sym} 60 240 0 0 {name=l24 lab=[3]}
+C {devices/bus_tap.sym} -80 240 0 0 {name=l25 lab=[4]}
+C {ipin.sym} 730 240 2 0 {name=p8 lab=B_n[4:0]}
+C {devices/bus_tap.sym} -110 190 0 0 {name=l26 lab=[0]}
+C {devices/bus_tap.sym} -250 190 0 0 {name=l27 lab=[1]}
+C {devices/bus_tap.sym} -390 190 0 0 {name=l28 lab=[2]}
+C {devices/bus_tap.sym} -530 190 0 0 {name=l29 lab=[3]}
+C {devices/bus_tap.sym} -670 190 0 0 {name=l30 lab=[4]}
+C {devices/bus_tap.sym} -810 190 0 0 {name=l31 lab=[5]}
+C {devices/bus_tap.sym} -950 190 0 0 {name=l32 lab=[6]}
+C {devices/bus_tap.sym} -220 240 0 0 {name=l33 lab=[0]}
+C {devices/bus_tap.sym} -360 240 0 0 {name=l34 lab=[1]}
+C {devices/bus_tap.sym} -500 240 0 0 {name=l35 lab=[2]}
+C {devices/bus_tap.sym} -640 240 0 0 {name=l36 lab=[3]}
+C {devices/bus_tap.sym} -780 240 0 0 {name=l37 lab=[4]}
+C {devices/bus_tap.sym} -920 240 0 0 {name=l38 lab=[5]}
+C {devices/bus_tap.sym} -1060 240 0 0 {name=l39 lab=[6]}
+C {ipin.sym} -1100 190 0 0 {name=p5 lab=T[6:0]}
+C {ipin.sym} -1100 240 0 0 {name=p6 lab=T_n[6:0]}

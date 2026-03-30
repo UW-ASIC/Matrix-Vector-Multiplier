@@ -1,29 +1,29 @@
 ** sch_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/components/DAC/unit_tb/seg_dac_tb.sch
 **.subckt seg_dac_tb
-V4 B0 GND PULSE(0 1.8 0 50p 50p 15.15n 30.3n)
-V5 B1 GND PULSE(0 1.8 0 50p 50p 30.3n 60.6n)
-V6 B2 GND PULSE(0 1.8 0 50p 50p 60.6n 121.2n)
-V7 B3 GND PULSE(0 1.8 0 50p 50p 121.2n 242.4n)
-V8 B4 GND PULSE(0 1.8 0 50p 50p 242.4n 484.8n)
-V9 T0 GND PULSE(0 1.8 0 50p 50p 484.8n 7756.8n)
-V10 T1 GND PULSE(0 1.8 0 50p 50p 969.6n 7756.8n)
-V11 T2 GND PULSE(0 1.8 0 50p 50p 1454.4n 7756.8n)
-V17 T3 GND PULSE(0 1.8 0 50p 50p 1939.2n 7756.8n)
-V18 T4 GND PULSE(0 1.8 0 50p 50p 2424n 7756.8n)
-V19 T5 GND PULSE(0 1.8 0 50p 50p 2908.8n 7756.8n)
-V20 T6 GND PULSE(0 1.8 0 50p 50p 3393.6n 7756.8n)
-V12 B0_n GND PULSE(1.8 0 0 50p 50p 15.15n 30.3n)
-V13 B1_n GND PULSE(1.8 0 0 50p 50p 30.3n 60.6n)
-V14 B2_n GND PULSE(1.8 0 0 50p 50p 60.6n 121.2n)
-V15 B3_n GND PULSE(1.8 0 0 50p 50p 121.2n 242.4n)
-V16 B4_n GND PULSE(1.8 0 0 50p 50p 242.4n 484.8n)
-V21 T0_n GND PULSE(1.8 0 0 50p 50p 484.8n 7756.8n)
-V22 T1_n GND PULSE(1.8 0 0 50p 50p 969.6n 7756.8n)
-V23 T2_n GND PULSE(1.8 0 0 50p 50p 1454.4n 7756.8n)
-V24 T3_n GND PULSE(1.8 0 0 50p 50p 1939.2n 7756.8n)
-V25 T4_n GND PULSE(1.8 0 0 50p 50p 2424n 7756.8n)
-V26 T5_n GND PULSE(1.8 0 0 50p 50p 2908.8n 7756.8n)
-V27 T6_n GND PULSE(1.8 0 0 50p 50p 3393.6n 7756.8n)
+V4 B_n[0] GND PULSE(0 1.8 0 50p 50p 15.15n 30.3n)
+V5 B_n[1] GND PULSE(0 1.8 0 50p 50p 30.3n 60.6n)
+V6 B_n[2] GND PULSE(0 1.8 0 50p 50p 60.6n 121.2n)
+V7 B_n[3] GND PULSE(0 1.8 0 50p 50p 121.2n 242.4n)
+V8 B_n[4] GND PULSE(0 1.8 0 50p 50p 242.4n 484.8n)
+V9 T_n[0] GND PULSE(0 1.8 0 50p 50p 484.8n 7756.8n)
+V10 T_n[1] GND PULSE(0 1.8 0 50p 50p 969.6n 7756.8n)
+V11 T_n[2] GND PULSE(0 1.8 0 50p 50p 1454.4n 7756.8n)
+V17 T_n[3] GND PULSE(0 1.8 0 50p 50p 1939.2n 7756.8n)
+V18 T_n[4] GND PULSE(0 1.8 0 50p 50p 2424n 7756.8n)
+V19 T_n[5] GND PULSE(0 1.8 0 50p 50p 2908.8n 7756.8n)
+V20 T_n[6] GND PULSE(0 1.8 0 50p 50p 3393.6n 7756.8n)
+V12 B[0] GND PULSE(1.8 0 0 50p 50p 15.15n 30.3n)
+V13 B[1] GND PULSE(1.8 0 0 50p 50p 30.3n 60.6n)
+V14 B[2] GND PULSE(1.8 0 0 50p 50p 60.6n 121.2n)
+V15 B[3] GND PULSE(1.8 0 0 50p 50p 121.2n 242.4n)
+V16 B[4] GND PULSE(1.8 0 0 50p 50p 242.4n 484.8n)
+V21 T[0] GND PULSE(1.8 0 0 50p 50p 484.8n 7756.8n)
+V22 T[1] GND PULSE(1.8 0 0 50p 50p 969.6n 7756.8n)
+V23 T[2] GND PULSE(1.8 0 0 50p 50p 1454.4n 7756.8n)
+V24 T[3] GND PULSE(1.8 0 0 50p 50p 1939.2n 7756.8n)
+V25 T[4] GND PULSE(1.8 0 0 50p 50p 2424n 7756.8n)
+V26 T[5] GND PULSE(1.8 0 0 50p 50p 2908.8n 7756.8n)
+V27 T[6] GND PULSE(1.8 0 0 50p 50p 3393.6n 7756.8n)
 V3 net2 GND 1.8
 R1 GND net1 1k m=1
 V1 V_in net5 1.8
@@ -36,16 +36,41 @@ C1 GND v_dac_out 1p m=1
 I0 I_ref GND 8u
 V32 net5 GND 0
 V33 net4 GND 0
-x1 V_in I_ref net4 I_out_p T1 T4 T5 B3 T6 T2 B4 T0 B2 T3 B0 B1 T1_n T0_n B2_n T6_n T5_n T4_n B1_n T3_n B4_n T2_n B3_n B0_n
-+ segmented_dac
+x1 V_in I_ref net4 I_out_p B[4] B[3] B[2] B[1] B[0] T[6] T[5] T[4] T[3] T[2] T[1] T[0] T_n[6] T_n[5] T_n[4] T_n[3] T_n[2] T_n[1]
++ T_n[0] B_n[4] B_n[3] B_n[2] B_n[1] B_n[0] segmented_dac
+* tap: #net8 --> #net7
+* tap: B_n[4:0] --> B_n[4]
+* tap: B_n[4:0] --> B_n[0]
+* tap: B_n[4:0] --> B_n[3]
+* tap: B_n[4:0] --> B_n[2]
+* tap: B_n[4:0] --> B_n[1]
+* tap: T_n[6:0] --> T_n[4]
+* tap: T_n[6:0] --> T_n[0]
+* tap: T_n[6:0] --> T_n[3]
+* tap: T_n[6:0] --> T_n[2]
+* tap: T_n[6:0] --> T_n[1]
+* tap: T_n[6:0] --> T_n[5]
+* tap: T_n[6:0] --> T_n[6]
+* tap: T[6:0] --> T[4]
+* tap: T[6:0] --> T[0]
+* tap: T[6:0] --> T[3]
+* tap: T[6:0] --> T[2]
+* tap: T[6:0] --> T[1]
+* tap: T[6:0] --> T[5]
+* tap: T[6:0] --> T[6]
+* tap: B[4:0] --> B[4]
+* tap: B[4:0] --> B[0]
+* tap: B[4:0] --> B[3]
+* tap: B[4:0] --> B[2]
+* tap: B[4:0] --> B[1]
 **** begin user architecture code
 
 .param mc_mm_switch=0
 .param mc_pr_switch=0
-.include /root/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
-.include /root/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
-.include /root/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
-.include /root/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
+.include /home/david/.volare/sky130A/libs.tech/ngspice/corners/tt.spice
+.include /home/david/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical.spice
+.include /home/david/.volare/sky130A/libs.tech/ngspice/r+c/res_typical__cap_typical__lin.spice
+.include /home/david/.volare/sky130A/libs.tech/ngspice/corners/tt/specialized_cells.spice
 
 
 .control
@@ -61,7 +86,7 @@ x1 V_in I_ref net4 I_out_p T1 T4 T5 B3 T6 T2 B4 T0 B2 T3 B0 B1 T1_n T0_n B2_n T6
 .param switch_multiplier=1
 .param length=0.425
 .param switch_length=0.15
-.param size_multiplier=10
+.param size_multiplier=5
 
 **** end user architecture code
 **.ends
@@ -94,39 +119,19 @@ XM7 Vout Vbias VSS VSS sky130_fd_pr__nfet_01v8 L=0.3 W=1 nf=1 ad='int((nf+1)/2) 
 .ends
 
 
-* expanding   symbol:  components/DAC/segmented_dac.sym # of pins=28
+* expanding   symbol:  components/DAC/segmented_dac.sym # of pins=8
 ** sym_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/components/DAC/segmented_dac.sym
 ** sch_path: /home/david/Documents/Matrix-Vector-Multiplier/analog/schematics/components/DAC/segmented_dac.sch
-.subckt segmented_dac V_in I_ref I_out_n I_out_p T1 T4 T5 B3 T6 T2 B4 T0 B2 T3 B0 B1 T1_n T0_n B2_n T6_n T5_n T4_n B1_n T3_n B4_n
-+ T2_n B3_n B0_n
-*.ipin B0
-*.ipin B0_n
-*.ipin B1
-*.ipin B2
-*.ipin B3
-*.ipin B1_n
-*.ipin B2_n
-*.ipin B3_n
-*.ipin B4
-*.ipin B4_n
-*.ipin T0
-*.ipin T1
-*.ipin T2
-*.ipin T0_n
-*.ipin T1_n
-*.ipin T2_n
+.subckt segmented_dac V_in I_ref I_out_n I_out_p B[4] B[3] B[2] B[1] B[0] T[6] T[5] T[4] T[3] T[2] T[1] T[0] T_n[6] T_n[5] T_n[4]
++ T_n[3] T_n[2] T_n[1] T_n[0] B_n[4] B_n[3] B_n[2] B_n[1] B_n[0]
 *.opin I_out_p
 *.ipin V_in
 *.opin I_out_n
-*.ipin T3
-*.ipin T4
-*.ipin T5
-*.ipin T3_n
-*.ipin T4_n
-*.ipin T5_n
-*.ipin T6
-*.ipin T6_n
 *.ipin I_ref
+*.ipin B[4],B[3],B[2],B[1],B[0]
+*.ipin B_n[4],B_n[3],B_n[2],B_n[1],B_n[0]
+*.ipin T[6],T[5],T[4],T[3],T[2],T[1],T[0]
+*.ipin T_n[6],T_n[5],T_n[4],T_n[3],T_n[2],T_n[1],T_n[0]
 XM1 net2 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
@@ -157,28 +162,28 @@ XM9 net5 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_w
 XM10 net9 I_ref net5 net5 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=16 m=16
-XM12 I_out_p T2 net6 net6 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM12 I_out_p T_n[2] net6 net6 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM13 I_out_n T2_n net6 net6 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM13 I_out_n T[2] net6 net6 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM14 I_out_p T1 net7 net7 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM14 I_out_p T_n[1] net7 net7 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM15 I_out_n T1_n net7 net7 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM15 I_out_n T[1] net7 net7 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM16 I_out_p T0 net8 net8 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM16 I_out_p T_n[0] net8 net8 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM17 I_out_n T0_n net8 net8 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM17 I_out_n T[0] net8 net8 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM18 I_out_p B4 net9 net9 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM18 I_out_p B_n[4] net9 net9 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=16 m=16
-XM19 I_out_n B4_n net9 net9 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM19 I_out_n B[4] net9 net9 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=16 m=16
 XM11 net10 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
@@ -205,28 +210,28 @@ XM25 net13 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min
 XM26 net17 I_ref net13 net13 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM27 I_out_p B3 net14 net14 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM27 I_out_p B_n[3] net14 net14 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=8 m=8
-XM28 I_out_n B3_n net14 net14 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM28 I_out_n B[3] net14 net14 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=8 m=8
-XM29 I_out_p B2 net15 net15 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM29 I_out_p B_n[2] net15 net15 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=4 m=4
-XM30 I_out_n B2_n net15 net15 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM30 I_out_n B[2] net15 net15 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=4 m=4
-XM31 I_out_p B1 net16 net16 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM31 I_out_p B_n[1] net16 net16 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=2 m=2
-XM32 I_out_n B1_n net16 net16 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM32 I_out_n B[1] net16 net16 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=2 m=2
-XM33 I_out_p B0 net17 net17 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM33 I_out_p B_n[0] net17 net17 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
-XM34 I_out_n B0_n net17 net17 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM34 I_out_n B[0] net17 net17 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=1 m=1
 XM35 net18 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
@@ -247,22 +252,22 @@ XM39 net20 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min
 XM40 net23 I_ref net20 net20 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM41 I_out_p T5 net21 net21 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM41 I_out_p T_n[5] net21 net21 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM42 I_out_n T5_n net21 net21 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM42 I_out_n T[5] net21 net21 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM43 I_out_p T4 net22 net22 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM43 I_out_p T_n[4] net22 net22 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM44 I_out_n T4_n net22 net22 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM44 I_out_n T[4] net22 net22 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM45 I_out_p T3 net23 net23 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM45 I_out_p T_n[3] net23 net23 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM46 I_out_n T3_n net23 net23 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM46 I_out_n T[3] net23 net23 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
 XM47 net24 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
@@ -271,12 +276,36 @@ XM47 net24 net1 V_in V_in sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min
 XM48 net25 I_ref net24 net24 sky130_fd_pr__pfet_01v8 L=length*size_multiplier W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM49 I_out_p T6 net25 net25 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM49 I_out_p T_n[6] net25 net25 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
-XM50 I_out_n T6_n net25 net25 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
+XM50 I_out_n T[6] net25 net25 sky130_fd_pr__pfet_01v8 L=switch_length W=min_width*size_multiplier nf=1 ad='int((nf+1)/2) * W/nf * 0.29'
 + as='int((nf+2)/2) * W/nf * 0.29' pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
 + sa=0 sb=0 sd=0 mult=32 m=32
+* tap: B[4:0] --> B[0]
+* tap: B[4:0] --> B[1]
+* tap: B[4:0] --> B[2]
+* tap: B[4:0] --> B[3]
+* tap: B[4:0] --> B[4]
+* tap: B_n[4:0] --> B_n[0]
+* tap: B_n[4:0] --> B_n[1]
+* tap: B_n[4:0] --> B_n[2]
+* tap: B_n[4:0] --> B_n[3]
+* tap: B_n[4:0] --> B_n[4]
+* tap: T[6:0] --> T[0]
+* tap: T[6:0] --> T[1]
+* tap: T[6:0] --> T[2]
+* tap: T[6:0] --> T[3]
+* tap: T[6:0] --> T[4]
+* tap: T[6:0] --> T[5]
+* tap: T[6:0] --> T[6]
+* tap: T_n[6:0] --> T_n[0]
+* tap: T_n[6:0] --> T_n[1]
+* tap: T_n[6:0] --> T_n[2]
+* tap: T_n[6:0] --> T_n[3]
+* tap: T_n[6:0] --> T_n[4]
+* tap: T_n[6:0] --> T_n[5]
+* tap: T_n[6:0] --> T_n[6]
 .ends
 
 .GLOBAL GND
