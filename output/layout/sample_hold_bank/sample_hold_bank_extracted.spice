@@ -1,0 +1,27 @@
+* NGSPICE file created from sample_hold_bank_flat.ext - technology: sky130A
+
+.subckt sample_hold_bank_flat in0 in1 in2 out0 out2 vdd vss
+X0 a_1150_2781# a_1102_3013# a_1014_2781# vss sky130_fd_pr__nfet_01v8 ad=0.4452 pd=2.74 as=0.4452 ps=2.74 w=0.84 l=0.15
+X1 out2 out2 out2 w_8070_3634# sky130_fd_pr__pfet_01v8 ad=0.2226 pd=1.37 as=3.1164 ps=19.18 w=0.84 l=0.15
+X2 a_4546_3760# a_4546_3760# a_4546_3760# w_4470_3634# sky130_fd_pr__pfet_01v8 ad=0.4452 pd=2.74 as=1.3356 ps=8.22 w=0.84 l=0.15
+X3 out2 out2 out2 w_11670_3634# sky130_fd_pr__pfet_01v8 ad=0.2226 pd=1.37 as=0 ps=0 w=0.84 l=0.15
+X4 a_946_3760# a_946_3760# a_946_3760# w_870_3634# sky130_fd_pr__pfet_01v8 ad=0.2226 pd=1.37 as=1.3356 ps=8.22 w=0.84 l=0.15
+X5 a_4750_2781# a_4702_3013# out0 vss sky130_fd_pr__nfet_01v8 ad=0.4452 pd=2.74 as=0.4452 ps=2.74 w=0.84 l=0.15
+X6 c1_11200_300# out2 sky130_fd_pr__cap_mim_m3_1 l=10 w=10
+X7 c1_400_300# m3_372_272# sky130_fd_pr__cap_mim_m3_1 l=10 w=10
+X8 a_15346_3760# a_15346_3760# a_15346_3760# w_15270_3634# sky130_fd_pr__pfet_01v8 ad=0.4452 pd=2.74 as=1.3356 ps=8.22 w=0.84 l=0.15
+X9 a_4546_3760# a_4546_3760# a_4546_3760# w_4470_3634# sky130_fd_pr__pfet_01v8 ad=0.2226 pd=1.37 as=0 ps=0 w=0.84 l=0.15
+X10 a_15550_2781# a_15502_3013# a_15414_2781# vss sky130_fd_pr__nfet_01v8 ad=0.4452 pd=2.74 as=0.4452 ps=2.74 w=0.84 l=0.15
+X11 c1_14800_300# m3_14772_272# sky130_fd_pr__cap_mim_m3_1 l=10 w=10
+X12 c1_4000_300# out0 sky130_fd_pr__cap_mim_m3_1 l=10 w=10
+X13 out2 out2 out2 w_8070_3634# sky130_fd_pr__pfet_01v8 ad=0.4452 pd=2.74 as=0 ps=0 w=0.84 l=0.15
+X14 a_15346_3760# a_15346_3760# a_15346_3760# w_15270_3634# sky130_fd_pr__pfet_01v8 ad=0.2226 pd=1.37 as=0 ps=0 w=0.84 l=0.15
+X15 out2 out2 a_10082_3536# w_10006_3410# sky130_fd_pr__pfet_01v8 ad=0.4452 pd=2.74 as=0.4452 ps=2.74 w=0.84 l=0.15
+X16 out2 out2 out2 w_11670_3634# sky130_fd_pr__pfet_01v8 ad=0.4452 pd=2.74 as=0 ps=0 w=0.84 l=0.15
+X17 out2 out2 a_10082_2881# vss sky130_fd_pr__nfet_01v8 ad=0.2226 pd=1.9 as=0.2226 ps=1.9 w=0.42 l=0.15
+X18 a_946_3760# a_946_3760# a_946_3760# w_870_3634# sky130_fd_pr__pfet_01v8 ad=0.4452 pd=2.74 as=0 ps=0 w=0.84 l=0.15
+X19 a_8350_2781# out2 out2 vss sky130_fd_pr__nfet_01v8 ad=0.4452 pd=2.74 as=0.4452 ps=2.74 w=0.84 l=0.15
+X20 c1_7600_300# out2 sky130_fd_pr__cap_mim_m3_1 l=10 w=10
+X21 a_11950_2781# out2 out2 vss sky130_fd_pr__nfet_01v8 ad=0.4452 pd=2.74 as=0.4452 ps=2.74 w=0.84 l=0.15
+.ends
+

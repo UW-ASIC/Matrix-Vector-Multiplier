@@ -1,0 +1,11 @@
+name = "MVM"
+pdk = "sky130_fd_sc_hd"
+
+[pdk_switcher]
+active = "sky130A"
+corner = "tt"
+
+[paths]
+chn = ["components/*.chn", "top/*.chn"]
+chn_tb = ["testbenches/*.chn_tb"]
+chn_prim = ["primitives/*.chn_prim"]

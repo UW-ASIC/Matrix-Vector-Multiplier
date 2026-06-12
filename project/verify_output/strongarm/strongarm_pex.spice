@@ -1,0 +1,113 @@
+* NGSPICE file created from strongarm_flat.ext - technology: sky130A
+
+.subckt strongarm_flat CLK GND VINP VINN OUTN OUTP VDD
+X0 VDD OUTP OUTN VDD sky130_fd_pr__pfet_01v8 ad=3.375 pd=10.5 as=0.7425 ps=4.83 w=4.5 l=0.15
+X1 OUTP OUTN VDD VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=1.215 ps=9.54 w=4.5 l=0.15
+X2 VDD OUTP OUTN VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X3 OUTP OUTN a_1092_58# GND sky130_fd_pr__nfet_01v8 ad=0.165 pd=1.33 as=0.27 ps=2.54 w=1 l=0.15
+X4 OUTN OUTP VDD VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X5 a_1092_58# VINP VDD GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.89 ps=14.54 w=7 l=0.15
+X6 VDD OUTN OUTP VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X7 VDD VINP a_1092_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X8 OUTP OUTN VDD VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X9 VDD CLK OUTN VDD sky130_fd_pr__pfet_01v8 ad=0.75 pd=3.5 as=0.165 ps=1.33 w=1 l=0.15
+X10 a_100_58# VINN a_16_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X11 OUTP OUTN VDD VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X12 a_16_n312# OUTP OUTN GND sky130_fd_pr__nfet_01v8 ad=0.75 pd=3.5 as=0.165 ps=1.33 w=1 l=0.15
+X13 a_100_58# VINN a_16_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.89 ps=14.54 w=7 l=0.15
+X14 a_1092_58# VINP VDD GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X15 OUTN OUTP VDD VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=1.215 ps=9.54 w=4.5 l=0.15
+X16 a_16_58# VINN a_100_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X17 OUTN CLK VDD VDD sky130_fd_pr__pfet_01v8 ad=0.165 pd=1.33 as=0.27 ps=2.54 w=1 l=0.15
+X18 VDD CLK GND GND sky130_fd_pr__nfet_01v8 ad=0.315 pd=2.34 as=0.1134 ps=1.38 w=0.42 l=0.15
+X19 a_16_58# VINN a_100_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X20 a_1092_58# OUTN OUTP GND sky130_fd_pr__nfet_01v8 ad=0.75 pd=3.5 as=0.165 ps=1.33 w=1 l=0.15
+X21 OUTN OUTP a_16_n312# GND sky130_fd_pr__nfet_01v8 ad=0.165 pd=1.33 as=0.27 ps=2.54 w=1 l=0.15
+X22 VDD VINP a_1092_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X23 VDD VINP a_1092_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X24 a_100_58# VINN a_16_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X25 a_1092_58# VINP VDD GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X26 a_16_58# VINN a_100_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X27 a_16_58# VINN a_100_58# GND sky130_fd_pr__nfet_01v8 ad=5.25 pd=15.5 as=1.155 ps=7.33 w=7 l=0.15
+X28 VDD OUTN OUTP VDD sky130_fd_pr__pfet_01v8 ad=3.375 pd=10.5 as=0.7425 ps=4.83 w=4.5 l=0.15
+X29 VDD CLK OUTP VDD sky130_fd_pr__pfet_01v8 ad=0.75 pd=3.5 as=0.165 ps=1.33 w=1 l=0.15
+X30 VDD VINP a_1092_58# GND sky130_fd_pr__nfet_01v8 ad=5.25 pd=15.5 as=1.155 ps=7.33 w=7 l=0.15
+X31 a_100_58# VINN a_16_58# GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X32 VDD OUTP OUTN VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X33 a_1092_58# VINP VDD GND sky130_fd_pr__nfet_01v8 ad=1.155 pd=7.33 as=1.155 ps=7.33 w=7 l=0.15
+X34 OUTN OUTP VDD VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X35 VDD OUTN OUTP VDD sky130_fd_pr__pfet_01v8 ad=0.7425 pd=4.83 as=0.7425 ps=4.83 w=4.5 l=0.15
+X36 OUTP CLK VDD VDD sky130_fd_pr__pfet_01v8 ad=0.165 pd=1.33 as=0.27 ps=2.54 w=1 l=0.15
+C0 m1_112_1538# a_16_58# 0.18689f
+C1 m2_n704_480# VINP 0
+C2 OUTP a_1092_58# 0.22526f
+C3 m2_n704_480# m1_112_1538# 0.12713f
+C4 OUTN VINP 0.00237f
+C5 CLK a_100_58# 0.0012f
+C6 VINN VINP 0.00865f
+C7 CLK VDD 0.17292f
+C8 OUTN m1_112_1538# 0.0341f
+C9 VDD a_100_58# 0.28705f
+C10 m1_112_1538# a_16_n312# 0.05642f
+C11 m1_112_1538# VINN 0.19407f
+C12 a_16_58# a_1092_58# 0.008f
+C13 CLK OUTP 0.00501f
+C14 OUTP a_100_58# 0.01723f
+C15 VDD OUTP 1.05405f
+C16 OUTN a_1092_58# 0.04045f
+C17 VINN a_1092_58# 0.0018f
+C18 CLK a_16_58# 0.00123f
+C19 a_16_58# a_100_58# 0.53157f
+C20 CLK m2_n704_480# 0
+C21 VDD a_16_58# 0.3987f
+C22 m2_n704_480# a_100_58# 0.02571f
+C23 VDD m2_n704_480# 0.22096f
+C24 CLK OUTN 0.00501f
+C25 OUTN a_100_58# 0.00336f
+C26 CLK VINN 0.01442f
+C27 a_16_58# OUTP 0.02691f
+C28 a_16_n312# a_100_58# 0.00165f
+C29 VINN a_100_58# 0.06574f
+C30 OUTN VDD 0.88646f
+C31 VDD a_16_n312# 0.00282f
+C32 m2_n704_480# OUTP 0.12003f
+C33 VDD VINN 0.23203f
+C34 OUTN OUTP 0.15601f
+C35 OUTP a_16_n312# 0.05521f
+C36 VINN OUTP 0.05166f
+C37 m2_n704_480# a_16_58# 0.0278f
+C38 OUTN a_16_58# 0.00277f
+C39 a_16_58# a_16_n312# 0.01382f
+C40 a_16_58# VINN 0.0951f
+C41 OUTN m2_n704_480# 0.05725f
+C42 m2_n704_480# a_16_n312# 0.00575f
+C43 m2_n704_480# VINN 0.02986f
+C44 OUTN a_16_n312# 0.03593f
+C45 OUTN VINN 0.00118f
+C46 VINN a_16_n312# 0.00838f
+C47 m1_112_1538# VINP 0.07652f
+C48 VINP a_1092_58# 0.14054f
+C49 m1_112_1538# a_1092_58# 0.07615f
+C50 VINP a_100_58# 0
+C51 CLK m1_112_1538# 0.00771f
+C52 VDD VINP 0.19653f
+C53 m1_112_1538# a_100_58# 0.16261f
+C54 VDD m1_112_1538# 0.56809f
+C55 OUTP VINP 0.02341f
+C56 m1_112_1538# OUTP 0.14726f
+C57 a_1092_58# a_100_58# 0.00726f
+C58 VDD a_1092_58# 0.82199f
+C59 OUTN GND 0.46836f
+C60 OUTP GND 2.29611f
+C61 VINP GND 0.69874f
+C62 VINN GND 0.6631f
+C63 CLK GND 0.27117f
+C64 VDD GND 8.8035f
+C65 m2_n704_480# GND 0.18191f $ **FLOATING
+C66 m1_112_1538# GND 1.16443f $ **FLOATING
+C67 a_16_n312# GND 0.08388f
+C68 a_1092_58# GND 0.58651f
+C69 a_100_58# GND 0.03517f
+C70 a_16_58# GND 0.04807f
+.ends
+

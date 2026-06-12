@@ -1,0 +1,9 @@
+[
+  {"prefix": "sky130_fd_pr__nfet", "kind": "nmos4"},
+  {"prefix": "sky130_fd_pr__pfet", "kind": "pmos4"},
+  {"prefix": "sky130_fd_pr__res", "kind": "resistor"},
+  {"prefix": "sky130_fd_pr__cap", "kind": "capacitor"},
+  {"prefix": "sky130_fd_pr__diode", "kind": "diode"},
+  {"prefix": "sky130_fd_pr__npn", "kind": "npn"},
+  {"prefix": "sky130_fd_pr__pnp", "kind": "pnp"}
+]

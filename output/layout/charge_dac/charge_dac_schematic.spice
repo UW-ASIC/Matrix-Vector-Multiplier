@@ -1,0 +1,23 @@
+.subckt charge_dac_sw in_ out ctrl ctrl_b vdd vss
+Xcharge_dac_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=1.68 L=0.15
+Xcharge_dac_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=3.36 L=0.15
+.ends charge_dac_sw
+
+.subckt charge_dac vref b0 b1 b2 b3 out vdd vss
+Xinv0_n b0_b b0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv0_p b0_b b0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi0 vref cap_bot_0 b0 b0_b vdd vss charge_dac_sw
+Xsw_lo0 vss cap_bot_0 b0_b b0 vdd vss charge_dac_sw
+Xinv1_n b1_b b1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv1_p b1_b b1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi1 vref cap_bot_1 b1 b1_b vdd vss charge_dac_sw
+Xsw_lo1 vss cap_bot_1 b1_b b1 vdd vss charge_dac_sw
+Xinv2_n b2_b b2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv2_p b2_b b2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi2 vref cap_bot_2 b2 b2_b vdd vss charge_dac_sw
+Xsw_lo2 vss cap_bot_2 b2_b b2 vdd vss charge_dac_sw
+Xinv3_n b3_b b3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv3_p b3_b b3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi3 vref cap_bot_3 b3 b3_b vdd vss charge_dac_sw
+Xsw_lo3 vss cap_bot_3 b3_b b3 vdd vss charge_dac_sw
+.ends charge_dac

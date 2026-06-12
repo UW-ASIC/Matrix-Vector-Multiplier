@@ -1,0 +1,331 @@
+* === Component subcircuits for LVS ===
+
+.subckt charge_dac_sw in_ out ctrl ctrl_b vdd vss
+Xcharge_dac_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=1.68 L=0.15
+Xcharge_dac_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=3.36 L=0.15
+.ends charge_dac_sw
+
+.subckt charge_dac vref b0 b1 b2 b3 out vdd vss
+Xinv0_n b0_b b0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv0_p b0_b b0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi0 vref cap_bot_0 b0 b0_b vdd vss charge_dac_sw
+Xsw_lo0 vss cap_bot_0 b0_b b0 vdd vss charge_dac_sw
+Xinv1_n b1_b b1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv1_p b1_b b1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi1 vref cap_bot_1 b1 b1_b vdd vss charge_dac_sw
+Xsw_lo1 vss cap_bot_1 b1_b b1 vdd vss charge_dac_sw
+Xinv2_n b2_b b2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv2_p b2_b b2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi2 vref cap_bot_2 b2 b2_b vdd vss charge_dac_sw
+Xsw_lo2 vss cap_bot_2 b2_b b2 vdd vss charge_dac_sw
+Xinv3_n b3_b b3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv3_p b3_b b3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw_hi3 vref cap_bot_3 b3 b3_b vdd vss charge_dac_sw
+Xsw_lo3 vss cap_bot_3 b3_b b3 vdd vss charge_dac_sw
+.ends charge_dac
+
+.subckt sh_bank_sw in_ out ctrl ctrl_b vdd vss
+Xsh_bank_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+Xsh_bank_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=1.68 L=0.15
+.ends sh_bank_sw
+
+.subckt sample_hold_bank in0 in1 in2 out0 out1 out2 sh_ctrl vdd vss
+Xinv_ctrl_n sh_ctrl_b sh_ctrl vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ctrl_p sh_ctrl_b sh_ctrl vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw0 in0 out0 sh_ctrl sh_ctrl_b vdd vss sh_bank_sw
+Xsw1 in1 out1 sh_ctrl sh_ctrl_b vdd vss sh_bank_sw
+Xsw2 in2 out2 sh_ctrl sh_ctrl_b vdd vss sh_bank_sw
+.ends sample_hold_bank
+
+.subckt imc_crossbar_xpt_cap_sw in_ out ctrl ctrl_b vdd vss
+Ximc_crossbar_xpt_cap_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Ximc_crossbar_xpt_cap_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+.ends imc_crossbar_xpt_cap_sw
+
+.subckt imc_crossbar_xpt_cap in0 in1 in2 in3 top_plate bottom_plate vdd vss
+Xinv_n0 ctrl_b_0 in0 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p0 ctrl_b_0 in0 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw0 bottom_plate cap_bot_0 in0 ctrl_b_0 vdd vss imc_crossbar_xpt_cap_sw
+Xinv_n1 ctrl_b_1 in1 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p1 ctrl_b_1 in1 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw1 bottom_plate cap_bot_1 in1 ctrl_b_1 vdd vss imc_crossbar_xpt_cap_sw
+Xinv_n2 ctrl_b_2 in2 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p2 ctrl_b_2 in2 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw2 bottom_plate cap_bot_2 in2 ctrl_b_2 vdd vss imc_crossbar_xpt_cap_sw
+Xinv_n3 ctrl_b_3 in3 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p3 ctrl_b_3 in3 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw3 bottom_plate cap_bot_3 in3 ctrl_b_3 vdd vss imc_crossbar_xpt_cap_sw
+.ends imc_crossbar_xpt_cap
+
+.subckt imc_crossbar_rst_sw in_ out ctrl ctrl_b vdd vss
+Ximc_crossbar_rst_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Ximc_crossbar_rst_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=7.0 L=0.15
+.ends imc_crossbar_rst_sw
+
+.subckt imc_crossbar x0 x1 x2 y0 y1 y2 wb_000 wb_001 wb_002 wb_003 wb_010 wb_011 wb_012 wb_013 wb_020 wb_021 wb_022 wb_023 wb_100 wb_101 wb_102 wb_103 wb_110 wb_111 wb_112 wb_113 wb_120 wb_121 wb_122 wb_123 wb_200 wb_201 wb_202 wb_203 wb_210 wb_211 wb_212 wb_213 wb_220 wb_221 wb_222 wb_223 rst vdd vss
+Xrst_inv_n rst_b rst vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xrst_inv_p rst_b rst vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xrst_sw_0 y0 vss rst rst_b vdd vss imc_crossbar_rst_sw
+Xxpt_0_0 wb_000 wb_001 wb_002 wb_003 y0 x0 vdd vss imc_crossbar_xpt_cap
+Xxpt_1_0 wb_100 wb_101 wb_102 wb_103 y0 x1 vdd vss imc_crossbar_xpt_cap
+Xxpt_2_0 wb_200 wb_201 wb_202 wb_203 y0 x2 vdd vss imc_crossbar_xpt_cap
+Xrst_sw_1 y1 vss rst rst_b vdd vss imc_crossbar_rst_sw
+Xxpt_0_1 wb_010 wb_011 wb_012 wb_013 y1 x0 vdd vss imc_crossbar_xpt_cap
+Xxpt_1_1 wb_110 wb_111 wb_112 wb_113 y1 x1 vdd vss imc_crossbar_xpt_cap
+Xxpt_2_1 wb_210 wb_211 wb_212 wb_213 y1 x2 vdd vss imc_crossbar_xpt_cap
+Xrst_sw_2 y2 vss rst rst_b vdd vss imc_crossbar_rst_sw
+Xxpt_0_2 wb_020 wb_021 wb_022 wb_023 y2 x0 vdd vss imc_crossbar_xpt_cap
+Xxpt_1_2 wb_120 wb_121 wb_122 wb_123 y2 x1 vdd vss imc_crossbar_xpt_cap
+Xxpt_2_2 wb_220 wb_221 wb_222 wb_223 y2 x2 vdd vss imc_crossbar_xpt_cap
+.ends imc_crossbar
+
+.subckt iadc_cdac_sw in_ out ctrl ctrl_b vdd vss
+Xiadc_cdac_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xiadc_cdac_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends iadc_cdac_sw
+
+.subckt iadc_cdac in0 in1 in2 in3 top_plate bottom_plate vdd vss
+Xinv_n0 ctrl_b_0 in0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_p0 ctrl_b_0 in0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw0 bottom_plate cap_bot_0 in0 ctrl_b_0 vdd vss iadc_cdac_sw
+Xinv_n1 ctrl_b_1 in1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_p1 ctrl_b_1 in1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw1 bottom_plate cap_bot_1 in1 ctrl_b_1 vdd vss iadc_cdac_sw
+Xinv_n2 ctrl_b_2 in2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_p2 ctrl_b_2 in2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw2 bottom_plate cap_bot_2 in2 ctrl_b_2 vdd vss iadc_cdac_sw
+Xinv_n3 ctrl_b_3 in3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_p3 ctrl_b_3 in3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsw3 bottom_plate cap_bot_3 in3 ctrl_b_3 vdd vss iadc_cdac_sw
+.ends iadc_cdac
+
+.subckt iadc_mux_sw in_ out ctrl ctrl_b vdd vss
+Xiadc_mux_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xiadc_mux_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=1.42 L=0.15
+.ends iadc_mux_sw
+
+
+
+.subckt iadc_sar_inv a y vdd vss
+Xn y a vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp y a vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends iadc_sar_inv
+
+.subckt interleaved_adc col0 col1 col2 vref d0b0 d0b1 d0b2 d0b3 d1b0 d1b1 d1b2 d1b3 d2b0 d2b1 d2b2 d2b3 adc_go vdd vss
+
+* === ADC Unit u0 ===
+* Input mux
+Xu0_mux_a col0 u0_mux_out u0_mux_sel_a u0_mux_sel_ab vdd vss iadc_mux_sw
+Xu0_mux_b col1 u0_mux_out u0_mux_sel_b u0_mux_sel_bb vdd vss iadc_mux_sw
+* StrongARM comparator
+Xu0_tail u0_tail adc_go vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xu0_inp u0_drn_p u0_mux_out u0_tail vss sky130_fd_pr__nfet_01v8 W=7.0 L=0.15
+Xu0_inn u0_drn_n u0_cdac_top u0_tail vss sky130_fd_pr__nfet_01v8 W=7.0 L=0.15
+Xu0_xnp u0_outp u0_outn u0_drn_p vss sky130_fd_pr__nfet_01v8 W=1.0 L=0.15
+Xu0_xnn u0_outn u0_outp u0_drn_n vss sky130_fd_pr__nfet_01v8 W=1.0 L=0.15
+Xu0_xpp u0_outp u0_outn vdd vdd sky130_fd_pr__pfet_01v8 W=4.5 L=0.15
+Xu0_xpn u0_outn u0_outp vdd vdd sky130_fd_pr__pfet_01v8 W=4.5 L=0.15
+Xu0_rstp u0_outp adc_go vdd vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+Xu0_rstn u0_outn adc_go vdd vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+* CDAC
+Xu0_cdac u0_sw0 u0_sw1 u0_sw2 u0_sw3 u0_cdac_top vref vdd vss iadc_cdac
+* SAR output buffers channel A
+Xu0_buf_a0_1 u0_sar_a_in0 u0_buf_a0_mid vdd vss iadc_sar_inv
+Xu0_buf_a0_2 u0_buf_a0_mid d0b0 vdd vss iadc_sar_inv
+Xu0_buf_a1_1 u0_sar_a_in1 u0_buf_a1_mid vdd vss iadc_sar_inv
+Xu0_buf_a1_2 u0_buf_a1_mid d0b1 vdd vss iadc_sar_inv
+Xu0_buf_a2_1 u0_sar_a_in2 u0_buf_a2_mid vdd vss iadc_sar_inv
+Xu0_buf_a2_2 u0_buf_a2_mid d0b2 vdd vss iadc_sar_inv
+Xu0_buf_a3_1 u0_sar_a_in3 u0_buf_a3_mid vdd vss iadc_sar_inv
+Xu0_buf_a3_2 u0_buf_a3_mid d0b3 vdd vss iadc_sar_inv
+* SAR output buffers channel B
+Xu0_buf_b0_1 u0_sar_b_in0 u0_buf_b0_mid vdd vss iadc_sar_inv
+Xu0_buf_b0_2 u0_buf_b0_mid d1b0 vdd vss iadc_sar_inv
+Xu0_buf_b1_1 u0_sar_b_in1 u0_buf_b1_mid vdd vss iadc_sar_inv
+Xu0_buf_b1_2 u0_buf_b1_mid d1b1 vdd vss iadc_sar_inv
+Xu0_buf_b2_1 u0_sar_b_in2 u0_buf_b2_mid vdd vss iadc_sar_inv
+Xu0_buf_b2_2 u0_buf_b2_mid d1b2 vdd vss iadc_sar_inv
+Xu0_buf_b3_1 u0_sar_b_in3 u0_buf_b3_mid vdd vss iadc_sar_inv
+Xu0_buf_b3_2 u0_buf_b3_mid d1b3 vdd vss iadc_sar_inv
+
+* === ADC Unit u1 ===
+* Input mux
+Xu1_mux_a col2 u1_mux_out u1_mux_sel_a u1_mux_sel_ab vdd vss iadc_mux_sw
+Xu1_mux_b col2 u1_mux_out u1_mux_sel_b u1_mux_sel_bb vdd vss iadc_mux_sw
+* StrongARM comparator
+Xu1_tail u1_tail adc_go vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xu1_inp u1_drn_p u1_mux_out u1_tail vss sky130_fd_pr__nfet_01v8 W=7.0 L=0.15
+Xu1_inn u1_drn_n u1_cdac_top u1_tail vss sky130_fd_pr__nfet_01v8 W=7.0 L=0.15
+Xu1_xnp u1_outp u1_outn u1_drn_p vss sky130_fd_pr__nfet_01v8 W=1.0 L=0.15
+Xu1_xnn u1_outn u1_outp u1_drn_n vss sky130_fd_pr__nfet_01v8 W=1.0 L=0.15
+Xu1_xpp u1_outp u1_outn vdd vdd sky130_fd_pr__pfet_01v8 W=4.5 L=0.15
+Xu1_xpn u1_outn u1_outp vdd vdd sky130_fd_pr__pfet_01v8 W=4.5 L=0.15
+Xu1_rstp u1_outp adc_go vdd vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+Xu1_rstn u1_outn adc_go vdd vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+* CDAC
+Xu1_cdac u1_sw0 u1_sw1 u1_sw2 u1_sw3 u1_cdac_top vref vdd vss iadc_cdac
+* SAR output buffers channel A
+Xu1_buf_a0_1 u1_sar_a_in0 u1_buf_a0_mid vdd vss iadc_sar_inv
+Xu1_buf_a0_2 u1_buf_a0_mid d2b0 vdd vss iadc_sar_inv
+Xu1_buf_a1_1 u1_sar_a_in1 u1_buf_a1_mid vdd vss iadc_sar_inv
+Xu1_buf_a1_2 u1_buf_a1_mid d2b1 vdd vss iadc_sar_inv
+Xu1_buf_a2_1 u1_sar_a_in2 u1_buf_a2_mid vdd vss iadc_sar_inv
+Xu1_buf_a2_2 u1_buf_a2_mid d2b2 vdd vss iadc_sar_inv
+Xu1_buf_a3_1 u1_sar_a_in3 u1_buf_a3_mid vdd vss iadc_sar_inv
+Xu1_buf_a3_2 u1_buf_a3_mid d2b3 vdd vss iadc_sar_inv
+* SAR output buffers channel B
+Xu1_buf_b0_1 u1_sar_b_in0 u1_buf_b0_mid vdd vss iadc_sar_inv
+Xu1_buf_b0_2 u1_buf_b0_mid d2b0 vdd vss iadc_sar_inv
+Xu1_buf_b1_1 u1_sar_b_in1 u1_buf_b1_mid vdd vss iadc_sar_inv
+Xu1_buf_b1_2 u1_buf_b1_mid d2b1 vdd vss iadc_sar_inv
+Xu1_buf_b2_1 u1_sar_b_in2 u1_buf_b2_mid vdd vss iadc_sar_inv
+Xu1_buf_b2_2 u1_buf_b2_mid d2b2 vdd vss iadc_sar_inv
+Xu1_buf_b3_1 u1_sar_b_in3 u1_buf_b3_mid vdd vss iadc_sar_inv
+Xu1_buf_b3_2 u1_buf_b3_mid d2b3 vdd vss iadc_sar_inv
+
+.ends interleaved_adc
+
+.subckt rst_delay in out vdd vss
+Xn0 d0 in vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp0 d0 in vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn1 d1 d0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp1 d1 d0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn2 d2 d1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp2 d2 d1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn3 d3 d2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp3 d3 d2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn4 d4 d3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp4 d4 d3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn5 d5 d4 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp5 d5 d4 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn6 d6 d5 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp6 d6 d5 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn7 d7 d6 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp7 d7 d6 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn8 d8 d7 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp8 d8 d7 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn9 out d8 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp9 out d8 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends rst_delay
+
+.subckt settle_delay in out vdd vss
+Xn0 d0 in vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp0 d0 in vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn1 d1 d0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp1 d1 d0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn2 d2 d1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp2 d2 d1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn3 d3 d2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp3 d3 d2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn4 d4 d3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp4 d4 d3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn5 d5 d4 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp5 d5 d4 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn6 d6 d5 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp6 d6 d5 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn7 d7 d6 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp7 d7 d6 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn8 d8 d7 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp8 d8 d7 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn9 d9 d8 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp9 d9 d8 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn10 d10 d9 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp10 d10 d9 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn11 d11 d10 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp11 d11 d10 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn12 d12 d11 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp12 d12 d11 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn13 d13 d12 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp13 d13 d12 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn14 d14 d13 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp14 d14 d13 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn15 d15 d14 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp15 d15 d14 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn16 d16 d15 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp16 d16 d15 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn17 d17 d16 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp17 d17 d16 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn18 d18 d17 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp18 d18 d17 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn19 out d18 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp19 out d18 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends settle_delay
+
+.subckt muller_c a b out vdd vss
+Xp1 out a n1p vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+Xp2 n1p b vdd vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+Xp3 out out_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.5 L=0.15
+Xn1 out a n1n vss sky130_fd_pr__nfet_01v8 W=0.5 L=0.15
+Xn2 n1n b vss vss sky130_fd_pr__nfet_01v8 W=0.5 L=0.15
+Xn3 out out_b vss vss sky130_fd_pr__nfet_01v8 W=0.25 L=0.15
+Xpfb out_b out vdd vdd sky130_fd_pr__pfet_01v8 W=0.25 L=0.30
+Xnfb out_b out vss vss sky130_fd_pr__nfet_01v8 W=0.15 L=0.30
+.ends muller_c
+
+.subckt async_ctrl go adc_done xbar_rst adc_go latch_out done vdd vss
+Xinv_go1_n go_b go vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_go1_p go_b go vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_go2_n go_buf go_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_go2_p go_buf go_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xrst_dly go_buf rst_dly_raw vdd vss rst_delay
+Xinv_rd1_n rst_dly_b rst_dly_raw vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_rd1_p rst_dly_b rst_dly_raw vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_rd2_n rst_delayed rst_dly_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_rd2_p rst_delayed rst_dly_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xnand_rst_p1 rst_nand go_buf vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xnand_rst_p2 rst_nand rst_dly_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xnand_rst_n1 rst_nand go_buf nand_rst_mid vss sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+Xnand_rst_n2 nand_rst_mid rst_dly_b vss vss sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+Xinv_rst_n xbar_rst rst_nand vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_rst_p xbar_rst rst_nand vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsettle_dly rst_delayed stl_dly_raw vdd vss settle_delay
+Xinv_sd1_n stl_dly_b stl_dly_raw vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_sd1_p stl_dly_b stl_dly_raw vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_sd2_n settle_delayed stl_dly_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_sd2_p settle_delayed stl_dly_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ag1_n adc_go_b settle_delayed vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ag1_p adc_go_b settle_delayed vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ag2_n adc_go adc_go_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ag2_p adc_go adc_go_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ld1_n latch_b adc_done vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ld1_p latch_b adc_done vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ld2_n latch_out latch_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ld2_p latch_out latch_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_dn1_n done_b latch_out vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_dn1_p done_b latch_out vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_dn2_n done done_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_dn2_p done done_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends async_ctrl
+
+.subckt gemm_sh_sw in_ out ctrl ctrl_b vdd vss
+Xgemm_sh_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xgemm_sh_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends gemm_sh_sw
+
+.subckt gemm_tapeout clk ena rst_n ui_in[0] ui_in[1] ui_in[2] ui_in[3] ui_in[4] ui_in[5] ui_in[6] ui_in[7] uio_in[0] uio_in[1] uio_in[2] uio_in[3] uio_in[4] uio_in[5] uio_in[6] uio_in[7] uo_out[0] uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] uio_out[0] uio_out[1] uio_out[2] uio_out[3] uio_out[4] uio_out[5] uio_out[6] uio_out[7] uio_oe[0] uio_oe[1] uio_oe[2] uio_oe[3] uio_oe[4] uio_oe[5] uio_oe[6] uio_oe[7] VPWR VGND
+
+* All uo_out/uio_out/uio_oe/ui_in/uio_in/clk/ena/rst_n/VPWR/VGND
+* are floating met4 stubs — no connection to internal circuitry
+
+* Input DACs
+Xdac0 vref dac0_b0 dac0_b1 dac0_b2 dac0_b3 dac0_out vdd vss charge_dac
+Xdac1 vref dac1_b0 dac1_b1 dac1_b2 dac1_b3 dac1_out vdd vss charge_dac
+Xdac2 vref dac2_b0 dac2_b1 dac2_b2 dac2_b3 dac2_out vdd vss charge_dac
+
+* Sample-and-hold switches
+Xsh_inv_n sh_ctrl_b sh_ctrl vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xsh_inv_p sh_ctrl_b sh_ctrl vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsh0 dac0_out xbar_in0 sh_ctrl sh_ctrl_b vdd vss gemm_sh_sw
+Xsh1 dac1_out xbar_in1 sh_ctrl sh_ctrl_b vdd vss gemm_sh_sw
+Xsh2 dac2_out xbar_in2 sh_ctrl sh_ctrl_b vdd vss gemm_sh_sw
+
+* 3x3 IMC crossbar
+Xxbar xbar_in0 xbar_in1 xbar_in2 col0 col1 col2 wb_000 wb_001 wb_002 wb_003 wb_010 wb_011 wb_012 wb_013 wb_020 wb_021 wb_022 wb_023 wb_100 wb_101 wb_102 wb_103 wb_110 wb_111 wb_112 wb_113 wb_120 wb_121 wb_122 wb_123 wb_200 wb_201 wb_202 wb_203 wb_210 wb_211 wb_212 wb_213 wb_220 wb_221 wb_222 wb_223 xbar_rst vdd vss imc_crossbar
+
+* Interleaved ADC (structural)
+Xadc col0 col1 col2 vref adc_d0b0 adc_d0b1 adc_d0b2 adc_d0b3 adc_d1b0 adc_d1b1 adc_d1b2 adc_d1b3 adc_d2b0 adc_d2b1 adc_d2b2 adc_d2b3 adc_go vdd vss interleaved_adc
+
+* Async controller
+Xasync go_sig adc_done xbar_rst adc_go latch_out done vdd vss async_ctrl
+
+.ends gemm_tapeout

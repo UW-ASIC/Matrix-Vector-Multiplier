@@ -1,0 +1,41 @@
+.subckt imc_crossbar_xpt_cap_sw in_ out ctrl ctrl_b vdd vss
+Ximc_crossbar_xpt_cap_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Ximc_crossbar_xpt_cap_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+.ends imc_crossbar_xpt_cap_sw
+
+.subckt imc_crossbar_xpt_cap in0 in1 in2 in3 top_plate bottom_plate vdd vss
+Xinv_n0 ctrl_b_0 in0 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p0 ctrl_b_0 in0 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw0 bottom_plate cap_bot_0 in0 ctrl_b_0 vdd vss imc_crossbar_xpt_cap_sw
+Xinv_n1 ctrl_b_1 in1 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p1 ctrl_b_1 in1 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw1 bottom_plate cap_bot_1 in1 ctrl_b_1 vdd vss imc_crossbar_xpt_cap_sw
+Xinv_n2 ctrl_b_2 in2 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p2 ctrl_b_2 in2 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw2 bottom_plate cap_bot_2 in2 ctrl_b_2 vdd vss imc_crossbar_xpt_cap_sw
+Xinv_n3 ctrl_b_3 in3 vss vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Xinv_p3 ctrl_b_3 in3 vdd vdd sky130_fd_pr__pfet_01v8 W=2.52 L=0.15
+Xsw3 bottom_plate cap_bot_3 in3 ctrl_b_3 vdd vss imc_crossbar_xpt_cap_sw
+.ends imc_crossbar_xpt_cap
+
+.subckt imc_crossbar_rst_sw in_ out ctrl ctrl_b vdd vss
+Ximc_crossbar_rst_sw_n in_ ctrl out vss sky130_fd_pr__nfet_01v8 W=1.26 L=0.15
+Ximc_crossbar_rst_sw_p in_ ctrl_b out vdd sky130_fd_pr__pfet_01v8 W=7.0 L=0.15
+.ends imc_crossbar_rst_sw
+
+.subckt imc_crossbar x0 x1 x2 y0 y1 y2 wb_000 wb_001 wb_002 wb_003 wb_010 wb_011 wb_012 wb_013 wb_020 wb_021 wb_022 wb_023 wb_100 wb_101 wb_102 wb_103 wb_110 wb_111 wb_112 wb_113 wb_120 wb_121 wb_122 wb_123 wb_200 wb_201 wb_202 wb_203 wb_210 wb_211 wb_212 wb_213 wb_220 wb_221 wb_222 wb_223 rst vdd vss
+Xrst_inv_n rst_b rst vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xrst_inv_p rst_b rst vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xrst_sw_0 y0 vss rst rst_b vdd vss imc_crossbar_rst_sw
+Xxpt_0_0 wb_000 wb_001 wb_002 wb_003 y0 x0 vdd vss imc_crossbar_xpt_cap
+Xxpt_1_0 wb_100 wb_101 wb_102 wb_103 y0 x1 vdd vss imc_crossbar_xpt_cap
+Xxpt_2_0 wb_200 wb_201 wb_202 wb_203 y0 x2 vdd vss imc_crossbar_xpt_cap
+Xrst_sw_1 y1 vss rst rst_b vdd vss imc_crossbar_rst_sw
+Xxpt_0_1 wb_010 wb_011 wb_012 wb_013 y1 x0 vdd vss imc_crossbar_xpt_cap
+Xxpt_1_1 wb_110 wb_111 wb_112 wb_113 y1 x1 vdd vss imc_crossbar_xpt_cap
+Xxpt_2_1 wb_210 wb_211 wb_212 wb_213 y1 x2 vdd vss imc_crossbar_xpt_cap
+Xrst_sw_2 y2 vss rst rst_b vdd vss imc_crossbar_rst_sw
+Xxpt_0_2 wb_020 wb_021 wb_022 wb_023 y2 x0 vdd vss imc_crossbar_xpt_cap
+Xxpt_1_2 wb_120 wb_121 wb_122 wb_123 y2 x1 vdd vss imc_crossbar_xpt_cap
+Xxpt_2_2 wb_220 wb_221 wb_222 wb_223 y2 x2 vdd vss imc_crossbar_xpt_cap
+.ends imc_crossbar

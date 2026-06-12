@@ -1,0 +1,111 @@
+.subckt rst_delay in out vdd vss
+Xn0 d0 in vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp0 d0 in vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn1 d1 d0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp1 d1 d0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn2 d2 d1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp2 d2 d1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn3 d3 d2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp3 d3 d2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn4 d4 d3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp4 d4 d3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn5 d5 d4 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp5 d5 d4 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn6 d6 d5 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp6 d6 d5 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn7 d7 d6 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp7 d7 d6 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn8 d8 d7 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp8 d8 d7 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn9 out d8 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp9 out d8 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends rst_delay
+
+.subckt settle_delay in out vdd vss
+Xn0 d0 in vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp0 d0 in vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn1 d1 d0 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp1 d1 d0 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn2 d2 d1 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp2 d2 d1 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn3 d3 d2 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp3 d3 d2 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn4 d4 d3 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp4 d4 d3 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn5 d5 d4 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp5 d5 d4 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn6 d6 d5 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp6 d6 d5 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn7 d7 d6 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp7 d7 d6 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn8 d8 d7 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp8 d8 d7 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn9 d9 d8 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp9 d9 d8 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn10 d10 d9 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp10 d10 d9 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn11 d11 d10 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp11 d11 d10 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn12 d12 d11 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp12 d12 d11 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn13 d13 d12 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp13 d13 d12 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn14 d14 d13 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp14 d14 d13 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn15 d15 d14 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp15 d15 d14 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn16 d16 d15 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp16 d16 d15 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn17 d17 d16 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp17 d17 d16 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn18 d18 d17 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp18 d18 d17 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xn19 out d18 vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xp19 out d18 vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends settle_delay
+
+.subckt muller_c a b out vdd vss
+Xp1 out a n1p vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+Xp2 n1p b vdd vdd sky130_fd_pr__pfet_01v8 W=1.0 L=0.15
+Xp3 out out_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.5 L=0.15
+Xn1 out a n1n vss sky130_fd_pr__nfet_01v8 W=0.5 L=0.15
+Xn2 n1n b vss vss sky130_fd_pr__nfet_01v8 W=0.5 L=0.15
+Xn3 out out_b vss vss sky130_fd_pr__nfet_01v8 W=0.25 L=0.15
+Xpfb out_b out vdd vdd sky130_fd_pr__pfet_01v8 W=0.25 L=0.30
+Xnfb out_b out vss vss sky130_fd_pr__nfet_01v8 W=0.15 L=0.30
+.ends muller_c
+
+.subckt async_ctrl go adc_done xbar_rst adc_go latch_out done vdd vss
+Xinv_go1_n go_b go vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_go1_p go_b go vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_go2_n go_buf go_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_go2_p go_buf go_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xrst_dly go_buf rst_dly_raw vdd vss rst_delay
+Xinv_rd1_n rst_dly_b rst_dly_raw vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_rd1_p rst_dly_b rst_dly_raw vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_rd2_n rst_delayed rst_dly_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_rd2_p rst_delayed rst_dly_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xnand_rst_p1 rst_nand go_buf vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xnand_rst_p2 rst_nand rst_dly_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xnand_rst_n1 rst_nand go_buf nand_rst_mid vss sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+Xnand_rst_n2 nand_rst_mid rst_dly_b vss vss sky130_fd_pr__nfet_01v8 W=0.84 L=0.15
+Xinv_rst_n xbar_rst rst_nand vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_rst_p xbar_rst rst_nand vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xsettle_dly rst_delayed stl_dly_raw vdd vss settle_delay
+Xinv_sd1_n stl_dly_b stl_dly_raw vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_sd1_p stl_dly_b stl_dly_raw vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_sd2_n settle_delayed stl_dly_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_sd2_p settle_delayed stl_dly_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ag1_n adc_go_b settle_delayed vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ag1_p adc_go_b settle_delayed vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ag2_n adc_go adc_go_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ag2_p adc_go adc_go_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ld1_n latch_b adc_done vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ld1_p latch_b adc_done vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_ld2_n latch_out latch_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_ld2_p latch_out latch_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_dn1_n done_b latch_out vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_dn1_p done_b latch_out vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+Xinv_dn2_n done done_b vss vss sky130_fd_pr__nfet_01v8 W=0.42 L=0.15
+Xinv_dn2_p done done_b vdd vdd sky130_fd_pr__pfet_01v8 W=0.84 L=0.15
+.ends async_ctrl

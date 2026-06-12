@@ -1,0 +1,869 @@
+
+Circuit 1 cell sky130_fd_pr__nfet_01v8 and Circuit 2 cell sky130_fd_pr__nfet_01v8 are black boxes.
+Warning: Equate pins:  cell sky130_fd_pr__nfet_01v8 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell sky130_fd_pr__nfet_01v8 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: sky130_fd_pr__nfet_01v8         |Circuit 2: sky130_fd_pr__nfet_01v8         
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_pr__nfet_01v8 and sky130_fd_pr__nfet_01v8 are equivalent.
+
+Circuit 1 cell sky130_fd_pr__pfet_01v8 and Circuit 2 cell sky130_fd_pr__pfet_01v8 are black boxes.
+Warning: Equate pins:  cell sky130_fd_pr__pfet_01v8 is a placeholder, treated as a black box.
+Warning: Equate pins:  cell sky130_fd_pr__pfet_01v8 is a placeholder, treated as a black box.
+
+Subcircuit pins:
+Circuit 1: sky130_fd_pr__pfet_01v8         |Circuit 2: sky130_fd_pr__pfet_01v8         
+-------------------------------------------|-------------------------------------------
+1                                          |1                                          
+2                                          |2                                          
+3                                          |3                                          
+4                                          |4                                          
+---------------------------------------------------------------------------------------
+Cell pin lists are equivalent.
+Device classes sky130_fd_pr__pfet_01v8 and sky130_fd_pr__pfet_01v8 are equivalent.
+Flattening unmatched subcell rst_delay in circuit async_ctrl (1)(1 instance)
+Flattening unmatched subcell settle_delay in circuit async_ctrl (1)(1 instance)
+
+Class async_ctrl_flat (0):  Merged 106 parallel devices.
+Subcircuit summary:
+Circuit 1: async_ctrl_flat                 |Circuit 2: async_ctrl                      
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__nfet_01v8 (79->5)            |sky130_fd_pr__nfet_01v8 (45) **Mismatch**  
+sky130_fd_pr__pfet_01v8 (49->17)           |sky130_fd_pr__pfet_01v8 (45) **Mismatch**  
+Number of devices: 22 **Mismatch**         |Number of devices: 90 **Mismatch**         
+Number of nets: 30 **Mismatch**            |Number of nets: 49 **Mismatch**            
+---------------------------------------------------------------------------------------
+NET mismatches: Class fragments follow (with fanout counts):
+Circuit 1: async_ctrl_flat                 |Circuit 2: async_ctrl                      
+
+---------------------------------------------------------------------------------------
+Net: a_9001_1848#                          |Net: settle_delay:settle_dly/d2            
+  sky130_fd_pr__nfet_01v8/(1|3) = 1        |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: a_8865_1848#                          |Net: adc_done                              
+  sky130_fd_pr__nfet_01v8/(1|3) = 1        |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: a_6189_2388#                          |Net: nand_rst_mid                          
+  sky130_fd_pr__nfet_01v8/(1|3) = 1        |  sky130_fd_pr__nfet_01v8/(1|3) = 2        
+                                           |                                           
+Net: a_10885_6708#                         |Net: xbar_rst                              
+  sky130_fd_pr__nfet_01v8/(1|3) = 1        |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |                                           
+Net: a_10521_6708#                         |Net: adc_go                                
+  sky130_fd_pr__nfet_01v8/(1|3) = 1        |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |                                           
+Net: a_10385_6708#                         |Net: done                                  
+  sky130_fd_pr__nfet_01v8/(1|3) = 1        |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |                                           
+Net: w_14134_3070#                         |Net: go_b                                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_8710_910#                           |Net: rst_dly_raw                           
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_1010_910#                           |Net: rst_delayed                           
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_17234_5230#                         |Net: stl_dly_raw                           
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_11034_5230#                         |Net: stl_dly_b                             
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_7934_3070#                          |Net: settle_delayed                        
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_5610_910#                           |Net: adc_go_b                              
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_2510_910#                           |Net: latch_b                               
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_4834_5230#                          |Net: latch_out                             
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_14910_910#                          |Net: done_b                                
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_17234_3070#                         |Net: rst_delay:rst_dly/d0                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_11034_3070#                         |Net: rst_delay:rst_dly/d1                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_9860_7192#                          |Net: rst_delay:rst_dly/d2                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_14134_5230#                         |Net: rst_delay:rst_dly/d3                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_4834_3070#                          |Net: rst_delay:rst_dly/d4                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_7934_5230#                          |Net: rst_delay:rst_dly/d5                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: w_11810_910#                          |Net: rst_delay:rst_dly/d6                  
+  sky130_fd_pr__pfet_01v8/4 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: a_10973_6856#                         |Net: rst_delay:rst_dly/d7                  
+  sky130_fd_pr__nfet_01v8/2 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: a_10473_6856#                         |Net: rst_delay:rst_dly/d8                  
+  sky130_fd_pr__nfet_01v8/2 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: a_9973_6872#                          |Net: settle_delay:settle_dly/d0            
+  sky130_fd_pr__nfet_01v8/2 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: a_10024_7582#                         |Net: settle_delay:settle_dly/d1            
+  sky130_fd_pr__pfet_01v8/2 = 1            |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+Net: GO                                    |Net: go                                    
+  sky130_fd_pr__nfet_01v8/2 = 2            |  sky130_fd_pr__nfet_01v8/2 = 1            
+  sky130_fd_pr__pfet_01v8/2 = 16           |  sky130_fd_pr__pfet_01v8/2 = 1            
+  sky130_fd_pr__pfet_01v8/(1|3) = 34       |                                           
+  sky130_fd_pr__nfet_01v8/(1|3) = 2        |                                           
+                                           |                                           
+Net: a_9385_6708#                          |Net: settle_delay:settle_dly/d3            
+  sky130_fd_pr__nfet_01v8/(1|3) = 2        |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d4            
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d5            
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d6            
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d7            
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d8            
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d9            
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d10           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d11           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d12           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d13           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d14           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d15           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d16           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d17           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: settle_delay:settle_dly/d18           
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+                                           |                                           
+(no matching net)                          |Net: vss                                   
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 44       
+                                           |  sky130_fd_pr__nfet_01v8/4 = 45           
+                                           |                                           
+(no matching net)                          |Net: vdd                                   
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 45       
+                                           |  sky130_fd_pr__pfet_01v8/4 = 45           
+                                           |                                           
+(no matching net)                          |Net: go_buf                                
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 2            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 2            
+                                           |                                           
+(no matching net)                          |Net: rst_dly_b                             
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__pfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 2            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 2            
+---------------------------------------------------------------------------------------
+
+---------------------------------------------------------------------------------------
+Net: a_n530_n509#                          |Net: rst_nand                              
+  sky130_fd_pr__nfet_01v8/4 = 5            |  sky130_fd_pr__pfet_01v8/(1|3) = 2        
+                                           |  sky130_fd_pr__nfet_01v8/(1|3) = 1        
+                                           |  sky130_fd_pr__nfet_01v8/2 = 1            
+                                           |  sky130_fd_pr__pfet_01v8/2 = 1            
+---------------------------------------------------------------------------------------
+DEVICE mismatches: Class fragments follow (with node fanout counts):
+Circuit 1: async_ctrl_flat                 |Circuit 2: async_ctrl                      
+
+---------------------------------------------------------------------------------------
+Instance: sky130_fd_pr__nfet_01v8:0        |Instance: sky130_fd_pr__nfet_01v8:inv_go1_ 
+  (1,3) = (1,1)                            |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 2                                    
+  4 = 5                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__nfet_01v8:4        |Instance: sky130_fd_pr__nfet_01v8:inv_go2_ 
+  (1,3) = (54,1)                           |  (1,3) = (89,6)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 5                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__nfet_01v8:53       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,1)                           |  (1,3) = (89,4)                           
+  2 = 1                                    |  2 = 6                                    
+  4 = 5                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__nfet_01v8:85       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (1,1)                            |  (1,3) = (89,4)                           
+  2 = 1                                    |  2 = 4                                    
+  4 = 5                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__nfet_01v8:94       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (2,2)                            |  (1,3) = (89,4)                           
+  2 = 1                                    |  2 = 4                                    
+  4 = 5                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:1        |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:2        |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:9        |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:12       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:15       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:19       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:41       |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:43       |Instance: sky130_fd_pr__nfet_01v8:inv_rd1_ 
+  (1,3) = (54,54)                          |  (1,3) = (89,6)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:48       |Instance: sky130_fd_pr__nfet_01v8:inv_rd2_ 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 6                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:55       |Instance: sky130_fd_pr__nfet_01v8:nand_rst 
+  (1,3) = (54,54)                          |  (1,3) = (89,2)                           
+  2 = 54                                   |  2 = 6                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:57       |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:62       |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:70       |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 1                                    |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:89       |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:95       |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:111      |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+Instance: sky130_fd_pr__pfet_01v8:119      |Instance: settle_delay:settle_dly/sky130_f 
+  (1,3) = (54,54)                          |  (1,3) = (89,4)                           
+  2 = 54                                   |  2 = 4                                    
+  4 = 1                                    |  4 = 89                                   
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_sd1_ 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_sd2_ 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_ag1_ 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_ag2_ 
+                                           |  (1,3) = (89,2)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_ld1_ 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 2                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_ld2_ 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_dn1_ 
+                                           |  (1,3) = (89,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_dn2_ 
+                                           |  (1,3) = (89,2)                           
+                                           |  2 = 4                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:nand_rst 
+                                           |  (1,3) = (5,2)                            
+                                           |  2 = 6                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__nfet_01v8:inv_rst_ 
+                                           |  (1,3) = (89,2)                           
+                                           |  2 = 5                                    
+                                           |  4 = 89                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_go1_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 2                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_go2_ 
+                                           |  (1,3) = (90,6)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 6                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: rst_delay:rst_dly/sky130_fd_pr__ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_rd1_ 
+                                           |  (1,3) = (90,6)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_rd2_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 6                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: settle_delay:settle_dly/sky130_f 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_sd1_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_sd2_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_ag1_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_ag2_ 
+                                           |  (1,3) = (90,2)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_ld1_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 2                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_ld2_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_dn1_ 
+                                           |  (1,3) = (90,4)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_dn2_ 
+                                           |  (1,3) = (90,2)                           
+                                           |  2 = 4                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:nand_rst 
+                                           |  (1,3) = (90,5)                           
+                                           |  2 = 6                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:nand_rst 
+                                           |  (1,3) = (90,5)                           
+                                           |  2 = 6                                    
+                                           |  4 = 90                                   
+                                           |                                           
+                                           |                                           
+(no matching instance)                     |Instance: sky130_fd_pr__pfet_01v8:inv_rst_ 
+                                           |  (1,3) = (90,2)                           
+                                           |  2 = 5                                    
+                                           |  4 = 90                                   
+                                           |                                           
+---------------------------------------------------------------------------------------
+Netlists do not match.
+Port matching may fail to disambiguate symmetries.
+
+Subcircuit pins:
+Circuit 1: async_ctrl_flat                 |Circuit 2: async_ctrl                      
+-------------------------------------------|-------------------------------------------
+GO                                         |(no pin, node is settle_delay:settle_dly/d 
+(no pin, node is a_9385_6708#)             |go                                         
+(no pin, node is a_9385_6708#)             |adc_done                                   
+(no pin, node is a_9385_6708#)             |xbar_rst                                   
+(no pin, node is a_9385_6708#)             |adc_go                                     
+(no pin, node is a_9385_6708#)             |latch_out                                  
+(no pin, node is a_9385_6708#)             |done                                       
+(no pin, node is a_9385_6708#)             |vdd                                        
+(no pin, node is a_9385_6708#)             |vss                                        
+---------------------------------------------------------------------------------------
+Cell pin lists for async_ctrl_flat and async_ctrl altered to match.
+Device classes async_ctrl_flat and async_ctrl are equivalent.
+
+Final result: Top level cell failed pin matching.

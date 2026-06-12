@@ -1,0 +1,2980 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>SKY130 DRC runset</description>
+ <original-file/>
+ <generator>drc: script='/home/omare/.ciel/sky130A/libs.tech/klayout/drc/sky130A_mr.drc'</generator>
+ <top-cell>strongarm</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>dnwell.2</name>
+   <description>dnwell.2 : min. dnwell width : 3.0um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell.1</name>
+   <description>nwell.1 : min. nwell width : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell.2a</name>
+   <description>nwell.2a : min. nwell spacing (merged if less) : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell.6</name>
+   <description>nwell.6 : min enclosure of nwellHole by dnwell : 1.03um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtp.1</name>
+   <description>hvtp.1 : min. hvtp width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtp.2</name>
+   <description>hvtp.2 : min. hvtp spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr.1</name>
+   <description>hvtr.1 : min. hvtr width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr.2</name>
+   <description>hvtr.2 : min. hvtr spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr.2_a</name>
+   <description>hvtr.2_a : hvtr must not overlap hvtp</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>lvtn.1a</name>
+   <description>lvtn.1a : min. lvtn width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>lvtn.2</name>
+   <description>lvtn.2 : min. lvtn spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ncm.1</name>
+   <description>ncm.1 : min. ncm width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ncm.2a</name>
+   <description>ncm.2a : min. ncm spacing : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1</name>
+   <description>difftap.1 : min. diff width across areaid:ce : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1_a</name>
+   <description>difftap.1_a : min. diff width in periphery : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1_b</name>
+   <description>difftap.1_b : min. tap width across areaid:ce : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.1_c</name>
+   <description>difftap.1_c : min. tap width in periphery : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>difftap.3</name>
+   <description>difftap.3 : min. difftap spacing : 0.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tunm.1</name>
+   <description>tunm.1 : min. tunm width : 0.41um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tunm.2</name>
+   <description>tunm.2 : min. tunm spacing : 0.5um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>poly.1a</name>
+   <description>poly.1a : min. poly width : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>poly.2</name>
+   <description>poly.2 : min. poly spacing : 0.21um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>rpm.1a</name>
+   <description>rpm.1a : min. rpm width : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>rpm.2</name>
+   <description>rpm.2 : min. rpm spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>urpm.1a</name>
+   <description>urpm.1a : min. rpm width : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>urpm.2</name>
+   <description>urpm.2 : min. rpm spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>npc.1</name>
+   <description>npc.1 : min. npc width : 0.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>npc.2</name>
+   <description>npc.2 : min. npc spacing, should be manually merged if less than : 0.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsd.1</name>
+   <description>nsd.1 : min. nsdm width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsd.2</name>
+   <description>nsd.2 : min. nsdm spacing, should be manually merged if less than : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>psd.1</name>
+   <description>psd.1 : min. psdm width : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>psd.2</name>
+   <description>psd.2 : min. psdm spacing, should be manually merged if less than : 0.38um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.1</name>
+   <description>licon.1 : licon should be rectangle</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.1_a/b</name>
+   <description>licon.1_a/b : minimum/maximum width of licon : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.13</name>
+   <description>licon.13 : min. difftap licon spacing to npc : 0.09um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.13_a</name>
+   <description>licon.13_a : licon of diffTap in periphery must not overlap npc</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon.17</name>
+   <description>licon.17 : Licons may not overlap both poly and (diff or tap)</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.1</name>
+   <description>capm.1 : min. capm width : 1.0um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.2a</name>
+   <description>capm.2a : min. capm spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.2b</name>
+   <description>capm.2b : min. capm spacing : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.2b_a</name>
+   <description>capm.2b_a : min. spacing of m3_bot_plate : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.3</name>
+   <description>capm.3 : min. capm and m3 enclosure of m3 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.3_a</name>
+   <description>capm.3_a : min. m3 enclosure of capm : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.4</name>
+   <description>capm.4 : min. capm enclosure of via3 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.5</name>
+   <description>capm.5 : min. capm spacing to via3 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>capm.11</name>
+   <description>capm.11 : Min spacing of capm and met3 not overlapping capm : 0.5um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.1</name>
+   <description>cap2m.1 : min. cap2m width : 1.0um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.2a</name>
+   <description>cap2m.2a : min. cap2m spacing : 0.84um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.2b</name>
+   <description>cap2m.2b : min. cap2m spacing : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.2b_a</name>
+   <description>cap2m.2b_a : min. spacing of m4_bot_plate : 1.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.3</name>
+   <description>cap2m.3 : min. m4 enclosure of cap2m : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.3_a</name>
+   <description>cap2m.3_a : min. m4 enclosure of cap2m : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.4</name>
+   <description>cap2m.4 : min. cap2m enclosure of via4 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.5</name>
+   <description>cap2m.5 : min. cap2m spacing to via4 : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>cap2m.11</name>
+   <description>cap2m.11 : Min spacing of cap2m and met4 not overlapping cap2m : 0.5um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>li.1</name>
+   <description>li.1 : min. li width : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>li.3</name>
+   <description>li.3 : min. li spacing : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>li.5</name>
+   <description>li.5 : min. li enclosure of licon of 2 adjacent edges : 0.08um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>li.6</name>
+   <description>li.6 : min. li area : 0.0561um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct.1</name>
+   <description>ct.1: non-ring mcon should be rectangular</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct.1_a</name>
+   <description>ct.1_a : minimum width of mcon : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct.1_b</name>
+   <description>ct.1_b : maximum length of mcon : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct.2</name>
+   <description>ct.2 : min. mcon spacing : 0.19um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct.4</name>
+   <description>ct.4 : mcon should covered by li</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.1</name>
+   <description>m1.1 : min. m1 width : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.2</name>
+   <description>m1.2 : min. m1 spacing : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.3ab</name>
+   <description>m1.3ab : min. 3um.m1 spacing m1 : 0.28um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>791_m1.4</name>
+   <description>791_m1.4 : min. m1 enclosure of mcon : 0.03um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.4</name>
+   <description>m1.4 : mcon periphery must be enclosed by m1</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.4a</name>
+   <description>m1.4a : min. m1 enclosure of mcon for specific cells : 0.005um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.4a_a</name>
+   <description>m1.4a_a : mcon periph must be enclosed by met1 for specific cells</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.6</name>
+   <description>m1.6 : min. m1 area : 0.083um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.7</name>
+   <description>m1.7 : min. m1 with holes area : 0.14um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1.5</name>
+   <description>m1.5 : min. m1 enclosure of mcon of 2 adjacent edges : 0.06um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.1a</name>
+   <description>via.1a : via outside of moduleCut should be rectangular</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.1a_a</name>
+   <description>via.1a_a : min. width of via outside of moduleCut : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.1a_b</name>
+   <description>via.1a_b : maximum length of via : 0.15um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.2</name>
+   <description>via.2 : min. via spacing : 0.17um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.4a</name>
+   <description>via.4a : min. m1 enclosure of 0.15um via : 0.055um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.4a_a</name>
+   <description>via.4a_a : 0.15um via must be enclosed by met1</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via.5a</name>
+   <description>via.5a : min. m1 enclosure of 0.15um via of 2 adjacent edges : 0.085um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.1</name>
+   <description>m2.1 : min. m2 width : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.2</name>
+   <description>m2.2 : min. m2 spacing : 0.14um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.3ab</name>
+   <description>m2.3ab : min. 3um.m2 spacing m2 : 0.28um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.6</name>
+   <description>m2.6 : min. m2 area : 0.0676um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.7</name>
+   <description>m2.7 : min. m2 holes area : 0.14um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.4</name>
+   <description>m2.4 : min. m2 enclosure of via : 0.055um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.4_a</name>
+   <description>m2.4_a : via in periphery must be enclosed by met2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2.5</name>
+   <description>m2.5 : min. m2 enclosure of via of 2 adjacent edges : 0.085um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.1a</name>
+   <description>via2.1a : via2 outside of moduleCut should be rectangular</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.1a_a</name>
+   <description>via2.1a_a : min. width of via2 outside of moduleCut : 0.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.1a_b</name>
+   <description>via2.1a_b : maximum length of via2 : 0.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.2</name>
+   <description>via2.2 : min. via2 spacing : 0.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.4</name>
+   <description>via2.4 : min. m2 enclosure of via2 : 0.04um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.4_a</name>
+   <description>via2.4_a : via must be enclosed by met2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2.5</name>
+   <description>via2.5 : min. m3 enclosure of via2 of 2 adjacent edges : 0.085um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3.1</name>
+   <description>m3.1 : min. m3 width : 0.3um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3.2</name>
+   <description>m3.2 : min. m3 spacing : 0.3um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3.3cd</name>
+   <description>m3.3cd : min. 3um.m3 spacing m3 : 0.4um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3.4</name>
+   <description>m3.4 : min. m3 enclosure of via2 : 0.065um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3.4_a</name>
+   <description>m3.4_a : via2 must be enclosed by met3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.1</name>
+   <description>via3.1 : via3 outside of moduleCut should be rectangular</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.1_a</name>
+   <description>via3.1_a : min. width of via3 outside of moduleCut : 0.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.1_b</name>
+   <description>via3.1_b : maximum length of via3 : 0.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.2</name>
+   <description>via3.2 : min. via3 spacing : 0.2um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.4</name>
+   <description>via3.4 : min. m3 enclosure of via3 : 0.06um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.4_a</name>
+   <description>via3.4_a : non-ring via3 must be enclosed by met3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3.5</name>
+   <description>via3.5 : min. m3 enclosure of via3 of 2 adjacent edges : 0.09um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4.1</name>
+   <description>m4.1 : min. m4 width : 0.3um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4.2</name>
+   <description>m4.2 : min. m4 spacing : 0.3um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4.4a</name>
+   <description>m4.4a : min. m4 area : 0.240um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4.5ab</name>
+   <description>m4.5ab : min. 3um.m4 spacing m4 : 0.4um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4.3</name>
+   <description>m4.3 : min. m4 enclosure of via3 : 0.065um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4.3_a</name>
+   <description>m4.3_a : via3 must be enclosed by met4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4.1</name>
+   <description>via4.1 : via4 outside of moduleCut should be rectangular</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4.1_a</name>
+   <description>via4.1_a : min. width of via4 outside of moduleCut : 0.8um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4.1_b</name>
+   <description>via4.1_b : maximum length of via4 : 0.8um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4.2</name>
+   <description>via4.2 : min. via4 spacing : 0.8um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4.4</name>
+   <description>via4.4 : min. m4 enclosure of via4 : 0.19um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4.4_a</name>
+   <description>via4.4_a : m4 must enclose all via4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5.1</name>
+   <description>m5.1 : min. m5 width : 1.6um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5.2</name>
+   <description>m5.2 : min. m5 spacing : 1.6um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5.3</name>
+   <description>m5.3 : min. m5 enclosure of via4 : 0.31um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5.3_a</name>
+   <description>m5.3_a : via must be enclosed by m5</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5.4</name>
+   <description>m5.4 : min. m5 area : 4.0um²</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pad.2</name>
+   <description>pad.2 : min. pad spacing : 1.27um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvi.1</name>
+   <description>hvi.1 : min. hvi width : 0.6um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvi.2a</name>
+   <description>hvi.2a : min. hvi spacing : 0.7um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvntm.1</name>
+   <description>hvntm.1 : min. hvntm width : 0.7um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvntm.2</name>
+   <description>hvntm.2 : min. hvntm spacing : 0.7um</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>dnwell_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on dnwell</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>dnwell_angle</name>
+   <description>x.3a : non 45 degree angle dnwell</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on nwell</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nwell_angle</name>
+   <description>x.3a : non 45 degree angle nwell</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pwbm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on pwbm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pwbm_angle</name>
+   <description>x.3a : non 45 degree angle pwbm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pwde_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on pwde</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pwde_angle</name>
+   <description>x.3a : non 45 degree angle pwde</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtp_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on hvtp</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtp_angle</name>
+   <description>x.3a : non 45 degree angle hvtp</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on hvtr</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvtr_angle</name>
+   <description>x.3a : non 45 degree angle hvtr</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>lvtn_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on lvtn</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>lvtn_angle</name>
+   <description>x.3a : non 45 degree angle lvtn</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ncm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on ncm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ncm_angle</name>
+   <description>x.3a : non 45 degree angle ncm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>diff_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on diff</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tap_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on tap</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>diff_angle</name>
+   <description>x.2c : non 45 degree angle diff</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tap_angle</name>
+   <description>x.2c : non 45 degree angle tap</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tunm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on tunm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>tunm_angle</name>
+   <description>x.3a : non 45 degree angle tunm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>poly_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on poly</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>poly_angle</name>
+   <description>x.2 : non 90 degree angle poly</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>rpm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on rpm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>rpm_angle</name>
+   <description>x.3a : non 45 degree angle rpm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>npc_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on npc</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>npc_angle</name>
+   <description>x.3a : non 45 degree angle npc</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsdm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on nsdm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsdm_angle</name>
+   <description>x.3a : non 45 degree angle nsdm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>psdm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on psdm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>psdm_angle</name>
+   <description>x.3a : non 45 degree angle psdm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on licon</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>licon_angle</name>
+   <description>x.2 : non 90 degree angle licon</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>li_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on li</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>li_angle</name>
+   <description>x.3a : non 45 degree angle li</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on mcon</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>ct_angle</name>
+   <description>x.2 : non 90 degree angle mcon</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>vpp_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on vpp</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>vpp_angle</name>
+   <description>x.3a : non 45 degree angle vpp</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on m1</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m1_angle</name>
+   <description>x.3a : non 45 degree angle m1</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on via</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via_angle</name>
+   <description>x.2 : non 90 degree angle via</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on m2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m2_angle</name>
+   <description>x.3a : non 45 degree angle m2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on via2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via2_angle</name>
+   <description>x.2 : non 90 degree angle via2</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on m3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m3_angle</name>
+   <description>x.3a : non 45 degree angle m3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on via3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via3_angle</name>
+   <description>x.2 : non 90 degree angle via3</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on nsm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>nsm_angle</name>
+   <description>x.3a : non 45 degree angle nsm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on m4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m4_angle</name>
+   <description>x.3a : non 45 degree angle m4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on via4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>via4_angle</name>
+   <description>x.2 : non 90 degree angle via4</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on m5</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>m5_angle</name>
+   <description>x.3a : non 45 degree angle m5</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pad_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on pad</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pad_angle</name>
+   <description>x.3a : non 45 degree angle pad</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>mf_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on mf</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>mf_angle</name>
+   <description>x.2 : non 90 degree angle mf</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvi_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on hvi</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvi_angle</name>
+   <description>x.3a : non 45 degree angle hvi</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvntm_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on hvntm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>hvntm_angle</name>
+   <description>x.3a : non 45 degree angle hvntm</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>vhvi_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on vhvi</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>vhvi_angle</name>
+   <description>x.3a : non 45 degree angle vhvi</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>uhvi_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on uhvi</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>uhvi_angle</name>
+   <description>x.3a : non 45 degree angle uhvi</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pwell_rs_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on pwell_rs</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>pwell_rs_angle</name>
+   <description>x.3a : non 45 degree angle pwell_rs</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>areaid_re_OFFGRID</name>
+   <description>x.1b : OFFGRID vertex on areaid.re</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>strongarm</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>'nwell.2a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1.98,11.885;1.98,13.975)|(1.91,13.975;1.91,11.885)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'difftap.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1.98,13.625;1.98,13.795)|(1.91,13.795;1.91,13.625)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'difftap.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (0.08,5.248;0.08,5.622)|(-0.17,5.52;-0.17,5.35)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'nsd.2'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (4.91,0.16;4.91,7.42)|(4.74,7.42;4.74,0.16)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'psd.2'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (2.03,11.935;2.03,13.195)|(1.86,13.195;1.86,11.935)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1.98,13.625;1.98,13.795)/(1.91,13.795;1.91,13.625)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (0.75,12.59;0.58,12.59)/(0.4175,12.54;0.9125,12.54)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (3.63,3.815;0.58,3.815)/(0.4175,3.765;3.7925,3.765)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (0.34,8.08;0.4526,8.08)/(0.3,8.155;0.1874,8.155)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (20.75,2.565;18.66,2.565)/(18.4975,2.515;20.9125,2.515)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (2.83,12.59;2.66,12.59)/(2.4975,12.54;2.9925,12.54)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-1.33,2.565;-3.42,2.565)/(-3.5825,2.515;-1.1675,2.515)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (0.34,7.9898;0.34,8.08)/(0.3,8.2452;0.3,8.155)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (12.75,0.815;12.58,0.815)/(12.4175,0.765;12.9125,0.765)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (8.59,3.815;5.54,3.815)/(5.3775,3.765;8.7525,3.765)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.3'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (0.75,-1.035;0.58,-1.035)/(0.4175,-1.085;0.9125,-1.085)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.09,3.595;5.09,3.765;5.26,3.765;5.26,3.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.79,8.375;0.79,8.545;0.96,8.545;0.96,8.375)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,3.595;0.13,3.765;0.3,3.765;0.3,3.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (18.66,2.565;18.66,2.735;18.83,2.735;18.83,2.565)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (18.21,2.345;18.21,2.515;18.38,2.515;18.38,2.345)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.54,3.815;5.54,3.985;5.71,3.985;5.71,3.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (20.58,2.565;20.58,2.735;20.75,2.735;20.75,2.565)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-0.81,2.345;-0.81,2.515;-0.64,2.515;-0.64,2.345)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3.35,12.37;3.35,12.54;3.52,12.54;3.52,12.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.08,-2.19;0.08,-2.02;0.25,-2.02;0.25,-2.19)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (8.42,3.815;8.42,3.985;8.59,3.985;8.59,3.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-4.1,5.35;-4.1,5.52;-3.93,5.52;-3.93,5.35)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,-1.255;0.13,-1.085;0.3,-1.085;0.3,-1.255)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,11.835;0.34,12.005;0.51,12.005;0.51,11.835)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (9.11,3.595;9.11,3.765;9.28,3.765;9.28,3.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (21.72,5.35;21.72,5.52;21.89,5.52;21.89,5.35)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.42,11.835;2.42,12.005;2.59,12.005;2.59,11.835)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-1.5,2.565;-1.5,2.735;-1.33,2.735;-1.33,2.565)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.21,12.37;2.21,12.54;2.38,12.54;2.38,12.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.66,12.59;2.66,12.76;2.83,12.76;2.83,12.59)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-0.36,5.35;-0.36,5.52;-0.19,5.52;-0.19,5.35)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-0.1,13.625;-0.1,13.795;0.07,13.795;0.07,13.625)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,7.91;0.34,8.08;0.51,8.08;0.51,7.91)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.34,0.06;12.34,0.23;12.51,0.23;12.51,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (1.27,12.37;1.27,12.54;1.44,12.54;1.44,12.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,3.815;0.58,3.985;0.75,3.985;0.75,3.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,12.37;0.13,12.54;0.3,12.54;0.3,12.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-3.42,2.565;-3.42,2.735;-3.25,2.735;-3.25,2.565)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,-1.79;0.34,-1.62;0.51,-1.62;0.51,-1.79)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-3.66,0.06;-3.66,0.23;-3.49,0.23;-3.49,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.13,0.595;12.13,0.765;12.3,0.765;12.3,0.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (18.42,0.06;18.42,0.23;18.59,0.23;18.59,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,12.59;0.58,12.76;0.75,12.76;0.75,12.59)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3.46,3.815;3.46,3.985;3.63,3.985;3.63,3.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-3.87,2.345;-3.87,2.515;-3.7,2.515;-3.7,2.345)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,-1.035;0.58,-0.865;0.75,-0.865;0.75,-1.035)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (13.27,0.595;13.27,0.765;13.44,0.765;13.44,0.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.58,0.815;12.58,0.985;12.75,0.985;12.75,0.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (1.98,13.625;1.98,13.795;2.15,13.795;2.15,13.625)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (4.15,3.595;4.15,3.765;4.32,3.765;4.32,3.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (1.27,-1.255;1.27,-1.085;1.44,-1.085;1.44,-1.255)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,0.06;0.34,0.23;0.51,0.23;0.51,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.3,0.06;5.3,0.23;5.47,0.23;5.47,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,8.155;0.13,8.325;0.3,8.325;0.3,8.155)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (21.27,2.345;21.27,2.515;21.44,2.515;21.44,2.345)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (17.98,5.35;17.98,5.52;18.15,5.52;18.15,5.35)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,8.155;0.13,8.325;0.3,8.325;0.3,8.155)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.79,8.375;0.79,8.545;0.96,8.545;0.96,8.375)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.58,0.815;12.58,0.985;12.75,0.985;12.75,0.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,-1.035;0.58,-0.865;0.75,-0.865;0.75,-1.035)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.66,12.59;2.66,12.76;2.83,12.76;2.83,12.59)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,12.59;0.58,12.76;0.75,12.76;0.75,12.59)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,7.91;0.34,8.08;0.51,8.08;0.51,7.91)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.3,0.06;5.3,0.23;5.47,0.23;5.47,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,0.06;0.34,0.23;0.51,0.23;0.51,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.34,0.06;12.34,0.23;12.51,0.23;12.51,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,-1.79;0.34,-1.62;0.51,-1.62;0.51,-1.79)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (18.42,0.06;18.42,0.23;18.59,0.23;18.59,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-3.66,0.06;-3.66,0.23;-3.49,0.23;-3.49,0.06)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.42,11.835;2.42,12.005;2.59,12.005;2.59,11.835)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'li.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.34,11.835;0.34,12.005;0.51,12.005;0.51,11.835)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'791_m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (12.58,0.83;12.58,1.015)/(12.58,0.815;12.58,0.985)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'791_m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (12.12,0.5667;12.12,0.75)/(12.13,0.595;12.13,0.765)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'791_m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (-3.8866,2.54;-3.6834,2.54)/(-3.87,2.515;-3.7,2.515)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'791_m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (18.1934,2.54;18.3966,2.54)/(18.21,2.515;18.38,2.515)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.21,12.525;2.21,12.54;2.38,12.54;2.38,12.525)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.79,8.53;0.79,8.545;0.96,8.545;0.96,8.53)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,12.525;0.13,12.54;0.3,12.54;0.3,12.525)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.945,8.39;0.945,8.53;0.96,8.53;0.96,8.39)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.79,8.375;0.79,8.39;0.96,8.39;0.96,8.375)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.21,12.37;2.21,12.385;2.23,12.385;2.23,12.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.54,3.83;5.54,3.97;5.555,3.97;5.555,3.83)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.54,3.815;5.54,3.83;5.71,3.83;5.71,3.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.09,3.61;5.09,3.67;5.105,3.67;5.105,3.61)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.54,3.97;5.54,3.985;5.68,3.985;5.68,3.97)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.09,3.595;5.09,3.61;5.26,3.61;5.26,3.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (18.66,2.565;18.66,2.735;18.83,2.735;18.83,2.565)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,12.37;0.13,12.525;0.145,12.525;0.145,12.385;0.16,12.385;0.16,12.37)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.13,-1.255;0.13,-1.085;0.3,-1.085;0.3,-1.255)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,3.815;0.58,3.985;0.75,3.985;0.75,3.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-3.42,2.565;-3.42,2.735;-3.25,2.735;-3.25,2.565)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.285,0.61;12.285,0.75;12.3,0.75;12.3,0.61)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (2.66,12.59;2.66,12.76;2.83,12.76;2.83,12.59)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.26,0.595;12.26,0.61;12.3,0.61;12.3,0.595)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (0.58,12.59;0.58,12.76;0.75,12.76;0.75,12.59)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.735,0.83;12.735,0.97;12.72,0.97;12.72,0.985;12.75,0.985;12.75,0.83)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.13,0.75;12.13,0.765;12.3,0.765;12.3,0.75)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.58,0.815;12.58,0.83;12.75,0.83;12.75,0.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (-3.87,2.345;-3.87,2.4;-3.855,2.4;-3.855,2.36;-3.7,2.36;-3.7,2.345)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.4'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (18.21,2.345;18.21,2.4;18.225,2.4;18.225,2.36;18.38,2.36;18.38,2.345)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (5.555,3.83;5.555,3.97;5.68,3.97;5.68,4.06;5.82,4.06;5.82,3.83)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.58,0.83;12.58,1.02;12.72,1.02;12.72,0.97;12.735,0.97;12.735,0.83)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.6'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.12,0.5;12.12,0.75;12.285,0.75;12.285,0.61;12.26,0.61;12.26,0.5)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'m1.5'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.58,0.815;12.58,0.985;12.75,0.985;12.75,0.815)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (12.735,0.83;12.58,0.83)/(12.725,0.875;12.575,0.875)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (12.735,0.97;12.735,0.83)/(12.725,1.0241;12.725,0.875)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (12.285,0.6962;12.285,0.61)/(12.265,0.645;12.265,0.5588)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (5.675,3.97;5.675,4.065)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.575,1.025;12.725,1.025)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.115,0.645;12.12,0.645)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.615,7.895;0.765,7.895)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.385,-1.635;0.535,-1.635)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (2.375,-0.265;2.225,-0.265)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.535,-1.785;0.385,-1.785)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (2.225,-0.115;2.375,-0.115)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.575,0.875;12.575,1.025)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.265,0.495;12.115,0.495)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.615,7.745;0.615,7.895)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.765,7.745;0.615,7.745)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (-3.375,0.115;-3.525,0.115)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (5.675,4.065;5.825,4.065)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.385,-1.785;0.385,-1.635)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.115,0.495;12.115,0.645)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (2.225,-0.12;2.225,-0.115)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (-3.525,0.115;-3.525,0.265)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.535,-1.635;0.535,-1.785)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (-3.375,0.265;-3.375,0.115)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (2.375,-0.26;2.375,-0.265)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (5.825,4.065;5.825,3.915)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (-3.525,0.265;-3.375,0.265)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (2.225,-0.265;2.225,-0.26)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (5.825,3.915;5.82,3.915)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (2.375,-0.115;2.375,-0.12)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.265,0.61;12.265,0.495)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.58,0.875;12.575,0.875)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (0.765,7.895;0.765,7.745)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.4a_a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge: (12.725,1.025;12.725,0.97)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'via.5a'</category>
+   <cell>strongarm</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (12.575,0.875;12.575,1.025;12.725,1.025;12.725,0.875)</value>
+   </values>
+  </item>
+ </items>
+</report-database>
